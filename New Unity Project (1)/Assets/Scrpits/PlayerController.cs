@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        transform.position = new Vector3(26, -12, 0);
     }
 
     // Update is called once per frame
