@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Not_Feed_Field
+  - fence
   layers:
   - Default
   - TransparentFX
