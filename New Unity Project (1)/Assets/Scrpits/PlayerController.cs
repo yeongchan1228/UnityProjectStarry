@@ -6,24 +6,29 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
+    private Rigidbody2D rigid2D;
+    Vector3 viewpos;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-3, 0, 0);
+        rigid2D = GetComponent<Rigidbody2D>();
+        transform.position = new Vector3(-17.5f, 16, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0)
-        {
-            transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
-        }
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Vertical") < 0)
-        {
-            transform.Translate(new Vector3(0f, Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime, 0f));
-        }
+        
+        //transform.position += new Vector3(x, y, 0) * moveSpeed * Time.deltaTime;
+        rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
     }
+
+
+
+   
+   
 }
