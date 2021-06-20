@@ -12,7 +12,7 @@ public class CameraMoving : MonoBehaviour
     {
         AT = A.transform;
         transform.position = new Vector3(-3, 0, -4);
-       
+        
     }
 
     // Update is called once per frame
