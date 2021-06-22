@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     {
             scanobject = scanobj;
             NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
-            Debug.Log("npc  data " +npc_Data.id);
             Talking(npc_Data.id, npc_Data.isNPC);
             talk.SetBool("isShow", isAction);
     }
@@ -32,13 +31,12 @@ public class GameManager : MonoBehaviour
 
     void Talking(string id, bool isNPC)
     {
-        
         string talkData = talkManager.GetTalk(id, talkIndex);
         if(talkIndex > 0)
         {
             ImgAnimator.SetTrigger("Effect");
         }
-        if (talkData == null)
+        if (talkData == null && chatEffect.doing == false)
         {
             isAction = false;
             talkIndex = 0;
@@ -59,7 +57,7 @@ public class GameManager : MonoBehaviour
         }
 
         isAction = true;
-        if (!chatEffect.doing)
+        if (chatEffect.doing)
         {
             talkIndex++;
         }

@@ -58,7 +58,6 @@ public class ChatEffect : MonoBehaviour
     {
         End_Button.SetActive(true);
         doing = false;
-        Debug.Log("½ÇÇà");
     }
 
 }

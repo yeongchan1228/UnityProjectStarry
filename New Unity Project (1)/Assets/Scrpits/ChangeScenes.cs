@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ChangeScenes : MonoBehaviour
 {
     public string transferMapName;
-
+    
     // Start is called before the first frame update
     void Start()
     {
