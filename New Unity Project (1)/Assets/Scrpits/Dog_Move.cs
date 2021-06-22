@@ -6,11 +6,10 @@ public class Dog_Move : MonoBehaviour
 {
 
     public float rightMax; //좌로 이동가능한 (x)최대값
-
     public float leftMax; //우로 이동가능한 (x)최대값
-
     public float upMax; //위로 이동가능한 (y)최대값
-
+    public float startX, startY;
+    public GameManager textmanager;
     public float downMax; //아래로 이동가능한 (y)최대값
     float currentPosition; //현재 위치(x) 저장
     float currentPositiony; //현재 위치(y) 저장
@@ -19,18 +18,19 @@ public class Dog_Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-17, 13, 0);
+        transform.position = new Vector3(startX, startY, 0);
         currentPosition = transform.position.x;
         currentPositiony = transform.position.y;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentPosition += Time.deltaTime * direction;
-        
-
+        if (!textmanager.isAction)
+        {
+            currentPosition += Time.deltaTime * direction;
+        }
+    
         if (currentPosition >= rightMax)
         {
             direction *= -1;

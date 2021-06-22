@@ -7,14 +7,18 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
+    public GameManager textmanager;
     public float startX, startY;
+    private float x, y;
     private Rigidbody2D rigid2D;
-    Vector3 viewpos;
+    Vector3 viewpos, dirVec;
     private Animator anim;
-    public GameObject targetobj; // not_feed 땅인지
+    public GameObject targetobj; // 씨앗을 뿌릴 땅 저장 오브젝트
     private SpriteRenderer spriteR;
     private Sprite[] seeds;
-
+    private GameObject scanObj; // 스캔 오브젝트
+   
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,37 +26,79 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(startX, startY, 0);
         anim = GetComponent<Animator>();
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
+        textmanager.talk.SetActive(textmanager.isAction);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-        if (Input.GetKeyDown(KeyCode.Space))
+        x = textmanager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
+        y = textmanager.isAction ? 0 : Input.GetAxisRaw("Vertical");
+        bool hDown = textmanager.isAction ? false : Input.GetButtonDown("Horizontal");
+        bool vDown = textmanager.isAction ? false : Input.GetButtonDown("Vertical"); 
+        bool hUp = textmanager.isAction ? false : Input.GetButtonDown("Horizontal");
+        bool vUp = textmanager.isAction ? false : Input.GetButtonDown("Vertical");
+        anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
+        anim.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
+
+        if(vDown && y == 1)
         {
-            Do_Farming();
+            dirVec = Vector3.up;
+        }
+        else if (vDown && y == -1)
+        {
+            dirVec = Vector3.down;
+        }
+        else if (hDown && x == -1)
+        {
+            dirVec = Vector3.left;
+        }
+        else if (hDown && x == 1)
+        {
+            dirVec = Vector3.right;
         }
 
+        if(Input.GetKeyDown(KeyCode.Space) && scanObj != null)
+        {
+            textmanager.Action(scanObj); // 대화창 출력
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
+        {
+            Do_Farming();
+            
+        }
+        
+
+       
+        
+
+    }
+    
+    void FixedUpdate()
+    {
+        Move();// 이동
+
+        //Ray 보는 방향 오브젝트 정보 저장
+        RaycastHit2D rayHit = Physics2D.Raycast(rigid2D.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+        if(rayHit.collider != null)
+        {
+            scanObj = rayHit.collider.gameObject;
+        }
+        else
+        {
+            scanObj = null;
+        }
     }
    
     void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-
         rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
-
-
-
-        anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
-        anim.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
     }
 
     void Do_Farming()
     {
-        if(targetobj != null)
-        {
             spriteR = targetobj.GetComponent<SpriteRenderer>();
             if (spriteR.sprite.name.Equals("not_feed"))
             {
@@ -62,8 +108,6 @@ public class PlayerController : MonoBehaviour
             {
                 spriteR.sprite = seeds[1];
             }
-
-        }
     }
 
 
