@@ -5,10 +5,13 @@ using UnityEngine.UI; // UI 가져올 때
 
 public class GameManager : MonoBehaviour
 {
+    public TalkManager talkManager;
     public Text text1;
     private PlayerController user;
     public GameObject scanobject;
     public GameObject talk;
+    public Image img; // 초상화
+    public int talkIndex;
     public bool isAction; // 대화창이 켜져있는지 아닌지 확인
 
     void Start()
@@ -18,28 +21,39 @@ public class GameManager : MonoBehaviour
 
     public void Action(GameObject scanobj)
     {
-        if (isAction) // 대화창이 켜져 있으면
-        {
-            scanobject = null;
-            text1.text = "";
-            isAction = false; // 대화창 꺼지게
-        }
-        else // 대화창이 꺼져 있으면
-        {
             scanobject = scanobj;
-            Debug.Log(scanobject.name);
-            if (scanobject.name.Equals("dog")) // 강아지 이름
-            {
-                isAction = true; // 대화창 켜지게
-                text1.text = "멍멍!";
-            }
-            else if (scanobject.name.Equals("sign"))
-            {
-                isAction = true; // 대화창 켜지게
-                text1.text ="'" + user.user_name +"'"+ "의 집입니다.";
-            }
+            NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
+            Debug.Log("npc  data " +npc_Data.id);
+            Talking(npc_Data.id, npc_Data.isNPC);
+            talk.SetActive(isAction);
+    }
+
+
+    void Talking(string id, bool isNPC)
+    {
+        string talkData = talkManager.GetTalk(id, talkIndex);
+        if (talkData == null)
+        {
+            isAction = false;
+            talkIndex = 0;
+            return;
         }
-        talk.SetActive(isAction);
+
+
+        if (isNPC)
+        {
+            text1.text = talkData;
+            img.color = new Color(1, 1, 1, 1);
+            img.sprite = talkManager.Getimg(id, 0);
+        }
+        else
+        {
+            text1.text = talkData;
+            img.color = new Color(1, 1, 1, 0); // 안보이게하기
+        }
+
+        isAction = true;
+        talkIndex++;
     }
 }
 
