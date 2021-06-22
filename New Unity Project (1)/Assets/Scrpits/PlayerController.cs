@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteR;
     private Sprite[] seeds;
     private GameObject scanObj; // 스캔 오브젝트
-   
     
     // Start is called before the first frame update
     void Start()
@@ -73,10 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             Do_Farming();    
         }
-        
 
-       
-        
 
     }
     
@@ -128,4 +124,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+   
 }
