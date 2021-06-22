@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(startX, startY, 0);
         anim = GetComponent<Animator>();
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
-        textmanager.talk.SetActive(textmanager.isAction);
 
     }
 
