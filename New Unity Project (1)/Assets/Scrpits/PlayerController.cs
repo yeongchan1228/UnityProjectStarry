@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null) // 가끔 발생하는 오류 해결 
         {
-            textmanager.talk.SetActive(false);
             textmanager.isAction = false;
+            textmanager.talk.SetBool("isShow", textmanager.isAction);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
