@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
         bool vDown = textmanager.isAction ? false : Input.GetButtonDown("Vertical"); 
         bool hUp = textmanager.isAction ? false : Input.GetButtonDown("Horizontal");
         bool vUp = textmanager.isAction ? false : Input.GetButtonDown("Vertical");
-        anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
-        anim.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
+        anim.SetFloat("MoveX", x);
+        anim.SetFloat("MoveY", y);
 
         if(vDown && y == 1)
         {
