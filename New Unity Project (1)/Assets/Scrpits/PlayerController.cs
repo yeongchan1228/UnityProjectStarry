@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
+    public string user_name;
     public GameManager textmanager;
     public float startX, startY;
     private float x, y;
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(startX, startY, 0);
         anim = GetComponent<Animator>();
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
-
+        user_name = "test1";
     }
 
     // Update is called once per frame
@@ -62,11 +63,15 @@ public class PlayerController : MonoBehaviour
         {
             textmanager.Action(scanObj); // 대화창 출력
         }
+        else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null) // 가끔 발생하는 오류 해결 
+        {
+            textmanager.talk.SetActive(false);
+            textmanager.isAction = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
         {
-            Do_Farming();
-            
+            Do_Farming();    
         }
         
 
