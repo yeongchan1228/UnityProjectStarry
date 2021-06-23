@@ -6,7 +6,7 @@ public class CameraMoving : MonoBehaviour
 {
     public GameObject A; // Ä³¸¯ÅÍ
     Transform AT;
-
+    
     // Start is called before the first frame update
     void Start()
     {
