@@ -14,10 +14,17 @@ public class GameManager : MonoBehaviour
     public Image img; // 초상화
     public int talkIndex;
     public bool isAction; // 대화창이 켜져있는지 아닌지 확인
+    public GameObject button1;
+    public GameObject button2;
+    public bool isButton;
+    public string select1, select2, select3;
+
 
     void Start()
     {
         user = GameObject.Find("Man_Player").GetComponent<PlayerController>();
+        
+        
     }
 
     public void Action(GameObject scanobj)
@@ -31,11 +38,15 @@ public class GameManager : MonoBehaviour
 
     void Talking(string id, bool isNPC)
     {
+
+        button1.SetActive(false);
+        button2.SetActive(false);
         string talkData = talkManager.GetTalk(id, talkIndex);
         if(talkIndex > 0)
         {
             ImgAnimator.SetTrigger("Effect");
         }
+
         if (talkData == null && chatEffect.doing == false)
         {
             isAction = false;
@@ -46,9 +57,24 @@ public class GameManager : MonoBehaviour
 
         if (isNPC)
         {
-            chatEffect.Setting(talkData);
-            img.color = new Color(1, 1, 1, 1);
-            img.sprite = talkManager.Getimg(id, 0);
+            if (talkData == null) { chatEffect.Setting("널값임."); }
+            else
+            {
+                chatEffect.Setting(talkData.Split(':')[0]);
+
+
+                img.color = new Color(1, 1, 1, 1);
+                img.sprite = talkManager.Getimg(id, 0);
+                select3 = talkData.Split(':')[1];
+                if (select3 == "1")
+                {
+                    isButton = true;
+                    select1 = talkData.Split(':')[2];
+                    select2 = talkData.Split(':')[3];
+                }
+            }
+
+
         }
         else
         {

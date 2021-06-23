@@ -11,11 +11,17 @@ public class ChatEffect : MonoBehaviour
     Text text1;
     int index;
     float Invoke_speed;
+    public GameManager game;
     public bool doing;
+    Text ButtonText1, ButtonText2;
+    public GameObject Button1, Button2;
+
     // Start is called before the first frame update
     void Start()
     {
         text1 = GetComponent<Text>();
+        ButtonText1 = Button1.GetComponent<Text>();
+        ButtonText2 = Button2.GetComponent<Text>();
     }
 
     public void Setting(string getmsg)
@@ -25,6 +31,12 @@ public class ChatEffect : MonoBehaviour
             text1.text = msg;
             CancelInvoke(); 
             eEffect();
+            if (game.isButton)
+            {
+                Button1_On(game.select1);
+                Invoke("Button2_On", 0.5f);
+                game.isButton = false;
+            }
         }
         else
         {
@@ -58,6 +70,24 @@ public class ChatEffect : MonoBehaviour
     {
         End_Button.SetActive(true);
         doing = false;
+        if (game.isButton)
+        {
+            Button1_On(game.select1);
+            Invoke("Button2_On", 0.5f);
+            game.isButton = false;
+        }
+    }
+
+    void Button1_On(string text1)
+    {
+        ButtonText1.text = "    "+text1;
+        game.button1.SetActive(true);
+    }
+
+    void Button2_On()
+    {
+        ButtonText2.text = "    " + game.select2;
+        game.button2.SetActive(true);
     }
 
 }

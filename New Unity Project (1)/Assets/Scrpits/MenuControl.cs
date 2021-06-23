@@ -32,8 +32,6 @@ public class MenuControl : MonoBehaviour
                 Menu.SetActive(true);
                 textmanager.isAction = true; // 캐릭터 움직이지 못하게 막기
             }
-
-            
         }
     }
 

@@ -24,8 +24,8 @@ public class TalkManager : MonoBehaviour
         if (userInfo.getGender().Equals("man")) { }
         else { userInfo = user_woman.GetComponent<UserInfo>(); }
         //대화
-        talking.Add("worker", new string[] { "여기는 몬스터가 살고있는 동굴이야.", "위험하니깐 저리가." });
-        talking.Add("dog", new string[] { "멍멍!", "멍멍머엉!!!(꺼져)" });
+        talking.Add("worker", new string[] { "여기는 몬스터가 살고있는 동굴이야.:0", "위험하니깐 저리가.:0", "그래도 들어갈꺼야?\n\n:1: 들어간다.: 돌아간다." });
+        talking.Add("dog", new string[] { "멍멍!:0", "멍멍머엉!!!(꺼져):0" });
         talking.Add("sign", new string[] { "'"+userInfo.getName()+"'" +"님의 집입니다." });
 
 

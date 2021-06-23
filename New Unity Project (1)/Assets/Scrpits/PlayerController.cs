@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //DontDestroyOnLoad(gameObject);
         rigid2D = GetComponent<Rigidbody2D>();
         transform.position = new Vector3(startX, startY, 0);
         anim = GetComponent<Animator>();
@@ -61,6 +62,10 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && scanObj != null)
         {
             textmanager.Action(scanObj); // 대화창 출력
+            /*if (Input.GetButtonDown("Vertical"))
+            {
+
+            }*/
         }
         else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null) // 가끔 발생하는 오류 해결 
         {
@@ -92,6 +97,13 @@ public class PlayerController : MonoBehaviour
         }
     }
    
+    public void setXY(float nowX, float nowY)
+    {
+        x = nowX;
+        y = nowY;
+        rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
+    }
+
     void Move()
     {
         rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;

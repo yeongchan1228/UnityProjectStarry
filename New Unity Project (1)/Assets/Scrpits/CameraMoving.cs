@@ -10,9 +10,9 @@ public class CameraMoving : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //DontDestroyOnLoad(gameObject);
         AT = A.transform;
         transform.position = new Vector3(-3, 0, -4);
-        
     }
 
     // Update is called once per frame
