@@ -17,7 +17,7 @@ public class ChatEffect : MonoBehaviour
     public GameObject Button1, Button2;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         text1 = GetComponent<Text>();
         ButtonText1 = Button1.GetComponent<Text>();

@@ -22,16 +22,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        user = GameObject.Find("Man_Player").GetComponent<PlayerController>();
-        
-        
+        //user = GameObject.Find("Man_Player").GetComponent<PlayerController>(); 
     }
+
 
     public void Action(GameObject scanobj)
     {
             scanobject = scanobj;
+        //Debug.Log(scanobject.name);
             NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
-            Talking(npc_Data.id, npc_Data.isNPC);
+        
+        Talking(npc_Data.id, npc_Data.isNPC);
             talk.SetBool("isShow", isAction);
     }
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
 
         button1.SetActive(false);
         button2.SetActive(false);
+        
         string talkData = talkManager.GetTalk(id, talkIndex);
         if(talkIndex > 0)
         {

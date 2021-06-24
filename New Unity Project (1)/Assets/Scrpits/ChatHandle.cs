@@ -26,7 +26,7 @@ public class ChatHandle : MonoBehaviour
         if(game.select3 == "1")
         {
             SceneManager.LoadScene("Dungeon");
-            player.setXY(-261.6f, 69.5f);
+            //player.setXY(-261.6f, 69.5f);
         }
     }
 

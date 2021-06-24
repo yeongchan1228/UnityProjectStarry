@@ -77764,7 +77764,7 @@ MonoBehaviour:
   spriteimg:
   - {fileID: 21300000, guid: 9d96818e7b4ba4fedb4f5e03a7ffe741, type: 3}
   - {fileID: 21300000, guid: 2e9dcb0b6a3244ad9b171c6ba5bac782, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 6bb6ca507b3ed6d4cb9727a042c89ad0, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

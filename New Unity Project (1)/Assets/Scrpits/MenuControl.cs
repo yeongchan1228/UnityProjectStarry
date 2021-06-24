@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MenuControl : MonoBehaviour
 {
@@ -10,11 +11,18 @@ public class MenuControl : MonoBehaviour
     public GameManager textmanager;
     public GameObject user_man;
     public GameObject user_woman;
+    public GameObject game1, game2;
+
     UserInfo userInfo;
     // Start is called before the first frame update
     void Start()
     {
-        userInfo = user_man.GetComponent<UserInfo>();
+        //userInfo = user_man.GetComponent<UserInfo>();
+        GameObject game = GameObject.Find("Player");
+        if (game != null)
+        {
+            GetInfo();
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +41,18 @@ public class MenuControl : MonoBehaviour
                 textmanager.isAction = true; // 캐릭터 움직이지 못하게 막기
             }
         }
+    }
+
+    void GetInfo()
+    {
+        user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
+        user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
+        UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
+        if (userinfo2.isTrue)
+        {
+            userInfo = user_man.GetComponent<UserInfo>();
+        }
+        else { userInfo = user_woman.GetComponent<UserInfo>(); }
     }
 
     public void GameContinues() // 게임 계속 실행
@@ -74,5 +94,33 @@ public class MenuControl : MonoBehaviour
         float y = PlayerPrefs.GetFloat("PlayerY");
 
         user_man.transform.position = new Vector3(x, y, 0);
+    }
+
+    public void GameInfo() // 캐릭터 성별 선택창으로 이동
+    {
+        SceneManager.LoadScene("InputInfo (2)");
+    }
+
+    public void CreateMan()
+    {
+        UserInfo userinfo = user_man.GetComponent<UserInfo>();
+        userinfo.isTrue = true;
+        SceneManager.LoadScene("InputInfo2 (3)");
+    }
+
+    public void CreateWoMan()
+    {
+        UserInfo userinfo = user_woman.GetComponent<UserInfo>();
+        userinfo.isTrue = true;
+        SceneManager.LoadScene("InputInfo2 (3)");
+    }
+
+    public void Name_FarmName()
+    {
+        Text text1 = game1.GetComponent<Text>();
+        Text text2 = game2.GetComponent<Text>();
+        userInfo.setName(text1.text);
+        userInfo.setFarmName(text2.text);
+        SceneManager.LoadScene("FirstStory (4)");
     }
 }
