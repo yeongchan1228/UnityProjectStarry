@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HouseScene (5).unity
     guid: 996a6cd75ac334b44a74a68c259d94f2
+  - enabled: 1
+    path: Assets/Scenes/FarmScene (6).unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Town1Scene (7).unity
+    guid: 267da594a45a13c41a7b32ab3ed3ac5e
+  - enabled: 1
+    path: Assets/Scenes/SeaScene (8).unity
+    guid: 73bb77ae0ddc86144940c1292aea4c55
+  - enabled: 1
+    path: Assets/Scenes/Town2Scene (9).unity
+    guid: 009b1aa64831f1045bae11bacde0db61
   m_configObjects: {}

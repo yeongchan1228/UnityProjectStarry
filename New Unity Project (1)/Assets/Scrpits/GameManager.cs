@@ -19,12 +19,22 @@ public class GameManager : MonoBehaviour
     public GameObject button2;
     public bool isButton;
     public string select1, select2, select3;
-    
+    public GameObject user_man;
+    public GameObject user_woman;
+    UserInfo userInfo;
+
 
     void Start()
     {
-        //user = GameObject.Find("Man_Player").GetComponent<PlayerController>(); 
-       
+        user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
+        user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
+        UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
+        if (userinfo2.isTrue)
+        {
+            userInfo = user_man.GetComponent<UserInfo>();
+        }
+        else { userInfo = user_woman.GetComponent<UserInfo>(); }
+
     }
 
 
@@ -32,7 +42,6 @@ public class GameManager : MonoBehaviour
     {
         scanobject = scanobj;
         NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
-        Debug.Log(scanobj);
         Talking(npc_Data.id, npc_Data.isNPC);
         talk.SetBool("isShow", isAction);
     }
@@ -56,11 +65,15 @@ public class GameManager : MonoBehaviour
         {
             isAction = false;
             talkIndex = 0;
-            IsFirstStory isFirst = GameObject.Find("Trigger").GetComponent<IsFirstStory>();
-            if (isFirst.isFirststory) // 첫 번째 스토리 끝나면 이동
+            if (userInfo.storycounter < 1)
             {
-                isFirst.isFirststory = false;
-                SceneManager.LoadScene("HouseScene (5)"); // 이동
+                IsFirstStory isFirst = GameObject.Find("Trigger").GetComponent<IsFirstStory>();
+                if (isFirst.isFirststory) // 첫 번째 스토리 끝나면 이동
+                {
+                    isFirst.isFirststory = false;
+                    //userInfo.storycounter++;
+                    SceneManager.LoadScene("HouseScene (5)"); // 이동
+                }
             }
             return;
         }

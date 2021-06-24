@@ -8,21 +8,22 @@ using UnityEngine.SceneManagement;
 public class MenuControl : MonoBehaviour
 {
     public GameObject Menu; // 메뉴 오브젝트
-    public GameManager textmanager;
-    public GameObject user_man;
-    public GameObject user_woman;
+    GameManager textmanager;
+    GameObject user_man;
+    GameObject user_woman;
     public GameObject game1, game2;
 
     UserInfo userInfo;
     // Start is called before the first frame update
     void Start()
     {
-        //userInfo = user_man.GetComponent<UserInfo>();
-        GameObject game = GameObject.Find("Player");
-        if (game != null)
-        {
+        textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
+
+        //GameObject game = GameObject.Find("Player");
+        //if (game != null)
+       // {
             GetInfo();
-        }
+        //}
     }
 
     // Update is called once per frame
@@ -57,6 +58,7 @@ public class MenuControl : MonoBehaviour
 
     public void GameContinues() // 게임 계속 실행
     {
+        Debug.Log("???");
         textmanager.isAction = false; // 다시 움직이게
         Menu.SetActive(false); // 메뉴 끄기
     }
@@ -103,20 +105,27 @@ public class MenuControl : MonoBehaviour
 
     public void CreateMan()
     {
+        GetInfo();
         UserInfo userinfo = user_man.GetComponent<UserInfo>();
         userinfo.isTrue = true;
+        userinfo.Hp = 100;
+        userinfo.Day = 1;
         SceneManager.LoadScene("InputInfo2 (3)");
     }
 
     public void CreateWoMan()
     {
+        GetInfo();
         UserInfo userinfo = user_woman.GetComponent<UserInfo>();
         userinfo.isTrue = true;
+        userinfo.Hp = 100;
+        userinfo.Day = 1;
         SceneManager.LoadScene("InputInfo2 (3)");
     }
 
     public void Name_FarmName()
     {
+        GetInfo();
         Text text1 = game1.GetComponent<Text>();
         Text text2 = game2.GetComponent<Text>();
         userInfo.setName(text1.text);

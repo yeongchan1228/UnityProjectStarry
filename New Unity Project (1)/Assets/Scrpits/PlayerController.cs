@@ -18,11 +18,23 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteR;
     private Sprite[] seeds;
     private GameObject scanObj; // 스캔 오브젝트
-    
+    GameObject user_man;
+    GameObject user_woman;
+    UserInfo userInfo;
     // Start is called before the first frame update
     void Start()
     {
-        //DontDestroyOnLoad(gameObject);
+        user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
+        user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
+        UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
+        if (userinfo2.isTrue)
+        {
+            userInfo = user_man.GetComponent<UserInfo>();
+        }
+        else
+        {
+            userInfo = user_woman.GetComponent<UserInfo>();
+        }
         rigid2D = GetComponent<Rigidbody2D>();
         transform.position = new Vector3(startX, startY, 0);
         anim = GetComponent<Animator>();
@@ -93,20 +105,11 @@ public class PlayerController : MonoBehaviour
         }
     }
    
-    public void setXY(float nowX, float nowY)
+    public void SetStartXY(float x, float y)
     {
-        x = nowX;
-        y = nowY;
-        rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
+        startX = x;
+        startY = y;
     }
-
-    public void setStartXY(float nowX, float nowY)
-    {
-        startX = nowX;
-        startY = nowY;
-        //rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
-    }
-
     void Move()
     {
         rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
@@ -141,10 +144,57 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name.Equals("frame3")) // 집에서 나가려 할 떄
+        Debug.Log(collision.name);
+        if (collision.name.Equals("frame3")) // house -> farm
         {
-            //SceneManager.LoadScene("FirstStory (4)");
+            userInfo.userWhere = 1;
+            SceneManager.LoadScene("FarmScene (6)");     
         }
+        if (collision.name.Equals("field2 (34)")) // farm -> house
+        {
+            SceneManager.LoadScene("HouseScene (5)");
+        }
+        if (collision.name.Equals("load")) //  town1 -> farm
+        {
+            userInfo.userWhere = 2;
+            SceneManager.LoadScene("FarmScene (6)");
+        }
+        if (collision.name.Equals("load 0")) // farm -> town1
+        {
+            userInfo.userWhere = 1;
+            SceneManager.LoadScene("Town1Scene (7)");
+        }
+        if (collision.name.Equals("amap20_119")) // sea -> town1
+        {
+            userInfo.userWhere = 2;
+            SceneManager.LoadScene("Town1Scene (7)");
+        }
+        if(collision.name.Equals("load (12)")) // town1 -> sea
+        {
+            userInfo.userWhere = 1;
+            SceneManager.LoadScene("SeaScene (8)");
+        }
+        if(collision.name.Equals("load2 (30)")) // town2 -> farm
+        {
+            userInfo.userWhere = 4;
+            SceneManager.LoadScene("FarmScene (6)");
+        }
+        if (collision.name.Equals("aload2 (30)")) // farm -> town2
+        {
+            userInfo.userWhere = 1;
+            SceneManager.LoadScene("Town2Scene (9)");
+        }
+        if (collision.name.Equals("map20_119"))  // town2 -> store
+        {
+            userInfo.userWhere = 1;
+            SceneManager.LoadScene("StoreScene (10)"); 
+        }
+        if (collision.name.Equals("floors_8"))// store -> town2
+        {
+            userInfo.userWhere = 2;
+            SceneManager.LoadScene("Town2Scene (9)"); 
+        }
+
     }
 
 

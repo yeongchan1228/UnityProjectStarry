@@ -13,6 +13,8 @@ public class UserInfo : MonoBehaviour
     public int Defense; // 방어력
     public string Gender; // 성별
     public bool isTrue; // 남자, 여자 선택
+    public int storycounter; // 스토리 카운터
+    public int userWhere; // 어디서 왔는지
 
     // Start is called before the first frame update
     void Start()

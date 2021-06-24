@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 0}
-  textmanager: {fileID: 0}
   user_man: {fileID: 0}
   user_woman: {fileID: 0}
   game1: {fileID: 926617898}
