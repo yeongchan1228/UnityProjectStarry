@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; // UI 가져올 때
 
 public class GameManager : MonoBehaviour
@@ -18,24 +19,26 @@ public class GameManager : MonoBehaviour
     public GameObject button2;
     public bool isButton;
     public string select1, select2, select3;
-
+    
 
     void Start()
     {
         //user = GameObject.Find("Man_Player").GetComponent<PlayerController>(); 
+       
     }
 
 
     public void Action(GameObject scanobj)
     {
-            scanobject = scanobj;
-        //Debug.Log(scanobject.name);
-            NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
-        
+        scanobject = scanobj;
+        NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
+        Debug.Log(scanobj);
         Talking(npc_Data.id, npc_Data.isNPC);
-            talk.SetBool("isShow", isAction);
+        talk.SetBool("isShow", isAction);
     }
 
+
+    
 
     void Talking(string id, bool isNPC)
     {
@@ -53,6 +56,12 @@ public class GameManager : MonoBehaviour
         {
             isAction = false;
             talkIndex = 0;
+            IsFirstStory isFirst = GameObject.Find("Trigger").GetComponent<IsFirstStory>();
+            if (isFirst.isFirststory) // 첫 번째 스토리 끝나면 이동
+            {
+                isFirst.isFirststory = false;
+                SceneManager.LoadScene("HouseScene (5)"); // 이동
+            }
             return;
         }
 

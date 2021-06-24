@@ -387,6 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 379114980}
   - component: {fileID: 379114979}
+  - component: {fileID: 379114981}
   m_Layer: 0
   m_Name: TextManager
   m_TagString: Untagged
@@ -434,6 +435,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &379114981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379114978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfa75384090cc8468d46d61e7e4ffb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &467400237
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +971,7 @@ GameObject:
   - component: {fileID: 1324796647}
   - component: {fileID: 1324796646}
   - component: {fileID: 1324796645}
+  - component: {fileID: 1324796649}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1047,6 +1061,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1324796649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324796644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfa75384090cc8468d46d61e7e4ffb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1398195438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +1083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398195440}
   - component: {fileID: 1398195439}
+  - component: {fileID: 1398195441}
   m_Layer: 0
   m_Name: ChatManager
   m_TagString: Untagged
@@ -1092,6 +1119,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398195441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398195438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfa75384090cc8468d46d61e7e4ffb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1487084127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,8 +1166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 57, y: -0.000015258789}
-  m_SizeDelta: {x: 1224, y: 151.95}
+  m_AnchoredPosition: {x: 46, y: -2.7429962}
+  m_SizeDelta: {x: 1176.2639, y: 157.44}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1487084129
 MonoBehaviour:
@@ -1340,6 +1379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1697766541}
   - component: {fileID: 1697766540}
+  - component: {fileID: 1697766542}
   m_Layer: 0
   m_Name: TalkManager
   m_TagString: Untagged
@@ -1359,8 +1399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d888ef7a88b2d8f42b4370015197df15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user_man: {fileID: 0}
-  user_woman: {fileID: 0}
   spriteimg:
   - {fileID: 21300000, guid: 9d96818e7b4ba4fedb4f5e03a7ffe741, type: 3}
   - {fileID: 21300000, guid: 2e9dcb0b6a3244ad9b171c6ba5bac782, type: 3}
@@ -1384,6 +1422,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697766542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697766539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfa75384090cc8468d46d61e7e4ffb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752778946
 GameObject:
   m_ObjectHideFlags: 0

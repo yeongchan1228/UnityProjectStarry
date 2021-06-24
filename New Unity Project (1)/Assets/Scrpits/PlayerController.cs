@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
-    public string user_name;
     public GameManager textmanager;
     public float startX, startY;
     private float x, y;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(startX, startY, 0);
         anim = GetComponent<Animator>();
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
-        user_name = "test1";
+        textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -62,10 +62,6 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && scanObj != null)
         {
             textmanager.Action(scanObj); // 대화창 출력
-            /*if (Input.GetButtonDown("Vertical"))
-            {
-
-            }*/
         }
         else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null) // 가끔 발생하는 오류 해결 
         {
@@ -104,6 +100,13 @@ public class PlayerController : MonoBehaviour
         rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
     }
 
+    public void setStartXY(float nowX, float nowY)
+    {
+        startX = nowX;
+        startY = nowY;
+        //rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
+    }
+
     void Move()
     {
         rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
@@ -136,5 +139,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name.Equals("frame3")) // 집에서 나가려 할 떄
+        {
+            //SceneManager.LoadScene("FirstStory (4)");
+        }
+    }
+
+
 }
