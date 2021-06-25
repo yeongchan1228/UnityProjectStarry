@@ -306,6 +306,8 @@ MonoBehaviour:
   startX: 0
   startY: 0
   targetobj: {fileID: 0}
+  chatEffect: {fileID: 0}
+  scanObj: {fileID: 0}
 --- !u!1 &481685319
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,8 +714,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 0}
-  user_man: {fileID: 0}
-  user_woman: {fileID: 0}
   game1: {fileID: 0}
   game2: {fileID: 0}
 --- !u!4 &1489857745
@@ -1335,6 +1335,8 @@ MonoBehaviour:
   startX: 0
   startY: 0
   targetobj: {fileID: 0}
+  chatEffect: {fileID: 0}
+  scanObj: {fileID: 0}
 --- !u!212 &1997066910
 SpriteRenderer:
   m_ObjectHideFlags: 0

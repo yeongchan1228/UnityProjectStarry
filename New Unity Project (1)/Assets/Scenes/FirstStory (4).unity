@@ -290,8 +290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -4.9146}
-  m_SizeDelta: {x: 0, y: 34.039}
+  m_AnchoredPosition: {x: 7.7454224, y: -0.000005722046}
+  m_SizeDelta: {x: -15.4907, y: 50.0244}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63426781
 MonoBehaviour:
@@ -445,8 +445,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -535.4, y: 5.0934}
-  m_SizeDelta: {x: -1034.63, y: 18.387}
+  m_AnchoredPosition: {x: -525.19995, y: -0.0000076293945}
+  m_SizeDelta: {x: -1032.8589, y: 26.3572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &130573828
 MonoBehaviour:
@@ -777,6 +777,7 @@ MonoBehaviour:
   talkManager: {fileID: 1697766540}
   chatEffect: {fileID: 1487084131}
   scanobject: {fileID: 0}
+  Chat: {fileID: 286356534}
   talk: {fileID: 286356538}
   ImgAnimator: {fileID: 1562618979}
   img: {fileID: 1562618980}
@@ -1116,8 +1117,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46.303528, y: -23.752197}
-  m_SizeDelta: {x: -148.6929, y: -234.571}
+  m_AnchoredPosition: {x: -46.304016, y: -16.667603}
+  m_SizeDelta: {x: -148.69, y: -248.7402}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &925807966
 Animator:
@@ -1182,9 +1183,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChatHandle, Assembly-CSharp
-        m_MethodName: Button1_Clicked
+      - m_Target: {fileID: 1724045051}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: Menu1Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1424,8 +1425,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46.303, y: -72.4681}
-  m_SizeDelta: {x: -148.69, y: -244.5622}
+  m_AnchoredPosition: {x: -46.303, y: -83.1772}
+  m_SizeDelta: {x: -148.69, y: -257.1249}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1076496437
 Animator:
@@ -1490,9 +1491,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChatHandle, Assembly-CSharp
-        m_MethodName: Button2_Clicked
+      - m_Target: {fileID: 1724045051}
+        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
+        m_MethodName: Menu2Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1884,7 +1885,7 @@ GameObject:
   - component: {fileID: 1487084129}
   - component: {fileID: 1487084131}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CanvasTalk_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1967,6 +1968,7 @@ MonoBehaviour:
   EffectSpeed: 15
   game: {fileID: 379114979}
   doing: 0
+  buttonOn: 0
   Button1: {fileID: 1752778946}
   Button2: {fileID: 63426779}
 --- !u!1 &1562618978
@@ -2476,8 +2478,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.0934}
-  m_SizeDelta: {x: 0, y: 40.3745}
+  m_AnchoredPosition: {x: 6.8374, y: -0.7078}
+  m_SizeDelta: {x: -13.6747, y: 51.9769}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1752778948
 MonoBehaviour:
@@ -2555,8 +2557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -532.4753, y: -3.9072}
-  m_SizeDelta: {x: -1029.4885, y: 26.9656}
+  m_AnchoredPosition: {x: -523.4352, y: 0.0000078678}
+  m_SizeDelta: {x: -1023.4453, y: 29.5734}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979155286
 MonoBehaviour:

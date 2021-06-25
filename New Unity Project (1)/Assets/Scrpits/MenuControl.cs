@@ -11,19 +11,20 @@ public class MenuControl : MonoBehaviour
     GameManager textmanager;
     GameObject user_man;
     GameObject user_woman;
+    PlayerController playercontrol;
     public GameObject game1, game2;
+    GameObject chatEffect;
+    ChatEffect chat;
 
     UserInfo userInfo;
     // Start is called before the first frame update
     void Start()
     {
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
+        chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
+        chat = chatEffect.GetComponent<ChatEffect>();
+        GetInfo();
 
-        //GameObject game = GameObject.Find("Player");
-        //if (game != null)
-       // {
-            GetInfo();
-        //}
     }
 
     // Update is called once per frame
@@ -52,13 +53,16 @@ public class MenuControl : MonoBehaviour
         if (userinfo2.isTrue)
         {
             userInfo = user_man.GetComponent<UserInfo>();
+            playercontrol = user_man.GetComponent<PlayerController>();
         }
-        else { userInfo = user_woman.GetComponent<UserInfo>(); }
+        else { 
+            userInfo = user_woman.GetComponent<UserInfo>();
+            playercontrol = user_woman.GetComponent<PlayerController>();
+        }
     }
 
     public void GameContinues() // 게임 계속 실행
     {
-        Debug.Log("???");
         textmanager.isAction = false; // 다시 움직이게
         Menu.SetActive(false); // 메뉴 끄기
     }
@@ -131,5 +135,51 @@ public class MenuControl : MonoBehaviour
         userInfo.setName(text1.text);
         userInfo.setFarmName(text2.text);
         SceneManager.LoadScene("FirstStory (4)");
+    }
+
+    public void Menu1Clicked()
+    {
+        if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
+        {
+            textmanager.isAction = false; // 다시 움직이게
+            textmanager.talk.SetBool("isShow", textmanager.isAction);
+            textmanager.button1.SetActive(false);
+            textmanager.button2.SetActive(false);
+            textmanager.talkIndex = 0;
+            userInfo.userWhere = 1;
+            chat.buttonOn = false;
+            SceneManager.LoadScene("Dungeon (11)");
+        }
+        if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때(쉬기)
+        {
+            textmanager.isAction = false; // 다시 움직이게
+            textmanager.talk.SetBool("isShow", textmanager.isAction);
+            textmanager.button1.SetActive(false);
+            textmanager.button2.SetActive(false);
+            textmanager.talkIndex = 0;
+            chat.buttonOn = false;
+        }
+    }
+
+    public void Menu2Clicked()
+    {
+        if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
+        {
+            textmanager.isAction = false; // 다시 움직이게
+            textmanager.talk.SetBool("isShow", textmanager.isAction);
+            textmanager.button1.SetActive(false);
+            textmanager.button2.SetActive(false);
+            chat.buttonOn = false;
+            textmanager.talkIndex = 0;
+        }
+        if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때 (잠자기)
+        {
+            textmanager.isAction = false; // 다시 움직이게
+            textmanager.talk.SetBool("isShow", textmanager.isAction);
+            textmanager.button1.SetActive(false);
+            textmanager.button2.SetActive(false);
+            chat.buttonOn = false;
+            textmanager.talkIndex = 0;
+        }
     }
 }

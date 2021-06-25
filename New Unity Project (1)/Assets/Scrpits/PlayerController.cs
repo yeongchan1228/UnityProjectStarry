@@ -17,13 +17,17 @@ public class PlayerController : MonoBehaviour
     public GameObject targetobj; // 씨앗을 뿌릴 땅 저장 오브젝트
     private SpriteRenderer spriteR;
     private Sprite[] seeds;
-    private GameObject scanObj; // 스캔 오브젝트
+    GameObject chatEffect;
+    ChatEffect chat;
+    public GameObject scanObj; // 스캔 오브젝트
     GameObject user_man;
     GameObject user_woman;
     UserInfo userInfo;
     // Start is called before the first frame update
     void Start()
     {
+        chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
+        chat = chatEffect.GetComponent<ChatEffect>();
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
@@ -73,12 +77,18 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && scanObj != null)
         {
-            textmanager.Action(scanObj); // 대화창 출력
+            if (!chat.buttonOn)
+            {
+                textmanager.Action(scanObj); // 대화창 출력
+            }
         }
         else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null) // 가끔 발생하는 오류 해결 
         {
-            textmanager.isAction = false;
-            textmanager.talk.SetBool("isShow", textmanager.isAction);
+            if (!chat.buttonOn)
+            {
+                textmanager.isAction = false;
+                textmanager.talk.SetBool("isShow", textmanager.isAction);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
@@ -92,12 +102,13 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();// 이동
-
+        //Debug.Log(rigid2D.position);
         //Ray 보는 방향 오브젝트 정보 저장
         RaycastHit2D rayHit = Physics2D.Raycast(rigid2D.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
         if(rayHit.collider != null)
         {
             scanObj = rayHit.collider.gameObject;
+            Debug.Log(scanObj);
         }
         else
         {
@@ -193,6 +204,31 @@ public class PlayerController : MonoBehaviour
         {
             userInfo.userWhere = 2;
             SceneManager.LoadScene("Town2Scene (9)"); 
+        }
+        if(collision.name.Equals("Dungeon_road (5)")) // dungeon -> farm
+        {
+            userInfo.userWhere = 3;
+            SceneManager.LoadScene("FarmScene (6)");
+        }
+        if(collision.name.Equals("Dungeon_road (21)")) // dungeon -> dungeon2
+        {
+            userInfo.userWhere = 1;
+            SceneManager.LoadScene("Dungeon2 (13)");
+        }
+        if(collision.name.Equals("aDungeon_road (5)")) // dungeon2 -> dungeon 
+        {
+            userInfo.userWhere = 2;
+            SceneManager.LoadScene("Dungeon (11)");
+        }
+        if(collision.name.Equals("Dungeon_roadGaro (18)")) // dungeon -> dungeon1
+        {
+            userInfo.userWhere = 1;
+            SceneManager.LoadScene("Dungeon1 (12)");
+        }
+        if(collision.name.Equals("Dungeon_roadGaro (23)")) // dungeon1 -> dungeon
+        {
+            userInfo.userWhere = 3;
+            SceneManager.LoadScene("Dungeon (11)");
         }
 
     }

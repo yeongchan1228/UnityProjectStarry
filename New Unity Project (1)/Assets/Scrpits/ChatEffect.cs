@@ -13,6 +13,7 @@ public class ChatEffect : MonoBehaviour
     float Invoke_speed;
     public GameManager game;
     public bool doing;
+    public bool buttonOn;
     Text ButtonText1, ButtonText2;
     public GameObject Button1, Button2;
 
@@ -33,8 +34,9 @@ public class ChatEffect : MonoBehaviour
             eEffect();
             if (game.isButton)
             {
+                buttonOn = true;
                 Button1_On(game.select1);
-                Invoke("Button2_On", 0.5f);
+                Invoke("Button2_On", 0.2f);
                 game.isButton = false;
             }
         }
@@ -72,8 +74,9 @@ public class ChatEffect : MonoBehaviour
         doing = false;
         if (game.isButton)
         {
+            buttonOn = true;
             Button1_On(game.select1);
-            Invoke("Button2_On", 0.5f);
+            Invoke("Button2_On", 0.2f);
             game.isButton = false;
         }
     }

@@ -36,7 +36,8 @@ public class TalkManager : MonoBehaviour
             "네가 이 편지를 읽을 때 즈음이면 나는 이 세상에 없을 것 같구나.:0", "혼자 타지에 올라가, 힘든 날들이 정말 많았을 거라고 생각한다.:0",
         "문득 모든 걸 포기하고 싶어질 때가 온다면, 북쪽 너머에 있는 StarryFarm 마을로 떠나거라.:0", "이곳에서는 네가 원하는 건 무엇이든지 만들어나갈 수 있을 거야.:0",
         "늘 응원하고 있으마.:0", ".......사랑하는 너의 할머니가.:0"});
-        if (user_man != null|| user_woman != null) { talking.Add("sign", new string[] { "'" + userInfo.getName() + "'" + "님의 집입니다." }); }
+        if (user_man != null|| user_woman != null) { talking.Add("sign", new string[] { "'" + userInfo.getName() + "'" + "님의 집입니다.:0" }); }
+        talking.Add("bed", new string[] { "침대에 왔어요, 뭘 할까요?\n\n:1: 휴식을 취한다.: 잠을 잔다." });
        
 
 

@@ -10,7 +10,6 @@ public class House : MonoBehaviour
     UserInfo userInfo;
     void Awake()
     {
-        Debug.Log("스타트");
         GameObject game = GameObject.Find("Player");
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
@@ -23,19 +22,19 @@ public class House : MonoBehaviour
             if (userInfo.storycounter < 1)
             {
                 user_man.SetActive(true);
-                user_man.transform.localScale = new Vector3(3f, 3f, 0); // 사이즈 변경
+                //user_man.transform.localScale = new Vector3(3f, 3f, 0); // 사이즈 변경
                 player = user_man.GetComponent<PlayerController>();
-                player.moveSpeed = 15; // 속도 변경
-                camera.orthographicSize = 12; // 카메라 크기 변경 
+                //player.moveSpeed = 15; // 속도 변경
+                //camera.orthographicSize = 12; // 카메라 크기 변경 
                 player.SetStartXY(-37f, -27f);
                 userInfo.storycounter++;
             }
             else {
                 user_man.transform.position = new Vector3(-51f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>();
-                player.moveSpeed = 15; // 속도 변경
-                camera.orthographicSize = 12; // 카메라 크기 변경 
-                user_man.transform.localScale = new Vector3(3f, 3f, 0); 
+                //player.moveSpeed = 15; // 속도 변경
+                //camera.orthographicSize = 12; // 카메라 크기 변경 
+                //user_man.transform.localScale = new Vector3(3f, 3f, 0); 
             }
         }
         else
@@ -44,19 +43,19 @@ public class House : MonoBehaviour
             if (userInfo.storycounter < 1)
             {
                 user_woman.SetActive(true);
-                user_woman.transform.localScale = new Vector3(3f, 3f, 0); // 크기 변경
+                //user_woman.transform.localScale = new Vector3(3f, 3f, 0); // 크기 변경
                 player = user_woman.GetComponent<PlayerController>();
-                player.moveSpeed = 15; // 속도 변경
-                camera.orthographicSize = 12; // 카메라 크기 변경 
+                //player.moveSpeed = 15; // 속도 변경
+                //camera.orthographicSize = 12; // 카메라 크기 변경 
                 player.SetStartXY(-37f, -27f);
                 userInfo.storycounter++;
             }
             else { 
                 user_woman.transform.position = new Vector3(-51f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>();
-                player.moveSpeed = 15;
-                user_woman.transform.localScale = new Vector3(3f, 3f, 0);
-                camera.orthographicSize = 12; // 카메라 크기 변경 
+               // player.moveSpeed = 15;
+                //user_woman.transform.localScale = new Vector3(3f, 3f, 0);
+                //camera.orthographicSize = 12; // 카메라 크기 변경 
             }
         }
         GameObject gameObject1 = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
