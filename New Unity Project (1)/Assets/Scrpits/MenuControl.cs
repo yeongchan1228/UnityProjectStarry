@@ -15,16 +15,23 @@ public class MenuControl : MonoBehaviour
     public GameObject game1, game2;
     GameObject chatEffect;
     ChatEffect chat;
-
+    bool isMan; // 남자인지
+    bool isWoman; // 여자인지
+    private Sprite[] genders;
+    public GameObject ManButton, WomanButton;
+    public Image man, woman;
+    Image ManImage, WomanImage;
     UserInfo userInfo;
     // Start is called before the first frame update
     void Start()
     {
+        //ManImage = ManButton.GetComponent<Image>();
+        //WomanImage = WomanButton.GetComponent<Image>();
+        //genders = Resources.LoadAll<Sprite>("Sprites/SelectGender");
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
         chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         GetInfo();
-
     }
 
     // Update is called once per frame
@@ -50,7 +57,7 @@ public class MenuControl : MonoBehaviour
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
-        if (userinfo2.isTrue)
+        if (isMan)
         {
             userInfo = user_man.GetComponent<UserInfo>();
             playercontrol = user_man.GetComponent<PlayerController>();
@@ -109,22 +116,16 @@ public class MenuControl : MonoBehaviour
 
     public void CreateMan()
     {
-        GetInfo();
-        UserInfo userinfo = user_man.GetComponent<UserInfo>();
-        userinfo.isTrue = true;
-        userinfo.Hp = 100;
-        userinfo.Day = 1;
-        SceneManager.LoadScene("InputInfo2 (3)");
+        isMan = true;
+        isWoman = false;
+        //ManImage.sprite = genders[0];
     }
 
     public void CreateWoMan()
     {
-        GetInfo();
-        UserInfo userinfo = user_woman.GetComponent<UserInfo>();
-        userinfo.isTrue = true;
-        userinfo.Hp = 100;
-        userinfo.Day = 1;
-        SceneManager.LoadScene("InputInfo2 (3)");
+        isMan = false;
+        isWoman = true;
+        //WomanImage.sprite = genders[1];
     }
 
     public void Name_FarmName()
@@ -134,6 +135,9 @@ public class MenuControl : MonoBehaviour
         Text text2 = game2.GetComponent<Text>();
         userInfo.setName(text1.text);
         userInfo.setFarmName(text2.text);
+        userInfo.isTrue = true;
+        userInfo.Hp = 100;
+        userInfo.Day = 1;
         SceneManager.LoadScene("FirstStory (4)");
     }
 

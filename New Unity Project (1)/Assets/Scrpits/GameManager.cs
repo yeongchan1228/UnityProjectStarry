@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
             {
                 isButton = true;
                 select1 = talkData.Split(':')[2];
+                select2 = talkData.Split(':')[3];
             }
         }
 

@@ -20,19 +20,19 @@ public class Store : MonoBehaviour
         {
             player = user_man.GetComponent<PlayerController>();
             userInfo = user_man.GetComponent<UserInfo>();
-            user_man.transform.localScale = new Vector3(3f, 3f, 0); // 사이즈 변경
-            player.moveSpeed = 15; // 속도 변경
-            camera.orthographicSize = 12; // 카메라 크기 변경 
-            if (userInfo.userWhere == 1) { user_man.transform.position = new Vector3(-44.88f, -33.63f, 0); userInfo.userWhere = 0; } // town2에서 나오기
+            //user_man.transform.localScale = new Vector3(3f, 3f, 0); // 사이즈 변경
+            //player.moveSpeed = 15; // 속도 변경
+            //camera.orthographicSize = 12; // 카메라 크기 변경 
+            if (userInfo.userWhere == 1) { user_man.transform.position = new Vector3(-47.15f, -28f, 0); userInfo.userWhere = 0; } // town2에서 나오기
         }
         else
         {
             player = user_woman.GetComponent<PlayerController>();
             userInfo = user_woman.GetComponent<UserInfo>();
-            user_woman.transform.localScale = new Vector3(3f, 3f, 0); // 사이즈 변경
-            player.moveSpeed = 15; // 속도 변경
-            camera.orthographicSize = 12; // 카메라 크기 변경 
-            if (userInfo.userWhere == 1) { user_woman.transform.position = new Vector3(-44.88f, -33.63f, 0); userInfo.userWhere = 0; } // town2에서 나오기
+            //user_woman.transform.localScale = new Vector3(3f, 3f, 0); // 사이즈 변경
+            //player.moveSpeed = 15; // 속도 변경
+           // camera.orthographicSize = 12; // 카메라 크기 변경 
+            if (userInfo.userWhere == 1) { user_woman.transform.position = new Vector3(47.15f, -28f, 0); userInfo.userWhere = 0; } // town2에서 나오기
 
         }
     }

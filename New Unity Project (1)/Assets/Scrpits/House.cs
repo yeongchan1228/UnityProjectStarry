@@ -26,11 +26,11 @@ public class House : MonoBehaviour
                 player = user_man.GetComponent<PlayerController>();
                 //player.moveSpeed = 15; // 속도 변경
                 //camera.orthographicSize = 12; // 카메라 크기 변경 
-                player.SetStartXY(-37f, -27f);
+                player.SetStartXY(-47f, -29f);
                 userInfo.storycounter++;
             }
             else {
-                user_man.transform.position = new Vector3(-51f, -33f, 0);
+                user_man.transform.position = new Vector3(-50.5f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>();
                 //player.moveSpeed = 15; // 속도 변경
                 //camera.orthographicSize = 12; // 카메라 크기 변경 
@@ -47,11 +47,11 @@ public class House : MonoBehaviour
                 player = user_woman.GetComponent<PlayerController>();
                 //player.moveSpeed = 15; // 속도 변경
                 //camera.orthographicSize = 12; // 카메라 크기 변경 
-                player.SetStartXY(-37f, -27f);
+                player.SetStartXY(-47f, -29f);
                 userInfo.storycounter++;
             }
             else { 
-                user_woman.transform.position = new Vector3(-51f, -33f, 0);
+                user_woman.transform.position = new Vector3(-50.5f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>();
                // player.moveSpeed = 15;
                 //user_woman.transform.localScale = new Vector3(3f, 3f, 0);

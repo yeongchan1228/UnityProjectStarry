@@ -155,7 +155,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
         if (collision.name.Equals("frame3")) // house -> farm
         {
             userInfo.userWhere = 1;
