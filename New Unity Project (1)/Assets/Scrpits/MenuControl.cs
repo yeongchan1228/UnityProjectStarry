@@ -9,18 +9,19 @@ public class MenuControl : MonoBehaviour
 {
     public GameObject Menu; // 메뉴 오브젝트
     GameManager textmanager;
-    GameObject user_man;
-    GameObject user_woman;
+    GameObject user_man, user_woman;
+    GameObject Sleep;
     PlayerController playercontrol;
     public GameObject game1, game2;
     GameObject chatEffect;
+    House House;
     ChatEffect chat;
     bool isMan; // 남자인지
     bool isWoman; // 여자인지
     private Sprite[] genders;
-    public GameObject ManButton, WomanButton;
-    public Image man, woman;
-    Image ManImage, WomanImage;
+    public Button Menu_Button1, Menu_Button2;
+    //public Image man, woman;
+    //Image ManImage, WomanImage;
     UserInfo userInfo;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,11 @@ public class MenuControl : MonoBehaviour
         chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         GetInfo();
+        Menu_Button1 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject.GetComponent<Button>();
+        Menu_Button2 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(4).gameObject.GetComponent<Button>();
+        Debug.Log(Menu_Button1);
+        Menu_Button1.onClick.AddListener(Menu1Clicked);
+        Menu_Button2.onClick.AddListener(Menu2Clicked);
     }
 
     // Update is called once per frame
@@ -156,6 +162,9 @@ public class MenuControl : MonoBehaviour
         }
         if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때(쉬기)
         {
+            Debug.Log("시작됨");
+            Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
+            House = GameObject.Find("House").GetComponent<House>();
             textmanager.isAction = false; // 다시 움직이게
             textmanager.talk.SetBool("isShow", textmanager.isAction);
             textmanager.button1.SetActive(false);
@@ -167,6 +176,8 @@ public class MenuControl : MonoBehaviour
 
     public void Menu2Clicked()
     {
+        Debug.Log(playercontrol.transform.position);
+        Debug.Log(playercontrol.scanObj.name);
         if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
         {
             textmanager.isAction = false; // 다시 움직이게
@@ -176,14 +187,20 @@ public class MenuControl : MonoBehaviour
             chat.buttonOn = false;
             textmanager.talkIndex = 0;
         }
-        if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때 (잠자기)
+        else if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때 (잠자기)
         {
+            Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
+            Debug.Log("시작됨ㅇㅇㅇ");
             textmanager.isAction = false; // 다시 움직이게
             textmanager.talk.SetBool("isShow", textmanager.isAction);
             textmanager.button1.SetActive(false);
             textmanager.button2.SetActive(false);
             chat.buttonOn = false;
             textmanager.talkIndex = 0;
+            Sleep.SetActive(true);
+            House = GameObject.Find("House").GetComponent<House>();
+            House.isAction = true;
+            House.sleep.SetBool("isSleep", House.isAction);
         }
     }
 }

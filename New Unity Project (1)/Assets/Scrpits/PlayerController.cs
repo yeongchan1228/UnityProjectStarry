@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!chat.buttonOn)
             {
+                Debug.Log(scanObj);
                 textmanager.Action(scanObj); // 대화창 출력
             }
         }
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
         if(rayHit.collider != null)
         {
             scanObj = rayHit.collider.gameObject;
-            Debug.Log(scanObj);
+           // Debug.Log(scanObj);
         }
         else
         {
