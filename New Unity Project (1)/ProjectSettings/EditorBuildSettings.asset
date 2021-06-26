@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InputInfo (2).unity
     guid: b02373209c3b24742860f4d485c0cc6b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InputInfo2 (3).unity
     guid: 6aeb5b068a78a824bb7b884d49d23dd9
   - enabled: 1
@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Town2Scene (9).unity
     guid: 009b1aa64831f1045bae11bacde0db61
+  - enabled: 1
+    path: Assets/Scenes/Dungeon (11).unity
+    guid: bb643b54de87d344aa25ea1200eaaf6e
+  - enabled: 1
+    path: Assets/Scenes/Dungeon1 (12).unity
+    guid: 1283ee23489eeaf4f83a2b6b02b0bb55
   m_configObjects: {}
