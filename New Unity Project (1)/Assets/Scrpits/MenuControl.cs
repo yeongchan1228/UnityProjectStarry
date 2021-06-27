@@ -158,12 +158,13 @@ public class MenuControl : MonoBehaviour
             textmanager.talkIndex = 0;
             userInfo.userWhere = 1;
             chat.buttonOn = false;
+            //chat.isbt1 = true;
+            //chat.isbt2 = false;
+            //chat.isallbutton = false;
             SceneManager.LoadScene("Dungeon (11)");
         }
         if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때(쉬기)
         {
-            textmanager.isAction = false; // 다시 움직이게
-            textmanager.talk.SetBool("isShow", textmanager.isAction);
             textmanager.button1.SetActive(false);
             textmanager.button2.SetActive(false);
             textmanager.talkIndex = 0;
@@ -174,6 +175,9 @@ public class MenuControl : MonoBehaviour
             SleepAni.SetTrigger("isRest");
             Invoke("Off_Rest", 0.6f);
             userInfo.Hp = 100;
+            //chat.isbt1 = true;
+            //chat.isbt2 = false;
+            //chat.isallbutton = false;
         }
     }
 
@@ -189,11 +193,12 @@ public class MenuControl : MonoBehaviour
             textmanager.button2.SetActive(false);
             chat.buttonOn = false;
             textmanager.talkIndex = 0;
+            //chat.isbt1 = true;
+            //chat.isbt2 = false;
+            //chat.isallbutton = false;
         }
         else if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때 (잠자기)
         {
-            textmanager.isAction = false; // 다시 움직이게
-            textmanager.talk.SetBool("isShow", textmanager.isAction);
             textmanager.button1.SetActive(false);
             textmanager.button2.SetActive(false);
             chat.buttonOn = false;
@@ -205,6 +210,9 @@ public class MenuControl : MonoBehaviour
             Invoke("Off_Sleep", 1.6f);
             userInfo.Day++;
             userInfo.Hp = 100;
+            //chat.isbt1 = true;
+            //chat.isbt2 = false;
+            //chat.isallbutton = false;
         }
     }
 
@@ -212,10 +220,15 @@ public class MenuControl : MonoBehaviour
     {
         Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
         Sleep.SetActive(false);
+        textmanager.isAction = false; // 다시 움직이게
+        textmanager.talk.SetBool("isShow", textmanager.isAction);
     }
     void Off_Rest()
     {
+
         Sleep = GameObject.Find("Sleep").transform.GetChild(1).gameObject;
         Sleep.SetActive(false);
+        textmanager.isAction = false; // 다시 움직이게
+        textmanager.talk.SetBool("isShow", textmanager.isAction);
     }
 }

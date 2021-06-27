@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteR;
     private Sprite[] seeds;
     GameObject chatEffect;
+    GameObject Sleep;
+    Animator SleepAni;
     ChatEffect chat;
     public GameObject scanObj; // 스캔 오브젝트
     GameObject user_man;
@@ -90,6 +92,69 @@ public class PlayerController : MonoBehaviour
                 textmanager.talk.SetBool("isShow", textmanager.isAction);
             }
         }
+
+        //if (chat.buttonOn) // 메뉴에서 버튼키가 On일 때 위,아래 방향키 누를 시 포커스 이동
+        /*{
+            if (Input.GetButtonDown("Vertical"))
+            {
+                if (chat.isbt1)
+                {
+                    Animator bt1 = textmanager.button1.GetComponent<Animator>();
+                    Animator bt2 = textmanager.button2.GetComponent<Animator>();
+                    bt1.SetTrigger("Normal");
+                    bt2.SetTrigger("Highlighted");
+                    chat.isbt1 = false;
+                    chat.isbt2 = true;
+                }
+                else if (chat.isbt2)
+                {
+                    Animator bt1 = textmanager.button1.GetComponent<Animator>();
+                    Animator bt2 = textmanager.button2.GetComponent<Animator>();
+                    bt1.SetTrigger("Highlighted");
+                    bt2.SetTrigger("Normal");
+                    chat.isbt1 = true;
+                    chat.isbt2 = false;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && chat.isallbutton)
+            {
+                if (chat.isbt1)
+                {
+                    textmanager.isAction = false; // 다시 움직이게
+                    textmanager.talk.SetBool("isShow", textmanager.isAction);
+                    textmanager.button1.SetActive(false);
+                    textmanager.button2.SetActive(false);
+                    textmanager.talkIndex = 0;
+                    chat.buttonOn = false;
+                    Sleep = GameObject.Find("Sleep").transform.GetChild(1).gameObject;
+                    SleepAni = Sleep.GetComponent<Animator>();
+                    Sleep.SetActive(true);
+                    SleepAni.SetTrigger("isRest");
+                    Invoke("Off_Rest", 0.6f);
+                    userInfo.Hp = 100;
+                    chat.isallbutton = false;
+                }
+                else if (chat.isbt2)
+                {
+                    textmanager.isAction = false; // 다시 움직이게
+                    textmanager.talk.SetBool("isShow", textmanager.isAction);
+                    textmanager.button1.SetActive(false);
+                    textmanager.button2.SetActive(false);
+                    chat.buttonOn = false;
+                    textmanager.talkIndex = 0;
+                    Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
+                    SleepAni = Sleep.GetComponent<Animator>();
+                    Sleep.SetActive(true);
+                    SleepAni.SetTrigger("isSleep");
+                    Invoke("Off_Sleep", 1.6f);
+                    userInfo.Day++;
+                    userInfo.Hp = 100;
+                    chat.isbt1 = true;
+                    chat.isbt2 = false;
+                    chat.isallbutton = false;
+                }
+            }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
         {
@@ -247,6 +312,15 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+    void Off_Sleep()
+    {
+        Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
+        Sleep.SetActive(false);
+    }
+    void Off_Rest()
+    {
+        Sleep = GameObject.Find("Sleep").transform.GetChild(1).gameObject;
+        Sleep.SetActive(false);
+    }
 
 }

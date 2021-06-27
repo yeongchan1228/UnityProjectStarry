@@ -22,20 +22,12 @@ public class GameManager : MonoBehaviour
     public string select1, select2, select3;
     public GameObject user_man;
     public GameObject user_woman;
+    bool getinfo;
     UserInfo userInfo;
 
 
     void Start()
     {
-        user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
-        user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
-        UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
-        if (userinfo2.isTrue)
-        {
-            userInfo = user_man.GetComponent<UserInfo>();
-        }
-        else { userInfo = user_woman.GetComponent<UserInfo>(); }
-
     }
 
 
@@ -67,13 +59,24 @@ public class GameManager : MonoBehaviour
         {
             isAction = false;
             talkIndex = 0;
+            if (!getinfo)
+            {
+                user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
+                user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
+                UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
+                if (userinfo2.isTrue)
+                {
+                    userInfo = user_man.GetComponent<UserInfo>();
+                }
+                else { userInfo = user_woman.GetComponent<UserInfo>(); }
+                getinfo = true;
+            }
             if (userInfo.storycounter < 1)
             {
                 IsFirstStory isFirst = GameObject.Find("Trigger").GetComponent<IsFirstStory>();
                 if (isFirst.isFirststory) // 첫 번째 스토리 끝나면 이동
                 {
                     isFirst.isFirststory = false;
-                    //userInfo.storycounter++;
                     SceneManager.LoadScene("HouseScene (5)"); // 이동
                 }
             }

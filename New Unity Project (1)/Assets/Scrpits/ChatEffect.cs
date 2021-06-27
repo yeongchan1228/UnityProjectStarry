@@ -14,6 +14,8 @@ public class ChatEffect : MonoBehaviour
     public GameManager game;
     public bool doing;
     public bool buttonOn;
+    //public bool isbt1, isbt2;
+    //public bool isallbutton;
     Text ButtonText1, ButtonText2;
     public GameObject Button1, Button2;
 
@@ -85,12 +87,22 @@ public class ChatEffect : MonoBehaviour
     {
         ButtonText1.text = "    "+text1;
         game.button1.SetActive(true);
+        Animator bt1 = game.button1.GetComponent<Animator>();
+        Debug.Log(bt1);
+        bt1.SetTrigger("Highlighted");
+        //isbt1 = true;
     }
 
     void Button2_On()
     {
         ButtonText2.text = "    " + game.select2;
         game.button2.SetActive(true);
+        //Invoke("allButton", 1f);
     }
+
+    /*void allButton()
+    {
+        isallbutton = true;
+    }*/
 
 }
