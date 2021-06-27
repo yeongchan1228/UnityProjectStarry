@@ -1093,7 +1093,7 @@ GameObject:
   - component: {fileID: 925807967}
   - component: {fileID: 925807966}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MenuSelect1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1401,7 +1401,7 @@ GameObject:
   - component: {fileID: 1076496438}
   - component: {fileID: 1076496437}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MenuSelect2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2319,7 +2319,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1724045052}
   - component: {fileID: 1724045051}
-  - component: {fileID: 1724045050}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -2327,18 +2326,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1724045050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724045049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dfa75384090cc8468d46d61e7e4ffb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1724045051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2354,6 +2341,10 @@ MonoBehaviour:
   Menu: {fileID: 107842598}
   game1: {fileID: 0}
   game2: {fileID: 0}
+  ManButton: {fileID: 0}
+  WomanButton: {fileID: 0}
+  man: {fileID: 0}
+  woman: {fileID: 0}
 --- !u!4 &1724045052
 Transform:
   m_ObjectHideFlags: 0
@@ -2557,7 +2548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -523.4352, y: 0.0000078678}
+  m_AnchoredPosition: {x: -523.4352, y: 0.0000076293945}
   m_SizeDelta: {x: -1023.4453, y: 29.5734}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979155286

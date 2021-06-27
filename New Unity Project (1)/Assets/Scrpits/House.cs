@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class House : MonoBehaviour
 {
@@ -8,11 +9,23 @@ public class House : MonoBehaviour
     GameObject user_woman;
     PlayerController player;
     UserInfo userInfo;
+    public Animator sleep;
+    public Button Menu_Button1, Menu_Button2;
+    MenuControl menuControl;
+    public bool isAction; // 애니시작/종료
+    //public Animator ImgAnimator;
     void Awake()
     {
+        menuControl = GameObject.Find("MenuControl").GetComponent<MenuControl>();
+        sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject.GetComponent<Animator>();
         GameObject game = GameObject.Find("Player");
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
+        Menu_Button1 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject.GetComponent<Button>();
+        Menu_Button2 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(4).gameObject.GetComponent<Button>();
+        Debug.Log(Menu_Button1);
+        Menu_Button1.onClick.AddListener(menuControl.Menu1Clicked);
+        Menu_Button2.onClick.AddListener(menuControl.Menu2Clicked);
         GameObject Camera1 = GameObject.Find("Main Camera");
         Camera camera = Camera1.GetComponent<Camera>();
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();

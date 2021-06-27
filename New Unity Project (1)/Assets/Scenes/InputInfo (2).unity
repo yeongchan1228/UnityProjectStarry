@@ -1964,6 +1964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489857745}
   - component: {fileID: 1489857744}
+  - component: {fileID: 1489857746}
   m_Layer: 0
   m_Name: MenuControl
   m_TagString: Untagged
@@ -1986,6 +1987,8 @@ MonoBehaviour:
   Menu: {fileID: 0}
   game1: {fileID: 346813088}
   game2: {fileID: 1465495519}
+  isMan: 0
+  isWoman: 0
   ManButton: {fileID: 513176379}
   WomanButton: {fileID: 1636479950}
   man: {fileID: 0}
@@ -2004,6 +2007,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1489857746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489857743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfa75384090cc8468d46d61e7e4ffb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1495117778
 GameObject:
   m_ObjectHideFlags: 0
