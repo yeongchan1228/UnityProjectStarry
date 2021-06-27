@@ -14,11 +14,11 @@ public class TalkManager : MonoBehaviour
     {
         talking = new Dictionary<string, string[]>();
         img = new Dictionary<string, Sprite>();
-        makeTalking();
+        //makeTalking();
     }
 
    
-    void makeTalking() // 대사 넣는 곳 
+    public void makeTalking() // 대사 넣는 곳 
     {
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;

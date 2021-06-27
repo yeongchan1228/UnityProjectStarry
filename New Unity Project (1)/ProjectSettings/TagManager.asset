@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Not_Feed_Field
   - fence
+  - Not_Sea
+  - Sea
   layers:
   - Default
   - TransparentFX

@@ -79,7 +79,6 @@ public class PlayerController : MonoBehaviour
         {
             if (!chat.buttonOn)
             {
-                Debug.Log(scanObj);
                 textmanager.Action(scanObj); // 대화창 출력
             }
         }
@@ -94,7 +93,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
         {
-            Do_Farming();    
+            if (targetobj.tag.Equals("Not_Feed_Field"))
+            {
+                Do_Farming();
+            }
+            else if (targetobj.tag.Equals("Sea"))
+            {
+                Do_Fishing();
+            }  
         }
 
 
@@ -140,6 +146,11 @@ public class PlayerController : MonoBehaviour
             }
     }
 
+    void Do_Fishing()
+    {
+        Debug.Log("바다 낚시");
+    }
+
 
     void OnTriggerStay2D(Collider2D o)
     {
@@ -149,6 +160,10 @@ public class PlayerController : MonoBehaviour
             targetobj = null;
         }
         if(o.gameObject.name.Equals("not_feed2 (36)") || o.gameObject.name.Equals("not_feed3 (5)"))
+        {
+            targetobj = null;
+        }
+        if (o.gameObject.tag.Equals("Not_Sea"))
         {
             targetobj = null;
         }

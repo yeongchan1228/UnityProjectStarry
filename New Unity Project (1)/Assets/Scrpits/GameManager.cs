@@ -104,14 +104,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            chatEffect.Setting(talkData.Split(':')[0]);
-            img.color = new Color(1, 1, 1, 0); // 안보이게하기
-            select3 = talkData.Split(':')[1];
-            if (select3 == "1")
+            if (talkData == null) { chatEffect.Setting("널값임."); }
+            else
             {
-                isButton = true;
-                select1 = talkData.Split(':')[2];
-                select2 = talkData.Split(':')[3];
+                chatEffect.Setting(talkData.Split(':')[0]);
+                img.color = new Color(1, 1, 1, 0); // 안보이게하기
+                select3 = talkData.Split(':')[1];
+                if (select3 == "1")
+                {
+                    isButton = true;
+                    select1 = talkData.Split(':')[2];
+                    select2 = talkData.Split(':')[3];
+                }
             }
         }
 
