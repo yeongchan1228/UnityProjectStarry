@@ -38,6 +38,12 @@ public class GameManager : MonoBehaviour
         NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
         Talking(npc_Data.id, npc_Data.isNPC);
         talk.SetBool("isShow", isAction);
+        if (!isAction)
+        {
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+            GameObject ItemUI = PlayerUI.transform.GetChild(0).gameObject;
+            ItemUI.SetActive(true);
+        }
     }
 
 

@@ -12,8 +12,9 @@ public class MenuControl : MonoBehaviour
     GameObject user_man, user_woman;
     PlayerController playercontrol;
     public GameObject game1, game2;
+    GameObject PlayerUI;
     GameObject chatEffect;
-    GameObject Sleep;
+    GameObject Sleep, realSleep, Back;
     Animator SleepAni;
     ChatEffect chat;
     bool isMan; // 남자인지
@@ -140,14 +141,18 @@ public class MenuControl : MonoBehaviour
         userInfo.setName(text1.text);
         userInfo.setFarmName(text2.text);
         userInfo.isTrue = true;
-        userInfo.Hp = 100;
-        userInfo.Day = 1;
+        userInfo.setHp(100);
+        userInfo.setDay(1);
+        userInfo.setCheckDay(1);
+        userInfo.setLevel(1);
+        userInfo.setExp(0);
+        userInfo.setMaxHp(100);
         SceneManager.LoadScene("FirstStory (4)");
     }
 
     public void Menu1Clicked()
     {
-        chatEffect = GameObject.Find("Canvas").transform.GetChild(0).transform.GetChild(0).gameObject;
+        chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
         {
@@ -169,21 +174,29 @@ public class MenuControl : MonoBehaviour
             textmanager.button2.SetActive(false);
             textmanager.talkIndex = 0;
             chat.buttonOn = false;
-            Sleep = GameObject.Find("Sleep").transform.GetChild(1).gameObject;
-            SleepAni = Sleep.GetComponent<Animator>();
+            Back = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
+            Sleep = Back.transform.GetChild(0).gameObject; // Sleep 배경
+            realSleep = Sleep.transform.GetChild(1).gameObject;
+            SleepAni = realSleep.GetComponent<Animator>();
+            textmanager.talk.SetBool("isShow", false);
+            Back.SetActive(true);
             Sleep.SetActive(true);
+            realSleep.SetActive(true);
             SleepAni.SetTrigger("isRest");
-            Invoke("Off_Rest", 0.6f);
-            userInfo.Hp = 100;
+            Invoke("Off_Rest", 2f);
+            userInfo.setHp(100);
+            userInfo.setUIHp();
             //chat.isbt1 = true;
             //chat.isbt2 = false;
             //chat.isallbutton = false;
         }
+
     }
 
     public void Menu2Clicked()
     {
-        chatEffect = GameObject.Find("Canvas").transform.GetChild(0).transform.GetChild(0).gameObject;
+        chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
+        Debug.Log(chatEffect);
         chat = chatEffect.GetComponent<ChatEffect>();
         if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
         {
@@ -203,32 +216,47 @@ public class MenuControl : MonoBehaviour
             textmanager.button2.SetActive(false);
             chat.buttonOn = false;
             textmanager.talkIndex = 0;
-            Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
-            SleepAni = Sleep.GetComponent<Animator>();
+            Back = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
+            Sleep = Back.transform.GetChild(0).gameObject; // Sleep 배경
+            realSleep = Sleep.transform.GetChild(0).gameObject;
+            SleepAni = realSleep.GetComponent<Animator>();
+            textmanager.talk.SetBool("isShow", false);
+            Back.SetActive(true);
             Sleep.SetActive(true);
+            realSleep.SetActive(true);
             SleepAni.SetTrigger("isSleep");
-            Invoke("Off_Sleep", 1.6f);
-            userInfo.Day++;
-            userInfo.Hp = 100;
+            Invoke("Off_Sleep", 4.6f);
+            int checkday = userInfo.getCheckDay();
+            int day = userInfo.getDay();
+            userInfo.setCheckDay(++checkday);
+            userInfo.setDay(++day);
+            userInfo.setHp(100);
+            PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+            userInfo.setUIHp();
+            Text Daytext = PlayerUI.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+            if (userInfo.getCheckDay() < 30)
+            {
+                Daytext.text = "봄, " + userInfo.getDay() + "일";
+            }
             //chat.isbt1 = true;
             //chat.isbt2 = false;
             //chat.isallbutton = false;
         }
+
     }
 
     void Off_Sleep()
     {
-        Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
+        realSleep.SetActive(false);
         Sleep.SetActive(false);
+        Back.SetActive(false);
         textmanager.isAction = false; // 다시 움직이게
-        textmanager.talk.SetBool("isShow", textmanager.isAction);
     }
     void Off_Rest()
     {
-
-        Sleep = GameObject.Find("Sleep").transform.GetChild(1).gameObject;
+        realSleep.SetActive(false);
         Sleep.SetActive(false);
+        Back.SetActive(false);
         textmanager.isAction = false; // 다시 움직이게
-        textmanager.talk.SetBool("isShow", textmanager.isAction);
     }
 }

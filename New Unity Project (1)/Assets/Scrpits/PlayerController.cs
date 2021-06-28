@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,9 +16,10 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     public GameObject targetobj; // 씨앗을 뿌릴 땅 저장 오브젝트
     private SpriteRenderer spriteR;
-    private Sprite[] seeds;
+    private Sprite[] seeds, tools, Uiboxs;
     GameObject chatEffect, Sleep, user_man, user_woman;
     Animator SleepAni;
+    public GameObject PlayerUI;
     ChatEffect chat;
     public GameObject scanObj; // 스캔 오브젝트
     UserInfo userInfo;
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
+        chatEffect = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
+        tools = Resources.LoadAll<Sprite>("Sprites/Tool");
+        Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
     }
 
     // Update is called once per frame
@@ -73,8 +77,112 @@ public class PlayerController : MonoBehaviour
         {
             dirVec = Vector3.right;
         }
+        if (Input.GetKeyDown(KeyCode.I)) { } // i를 눌렀을 때 인벤토리 창
 
-        if(Input.GetKeyDown(KeyCode.Space) && scanObj != null)
+        if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Input_playerUI();
+            GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+            GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+            GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+            GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+            GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+            Image selectItemBox1 = itembox1.GetComponent<Image>();
+            selectItemBox1.sprite = Uiboxs[0]; // 선택으로 변경
+            if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
+            userInfo.isWaterPPU = true;
+            userInfo.isHoe = false;
+            userInfo.isFishingRod = false;
+            userInfo.isSword = false;
+            userInfo.isPick = false;
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Input_playerUI();
+            GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+            GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+            GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+            GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+            GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+            Image selectItemBox2 = itembox2.GetComponent<Image>();
+            selectItemBox2.sprite = Uiboxs[0]; // 선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
+            userInfo.isWaterPPU = false;
+            userInfo.isHoe = true;
+            userInfo.isFishingRod = false;
+            userInfo.isSword = false;
+            userInfo.isPick = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Input_playerUI();
+            GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+            GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+            GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+            GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+            GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+            Image selectItemBox3 = itembox3.GetComponent<Image>();
+            selectItemBox3.sprite = Uiboxs[0]; // 선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
+            userInfo.isWaterPPU = false;
+            userInfo.isHoe = false;
+            userInfo.isFishingRod = true;
+            userInfo.isSword = false;
+            userInfo.isPick = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            Input_playerUI();
+            GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+            GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+            GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+            GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+            GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+            Image selectItemBox4 = itembox4.GetComponent<Image>();
+            selectItemBox4.sprite = Uiboxs[0]; // 선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
+            userInfo.isWaterPPU = false;
+            userInfo.isHoe = false;
+            userInfo.isFishingRod = false;
+            userInfo.isSword = true;
+            userInfo.isPick = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            Input_playerUI();
+            GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+            GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+            GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+            GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+            GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+            Image selectItemBox5 = itembox5.GetComponent<Image>();
+            selectItemBox5.sprite = Uiboxs[0]; // 선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
+            userInfo.isWaterPPU = false;
+            userInfo.isHoe = false;
+            userInfo.isFishingRod = false;
+            userInfo.isSword = false;
+            userInfo.isPick = true;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && scanObj != null)
         {
             if (!chat.buttonOn)
             {
@@ -155,11 +263,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
         {
-            if (targetobj.tag.Equals("Not_Feed_Field"))
+            if (targetobj.tag.Equals("Not_Feed_Field") && userInfo.isHoe)
             {
                 Do_Farming();
             }
-            else if (targetobj.tag.Equals("Sea"))
+            else if (targetobj.tag.Equals("Sea") && userInfo.isFishingRod)
             {
                 Do_Fishing();
             }  
@@ -168,6 +276,10 @@ public class PlayerController : MonoBehaviour
 
     }
     
+    void Input_playerUI()
+    {
+        if(PlayerUI == null) { PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; }
+    }
     void FixedUpdate()
     {
         Move();// 이동
@@ -197,15 +309,25 @@ public class PlayerController : MonoBehaviour
 
     void Do_Farming()
     {
-            spriteR = targetobj.GetComponent<SpriteRenderer>();
-            if (spriteR.sprite.name.Equals("not_feed"))
+
+        
+        spriteR = targetobj.GetComponent<SpriteRenderer>();
+        if (spriteR.sprite.name.Equals("not_feed"))
+        {
+            int UserHp = userInfo.getHp();
+            if (UserHp > 5)
             {
-                spriteR.sprite = seeds[0];
+                spriteR.sprite = seeds[0]; // Hoeing으로 변경
+                UserHp = UserHp - 5;
+                userInfo.setHp(UserHp);
+                userInfo.setUIHp();
             }
-            else if (spriteR.sprite.name.Equals("hoeing"))
-            {
-                spriteR.sprite = seeds[1];
-            }
+               
+        }
+        else if (spriteR.sprite.name.Equals("hoeing"))
+        {
+            spriteR.sprite = seeds[1]; // 씨앗뿌리기로 변경
+        }
     }
 
     void Do_Fishing()

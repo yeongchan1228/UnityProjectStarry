@@ -11,6 +11,7 @@ public class House : MonoBehaviour
     PlayerController player;
     UserInfo userInfo;
     public Animator sleep;
+    private Sprite[] tools, Uiboxs, swords;
     //public Button Menu_Button1, Menu_Button2;
     //MenuControl menuControl;
     //public bool isAction; // 애니시작/종료
@@ -23,6 +24,9 @@ public class House : MonoBehaviour
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         GameObject obj = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        tools = Resources.LoadAll<Sprite>("Sprites/Tool");
+        Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
+        swords = Resources.LoadAll<Sprite>("Sprites/sword");
         if (obj.name.Equals("FirstStoryImage"))
         {
             Destroy(obj); // FirstImage 지우기
@@ -39,19 +43,57 @@ public class House : MonoBehaviour
                 player = user_man.GetComponent<PlayerController>();
                 player.SetStartXY(-47f, -29f);
                 userInfo.storycounter++;
+                userInfo.getItem_WaterPPU().SetWaterPPUName("Stone_Water"); // 기본 물뿌리개 장착
+                userInfo.getItem_WaterPPU().SetWaterPPUFilled(100);
+                userInfo.getItem_Hoe().SetHoeName("Stone_Hoe");
+                userInfo.getItem_Hoe().SetHoeSpeed(10);
+                userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
+                userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
+                userInfo.getItem_Weapon().SetWeaponName("CutlassSword");
+                userInfo.getItem_Weapon().SetWeaponPower(5);
+                userInfo.getItem_Pick().SetPickName("StonePick");
+                userInfo.getItem_Pick().SetPickDifficulty(2);
                 if (!player.isPlayerUI)
                 {
-                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
-                    Debug.Log(PlayerUI);
+                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
                     Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-                    Debug.Log(maptext);
                     maptext.text = "House";
+                    GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+                    GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+                    GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+                    GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+                    GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+                    GameObject itemobj1 = itembox1.transform.GetChild(0).gameObject;
+                    GameObject itemobj2 = itembox2.transform.GetChild(0).gameObject;
+                    GameObject itemobj3 = itembox3.transform.GetChild(0).gameObject;
+                    GameObject itemobj4 = itembox4.transform.GetChild(0).gameObject;
+                    GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
+                    Image selectItemBox = itembox1.GetComponent<Image>();
+                    Image ItemImg1 = itemobj1.GetComponent<Image>();
+                    ItemImg1.sprite = tools[14]; // 물뿌리개
+                    Image ItemImg2 = itemobj2.GetComponent<Image>();
+                    ItemImg2.sprite = tools[13]; // 호미
+                    Image ItemImg3 = itemobj3.GetComponent<Image>();
+                    ItemImg3.sprite = tools[11]; // 낚시대
+                    Image ItemImg4 = itemobj4.GetComponent<Image>();
+                    ItemImg4.sprite = swords[0]; // 검
+                    Image ItemImg5 = itemobj5.GetComponent<Image>();
+                    ItemImg5.sprite = tools[12]; // 곡괭이
+                    PlayerUI.SetActive(true);
+                    selectItemBox.sprite = Uiboxs[0]; // 선택으로 변경
+                    userInfo.isWaterPPU = true;
+                    itemobj1.SetActive(true);
+                    itemobj2.SetActive(true);
+                    itemobj3.SetActive(true);
+                    itemobj4.SetActive(true);
+                    itemobj5.SetActive(true);
                     PlayerUI.SetActive(true);
                     player.isPlayerUI = true;
+
                 }
             }
             else {
-                PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+                PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
                 Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
                 maptext.text = "House";
                 user_man.transform.position = new Vector3(-50.5f, -33f, 0);
@@ -68,17 +110,52 @@ public class House : MonoBehaviour
                 player = user_woman.GetComponent<PlayerController>();
                 player.SetStartXY(-47f, -29f);
                 userInfo.storycounter++;
+                userInfo.getItem_WaterPPU().SetWaterPPUName("Stone_Water"); // 기본 물뿌리개 장착
+                userInfo.getItem_WaterPPU().SetWaterPPUFilled(100);
+                userInfo.getItem_Hoe().SetHoeName("Stone_Hoe");
+                userInfo.getItem_Hoe().SetHoeSpeed(10);
+                userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
+                userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
                 if (!player.isPlayerUI)
                 {
-                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
                     Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
                     maptext.text = "House";
+                    GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+                    GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+                    GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+                    GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+                    GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
+                    GameObject itemobj1 = itembox1.transform.GetChild(0).gameObject;
+                    GameObject itemobj2 = itembox2.transform.GetChild(0).gameObject;
+                    GameObject itemobj3 = itembox3.transform.GetChild(0).gameObject;
+                    GameObject itemobj4 = itembox4.transform.GetChild(0).gameObject;
+                    GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
+                    Image selectItemBox = itembox1.GetComponent<Image>();
+                    Image ItemImg1 = itemobj1.GetComponent<Image>();
+                    ItemImg1.sprite = tools[14]; // 물뿌리개
+                    Image ItemImg2 = itemobj2.GetComponent<Image>();
+                    ItemImg2.sprite = tools[13]; // 호미
+                    Image ItemImg3 = itemobj3.GetComponent<Image>();
+                    ItemImg3.sprite = tools[11]; // 낚시대
+                    Image ItemImg4 = itemobj4.GetComponent<Image>();
+                    ItemImg4.sprite = swords[0]; // 검
+                    Image ItemImg5 = itemobj5.GetComponent<Image>();
+                    ItemImg5.sprite = tools[12]; // 곡괭이
+                    PlayerUI.SetActive(true);
+                    selectItemBox.sprite = Uiboxs[0]; // 선택으로 변경
+                    userInfo.isWaterPPU = true;
+                    itemobj1.SetActive(true);
+                    itemobj2.SetActive(true);
+                    itemobj3.SetActive(true);
+                    itemobj4.SetActive(true);
+                    itemobj5.SetActive(true);
                     PlayerUI.SetActive(true);
                     player.isPlayerUI = true;
                 }
             }
             else {
-                PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+                PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
                 Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
                 maptext.text = "House";
                 user_woman.transform.position = new Vector3(-50.5f, -33f, 0);

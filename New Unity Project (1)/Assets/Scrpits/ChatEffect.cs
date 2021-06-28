@@ -87,9 +87,9 @@ public class ChatEffect : MonoBehaviour
     {
         ButtonText1.text = "    "+text1;
         game.button1.SetActive(true);
-        Animator bt1 = game.button1.GetComponent<Animator>();
-        Debug.Log(bt1);
-        bt1.SetTrigger("Highlighted");
+        //Animator bt1 = game.button1.GetComponent<Animator>();
+        //Debug.Log(bt1);
+        //bt1.SetTrigger("Highlighted");
         //isbt1 = true;
     }
 

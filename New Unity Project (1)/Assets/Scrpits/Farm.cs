@@ -16,7 +16,7 @@ public class Farm : MonoBehaviour
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
         if (userinfo2.isTrue)
         { // 남자
-            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
             Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
             maptext.text = "Farm";
             player = user_man.GetComponent<PlayerController>();
@@ -28,7 +28,7 @@ public class Farm : MonoBehaviour
         }
         else
         { // 여자
-            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
             Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
             maptext.text = "Farm";
             player = user_woman.GetComponent<PlayerController>();
