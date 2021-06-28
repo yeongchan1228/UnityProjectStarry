@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sea : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Sea : MonoBehaviour
     UserInfo userInfo;
     void Awake()
     {
+        GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        maptext.text = "�ٴ尡";
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();

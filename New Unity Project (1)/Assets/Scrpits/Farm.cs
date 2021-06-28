@@ -17,8 +17,10 @@ public class Farm : MonoBehaviour
         if (userinfo2.isTrue)
         { // 남자
             GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+            RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+            pos.anchoredPosition = new Vector2(-30, -20);
             Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-            maptext.text = "Farm";
+            maptext.text = "농장";
             player = user_man.GetComponent<PlayerController>();
             userInfo = user_man.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_man.transform.position = new Vector3(-288.67f, 60.9f, 0); userInfo.userWhere = 0; } // 집에서 나오기
@@ -29,6 +31,8 @@ public class Farm : MonoBehaviour
         else
         { // 여자
             GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+            RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+            pos.anchoredPosition = new Vector2(-30, -20);
             Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
             maptext.text = "Farm";
             player = user_woman.GetComponent<PlayerController>();

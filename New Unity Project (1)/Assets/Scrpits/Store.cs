@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Store : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Store : MonoBehaviour
     UserInfo userInfo;
     void Awake()
     {
+        GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        maptext.text = "ªÛ¡°";
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         GameObject Camera1 = GameObject.Find("Main Camera");

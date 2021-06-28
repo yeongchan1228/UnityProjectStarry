@@ -1787,6 +1787,8 @@ MonoBehaviour:
   isHoe: 0
   isWaterPPU: 0
   isFishingRod: 0
+  isSword: 0
+  isPick: 0
   storycounter: 0
   userWhere: 0
 --- !u!50 &274010944
@@ -1913,6 +1915,7 @@ MonoBehaviour:
   startY: 0
   textmanager: {fileID: 0}
   targetobj: {fileID: 0}
+  PlayerUI: {fileID: 0}
   scanObj: {fileID: 0}
   isPlayerUI: 0
 --- !u!1 &293261846
@@ -16861,8 +16864,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20.9512}
-  m_SizeDelta: {x: 115.9104, y: 32.8048}
+  m_AnchoredPosition: {x: 79.53271, y: -20.9512}
+  m_SizeDelta: {x: 195.4431, y: 109.1593}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1903641686
 MonoBehaviour:
@@ -16891,13 +16894,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 6
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: House
+  m_Text: "'asdas'\uC758 \uC9D1"
 --- !u!222 &1903641687
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17580,6 +17583,8 @@ MonoBehaviour:
   isHoe: 0
   isWaterPPU: 0
   isFishingRod: 0
+  isSword: 0
+  isPick: 0
   storycounter: 0
   userWhere: 0
 --- !u!58 &1997066907
@@ -17636,6 +17641,7 @@ MonoBehaviour:
   startY: 0
   textmanager: {fileID: 0}
   targetobj: {fileID: 0}
+  PlayerUI: {fileID: 0}
   scanObj: {fileID: 0}
   isPlayerUI: 0
 --- !u!212 &1997066910

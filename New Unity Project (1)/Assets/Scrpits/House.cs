@@ -56,8 +56,10 @@ public class House : MonoBehaviour
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+                    RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+                    pos.anchoredPosition = new Vector2(-120, -20);
                     Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-                    maptext.text = "House";
+                    maptext.text = "'"+userInfo.getName()+"'의 집";
                     GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
                     GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
                     GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
@@ -94,8 +96,10 @@ public class House : MonoBehaviour
             }
             else {
                 PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+                RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+                pos.anchoredPosition = new Vector2(-120, -20);
                 Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-                maptext.text = "House";
+                maptext.text = "'" + userInfo.getName() + "'의 집";
                 user_man.transform.position = new Vector3(-50.5f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>(); 
 
@@ -119,8 +123,10 @@ public class House : MonoBehaviour
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+                    RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+                    pos.anchoredPosition = new Vector2(-120, -20);
                     Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-                    maptext.text = "House";
+                    maptext.text = "'" + userInfo.getName() + "'의 집";
                     GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
                     GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
                     GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
@@ -156,8 +162,10 @@ public class House : MonoBehaviour
             }
             else {
                 PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+                RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
+                pos.anchoredPosition = new Vector2(-120, -20);
                 Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-                maptext.text = "House";
+                maptext.text = "'" + userInfo.getName() + "'의 집";
                 user_woman.transform.position = new Vector3(-50.5f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>();
             }

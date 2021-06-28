@@ -309,8 +309,6 @@ public class PlayerController : MonoBehaviour
 
     void Do_Farming()
     {
-
-        
         spriteR = targetobj.GetComponent<SpriteRenderer>();
         if (spriteR.sprite.name.Equals("not_feed"))
         {
@@ -318,6 +316,7 @@ public class PlayerController : MonoBehaviour
             if (UserHp > 5)
             {
                 spriteR.sprite = seeds[0]; // Hoeing으로 변경
+                targetobj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90)); // target object 90도 회전시키기, 다시 돌려주기
                 UserHp = UserHp - 5;
                 userInfo.setHp(UserHp);
                 userInfo.setUIHp();
