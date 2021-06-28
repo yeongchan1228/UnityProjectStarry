@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
-    public float moveSpeed;
+    public float moveSpeed, startX, startY;
     public GameManager textmanager;
-    public float startX, startY;
     private float x, y;
     private Rigidbody2D rigid2D;
     Vector3 viewpos, dirVec;
@@ -17,14 +16,12 @@ public class PlayerController : MonoBehaviour
     public GameObject targetobj; // ¾¾¾ÑÀ» »Ñ¸± ¶¥ ÀúÀå ¿ÀºêÁ§Æ®
     private SpriteRenderer spriteR;
     private Sprite[] seeds;
-    GameObject chatEffect;
-    GameObject Sleep;
+    GameObject chatEffect, Sleep, user_man, user_woman;
     Animator SleepAni;
     ChatEffect chat;
     public GameObject scanObj; // ½ºÄµ ¿ÀºêÁ§Æ®
-    GameObject user_man;
-    GameObject user_woman;
     UserInfo userInfo;
+    public bool isPlayerUI;
     // Start is called before the first frame update
     void Start()
     {

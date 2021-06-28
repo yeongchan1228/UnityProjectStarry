@@ -7,6 +7,7 @@ public class House : MonoBehaviour
 {
     GameObject user_man;
     GameObject user_woman;
+    GameObject PlayerUI;
     PlayerController player;
     UserInfo userInfo;
     public Animator sleep;
@@ -38,10 +39,24 @@ public class House : MonoBehaviour
                 player = user_man.GetComponent<PlayerController>();
                 player.SetStartXY(-47f, -29f);
                 userInfo.storycounter++;
+                if (!player.isPlayerUI)
+                {
+                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+                    Debug.Log(PlayerUI);
+                    Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+                    Debug.Log(maptext);
+                    maptext.text = "House";
+                    PlayerUI.SetActive(true);
+                    player.isPlayerUI = true;
+                }
             }
             else {
+                PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+                Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+                maptext.text = "House";
                 user_man.transform.position = new Vector3(-50.5f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>(); 
+
             }
         }
         else
@@ -53,8 +68,19 @@ public class House : MonoBehaviour
                 player = user_woman.GetComponent<PlayerController>();
                 player.SetStartXY(-47f, -29f);
                 userInfo.storycounter++;
+                if (!player.isPlayerUI)
+                {
+                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+                    Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+                    maptext.text = "House";
+                    PlayerUI.SetActive(true);
+                    player.isPlayerUI = true;
+                }
             }
-            else { 
+            else {
+                PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+                Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+                maptext.text = "House";
                 user_woman.transform.position = new Vector3(-50.5f, -33f, 0);
                 player = user_man.GetComponent<PlayerController>();
             }

@@ -15,7 +15,10 @@ public class Farm : MonoBehaviour
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
         if (userinfo2.isTrue)
-        {
+        { // 남자
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+            Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+            maptext.text = "Farm";
             player = user_man.GetComponent<PlayerController>();
             userInfo = user_man.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_man.transform.position = new Vector3(-288.67f, 60.9f, 0); userInfo.userWhere = 0; } // 집에서 나오기
@@ -24,7 +27,10 @@ public class Farm : MonoBehaviour
             if (userInfo.userWhere == 4) { user_man.transform.position = new Vector3(-260f, 55.9f, 0); userInfo.userWhere = 0; } // town2에서 나오기
         }
         else
-        {
+        { // 여자
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+            Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+            maptext.text = "Farm";
             player = user_woman.GetComponent<PlayerController>();
             userInfo = user_woman.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_woman.transform.position = new Vector3(-288.67f, 60.9f, 0); userInfo.userWhere = 0; } // 집에서 나오기
