@@ -1123,7 +1123,6 @@ GameObject:
   m_Component:
   - component: {fileID: 153045494}
   - component: {fileID: 153045497}
-  - component: {fileID: 153045496}
   - component: {fileID: 153045495}
   m_Layer: 0
   m_Name: not_feed (16)
@@ -1171,32 +1170,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!61 &153045496
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153045493}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.23853254, y: -0.4666931}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 13.465892, y: 0.06661379}
   m_EdgeRadius: 0
 --- !u!212 &153045497
 SpriteRenderer:
@@ -1744,11 +1717,11 @@ GameObject:
   m_Component:
   - component: {fileID: 274010942}
   - component: {fileID: 274010948}
-  - component: {fileID: 274010947}
   - component: {fileID: 274010946}
   - component: {fileID: 274010945}
   - component: {fileID: 274010944}
   - component: {fileID: 274010943}
+  - component: {fileID: 274010947}
   m_Layer: 0
   m_Name: Man_Player
   m_TagString: Untagged
@@ -1882,8 +1855,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &274010947
-CircleCollider2D:
+--- !u!61 &274010947
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1895,9 +1868,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00002503395, y: -0.36710998}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Size: {x: 0.49899805, y: 0.12305552}
+  m_EdgeRadius: 0
 --- !u!114 &274010948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,6 +1901,9 @@ MonoBehaviour:
   PlayerUI: {fileID: 0}
   scanObj: {fileID: 0}
   isPlayerUI: 0
+  isHoeing: 0
+  SeedField_name: []
+  count: 0
 --- !u!1 &293261846
 GameObject:
   m_ObjectHideFlags: 0
@@ -13212,6 +13198,9 @@ MonoBehaviour:
   game2: {fileID: 1465495519}
   Menu_Button1: {fileID: 0}
   Menu_Button2: {fileID: 0}
+  seeds: []
+  fruit_afters: []
+  fruit_befores: []
 --- !u!4 &1489857745
 Transform:
   m_ObjectHideFlags: 0
@@ -17543,8 +17532,8 @@ GameObject:
   - component: {fileID: 1997066911}
   - component: {fileID: 1997066910}
   - component: {fileID: 1997066908}
-  - component: {fileID: 1997066907}
   - component: {fileID: 1997066906}
+  - component: {fileID: 1997066907}
   m_Layer: 0
   m_Name: Woman_Player
   m_TagString: Untagged
@@ -17587,8 +17576,8 @@ MonoBehaviour:
   isPick: 0
   storycounter: 0
   userWhere: 0
---- !u!58 &1997066907
-CircleCollider2D:
+--- !u!61 &1997066907
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -17600,9 +17589,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0017565042, y: -0.3688665}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Size: {x: 0.48840895, y: 0.14062047}
+  m_EdgeRadius: 0
 --- !u!50 &1997066908
 Rigidbody2D:
   serializedVersion: 4
@@ -17644,6 +17643,9 @@ MonoBehaviour:
   PlayerUI: {fileID: 0}
   scanObj: {fileID: 0}
   isPlayerUI: 0
+  isHoeing: 0
+  SeedField_name: []
+  count: 0
 --- !u!212 &1997066910
 SpriteRenderer:
   m_ObjectHideFlags: 0

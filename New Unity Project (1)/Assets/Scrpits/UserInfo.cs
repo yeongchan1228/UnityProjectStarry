@@ -52,7 +52,7 @@ public class Item_Armor
 public class Item_Hoe
 {
     string name = null;
-    int speed = 0;
+    float speed = 0;
 
     public string GetHoeName()
     {
@@ -62,11 +62,11 @@ public class Item_Hoe
     {
         this.name = name;
     }
-    public int GetHoeSpeed()
+    public float GetHoeSpeed()
     {
         return speed;
     }
-    public void SetHoeSpeed(int speed)
+    public void SetHoeSpeed(float speed)
     {
         this.speed = speed;
     }
@@ -121,7 +121,7 @@ public class Item_WaterPPU
 public class Item_Pick
 {
     string name = null;
-    int difficulty = 0; // ≥≠¿Ãµµ
+    string kinds = null;
 
     public string GetPickName()
     {
@@ -131,13 +131,13 @@ public class Item_Pick
     {
         this.name = name;
     }
-    public int GetPickDifficulty()
+    public string GetPickKinds()
     {
-        return difficulty;
+        return kinds;
     }
-    public void SetPickDifficulty(int difficulty)
+    public void SetPickKinds(string kinds)
     {
-        this.difficulty = difficulty;
+        this.kinds = kinds;
     }
 }
 

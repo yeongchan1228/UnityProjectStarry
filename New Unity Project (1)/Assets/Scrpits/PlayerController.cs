@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigid2D;
     Vector3 viewpos, dirVec;
     private Animator anim;
+    Image progressimg;
+    Text progresstext;
     public GameObject targetobj; // 씨앗을 뿌릴 땅 저장 오브젝트
     private SpriteRenderer spriteR;
     private Sprite[] seeds, tools, Uiboxs;
@@ -23,10 +25,16 @@ public class PlayerController : MonoBehaviour
     ChatEffect chat;
     public GameObject scanObj; // 스캔 오브젝트
     UserInfo userInfo;
-    public bool isPlayerUI;
+    public bool isPlayerUI, isHoeing;
+    GameObject proobj;
+    public Dictionary<string, List<string>> SeedField; // 0. 심은 날, 1. 종류, 2. 물 횟수 3. 오늘 물 뿌렸는지? 4. 상태
+    public List<GameObject> SeedField_name;
+    public int count;
     // Start is called before the first frame update
     void Start()
     {
+        SeedField_name = new List<GameObject>();
+        SeedField = new Dictionary<string, List<string>>();
         chatEffect = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
@@ -79,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I)) { } // i를 눌렀을 때 인벤토리 창
 
-        if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) // 검
         {
             Input_playerUI();
             GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
@@ -91,16 +99,15 @@ public class PlayerController : MonoBehaviour
             selectItemBox1.sprite = Uiboxs[0]; // 선택으로 변경
             if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
-            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
-            userInfo.isWaterPPU = true;
+            userInfo.isWaterPPU = false;
             userInfo.isHoe = false;
             userInfo.isFishingRod = false;
-            userInfo.isSword = false;
+            userInfo.isSword = true;
             userInfo.isPick = false;
-
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) // 호미
         {
             Input_playerUI();
             GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
@@ -110,9 +117,9 @@ public class PlayerController : MonoBehaviour
             GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
             Image selectItemBox2 = itembox2.GetComponent<Image>();
             selectItemBox2.sprite = Uiboxs[0]; // 선택으로 변경
-            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
-            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
             userInfo.isWaterPPU = false;
             userInfo.isHoe = true;
@@ -120,7 +127,7 @@ public class PlayerController : MonoBehaviour
             userInfo.isSword = false;
             userInfo.isPick = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) // 낚시대
         {
             Input_playerUI();
             GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
@@ -130,9 +137,9 @@ public class PlayerController : MonoBehaviour
             GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
             Image selectItemBox3 = itembox3.GetComponent<Image>();
             selectItemBox3.sprite = Uiboxs[0]; // 선택으로 변경
-            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
-            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
             userInfo.isWaterPPU = false;
             userInfo.isHoe = false;
@@ -140,7 +147,7 @@ public class PlayerController : MonoBehaviour
             userInfo.isSword = false;
             userInfo.isPick = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4)) // 물뿌리개
         {
             Input_playerUI();
             GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
@@ -150,17 +157,17 @@ public class PlayerController : MonoBehaviour
             GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
             Image selectItemBox4 = itembox4.GetComponent<Image>();
             selectItemBox4.sprite = Uiboxs[0]; // 선택으로 변경
-            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isPick) { Image selectItemBox5 = itembox5.GetComponent<Image>(); selectItemBox5.sprite = Uiboxs[1]; }// 비선택으로 변경
-            userInfo.isWaterPPU = false;
+            userInfo.isWaterPPU = true;
             userInfo.isHoe = false;
             userInfo.isFishingRod = false;
-            userInfo.isSword = true;
+            userInfo.isSword = false;
             userInfo.isPick = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5)) // 씨앗통
         {
             Input_playerUI();
             GameObject itembox1 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
@@ -170,9 +177,9 @@ public class PlayerController : MonoBehaviour
             GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
             Image selectItemBox5 = itembox5.GetComponent<Image>();
             selectItemBox5.sprite = Uiboxs[0]; // 선택으로 변경
-            if (userInfo.isWaterPPU) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isSword) { Image selectItemBox1 = itembox1.GetComponent<Image>(); selectItemBox1.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isFishingRod) { Image selectItemBox3 = itembox3.GetComponent<Image>(); selectItemBox3.sprite = Uiboxs[1]; }// 비선택으로 변경
-            if (userInfo.isSword) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
+            if (userInfo.isWaterPPU) { Image selectItemBox4 = itembox4.GetComponent<Image>(); selectItemBox4.sprite = Uiboxs[1]; }// 비선택으로 변경
             if (userInfo.isHoe) { Image selectItemBox2 = itembox2.GetComponent<Image>(); selectItemBox2.sprite = Uiboxs[1]; }// 비선택으로 변경
             userInfo.isWaterPPU = false;
             userInfo.isHoe = false;
@@ -261,9 +268,9 @@ public class PlayerController : MonoBehaviour
             }
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Space) && targetobj != null) // 스페이스바 누를 시 
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj != null && isHoeing == false) // 스페이스바 누를 시 
         {
-            if (targetobj.tag.Equals("Not_Feed_Field") && userInfo.isHoe)
+            if (targetobj.tag.Equals("Not_Feed_Field"))
             {
                 Do_Farming();
             }
@@ -310,23 +317,183 @@ public class PlayerController : MonoBehaviour
     void Do_Farming()
     {
         spriteR = targetobj.GetComponent<SpriteRenderer>();
-        if (spriteR.sprite.name.Equals("not_feed"))
+        if(proobj == null) 
+        { 
+            proobj = GameObject.Find("Farm").transform.GetChild(0).gameObject;
+            progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
+            progresstext = proobj.transform.GetChild(2).gameObject.GetComponent<Text>();
+        }
+
+        if (spriteR.sprite.name.Equals("not_feed") && userInfo.isHoe) // 밭 갈기
         {
             int UserHp = userInfo.getHp();
-            if (UserHp > 5)
+            if (UserHp > 1)
             {
-                spriteR.sprite = seeds[0]; // Hoeing으로 변경
-                targetobj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90)); // target object 90도 회전시키기, 다시 돌려주기
-                UserHp = UserHp - 5;
-                userInfo.setHp(UserHp);
-                userInfo.setUIHp();
+                progresstext.text = "Hoeing...";
+                proobj.SetActive(true);
+                progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
+                progressimg.fillAmount = 0;
+                isHoeing = true;
+                textmanager.isAction = true;
+                Invoke("Seed_Hoeing", userInfo.getItem_Hoe().GetHoeSpeed());
+                count = (int)userInfo.getItem_Hoe().GetHoeSpeed();
             }
                
         }
-        else if (spriteR.sprite.name.Equals("hoeing"))
+        else if (spriteR.sprite.name.Equals("Hoeing") && userInfo.isPick) // 씨 뿌리기
         {
-            spriteR.sprite = seeds[1]; // 씨앗뿌리기로 변경
+            proobj.SetActive(true);
+            progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
+            progressimg.fillAmount = 0;
+            progresstext.text = "Sowing...";
+            isHoeing = true;
+            textmanager.isAction = true;
+            Invoke("Seed_Seed", 2f);
+            count = 2;
         }
+        else if (spriteR.sprite.name.Equals("Seed") && userInfo.isWaterPPU) // 물 주기
+        {
+            if (SeedField_name.Count > 0)
+            {
+                for (int i = 0; i < SeedField_name.Count; i++)
+                {
+                    if (SeedField_name[i].name.Equals(targetobj.name))
+                    {
+                        if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                        {
+                            proobj.SetActive(true);
+                            progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
+                            progressimg.fillAmount = 0;
+                            progresstext.text = "Watering...";
+                            isHoeing = true;
+                            textmanager.isAction = true;
+                            Invoke("Seed_Water", 2f);
+                            count = 2;
+                        }
+                    }
+                }
+            }
+        }
+        else if ((!spriteR.sprite.name.Equals("Seed") || !spriteR.sprite.name.Equals("not_feed") || spriteR.sprite.name.Equals("Hoeing")) && userInfo.isWaterPPU) // 물 주기
+        {
+            if (SeedField_name.Count > 0)
+            {
+                for (int i = 0; i < SeedField_name.Count; i++)
+                {
+                    if (SeedField_name[i].name.Equals(targetobj.name))
+                    {
+                        if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                        {
+                            proobj.SetActive(true);
+                            progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
+                            progressimg.fillAmount = 0;
+                            progresstext.text = "Watering...";
+                            isHoeing = true;
+                            textmanager.isAction = true;
+                            Invoke("Seed_Water2", 2f);
+                            count = 2;
+                        }
+                    }
+                }
+            }
+        }
+        else if (!spriteR.sprite.name.Equals("Seed") && !spriteR.sprite.name.Equals("Hoeing") && !spriteR.sprite.name.Equals("not_feed") 
+            && !spriteR.sprite.name.Equals("Water") && !spriteR.sprite.name.Equals("Sprout") && userInfo.isHoe) // 수확하기
+        {
+            proobj.SetActive(true);
+            progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
+            progressimg.fillAmount = 0;
+            progresstext.text = "Harvesting...";
+            isHoeing = true;
+            textmanager.isAction = true;
+            Invoke("Seed_Get", 4f);
+            count = 4;
+            ////// 인벤토리 넣기 추가
+        }
+    }
+
+    void Seed_Hoeing() // 밭 갈기
+    {
+        int UserHp = userInfo.getHp();
+        spriteR.sprite = seeds[0]; // Hoeing으로 변경
+        targetobj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90)); // target object 90도 회전시키기
+        if((int)userInfo.getItem_Hoe().GetHoeSpeed() == 10) { UserHp = UserHp - 10; }
+        else if((int)userInfo.getItem_Hoe().GetHoeSpeed() == 8) { UserHp = UserHp - 8; }
+        userInfo.setHp(UserHp);
+        userInfo.setUIHp();
+        textmanager.isAction = false;
+    }
+
+    void Seed_Water() // 물주기
+    {
+        if(SeedField_name.Count > 0)
+        {
+            for(int i = 0; i < SeedField_name.Count; i++)
+            {
+                if (SeedField_name[i].name.Equals(targetobj.name))
+                {
+                    if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                    {
+                        spriteR.sprite = seeds[4]; // 물뿌린 땅으로 변경
+                        int Water = int.Parse(SeedField[targetobj.name][2]);
+                        if (Water < 3) { Water++; }
+                        SeedField[targetobj.name][2] = Water.ToString();
+                        SeedField[targetobj.name][3] = "1";
+                        textmanager.isAction = false;
+                    }
+                }
+            }
+        }
+    }
+    void Seed_Water2() // 물주기
+    {
+        if (SeedField_name.Count > 0)
+        {
+            for (int i = 0; i < SeedField_name.Count; i++)
+            {
+                if (SeedField_name[i].name.Equals(targetobj.name))
+                {
+                    if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                    {
+                        int Water = int.Parse(SeedField[targetobj.name][2]);
+                        if (Water < 3) { Water++; }
+                        SeedField[targetobj.name][2] = Water.ToString();
+                        SeedField[targetobj.name][3] = "1";
+                        textmanager.isAction = false;
+                    }
+                }
+            }
+        }
+    }
+    void Seed_Seed() // 씨 뿌리기
+    {
+        for(int i = 0; i < SeedField_name.Count; i++)
+        {
+            if (SeedField_name[i].name.Equals(targetobj.name))
+            {
+                return;
+            }
+        }
+        spriteR.sprite = seeds[2]; // 씨앗뿌린 땅으로 변경
+        int Day = userInfo.getDay();
+        SeedField.Add(targetobj.name, new List<string> { Day.ToString(), userInfo.getItem_Pick().GetPickKinds(), "3", "0", "0" });
+        SeedField_name.Add(targetobj);
+        textmanager.isAction = false;
+    }
+    void Seed_Get() // 수확하기
+    {
+        SeedField.Remove(targetobj.name);
+        for (int i = 0; i < SeedField_name.Count; i++)
+        { 
+            if (SeedField_name[i].name.Equals(targetobj.name))
+            {
+                SeedField_name.RemoveAt(i);
+                spriteR.sprite = seeds[1]; // 씨앗뿌린 땅으로 변경
+                textmanager.isAction = false;
+                break;
+            }
+        }
+        ////// 인벤토리 넣기 추가
     }
 
     void Do_Fishing()

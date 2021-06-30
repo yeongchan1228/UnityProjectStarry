@@ -11,7 +11,7 @@ public class House : MonoBehaviour
     PlayerController player;
     UserInfo userInfo;
     public Animator sleep;
-    private Sprite[] tools, Uiboxs, swords;
+    private Sprite[] tools, Uiboxs, swords, seedbarrels;
     //public Button Menu_Button1, Menu_Button2;
     //MenuControl menuControl;
     //public bool isAction; // ¾Ö´Ï½ÃÀÛ/Á¾·á
@@ -27,6 +27,7 @@ public class House : MonoBehaviour
         tools = Resources.LoadAll<Sprite>("Sprites/Tool");
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
         swords = Resources.LoadAll<Sprite>("Sprites/sword");
+        seedbarrels = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         if (obj.name.Equals("FirstStoryImage"))
         {
             Destroy(obj); // FirstImage Áö¿ì±â
@@ -46,13 +47,13 @@ public class House : MonoBehaviour
                 userInfo.getItem_WaterPPU().SetWaterPPUName("Stone_Water"); // ±âº» ¹°»Ñ¸®°³ ÀåÂø
                 userInfo.getItem_WaterPPU().SetWaterPPUFilled(100);
                 userInfo.getItem_Hoe().SetHoeName("Stone_Hoe");
-                userInfo.getItem_Hoe().SetHoeSpeed(10);
+                userInfo.getItem_Hoe().SetHoeSpeed(10f);
                 userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
                 userInfo.getItem_Weapon().SetWeaponName("CutlassSword");
                 userInfo.getItem_Weapon().SetWeaponPower(5);
-                userInfo.getItem_Pick().SetPickName("StonePick");
-                userInfo.getItem_Pick().SetPickDifficulty(2);
+                userInfo.getItem_Pick().SetPickName("blueberrySeed");
+                userInfo.getItem_Pick().SetPickKinds("blueberry");
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
@@ -72,18 +73,18 @@ public class House : MonoBehaviour
                     GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
                     Image selectItemBox = itembox1.GetComponent<Image>();
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
-                    ItemImg1.sprite = tools[14]; // ¹°»Ñ¸®°³
+                    ItemImg1.sprite = swords[0]; // °Ë
                     Image ItemImg2 = itemobj2.GetComponent<Image>();
                     ItemImg2.sprite = tools[13]; // È£¹Ì
                     Image ItemImg3 = itemobj3.GetComponent<Image>();
                     ItemImg3.sprite = tools[11]; // ³¬½Ã´ë
                     Image ItemImg4 = itemobj4.GetComponent<Image>();
-                    ItemImg4.sprite = swords[0]; // °Ë
+                    ItemImg4.sprite = tools[14]; // ¹°»Ñ¸®°³
                     Image ItemImg5 = itemobj5.GetComponent<Image>();
-                    ItemImg5.sprite = tools[12]; // °î±ªÀÌ
+                    ItemImg5.sprite = seedbarrels[0]; // ¾¾¾ÑÅë
                     PlayerUI.SetActive(true);
                     selectItemBox.sprite = Uiboxs[0]; // ¼±ÅÃÀ¸·Î º¯°æ
-                    userInfo.isWaterPPU = true;
+                    userInfo.isSword = true;
                     itemobj1.SetActive(true);
                     itemobj2.SetActive(true);
                     itemobj3.SetActive(true);
@@ -120,6 +121,8 @@ public class House : MonoBehaviour
                 userInfo.getItem_Hoe().SetHoeSpeed(10);
                 userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
+                userInfo.getItem_Pick().SetPickName("blueberrySeed");
+                userInfo.getItem_Pick().SetPickKinds("blueberry");
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
@@ -139,18 +142,19 @@ public class House : MonoBehaviour
                     GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
                     Image selectItemBox = itembox1.GetComponent<Image>();
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
-                    ItemImg1.sprite = tools[14]; // ¹°»Ñ¸®°³
+                    ItemImg1.sprite = swords[0]; // °Ë
                     Image ItemImg2 = itemobj2.GetComponent<Image>();
                     ItemImg2.sprite = tools[13]; // È£¹Ì
                     Image ItemImg3 = itemobj3.GetComponent<Image>();
                     ItemImg3.sprite = tools[11]; // ³¬½Ã´ë
                     Image ItemImg4 = itemobj4.GetComponent<Image>();
-                    ItemImg4.sprite = swords[0]; // °Ë
+                    ItemImg4.sprite = tools[14]; // ¹°»Ñ¸®°³
                     Image ItemImg5 = itemobj5.GetComponent<Image>();
-                    ItemImg5.sprite = tools[12]; // °î±ªÀÌ
+                    ItemImg5.sprite = seedbarrels[0]; // ¾¾¾ÑÅë
+                    PlayerUI.SetActive(true);
                     PlayerUI.SetActive(true);
                     selectItemBox.sprite = Uiboxs[0]; // ¼±ÅÃÀ¸·Î º¯°æ
-                    userInfo.isWaterPPU = true;
+                    userInfo.isSword = true;
                     itemobj1.SetActive(true);
                     itemobj2.SetActive(true);
                     itemobj3.SetActive(true);
