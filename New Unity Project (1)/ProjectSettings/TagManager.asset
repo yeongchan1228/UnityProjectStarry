@@ -8,6 +8,7 @@ TagManager:
   - fence
   - Not_Sea
   - Sea
+  - Music
   layers:
   - Default
   - TransparentFX
