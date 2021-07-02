@@ -163,6 +163,12 @@ public class UserInfo : MonoBehaviour
     Item_WaterPPU waterPPU; // ¹°»Ñ¸®°³
     Item_Pick pick;
     GameObject PlayerUI;
+    public Dictionary<string, int> SeedItem;
+    public Dictionary<string, int> FruitItem;
+    public Dictionary<string, int> FishItem;
+    public List<string> SeedItemkey;
+    public List<string> FruitItemkey;
+    public List<string> FishItemkey;
     public UserInfo()
     {
         this.weapon = new Item_Weapon();
@@ -171,6 +177,12 @@ public class UserInfo : MonoBehaviour
         this.hoe = new Item_Hoe();
         this.waterPPU = new Item_WaterPPU();
         this.pick = new Item_Pick();
+        SeedItem = new Dictionary<string, int>();
+        FruitItem = new Dictionary<string, int>();
+        FishItem = new Dictionary<string, int>();
+        SeedItemkey = new List<string>();
+        FruitItemkey = new List<string>();
+        FishItemkey = new List<string>();
     }
 
     // Start is called before the first frame update

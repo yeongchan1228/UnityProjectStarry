@@ -12,6 +12,7 @@ public class House : MonoBehaviour
     UserInfo userInfo;
     public Animator sleep;
     private Sprite[] tools, Uiboxs, swords, seedbarrels;
+    MenuControl menuControl;
     //public Button Menu_Button1, Menu_Button2;
     //MenuControl menuControl;
     //public bool isAction; // 애니시작/종료
@@ -28,6 +29,7 @@ public class House : MonoBehaviour
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
         swords = Resources.LoadAll<Sprite>("Sprites/sword");
         seedbarrels = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
+        menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
         if (obj.name.Equals("FirstStoryImage"))
         {
             Destroy(obj); // FirstImage 지우기
@@ -54,6 +56,9 @@ public class House : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(5);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
                 userInfo.getItem_Pick().SetPickKinds("blueberry");
+                menuControl.NameInfo.text = "이름 : " + userInfo.getName();
+                menuControl.FarmNameInfo.text = "농장 이름 : " + userInfo.getFarmName();
+
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
@@ -123,6 +128,8 @@ public class House : MonoBehaviour
                 userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
                 userInfo.getItem_Pick().SetPickKinds("blueberry");
+                menuControl.NameInfo.text = "이름 : " + userInfo.getName();
+                menuControl.FarmNameInfo.text = "농장 이름 : " + userInfo.getFarmName();
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public Dictionary<string, List<string>> SeedField; // 0. 심은 날, 1. 종류, 2. 물 횟수 3. 오늘 물 뿌렸는지? 4. 상태
     public List<GameObject> SeedField_name;
     public int count;
+    MenuControl menuControl;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,8 +56,9 @@ public class PlayerController : MonoBehaviour
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
         tools = Resources.LoadAll<Sprite>("Sprites/Tool");
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
+        menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
     }
-
+        
     // Update is called once per frame
     void Update()
     {
@@ -85,7 +87,6 @@ public class PlayerController : MonoBehaviour
         {
             dirVec = Vector3.right;
         }
-        if (Input.GetKeyDown(KeyCode.I)) { } // i를 눌렀을 때 인벤토리 창
 
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) // 검
         {
@@ -202,6 +203,18 @@ public class PlayerController : MonoBehaviour
             {
                 textmanager.isAction = false;
                 textmanager.talk.SetBool("isShow", textmanager.isAction);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.I) && userInfo.storycounter > 0)
+        {
+            if (menuControl.Inventory.activeSelf)
+            {
+                menuControl.Inventory.SetActive(false);
+            }
+            else
+            {
+                menuControl.Inventory.SetActive(true);
             }
         }
 

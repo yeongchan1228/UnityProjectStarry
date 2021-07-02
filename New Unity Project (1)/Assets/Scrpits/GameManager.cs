@@ -6,7 +6,7 @@ using UnityEngine.UI; // UI 가져올 때
 
 public class GameManager : MonoBehaviour
 {
-    public TalkManager talkManager;
+    public TalkManager talkManager;     
     public ChatEffect chatEffect;
     private PlayerController user;
     public GameObject scanobject;

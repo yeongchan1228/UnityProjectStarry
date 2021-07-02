@@ -19,12 +19,19 @@ public class MenuControl : MonoBehaviour
     ChatEffect chat;
     bool isMan; // 남자인지
     bool isWoman; // 여자인지
+    bool isDeleteButton; // Delete 버튼이 커져있는지  
     private Sprite[] genders;
     public Button Menu_Button1, Menu_Button2;
     public Sprite[] seeds, fruit_afters, fruit_befores;
     //public Image man, woman;
     //Image ManImage, WomanImage;
     UserInfo userInfo;
+    public GameObject Inventory, SeedItem, FruitItem, FishItem;
+    GameObject InvenInfo;
+    Image ManInfo, WomanInfo;
+    public Text NameInfo, FarmNameInfo, LevelInfo, ExpInfo, PowerInfo, ArmorInfo;
+    GameObject DeleteButton1, DeleteButton2, DeleteButton3, DeleteButton4, DeleteButton5, DeleteButton6, DeleteButton7, DeleteButton8, DeleteButton9, DeleteButton10,
+        DeleteButton11, DeleteButton12, DeleteButton13, DeleteButton14, DeleteButton15, DeleteButton16, DeleteButton17, DeleteButton18, DeleteButton19, DeleteButton20;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +47,42 @@ public class MenuControl : MonoBehaviour
         //Menu_Button2 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(4).gameObject.GetComponent<Button>();
         //Menu_Button1.onClick.AddListener(Menu1Clicked);
         //Menu_Button2.onClick.AddListener(Menu2Clicked);
+
+        ///////////////////////Inventory////////////////////////////
+        Inventory = GameObject.Find("Canvas").transform.GetChild(5).gameObject;
+        SeedItem = Inventory.transform.GetChild(1).gameObject;
+        FruitItem = Inventory.transform.GetChild(2).gameObject;
+        FishItem = Inventory.transform.GetChild(3).gameObject;
+
+        InvenInfo = Inventory.transform.GetChild(9).gameObject;
+        ManInfo = InvenInfo.transform.GetChild(0).gameObject.GetComponent<Image>();
+        WomanInfo = InvenInfo.transform.GetChild(1).gameObject.GetComponent<Image>();
+        NameInfo = InvenInfo.transform.GetChild(2).gameObject.GetComponent<Text>();
+        FarmNameInfo = InvenInfo.transform.GetChild(3).gameObject.GetComponent<Text>();
+        ExpInfo = InvenInfo.transform.GetChild(4).gameObject.GetComponent<Text>();
+        PowerInfo = InvenInfo.transform.GetChild(5).gameObject.GetComponent<Text>();
+        ArmorInfo = InvenInfo.transform.GetChild(6).gameObject.GetComponent<Text>();
+
+        DeleteButton1 = Inventory.transform.GetChild(6).transform.GetChild(0).transform.GetChild(2).gameObject;
+        DeleteButton2 = Inventory.transform.GetChild(6).transform.GetChild(1).transform.GetChild(2).gameObject;
+        DeleteButton3 = Inventory.transform.GetChild(6).transform.GetChild(2).transform.GetChild(2).gameObject;
+        DeleteButton4 = Inventory.transform.GetChild(6).transform.GetChild(3).transform.GetChild(2).gameObject;
+        DeleteButton5 = Inventory.transform.GetChild(6).transform.GetChild(4).transform.GetChild(2).gameObject;
+        DeleteButton6 = Inventory.transform.GetChild(6).transform.GetChild(5).transform.GetChild(2).gameObject;
+        DeleteButton7 = Inventory.transform.GetChild(6).transform.GetChild(6).transform.GetChild(2).gameObject;
+        DeleteButton8 = Inventory.transform.GetChild(6).transform.GetChild(7).transform.GetChild(2).gameObject;
+        DeleteButton9 = Inventory.transform.GetChild(6).transform.GetChild(8).transform.GetChild(2).gameObject;
+        DeleteButton10 = Inventory.transform.GetChild(6).transform.GetChild(9).transform.GetChild(2).gameObject;
+        DeleteButton11 = Inventory.transform.GetChild(6).transform.GetChild(10).transform.GetChild(2).gameObject;
+        DeleteButton12 = Inventory.transform.GetChild(6).transform.GetChild(11).transform.GetChild(2).gameObject;
+        DeleteButton13 = Inventory.transform.GetChild(6).transform.GetChild(12).transform.GetChild(2).gameObject;
+        DeleteButton14 = Inventory.transform.GetChild(6).transform.GetChild(13).transform.GetChild(2).gameObject;
+        DeleteButton15 = Inventory.transform.GetChild(6).transform.GetChild(14).transform.GetChild(2).gameObject;
+        DeleteButton16 = Inventory.transform.GetChild(6).transform.GetChild(15).transform.GetChild(2).gameObject;
+        DeleteButton17 = Inventory.transform.GetChild(6).transform.GetChild(16).transform.GetChild(2).gameObject;
+        DeleteButton18 = Inventory.transform.GetChild(6).transform.GetChild(17).transform.GetChild(2).gameObject;
+        DeleteButton19 = Inventory.transform.GetChild(6).transform.GetChild(18).transform.GetChild(2).gameObject;
+        DeleteButton20 = Inventory.transform.GetChild(6).transform.GetChild(19).transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
@@ -342,6 +385,83 @@ public class MenuControl : MonoBehaviour
 
     }
 
+    public void On_DeleteButton()  // Delete 버튼 On
+    {
+        if (isDeleteButton)
+        {
+            DeleteButton1.SetActive(false);
+            DeleteButton2.SetActive(false);
+            DeleteButton3.SetActive(false);
+            DeleteButton4.SetActive(false);
+            DeleteButton5.SetActive(false);
+            DeleteButton6.SetActive(false);
+            DeleteButton7.SetActive(false);
+            DeleteButton8.SetActive(false);
+            DeleteButton9.SetActive(false);
+            DeleteButton10.SetActive(false);
+            DeleteButton11.SetActive(false);
+            DeleteButton12.SetActive(false);
+            DeleteButton13.SetActive(false);
+            DeleteButton14.SetActive(false);
+            DeleteButton15.SetActive(false);
+            DeleteButton16.SetActive(false);
+            DeleteButton17.SetActive(false);
+            DeleteButton18.SetActive(false);
+            DeleteButton19.SetActive(false);
+            DeleteButton20.SetActive(false);
+            isDeleteButton = false;
+        }
+        else
+        {
+            DeleteButton1.SetActive(true);
+            DeleteButton2.SetActive(true);
+            DeleteButton3.SetActive(true);
+            DeleteButton4.SetActive(true);
+            DeleteButton5.SetActive(true);
+            DeleteButton6.SetActive(true);
+            DeleteButton7.SetActive(true);
+            DeleteButton8.SetActive(true);
+            DeleteButton9.SetActive(true);
+            DeleteButton10.SetActive(true);
+            DeleteButton11.SetActive(true);
+            DeleteButton12.SetActive(true);
+            DeleteButton13.SetActive(true);
+            DeleteButton14.SetActive(true);
+            DeleteButton15.SetActive(true);
+            DeleteButton16.SetActive(true);
+            DeleteButton17.SetActive(true);
+            DeleteButton18.SetActive(true);
+            DeleteButton19.SetActive(true);
+            DeleteButton20.SetActive(true);
+            isDeleteButton = true;
+        }
+    }
+
+    public void Cancel_Inventory()
+    {
+        Inventory.SetActive(false);
+    } // Inventory 종료
+
+    public void On_SeedItem() // Seed Item 창 키기
+    {
+        SeedItem.SetActive(true);
+        if (FruitItem.activeSelf) { FruitItem.SetActive(false); }
+        if (FishItem.activeSelf) { FishItem.SetActive(false); }
+    }
+    public void On_Fruittem() // Fruit Item 창 키기
+    {
+        FruitItem.SetActive(true);
+        if (SeedItem.activeSelf) { SeedItem.SetActive(false); }
+        if (FishItem.activeSelf) { FishItem.SetActive(false); }
+    }
+    public void On_FishItem() // Fish Item 창 키기
+    {
+        FishItem.SetActive(true);
+        if (FruitItem.activeSelf) { FruitItem.SetActive(false); }
+        if (SeedItem.activeSelf) { SeedItem.SetActive(false); }
+    }
+
+
     void Off_Sleep()
     {
         realSleep.SetActive(false);
@@ -358,4 +478,5 @@ public class MenuControl : MonoBehaviour
         Back.SetActive(false);
         textmanager.isAction = false; // 다시 움직이게
     }
+
 }
