@@ -14,24 +14,24 @@ public class MenuControl : MonoBehaviour
     public GameObject game1, game2;
     GameObject PlayerUI;
     GameObject chatEffect;
-    GameObject Sleep, realSleep, Back;
+    GameObject Sleep, realSleep, Back , Delete_Button, Delete_Inventory;
     Animator SleepAni;
     ChatEffect chat;
     bool isMan; // 남자인지
     bool isWoman; // 여자인지
-    bool isDeleteButton; // Delete 버튼이 커져있는지  
+    public bool isDeleteButton, isSeed, isFruit, isFish; // Delete 버튼이 커져있는지  
     private Sprite[] genders;
     public Button Menu_Button1, Menu_Button2;
-    public Sprite[] seeds, fruit_afters, fruit_befores;
+    public Sprite[] seeds, fruit_afters, fruit_befores, invens;
     //public Image man, woman;
     //Image ManImage, WomanImage;
     UserInfo userInfo;
-    public GameObject Inventory, SeedItem, FruitItem, FishItem;
+    public GameObject Inventory, SeedItem, FruitItem, FishItem, ManInfo, WomanInfo;
+
+    public GameObject InventorySeed, InventoryFruit, InventoryFish;
+
     GameObject InvenInfo;
-    Image ManInfo, WomanInfo;
-    public Text NameInfo, FarmNameInfo, LevelInfo, ExpInfo, PowerInfo, ArmorInfo;
-    GameObject DeleteButton1, DeleteButton2, DeleteButton3, DeleteButton4, DeleteButton5, DeleteButton6, DeleteButton7, DeleteButton8, DeleteButton9, DeleteButton10,
-        DeleteButton11, DeleteButton12, DeleteButton13, DeleteButton14, DeleteButton15, DeleteButton16, DeleteButton17, DeleteButton18, DeleteButton19, DeleteButton20;
+    public Text NameInfo, FarmNameInfo, ExpInfo, PowerInfo, ArmorInfo;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +42,7 @@ public class MenuControl : MonoBehaviour
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
         fruit_befores = Resources.LoadAll<Sprite>("Sprites/Fruit/before");
+        invens = Resources.LoadAll<Sprite>("Sprites/Inven");
         //GetInfo();
         //Menu_Button1 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject.GetComponent<Button>();
         //Menu_Button2 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(4).gameObject.GetComponent<Button>();
@@ -55,34 +56,18 @@ public class MenuControl : MonoBehaviour
         FishItem = Inventory.transform.GetChild(3).gameObject;
 
         InvenInfo = Inventory.transform.GetChild(9).gameObject;
-        ManInfo = InvenInfo.transform.GetChild(0).gameObject.GetComponent<Image>();
-        WomanInfo = InvenInfo.transform.GetChild(1).gameObject.GetComponent<Image>();
+        ManInfo = InvenInfo.transform.GetChild(0).gameObject;
+        WomanInfo = InvenInfo.transform.GetChild(1).gameObject;
         NameInfo = InvenInfo.transform.GetChild(2).gameObject.GetComponent<Text>();
         FarmNameInfo = InvenInfo.transform.GetChild(3).gameObject.GetComponent<Text>();
         ExpInfo = InvenInfo.transform.GetChild(4).gameObject.GetComponent<Text>();
         PowerInfo = InvenInfo.transform.GetChild(5).gameObject.GetComponent<Text>();
         ArmorInfo = InvenInfo.transform.GetChild(6).gameObject.GetComponent<Text>();
 
-        DeleteButton1 = Inventory.transform.GetChild(6).transform.GetChild(0).transform.GetChild(2).gameObject;
-        DeleteButton2 = Inventory.transform.GetChild(6).transform.GetChild(1).transform.GetChild(2).gameObject;
-        DeleteButton3 = Inventory.transform.GetChild(6).transform.GetChild(2).transform.GetChild(2).gameObject;
-        DeleteButton4 = Inventory.transform.GetChild(6).transform.GetChild(3).transform.GetChild(2).gameObject;
-        DeleteButton5 = Inventory.transform.GetChild(6).transform.GetChild(4).transform.GetChild(2).gameObject;
-        DeleteButton6 = Inventory.transform.GetChild(6).transform.GetChild(5).transform.GetChild(2).gameObject;
-        DeleteButton7 = Inventory.transform.GetChild(6).transform.GetChild(6).transform.GetChild(2).gameObject;
-        DeleteButton8 = Inventory.transform.GetChild(6).transform.GetChild(7).transform.GetChild(2).gameObject;
-        DeleteButton9 = Inventory.transform.GetChild(6).transform.GetChild(8).transform.GetChild(2).gameObject;
-        DeleteButton10 = Inventory.transform.GetChild(6).transform.GetChild(9).transform.GetChild(2).gameObject;
-        DeleteButton11 = Inventory.transform.GetChild(6).transform.GetChild(10).transform.GetChild(2).gameObject;
-        DeleteButton12 = Inventory.transform.GetChild(6).transform.GetChild(11).transform.GetChild(2).gameObject;
-        DeleteButton13 = Inventory.transform.GetChild(6).transform.GetChild(12).transform.GetChild(2).gameObject;
-        DeleteButton14 = Inventory.transform.GetChild(6).transform.GetChild(13).transform.GetChild(2).gameObject;
-        DeleteButton15 = Inventory.transform.GetChild(6).transform.GetChild(14).transform.GetChild(2).gameObject;
-        DeleteButton16 = Inventory.transform.GetChild(6).transform.GetChild(15).transform.GetChild(2).gameObject;
-        DeleteButton17 = Inventory.transform.GetChild(6).transform.GetChild(16).transform.GetChild(2).gameObject;
-        DeleteButton18 = Inventory.transform.GetChild(6).transform.GetChild(17).transform.GetChild(2).gameObject;
-        DeleteButton19 = Inventory.transform.GetChild(6).transform.GetChild(18).transform.GetChild(2).gameObject;
-        DeleteButton20 = Inventory.transform.GetChild(6).transform.GetChild(19).transform.GetChild(2).gameObject;
+
+        InventorySeed = Inventory.transform.GetChild(6).gameObject;
+        InventoryFruit = Inventory.transform.GetChild(7).gameObject;
+        InventoryFish = Inventory.transform.GetChild(8).gameObject;
     }
 
     // Update is called once per frame
@@ -331,54 +316,28 @@ public class MenuControl : MonoBehaviour
                 {
                     if (userInfo.getDay() - SeedDay > 4) // 5일 지나면  자라기
                     {
-                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("blueberry")) { spriteR.sprite = fruit_befores[0]; }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Blueberry")) { spriteR.sprite = fruit_befores[0]; }
                         else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("carrot")) { spriteR.sprite = fruit_befores[1]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dark")) { spriteR.sprite = fruit_befores[2]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dhrtntn")) { spriteR.sprite = fruit_befores[3]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dkqhzkeh0")) { spriteR.sprite = fruit_befores[4]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("grape")) { spriteR.sprite = fruit_befores[5]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("lemon0")) { spriteR.sprite = fruit_befores[6]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("light1")) { spriteR.sprite = fruit_befores[7]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("DARK")) { spriteR.sprite = fruit_befores[2]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dhrtntn1")) { spriteR.sprite = fruit_befores[3]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dkqhzkeh1")) { spriteR.sprite = fruit_befores[4]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Grape")) { spriteR.sprite = fruit_befores[5]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("lemon1")) { spriteR.sprite = fruit_befores[6]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("LIGHT")) { spriteR.sprite = fruit_befores[7]; }
                         else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("melon")) { spriteR.sprite = fruit_befores[8]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("mil0")) { spriteR.sprite = fruit_befores[9]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("pineapple0")) { spriteR.sprite = fruit_befores[10]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("potato")) { spriteR.sprite = fruit_befores[11]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("pumpkin")) { spriteR.sprite = fruit_befores[12]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("rkwl0")) { spriteR.sprite = fruit_befores[13]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("starry1")) { spriteR.sprite = fruit_befores[14]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("strawberry")) { spriteR.sprite = fruit_befores[15]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("tnsan0")) { spriteR.sprite = fruit_befores[16]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("tomato")) { spriteR.sprite = fruit_befores[17]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("mil1")) { spriteR.sprite = fruit_befores[9]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("pineapple1")) { spriteR.sprite = fruit_befores[10]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Potato")) { spriteR.sprite = fruit_befores[11]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Pumpkin")) { spriteR.sprite = fruit_befores[12]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("rkwl1")) { spriteR.sprite = fruit_befores[13]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("starry")) { spriteR.sprite = fruit_befores[14]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Strawberry")) { spriteR.sprite = fruit_befores[15]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("tnsan1")) { spriteR.sprite = fruit_befores[16]; }
+                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Tomato")) { spriteR.sprite = fruit_befores[17]; }
                         else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("watermelon")) { spriteR.sprite = fruit_befores[18]; }
                         playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "2";
                     }
                 }
-                /*if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("2"))
-                {
-                    if (userInfo.getDay() - SeedDay > 6) // 7일 후 열매
-                    {
-                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("blueberry")) { spriteR.sprite = fruit_afters[0]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("carrot")) { spriteR.sprite = fruit_afters[1]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dark")) { spriteR.sprite = fruit_afters[2]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dhrtntn")) { spriteR.sprite = fruit_afters[3]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dkqhzkeh0")) { spriteR.sprite = fruit_afters[4]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("grape")) { spriteR.sprite = fruit_afters[5]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("lemon0")) { spriteR.sprite = fruit_afters[6]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("light1")) { spriteR.sprite = fruit_afters[7]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("melon")) { spriteR.sprite = fruit_afters[8]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("mil0")) { spriteR.sprite = fruit_afters[9]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("pineapple0")) { spriteR.sprite = fruit_afters[10]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("potato")) { spriteR.sprite = fruit_afters[11]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("pumpkin")) { spriteR.sprite = fruit_afters[12]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("rkwl0")) { spriteR.sprite = fruit_afters[13]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("starry1")) { spriteR.sprite = fruit_afters[14]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("strawberry")) { spriteR.sprite = fruit_afters[15]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("tnsan0")) { spriteR.sprite = fruit_afters[16]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("tomato")) { spriteR.sprite = fruit_afters[17]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("watermelon")) { spriteR.sprite = fruit_afters[18]; }
-                        playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "3";
-                    } 
-                }*/
                 i++;
             }
         }
@@ -389,50 +348,52 @@ public class MenuControl : MonoBehaviour
     {
         if (isDeleteButton)
         {
-            DeleteButton1.SetActive(false);
-            DeleteButton2.SetActive(false);
-            DeleteButton3.SetActive(false);
-            DeleteButton4.SetActive(false);
-            DeleteButton5.SetActive(false);
-            DeleteButton6.SetActive(false);
-            DeleteButton7.SetActive(false);
-            DeleteButton8.SetActive(false);
-            DeleteButton9.SetActive(false);
-            DeleteButton10.SetActive(false);
-            DeleteButton11.SetActive(false);
-            DeleteButton12.SetActive(false);
-            DeleteButton13.SetActive(false);
-            DeleteButton14.SetActive(false);
-            DeleteButton15.SetActive(false);
-            DeleteButton16.SetActive(false);
-            DeleteButton17.SetActive(false);
-            DeleteButton18.SetActive(false);
-            DeleteButton19.SetActive(false);
-            DeleteButton20.SetActive(false);
+            if (isSeed)
+            {
+                for(int i = 0; i < 20; i++)
+                {
+                    InventorySeed.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            else if (isFruit)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFruit.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            else if (isFish)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFish.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
             isDeleteButton = false;
         }
         else
         {
-            DeleteButton1.SetActive(true);
-            DeleteButton2.SetActive(true);
-            DeleteButton3.SetActive(true);
-            DeleteButton4.SetActive(true);
-            DeleteButton5.SetActive(true);
-            DeleteButton6.SetActive(true);
-            DeleteButton7.SetActive(true);
-            DeleteButton8.SetActive(true);
-            DeleteButton9.SetActive(true);
-            DeleteButton10.SetActive(true);
-            DeleteButton11.SetActive(true);
-            DeleteButton12.SetActive(true);
-            DeleteButton13.SetActive(true);
-            DeleteButton14.SetActive(true);
-            DeleteButton15.SetActive(true);
-            DeleteButton16.SetActive(true);
-            DeleteButton17.SetActive(true);
-            DeleteButton18.SetActive(true);
-            DeleteButton19.SetActive(true);
-            DeleteButton20.SetActive(true);
+            if (isSeed)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventorySeed.transform.GetChild(i).GetChild(2).gameObject.SetActive(true);
+                }
+            }
+            else if (isFruit)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFruit.transform.GetChild(i).GetChild(2).gameObject.SetActive(true);
+                }
+            }
+            else if (isFish)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFish.transform.GetChild(i).GetChild(2).gameObject.SetActive(true);
+                }
+            }
             isDeleteButton = true;
         }
     }
@@ -444,23 +405,173 @@ public class MenuControl : MonoBehaviour
 
     public void On_SeedItem() // Seed Item 창 키기
     {
-        SeedItem.SetActive(true);
-        if (FruitItem.activeSelf) { FruitItem.SetActive(false); }
-        if (FishItem.activeSelf) { FishItem.SetActive(false); }
+        if (isDeleteButton)
+        {
+            if (isFruit)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFruit.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            else if (isFish)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFish.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            isDeleteButton = false;
+        }
+        InventorySeed.SetActive(true);
+        isSeed = true;
+        isFish = false;
+        isFruit = false;
+        if (InventoryFruit.activeSelf) { InventoryFruit.SetActive(false); }
+        if (InventoryFish.activeSelf) { InventoryFish.SetActive(false); }
     }
     public void On_Fruittem() // Fruit Item 창 키기
     {
-        FruitItem.SetActive(true);
-        if (SeedItem.activeSelf) { SeedItem.SetActive(false); }
-        if (FishItem.activeSelf) { FishItem.SetActive(false); }
+        if (isDeleteButton)
+        {
+            if (isSeed)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventorySeed.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            else if (isFish)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFish.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            isDeleteButton = false;
+        }
+        InventoryFruit.SetActive(true);
+        isSeed = false;
+        isFish = false;
+        isFruit = true;
+        if (InventorySeed.activeSelf) { InventorySeed.SetActive(false); }
+        if (InventoryFish.activeSelf) { InventoryFish.SetActive(false); }
     }
     public void On_FishItem() // Fish Item 창 키기
     {
-        FishItem.SetActive(true);
-        if (FruitItem.activeSelf) { FruitItem.SetActive(false); }
-        if (SeedItem.activeSelf) { SeedItem.SetActive(false); }
+        if (isDeleteButton)
+        {
+            if (isSeed)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventorySeed.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            else if (isFruit)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryFruit.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
+            isDeleteButton = false;
+        }
+        InventoryFish.SetActive(true);
+        isSeed = false;
+        isFish = true;
+        isFruit = false;
+        if (InventoryFruit.activeSelf) { InventoryFruit.SetActive(false); }
+        if (InventorySeed.activeSelf) { InventorySeed.SetActive(false); }
     }
 
+    public void Delete_Okay() 
+    {
+        Image buttonImg = Delete_Button.GetComponent<Image>();
+        Image parentImg = Delete_Button.transform.GetChild(0).GetComponent<Image>();
+        string parentname = parentImg.sprite.name;
+        if (parentname.Equals("Blueberry")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("carrot")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("DARK")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("dhrtntn1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("dkqhzkeh1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("Grape")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("lemon1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("LIGHT")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("melon")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("mil1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("pineapple1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("Potato")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("Pumpkin")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("rkwl1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("starry")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("Strawberry")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("tnsan1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("Tomato")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("watermelon")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+        GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
+        isDelete.SetActive(false);
+    }
+    public void Delete_Cancel() 
+    {
+        GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
+        isDelete.SetActive(false);
+    }
+
+    public void Delete_Item()
+    {
+        Delete_Button = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+        Delete_Inventory = Delete_Button.transform.parent.gameObject;
+        GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
+        isDelete.SetActive(true);
+        
+    }
+
+    void Delete_Item_Fruit(string name, Image parentImg, Image buttonImg, GameObject Inventory)
+    {
+        userInfo.FruitItem.Remove(name);
+        userInfo.FruitItemkey.Remove(name);
+        int count = userInfo.FishItemkey.Count;
+        Inventory.transform.GetChild(count).transform.GetChild(0).gameObject.SetActive(false);
+        Inventory.transform.GetChild(count).transform.GetChild(1).gameObject.SetActive(false);
+        buttonImg.sprite = invens[0] as Sprite;
+        for (int i = 0; i < userInfo.FruitItemkey.Count; i++)
+        {
+            GameObject bottonobj = InventoryFruit.transform.GetChild(i).gameObject;
+            bottonobj.SetActive(true);
+            Image bottonimg = bottonobj.GetComponent<Image>();
+            if (i == 0)
+            {
+                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
+            }
+            GameObject Image = bottonobj.transform.GetChild(0).gameObject;
+            Image Fruitimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+            if (userInfo.FruitItemkey[i].Equals("Blueberry")) { Fruitimg.sprite = fruit_afters[0]; }
+            else if (userInfo.FruitItemkey[i].Equals("carrot")) { Fruitimg.sprite = fruit_afters[1]; }
+            else if (userInfo.FruitItemkey[i].Equals("DARK")) { Fruitimg.sprite = fruit_afters[2]; }
+            else if (userInfo.FruitItemkey[i].Equals("dhrtntn1")) { Fruitimg.sprite = fruit_afters[3]; }
+            else if (userInfo.FruitItemkey[i].Equals("dkqhzkeh1")) { Fruitimg.sprite = fruit_afters[4]; }
+            else if (userInfo.FruitItemkey[i].Equals("Grape")) { Fruitimg.sprite = fruit_afters[5]; }
+            else if (userInfo.FruitItemkey[i].Equals("lemon1")) { Fruitimg.sprite = fruit_afters[6]; }
+            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { Fruitimg.sprite = fruit_afters[7]; }
+            else if (userInfo.FruitItemkey[i].Equals("melon")) { Fruitimg.sprite = fruit_afters[8]; }
+            else if (userInfo.FruitItemkey[i].Equals("mil1")) { Fruitimg.sprite = fruit_afters[9]; }
+            else if (userInfo.FruitItemkey[i].Equals("pineapple1")) { Fruitimg.sprite = fruit_afters[10]; }
+            else if (userInfo.FruitItemkey[i].Equals("Potato")) { Fruitimg.sprite = fruit_afters[11]; }
+            else if (userInfo.FruitItemkey[i].Equals("Pumpkin")) { Fruitimg.sprite = fruit_afters[12]; }
+            else if (userInfo.FruitItemkey[i].Equals("rkwl1")) { Fruitimg.sprite = fruit_afters[13]; }
+            else if (userInfo.FruitItemkey[i].Equals("starry")) { Fruitimg.sprite = fruit_afters[14]; }
+            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { Fruitimg.sprite = fruit_afters[15]; }
+            else if (userInfo.FruitItemkey[i].Equals("tnsan1")) { Fruitimg.sprite = fruit_afters[16]; }
+            else if (userInfo.FruitItemkey[i].Equals("Tomato")) { Fruitimg.sprite = fruit_afters[17]; }
+            else if (userInfo.FruitItemkey[i].Equals("watermelon")) { Fruitimg.sprite = fruit_afters[18]; }
+            Image.SetActive(true);
+            GameObject text = bottonobj.transform.GetChild(1).gameObject;
+            Text Fruittext = text.GetComponent<Text>(); // 과일 개수
+            Fruittext.text = userInfo.FruitItem[userInfo.FruitItemkey[i]].ToString();
+            text.SetActive(true);
+        }
+    }
 
     void Off_Sleep()
     {

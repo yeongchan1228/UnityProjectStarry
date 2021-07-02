@@ -55,10 +55,12 @@ public class House : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponName("CutlassSword");
                 userInfo.getItem_Weapon().SetWeaponPower(5);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
-                userInfo.getItem_Pick().SetPickKinds("blueberry");
+                userInfo.getItem_Pick().SetPickKinds("Blueberry");
                 menuControl.NameInfo.text = "¿Ã∏ß : " + userInfo.getName();
                 menuControl.FarmNameInfo.text = "≥Û¿Â ¿Ã∏ß : " + userInfo.getFarmName();
-
+                menuControl.isSeed = true;
+                menuControl.ManInfo.SetActive(true);
+                if (menuControl.WomanInfo.activeSelf) { menuControl.WomanInfo.SetActive(false); }
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
@@ -123,13 +125,16 @@ public class House : MonoBehaviour
                 userInfo.getItem_WaterPPU().SetWaterPPUName("Stone_Water"); // ±‚∫ª π∞ª—∏Æ∞≥ ¿Â¬¯
                 userInfo.getItem_WaterPPU().SetWaterPPUFilled(100);
                 userInfo.getItem_Hoe().SetHoeName("Stone_Hoe");
-                userInfo.getItem_Hoe().SetHoeSpeed(10);
+                userInfo.getItem_Hoe().SetHoeSpeed(10f);
                 userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
-                userInfo.getItem_Pick().SetPickKinds("blueberry");
+                userInfo.getItem_Pick().SetPickKinds("Blueberry");
                 menuControl.NameInfo.text = "¿Ã∏ß : " + userInfo.getName();
                 menuControl.FarmNameInfo.text = "≥Û¿Â ¿Ã∏ß : " + userInfo.getFarmName();
+                menuControl.WomanInfo.SetActive(true);
+                if (menuControl.ManInfo.activeSelf) { menuControl.ManInfo.SetActive(false); }
+                menuControl.isSeed = true;
                 if (!player.isPlayerUI)
                 {
                     PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;

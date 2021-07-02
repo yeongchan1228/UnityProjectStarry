@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     Vector3 viewpos, dirVec;
     private Animator anim;
     Image progressimg;
-    Text progresstext;
+    Text progresstext, Leveltext;
     public GameObject targetobj; // 씨앗을 뿌릴 땅 저장 오브젝트
     private SpriteRenderer spriteR;
-    private Sprite[] seeds, tools, Uiboxs;
+    private Sprite[] seeds, tools, Uiboxs, invens, fruit_afters;
     GameObject chatEffect, Sleep, user_man, user_woman;
     Animator SleepAni;
     public GameObject PlayerUI;
@@ -30,7 +30,10 @@ public class PlayerController : MonoBehaviour
     public Dictionary<string, List<string>> SeedField; // 0. 심은 날, 1. 종류, 2. 물 횟수 3. 오늘 물 뿌렸는지? 4. 상태
     public List<GameObject> SeedField_name;
     public int count;
+    int FruitCount = 0; // 인벤 과일 개수
+    bool isSameKey, isFarm;
     MenuControl menuControl;
+    string NowField;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +59,8 @@ public class PlayerController : MonoBehaviour
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
         tools = Resources.LoadAll<Sprite>("Sprites/Tool");
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
+        invens = Resources.LoadAll<Sprite>("Sprites/Inven");
+        fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
     }
         
@@ -189,15 +194,70 @@ public class PlayerController : MonoBehaviour
             userInfo.isPick = true;
         }
 
+        if(userInfo.getLevel() < 10 && userInfo.getExp() > 150)
+        {
+            int Level = userInfo.getLevel();
+            int Exp = userInfo.getExp();
+            Level += 1;
+            Exp -= 150;
+            userInfo.setLevel(Level);
+            userInfo.setExp(Exp);
+            Leveltext.text = "Lv. "+userInfo.getLevel().ToString();
+            menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+        }
+        else if(userInfo.getLevel() < 20 && userInfo.getExp() > 350)
+        {
+            int Level = userInfo.getLevel();
+            int Exp = userInfo.getExp();
+            Level += 1;
+            Exp -= 350;
+            userInfo.setLevel(Level);
+            userInfo.setExp(Exp);
+            Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
+            menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+        }
+        else if (userInfo.getLevel() < 30 && userInfo.getExp() > 650)
+        {
+            int Level = userInfo.getLevel();
+            int Exp = userInfo.getExp();
+            Level += 1;
+            Exp -= 650;
+            userInfo.setLevel(Level);
+            userInfo.setExp(Exp);
+            Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
+            menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+        }
+        else if (userInfo.getLevel() < 40 && userInfo.getExp() > 1000)
+        {
+            int Level = userInfo.getLevel();
+            int Exp = userInfo.getExp();
+            Level += 1;
+            Exp -= 650;
+            userInfo.setLevel(Level);
+            userInfo.setExp(Exp);
+            Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
+            menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+        }
+        else if (userInfo.getLevel() < 50 && userInfo.getExp() > 1300)
+        {
+            int Level = userInfo.getLevel();
+            int Exp = userInfo.getExp();
+            Level += 1;
+            Exp -= 650;
+            userInfo.setLevel(Level);
+            userInfo.setExp(Exp);
+            Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
+            menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && scanObj != null)
+        if (Input.GetKeyDown(KeyCode.Space) && scanObj != null && isFarm == false)
         {
             if (!chat.buttonOn)
             {
                 textmanager.Action(scanObj); // 대화창 출력
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null) // 가끔 발생하는 오류 해결 
+        else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null && isFarm == false) // 가끔 발생하는 오류 해결 
         {
             if (!chat.buttonOn)
             {
@@ -298,7 +358,7 @@ public class PlayerController : MonoBehaviour
     
     void Input_playerUI()
     {
-        if(PlayerUI == null) { PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; }
+        if(PlayerUI == null) { PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; Leveltext = PlayerUI.transform.GetChild(5).transform.GetChild(0).GetComponent<Text>(); }
     }
     void FixedUpdate()
     {
@@ -348,6 +408,7 @@ public class PlayerController : MonoBehaviour
                 progressimg.fillAmount = 0;
                 isHoeing = true;
                 textmanager.isAction = true;
+                isFarm = true;
                 Invoke("Seed_Hoeing", userInfo.getItem_Hoe().GetHoeSpeed());
                 count = (int)userInfo.getItem_Hoe().GetHoeSpeed();
             }
@@ -361,6 +422,7 @@ public class PlayerController : MonoBehaviour
             progresstext.text = "Sowing...";
             isHoeing = true;
             textmanager.isAction = true;
+            isFarm = true;
             Invoke("Seed_Seed", 2f);
             count = 2;
         }
@@ -380,6 +442,7 @@ public class PlayerController : MonoBehaviour
                             progresstext.text = "Watering...";
                             isHoeing = true;
                             textmanager.isAction = true;
+                            isFarm = true;
                             Invoke("Seed_Water", 2f);
                             count = 2;
                         }
@@ -403,6 +466,7 @@ public class PlayerController : MonoBehaviour
                             progresstext.text = "Watering...";
                             isHoeing = true;
                             textmanager.isAction = true;
+                            isFarm = true;
                             Invoke("Seed_Water2", 2f);
                             count = 2;
                         }
@@ -414,14 +478,15 @@ public class PlayerController : MonoBehaviour
             && !spriteR.sprite.name.Equals("Water") && !spriteR.sprite.name.Equals("Sprout") && userInfo.isHoe) // 수확하기
         {
             proobj.SetActive(true);
+            NowField = targetobj.name;
             progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
             progressimg.fillAmount = 0;
             progresstext.text = "Harvesting...";
             isHoeing = true;
             textmanager.isAction = true;
+            isFarm = true;
             Invoke("Seed_Get", 4f);
             count = 4;
-            ////// 인벤토리 넣기 추가
         }
     }
 
@@ -435,6 +500,7 @@ public class PlayerController : MonoBehaviour
         userInfo.setHp(UserHp);
         userInfo.setUIHp();
         textmanager.isAction = false;
+        isFarm = false;
     }
 
     void Seed_Water() // 물주기
@@ -453,6 +519,7 @@ public class PlayerController : MonoBehaviour
                         SeedField[targetobj.name][2] = Water.ToString();
                         SeedField[targetobj.name][3] = "1";
                         textmanager.isAction = false;
+                        isFarm = false;
                     }
                 }
             }
@@ -473,6 +540,7 @@ public class PlayerController : MonoBehaviour
                         SeedField[targetobj.name][2] = Water.ToString();
                         SeedField[targetobj.name][3] = "1";
                         textmanager.isAction = false;
+                        isFarm = false;
                     }
                 }
             }
@@ -492,9 +560,71 @@ public class PlayerController : MonoBehaviour
         SeedField.Add(targetobj.name, new List<string> { Day.ToString(), userInfo.getItem_Pick().GetPickKinds(), "3", "0", "0" });
         SeedField_name.Add(targetobj);
         textmanager.isAction = false;
+        isFarm = false;
     }
     void Seed_Get() // 수확하기
     {
+        /////// 인벤 추가
+        string Fruit = SeedField[NowField][1];
+        for (int i = 0; i < userInfo.FruitItemkey.Count; i++)
+        {
+            if (userInfo.FruitItemkey[i].Equals(Fruit))
+            {
+                FruitCount = userInfo.FruitItem[Fruit];
+            }
+        }
+        FruitCount++;
+        for(int i = 0; i < userInfo.FruitItemkey.Count; i++)
+        {
+            if (userInfo.FruitItemkey[i].Equals(Fruit)) { isSameKey = true; }
+        }
+        if (!isSameKey)
+        {
+            userInfo.FruitItemkey.Add(Fruit);
+            userInfo.FruitItem.Add(Fruit, FruitCount);
+        }
+        userInfo.FruitItem[Fruit] = FruitCount;
+        isSameKey = false;
+
+        for(int i = 0; i < userInfo.FruitItemkey.Count; i++)
+        {
+            GameObject bottonobj = menuControl.InventoryFruit.transform.GetChild(i).gameObject;
+            bottonobj.SetActive(true);
+            Image bottonimg = bottonobj.GetComponent<Image>();
+            if( i == 0)
+            {
+                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
+            }
+            GameObject Image = bottonobj.transform.GetChild(0).gameObject;
+            Image Fruitimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+            if (userInfo.FruitItemkey[i].Equals("Blueberry")) { Fruitimg.sprite = fruit_afters[0]; }
+            else if (userInfo.FruitItemkey[i].Equals("carrot")) { Fruitimg.sprite = fruit_afters[1]; }
+            else if (userInfo.FruitItemkey[i].Equals("DARK")) { Fruitimg.sprite = fruit_afters[2]; }
+            else if (userInfo.FruitItemkey[i].Equals("dhrtntn1")) { Fruitimg.sprite = fruit_afters[3]; }
+            else if (userInfo.FruitItemkey[i].Equals("dkqhzkeh1")) { Fruitimg.sprite = fruit_afters[4]; }
+            else if (userInfo.FruitItemkey[i].Equals("Grape")) { Fruitimg.sprite = fruit_afters[5]; }
+            else if (userInfo.FruitItemkey[i].Equals("lemon1")) { Fruitimg.sprite = fruit_afters[6]; }
+            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { Fruitimg.sprite = fruit_afters[7]; }
+            else if (userInfo.FruitItemkey[i].Equals("melon")) { Fruitimg.sprite = fruit_afters[8]; }
+            else if (userInfo.FruitItemkey[i].Equals("mil1")) { Fruitimg.sprite = fruit_afters[9]; }
+            else if (userInfo.FruitItemkey[i].Equals("pineapple1")) { Fruitimg.sprite = fruit_afters[10]; }
+            else if (userInfo.FruitItemkey[i].Equals("Potato")) { Fruitimg.sprite = fruit_afters[11]; }
+            else if (userInfo.FruitItemkey[i].Equals("Pumpkin")) { Fruitimg.sprite = fruit_afters[12]; }
+            else if (userInfo.FruitItemkey[i].Equals("rkwl1")) { Fruitimg.sprite = fruit_afters[13]; }
+            else if (userInfo.FruitItemkey[i].Equals("starry")) { Fruitimg.sprite = fruit_afters[14]; }
+            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { Fruitimg.sprite = fruit_afters[15]; }
+            else if (userInfo.FruitItemkey[i].Equals("tnsan1")) { Fruitimg.sprite = fruit_afters[16]; }
+            else if (userInfo.FruitItemkey[i].Equals("Tomato")) { Fruitimg.sprite = fruit_afters[17]; }
+            else if (userInfo.FruitItemkey[i].Equals("watermelon")) { Fruitimg.sprite = fruit_afters[18]; }
+            Image.SetActive(true);
+            GameObject text = bottonobj.transform.GetChild(1).gameObject;
+            Text Fruittext = text.GetComponent<Text>(); // 과일 개수
+            Fruittext.text = userInfo.FruitItem[userInfo.FruitItemkey[i]].ToString();
+            text.SetActive(true);
+            FruitCount = 0;
+        }
+
+        /////// List 삭제
         SeedField.Remove(targetobj.name);
         for (int i = 0; i < SeedField_name.Count; i++)
         { 
@@ -503,6 +633,12 @@ public class PlayerController : MonoBehaviour
                 SeedField_name.RemoveAt(i);
                 spriteR.sprite = seeds[1]; // 씨앗뿌린 땅으로 변경
                 textmanager.isAction = false;
+                isFarm = false;
+                int Exp = userInfo.getExp();
+                Exp += 30;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : "+userInfo.getExp().ToString();
+                NowField = null;
                 break;
             }
         }
