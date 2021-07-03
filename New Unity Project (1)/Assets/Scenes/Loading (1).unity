@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1639228631}
+  volslider: {fileID: 1257011243}
 --- !u!4 &463660936
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,7 +1012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 435.6, y: 307.05}
+  m_AnchoredPosition: {x: -430.56, y: 317}
   m_SizeDelta: {x: 200.7173, y: 42.0223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257011243
@@ -1061,10 +1062,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: c5bfe7bcc87160a41bf98c3aa163e114, type: 3}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1266358096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,8 +1135,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 950b0840213f7d648807cbba31ea2289, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1769,7 +1782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.9000015, y: 0.000030517578}
+  m_AnchoredPosition: {x: -1.9000092, y: 0.000030517578}
   m_SizeDelta: {x: 19.6183, y: -3.8172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1807517108
@@ -2061,7 +2074,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 592.4, y: 307.05002}
+  m_AnchoredPosition: {x: -566.4, y: 316.99997}
   m_SizeDelta: {x: 86.5568, y: 34.822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862326345
@@ -2178,7 +2191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0d1549e02ba2dd48b32a96639939c54, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9068e0a72de5f184e8fa3e400e6848bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
