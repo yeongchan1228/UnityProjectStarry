@@ -93,7 +93,7 @@ public class TalkManager : MonoBehaviour
 
         if (talkIndex == talking[id].Length)
         {
-            return null;
+            return null; 
         }
         else
         {
