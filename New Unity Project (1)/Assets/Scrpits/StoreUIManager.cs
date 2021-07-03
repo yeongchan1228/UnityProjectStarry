@@ -14,6 +14,18 @@ public class StoreUIManager : MonoBehaviour
     public GameObject scanobject;
     public GameObject storePanel;
     public bool isAction;
+    public Button btExit;
+
+    void Start()
+    {
+        btExit.onClick.AddListener(ExitWindow);
+    }
+
+    public void ExitWindow()
+    {
+        isAction = false;
+        storePanel.SetActive(isAction);
+    }
 
     public void Action(GameObject scanobj)
     {
