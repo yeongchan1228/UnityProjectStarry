@@ -82,11 +82,11 @@ public class House : MonoBehaviour
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
                     ItemImg1.sprite = swords[0]; // °Ë
                     Image ItemImg2 = itemobj2.GetComponent<Image>();
-                    ItemImg2.sprite = tools[13]; // È£¹Ì
+                    ItemImg2.sprite = tools[14]; // È£¹Ì
                     Image ItemImg3 = itemobj3.GetComponent<Image>();
-                    ItemImg3.sprite = tools[11]; // ³¬½Ã´ë
+                    ItemImg3.sprite = tools[12]; // ³¬½Ã´ë
                     Image ItemImg4 = itemobj4.GetComponent<Image>();
-                    ItemImg4.sprite = tools[14]; // ¹°»Ñ¸®°³
+                    ItemImg4.sprite = tools[15]; // ¹°»Ñ¸®°³
                     Image ItemImg5 = itemobj5.GetComponent<Image>();
                     ItemImg5.sprite = seedbarrels[0]; // ¾¾¾ÑÅë
                     PlayerUI.SetActive(true);
@@ -156,11 +156,11 @@ public class House : MonoBehaviour
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
                     ItemImg1.sprite = swords[0]; // °Ë
                     Image ItemImg2 = itemobj2.GetComponent<Image>();
-                    ItemImg2.sprite = tools[13]; // È£¹Ì
+                    ItemImg2.sprite = tools[14]; // È£¹Ì
                     Image ItemImg3 = itemobj3.GetComponent<Image>();
-                    ItemImg3.sprite = tools[11]; // ³¬½Ã´ë
+                    ItemImg3.sprite = tools[12]; // ³¬½Ã´ë
                     Image ItemImg4 = itemobj4.GetComponent<Image>();
-                    ItemImg4.sprite = tools[14]; // ¹°»Ñ¸®°³
+                    ItemImg4.sprite = tools[15]; // ¹°»Ñ¸®°³
                     Image ItemImg5 = itemobj5.GetComponent<Image>();
                     ItemImg5.sprite = seedbarrels[0]; // ¾¾¾ÑÅë
                     PlayerUI.SetActive(true);
