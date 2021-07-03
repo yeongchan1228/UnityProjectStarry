@@ -75,7 +75,7 @@ public class Item_Hoe
 public class Item_FishingRod
 {
     string name = null;
-    int difficulty = 0; // 난이도
+    float efficiency = 0; // 효율성
 
     public string GetFishingRodName()
     {
@@ -85,13 +85,13 @@ public class Item_FishingRod
     {
         this.name = name;
     }
-    public int GetFishingRodDifficulty()
+    public float GetFishingRodEfficiency()
     {
-        return difficulty;
+        return efficiency;
     }
-    public void SetFishingRodDifficulty(int difficulty)
+    public void SetFishingRodEfficiency(float efficiency)
     {
-        this.difficulty = difficulty;
+        this.efficiency = efficiency;
     }
 }
 

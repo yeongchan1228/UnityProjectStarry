@@ -7,30 +7,31 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     public float moveSpeed, startX, startY;
     public GameManager textmanager;
     private float x, y;
     private Rigidbody2D rigid2D;
     Vector3 viewpos, dirVec;
     private Animator anim;
-    Image progressimg;
+    Image progressimg, fish_progressimg;
     Text progresstext, Leveltext;
     public GameObject targetobj; // 씨앗을 뿌릴 땅 저장 오브젝트
     private SpriteRenderer spriteR;
-    private Sprite[] seeds, tools, Uiboxs, invens, fruit_afters;
+    private Sprite[] seeds, tools, Uiboxs, invens, fruit_afters, fish_results;
+    private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
     GameObject chatEffect, Sleep, user_man, user_woman;
     Animator SleepAni;
     public GameObject PlayerUI;
     ChatEffect chat;
     public GameObject scanObj; // 스캔 오브젝트
     UserInfo userInfo;
-    public bool isPlayerUI, isHoeing, isFishing;
+    public bool isPlayerUI, isHoeing, isFishing, Fishing_Result;
     GameObject proobj;
     public Dictionary<string, List<string>> SeedField; // 0. 심은 날, 1. 종류, 2. 물 횟수 3. 오늘 물 뿌렸는지? 4. 상태
     public List<GameObject> SeedField_name;
     public int count;
-    int FruitCount = 0; // 인벤 과일 개수
+    public float fish_clicked, fish_difficulty;
+    int FruitCount = 0, Fish_count = 0; // 인벤 과일 개수
     bool isSameKey, isFarm;
     MenuControl menuControl;
     string NowField;
@@ -62,6 +63,17 @@ public class PlayerController : MonoBehaviour
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
+        fruit_afters = Resources.LoadAll<Sprite>("Sprites/fish/Result");
+        fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/난이도1"); // 1마리
+        fishes2 = Resources.LoadAll<Sprite>("Sprites/fish/난이도2"); // 2마리
+        fishes3 = Resources.LoadAll<Sprite>("Sprites/fish/난이도3"); // 2마리
+        fishes4 = Resources.LoadAll<Sprite>("Sprites/fish/난이도4"); // 2마리
+        fishes5 = Resources.LoadAll<Sprite>("Sprites/fish/난이도5"); // 2마리
+        fishes6 = Resources.LoadAll<Sprite>("Sprites/fish/난이도6"); // 2마리
+        fishes7 = Resources.LoadAll<Sprite>("Sprites/fish/난이도7"); // 4마리
+        fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
+        fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
+        fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
     }
         
@@ -358,8 +370,6 @@ public class PlayerController : MonoBehaviour
                 Do_Fishing();
             }  
         }
-
-
     }
     
     void Input_playerUI()
@@ -655,9 +665,174 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("바다 낚시");
         isFishing = true;
+        Fishing_Result = false;
+        fish_progressimg = GameObject.Find("Fishing").transform.GetChild(1).transform.GetChild(3).GetComponent<Image>();
+        fish_progressimg.fillAmount = 0;
         anim.SetBool("isFishing", isFishing);
+        int random = Random.Range(1, 11); // 1~10초
+        Invoke("GoFishing", random); // random 초 후 실행
     }
 
+    void GoFishing()
+    {
+        isFishing = false; // 낚시 중인 애니 종료
+        
+        //고기잡이 창 시작
+        GameObject Fishing_obj = GameObject.Find("Fishing").transform.GetChild(0).gameObject;
+        Fishing_obj.SetActive(true);
+
+        //filled량 설정
+        int difficulty = Random.Range(1, 100); // 물고기 난이도
+        if(difficulty < 20) { fish_difficulty = 1; } // 최하 난이도 1
+        else if(difficulty < 40) { fish_difficulty = 0.9f; } // 2
+        else if (difficulty < 60) { fish_difficulty = 0.8f; } // 3
+        else if (difficulty < 68) { fish_difficulty = 0.7f; } // 4
+        else if (difficulty < 75) { fish_difficulty = 0.6f; } // 5
+        else if (difficulty < 82) { fish_difficulty = 0.5f; } // 6
+        else if (difficulty < 87) { fish_difficulty = 0.4f; } // 7
+        else if (difficulty < 92) { fish_difficulty = 0.3f; } // 8
+        else if (difficulty < 96) { fish_difficulty = 0.2f; } // 9
+        else if (difficulty < 100) { fish_difficulty = 0.1f; } // 10
+
+        //물고기 올리는 애니 트리거 실행
+        Invoke("Filled_FishBar", 0.1f);
+        Invoke("Finish_Fishing", 10f);
+    }
+
+    void Filled_FishBar()
+    {
+        float finish = fish_progressimg.fillAmount;
+        if (finish > 0.99f) 
+        {
+            Fishing_Result = true;
+            Success_fishing();
+            return; 
+        }
+        else
+        {
+            Invoke("Filled_FishBar", 0.1f);
+        }
+
+    }
+
+    void Finish_Fishing()
+    {
+        float finish = fish_progressimg.fillAmount;
+        if (!Fishing_Result)
+        {
+            if (finish > 0.77f) 
+            { 
+                Fishing_Result = true;
+                CancelInvoke("Filled_FishBar");
+                Success_fishing();
+            }
+            else // 고기 잡기 실패
+            {
+                CancelInvoke("Filled_FishBar");
+                False_fishing();
+            }
+        }
+    }
+    void Success_fishing()
+    {
+        GameObject Fishing_obj = GameObject.Find("Fishing").transform.GetChild(0).gameObject;
+        Fishing_obj.SetActive(false);
+        GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
+        Result_obj.SetActive(true);
+        Image resultimg = Result_obj.GetComponent<Image>();
+        if (userInfo.getGender().Equals("man")) { resultimg.sprite = fish_results[1]; }
+        else { resultimg.sprite = fish_results[4]; }
+        if (fish_difficulty == 1) 
+        {
+            Fish_IntoInven(fishes1[0].name);
+        }
+        else if (fish_difficulty == 0.9f) { int result = Random.Range(0, 2); Fish_IntoInven(fishes2[result].name); }
+        else if (fish_difficulty == 0.8f) { int result = Random.Range(0, 2); Fish_IntoInven(fishes3[result].name); }
+        else if (fish_difficulty == 0.7f) { int result = Random.Range(0, 2); Fish_IntoInven(fishes4[result].name); }
+        else if (fish_difficulty == 0.6f) { int result = Random.Range(0, 2); Fish_IntoInven(fishes5[result].name); }
+        else if (fish_difficulty == 0.5f) { int result = Random.Range(0, 2); Fish_IntoInven(fishes6[result].name); }
+        else if (fish_difficulty == 0.4f) { int result = Random.Range(0, 5); Fish_IntoInven(fishes7[result].name); }
+        else if (fish_difficulty == 0.3f) { int result = Random.Range(0, 2); Fish_IntoInven(fishes8[result].name); }
+        else if (fish_difficulty == 0.2f) { int result = Random.Range(0, 2); Fish_IntoInven(fishes9[result].name); }
+        else if (fish_difficulty == 0.1f) {  Fish_IntoInven(fishes10[0].name); }
+        Invoke("finish_result", 2f);
+    }
+    void Fish_IntoInven(string Fish_name)
+    {
+        for (int i = 0; i < userInfo.FishItemkey.Count; i++)
+        {
+            if (userInfo.FishItemkey[i].Equals(Fish_name))
+            {
+                Fish_count = userInfo.FishItem[Fish_name];
+            }
+        }
+        Fish_count++;
+        for (int i = 0; i < userInfo.FishItemkey.Count; i++)
+        {
+            if (userInfo.FishItemkey[i].Equals(Fish_name)) { isSameKey = true; }
+        }
+        if (!isSameKey)
+        {
+            userInfo.FishItemkey.Add(Fish_name);
+            userInfo.FishItem.Add(Fish_name, Fish_count);
+        }
+        userInfo.FishItem[Fish_name] = Fish_count;
+        isSameKey = false;
+        for (int i = 0; i < userInfo.FishItemkey.Count; i++)
+        {
+            GameObject bottonobj = menuControl.InventoryFish.transform.GetChild(i).gameObject;
+            bottonobj.SetActive(true);
+            Image bottonimg = bottonobj.GetComponent<Image>();
+            if (i == 0)
+            {
+                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
+            }
+            GameObject Image = bottonobj.transform.GetChild(0).gameObject;
+            Image Fishimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+            if (userInfo.FishItemkey[i].Equals("평범한물고기")) { Fishimg.sprite = fishes1[0]; }
+            else if (userInfo.FishItemkey[i].Equals("빨강물고기")) { Fishimg.sprite = fishes2[0]; }
+            else if (userInfo.FishItemkey[i].Equals("주황물고기")) { Fishimg.sprite = fishes2[1]; }
+            else if (userInfo.FishItemkey[i].Equals("노랑물고기")) { Fishimg.sprite = fishes3[0]; }
+            else if (userInfo.FishItemkey[i].Equals("초록물고기")) { Fishimg.sprite = fishes3[1]; }
+            else if (userInfo.FishItemkey[i].Equals("남색물고기")) { Fishimg.sprite = fishes4[0]; }
+            else if (userInfo.FishItemkey[i].Equals("하늘색물고기")) { Fishimg.sprite = fishes4[1]; }
+            else if (userInfo.FishItemkey[i].Equals("보라물고기")) { Fishimg.sprite = fishes5[0]; }
+            else if (userInfo.FishItemkey[i].Equals("의사물고기")) { Fishimg.sprite = fishes5[1]; }
+            else if (userInfo.FishItemkey[i].Equals("농부물고기")) { Fishimg.sprite = fishes6[0]; }
+            else if (userInfo.FishItemkey[i].Equals("무지개물고기")) { Fishimg.sprite = fishes6[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공주물고기")) { Fishimg.sprite = fishes7[0]; }
+            else if (userInfo.FishItemkey[i].Equals("군인물고기")) { Fishimg.sprite = fishes7[1]; }
+            else if (userInfo.FishItemkey[i].Equals("신부물고기")) { Fishimg.sprite = fishes7[2]; }
+            else if (userInfo.FishItemkey[i].Equals("신사물고기")) { Fishimg.sprite = fishes7[3]; }
+            else if (userInfo.FishItemkey[i].Equals("악마물고기")) { Fishimg.sprite = fishes8[0]; }
+            else if (userInfo.FishItemkey[i].Equals("천사물고기")) { Fishimg.sprite = fishes8[1]; }
+            else if (userInfo.FishItemkey[i].Equals("스태리팜물고기")) { Fishimg.sprite = fishes9[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공대생물고기")) { Fishimg.sprite = fishes9[0]; }
+            else if (userInfo.FishItemkey[i].Equals("할머니의사랑물고기")) { Fishimg.sprite = fishes10[0]; }
+            Image.SetActive(true);
+            GameObject text = bottonobj.transform.GetChild(1).gameObject;
+            Text Fishtext = text.GetComponent<Text>(); // 과일 개수
+            Fishtext.text = userInfo.FishItem[userInfo.FishItemkey[i]].ToString();
+            text.SetActive(true);
+            Fish_count = 0;
+        }
+    }
+    void False_fishing()
+    {
+        GameObject Fishing_obj = GameObject.Find("Fishing").transform.GetChild(0).gameObject;
+        Fishing_obj.SetActive(false);
+        GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
+        Result_obj.SetActive(true);
+        Image resultimg = Result_obj.GetComponent<Image>();
+        if (userInfo.getGender().Equals("man")) { resultimg.sprite = fish_results[0]; }
+        else { resultimg.sprite = fish_results[3]; }
+        Invoke("finish_result", 2f);
+    }
+    void finish_result()
+    {
+        GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
+        Result_obj.SetActive(false);
+    }
 
     void OnTriggerStay2D(Collider2D o)
     {
@@ -673,6 +848,7 @@ public class PlayerController : MonoBehaviour
         if (o.gameObject.tag.Equals("Not_Sea"))
         {
             targetobj = null;
+            isFishing = false;
         }
     }
 

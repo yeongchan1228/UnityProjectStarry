@@ -51,7 +51,7 @@ public class House : MonoBehaviour
                 userInfo.getItem_Hoe().SetHoeName("Stone_Hoe");
                 userInfo.getItem_Hoe().SetHoeSpeed(10f);
                 userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
-                userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(1f);
                 userInfo.getItem_Weapon().SetWeaponName("CutlassSword");
                 userInfo.getItem_Weapon().SetWeaponPower(5);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
@@ -127,7 +127,7 @@ public class House : MonoBehaviour
                 userInfo.getItem_Hoe().SetHoeName("Stone_Hoe");
                 userInfo.getItem_Hoe().SetHoeSpeed(10f);
                 userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
-                userInfo.getItem_FishingRod().SetFishingRodDifficulty(2);
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(1f);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
                 userInfo.getItem_Pick().SetPickKinds("Blueberry");
                 menuControl.NameInfo.text = "¿Ã∏ß : " + userInfo.getName();

@@ -69,6 +69,7 @@ public class ChatEffect : MonoBehaviour
             return;
         }
         text1.text += msg[index];
+
         index++;
 
         Invoke("dEffect", Invoke_speed);
