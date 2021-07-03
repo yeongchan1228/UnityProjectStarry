@@ -86,7 +86,7 @@ public class ChatEffect : MonoBehaviour
         }
         else if (game.isFirstImg)
         {
-            Image FirstImg = GameObject.Find("FirstStory").transform.GetChild(0).GetComponent<Image>();
+            Image FirstImg = GameObject.Find("FirstStory").transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
             if(game.isman)
             {
                 if (!isSetWhatNum)

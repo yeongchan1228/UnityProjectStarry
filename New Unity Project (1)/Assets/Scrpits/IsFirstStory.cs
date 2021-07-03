@@ -31,16 +31,18 @@ public class IsFirstStory : MonoBehaviour
         obj.SetActive(true);
         if (textmanager.isman)
         {
-            GameObject First = GameObject.Find("FirstStory").transform.GetChild(0).gameObject;
+            GameObject Image = GameObject.Find("FirstStory").transform.GetChild(0).gameObject;
+            GameObject First = Image.transform.GetChild(0).gameObject;
             Image FirstImg = First.GetComponent<Image>();
-            First.SetActive(true);
+            Image.SetActive(true);
             FirstImg.sprite = firstimgs[0];
         }
         else if (textmanager.iswoman)
         {
-            GameObject First = GameObject.Find("FirstStory").transform.GetChild(0).gameObject;
+            GameObject Image = GameObject.Find("FirstStory").transform.GetChild(0).gameObject;
+            GameObject First = Image.transform.GetChild(0).gameObject;
             Image FirstImg = First.GetComponent<Image>();
-            First.SetActive(true);
+            Image.SetActive(true);
             FirstImg.sprite = firstimgs[8];
         }
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
