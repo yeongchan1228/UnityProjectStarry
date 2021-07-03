@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     bool isSameKey, isFarm;
     MenuControl menuControl;
     string NowField;
+    public StoreUIManager storeUIManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -252,7 +253,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && scanObj != null && isFarm == false)
         {
-            if (!chat.buttonOn)
+            if (SceneManager.GetActiveScene().name == "StoreScene (10)")
+            {
+                storeUIManager = GameObject.Find("StoreUIManager").GetComponent<StoreUIManager>();
+                storeUIManager.Action(scanObj);
+            }
+            else if (!chat.buttonOn)
             {
                 textmanager.Action(scanObj); // 대화창 출력
             }
