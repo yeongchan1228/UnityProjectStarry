@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     ChatEffect chat;
     public GameObject scanObj; // 스캔 오브젝트
     UserInfo userInfo;
-    public bool isPlayerUI, isHoeing;
+    public bool isPlayerUI, isHoeing, isFishing;
     GameObject proobj;
     public Dictionary<string, List<string>> SeedField; // 0. 심은 날, 1. 종류, 2. 물 횟수 3. 오늘 물 뿌렸는지? 4. 상태
     public List<GameObject> SeedField_name;
@@ -654,6 +654,8 @@ public class PlayerController : MonoBehaviour
     void Do_Fishing()
     {
         Debug.Log("바다 낚시");
+        isFishing = true;
+        anim.SetBool("isFishing", isFishing);
     }
 
 
