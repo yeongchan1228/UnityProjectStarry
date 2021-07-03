@@ -2323,7 +2323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &88657112
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17407,6 +17407,7 @@ MonoBehaviour:
   Detail: {fileID: 1468861467}
   Price: {fileID: 11643606}
   scanobject: {fileID: 0}
+  storePanel: {fileID: 88657111}
   isAction: 0
 --- !u!4 &961063838
 Transform:
