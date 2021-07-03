@@ -33,6 +33,8 @@ public class MenuControl : MonoBehaviour
 
     GameObject InvenInfo;
     public Text NameInfo, FarmNameInfo, ExpInfo, PowerInfo, ArmorInfo;
+
+    public SoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,7 @@ public class MenuControl : MonoBehaviour
         //WomanImage = WomanButton.GetComponent<Image>();
         //genders = Resources.LoadAll<Sprite>("Sprites/SelectGender");
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
         fruit_befores = Resources.LoadAll<Sprite>("Sprites/Fruit/before");
@@ -84,6 +87,7 @@ public class MenuControl : MonoBehaviour
             else
             {
                 Menu.SetActive(true);
+                soundManager.GetSlider();
                 textmanager.isAction = true; // 캐릭터 움직이지 못하게 막기
             }
         }

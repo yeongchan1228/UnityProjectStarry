@@ -10,7 +10,15 @@ public class SoundManager : MonoBehaviour
     public Slider volslider;
     void Start()
     {
-        volslider.onValueChanged.AddListener(SetAudioVol);
+        volslider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        if(volslider != null)
+            volslider.onValueChanged.AddListener(SetAudioVol);
+    }
+
+    public void GetSlider()
+    {
+        volslider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        volslider.onValueChanged.AddListener(SetAudioVol);        
     }
 
     public void SetAudioVol(float vol)
