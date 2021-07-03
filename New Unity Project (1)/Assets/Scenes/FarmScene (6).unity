@@ -1094,6 +1094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: sign
   isNPC: 0
+  isSELLER: 0
 --- !u!1 &22137412
 GameObject:
   m_ObjectHideFlags: 0
@@ -10629,6 +10630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: worker
   isNPC: 1
+  isSELLER: 0
 --- !u!61 &234898248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43412,7 +43414,7 @@ Camera:
   m_GameObject: {fileID: 1016947735}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.3490566, g: 0.34049484, b: 0.34049484, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -50278,6 +50280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: dog
   isNPC: 1
+  isSELLER: 0
 --- !u!1 &1139348848
 GameObject:
   m_ObjectHideFlags: 0
