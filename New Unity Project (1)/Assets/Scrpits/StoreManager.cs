@@ -9,12 +9,12 @@ public class StoreManager : MonoBehaviour
     void Awake()
     {
         StoreData = new Dictionary<string, string[]>();
-        GenerateData();
+        //GenerateData();
     }
 
     void GenerateData()
     {
-        StoreData.Add("seller", new string[] { "블루베리 씨앗", "아주 맛있는 블루베리를 재배할 수 있을 것 같은 고급 블루베리 씨앗이다.", "500G" });
+        //StoreData.Add("seller", new string[] { "블루베리 씨앗", "아주 맛있는 블루베리를 재배할 수 있을 것 같은 고급 블루베리 씨앗이다.", "500G" });
 
     }
 

@@ -31,13 +31,13 @@ public class StoreUIManager : MonoBehaviour
 
     void Display(string id, bool isNPC)
     {
-        Debug.Log(id);
+        /*
         string objName = storeManager.GetStore(id, 0);
-        Debug.Log(objName);
         string objDetail = storeManager.GetStore(id, 1);
         string objPrice = storeManager.GetStore(id, 2);
         Name.text = objName;
         Detail.text = objDetail;
         Price.text = objPrice;
+        */
     }
 }
