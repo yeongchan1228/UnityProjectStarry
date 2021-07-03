@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour
             {
                 Do_Farming();
             }
-            else if (targetobj.tag.Equals("Sea") && userInfo.isFishingRod)
+            else if (targetobj.tag.Equals("Sea") && userInfo.isFishingRod && textmanager.isAction == false)
             {
                 Do_Fishing();
             }  
