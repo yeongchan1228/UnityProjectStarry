@@ -17401,11 +17401,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b6f727d848e6d43a54c8b3815f2e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storeManager: {fileID: 0}
+  storeManager: {fileID: 182783945}
   objimg: {fileID: 0}
-  Name: {fileID: 0}
-  Detail: {fileID: 0}
-  Price: {fileID: 0}
+  Name: {fileID: 532738493}
+  Detail: {fileID: 1468861467}
+  Price: {fileID: 11643606}
   scanobject: {fileID: 0}
   isAction: 0
 --- !u!4 &961063838
