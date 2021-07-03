@@ -137,6 +137,8 @@ public class MenuControl : MonoBehaviour
     {
         isMan = true;
         isWoman = false;
+        textmanager.isman = true;
+        textmanager.iswoman = false;
         GameObject Man = GameObject.Find("Canvas").transform.GetChild(0).gameObject.transform.GetChild(5).gameObject;
         Text textman = Man.GetComponent<Text>();
         Shadow shadowman = Man.GetComponent<Shadow>();
@@ -153,6 +155,8 @@ public class MenuControl : MonoBehaviour
     {
         isMan = false;
         isWoman = true;
+        textmanager.isman = false;
+        textmanager.iswoman = true;
         GameObject Man = GameObject.Find("Canvas").transform.GetChild(0).gameObject.transform.GetChild(5).gameObject;
         Text textman = Man.GetComponent<Text>();
         Shadow shadowman = Man.GetComponent<Shadow>();
@@ -172,7 +176,6 @@ public class MenuControl : MonoBehaviour
         Text text2 = game2.GetComponent<Text>();
         if(text1.text.Length < 1 || text2.text.Length < 1 || (isMan == false && isWoman == false))
         {
-
         }
         else
         {

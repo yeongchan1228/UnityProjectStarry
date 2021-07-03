@@ -10,18 +10,21 @@ public class ChatEffect : MonoBehaviour
     public int EffectSpeed; // 글자 나오는 속도
     Text text1;
     int index;
+    Sprite[] firstimgs; 
     float Invoke_speed;
     public GameManager game;
     public bool doing;
-    public bool buttonOn;
+    public bool buttonOn, isSetWhatNum;
     //public bool isbt1, isbt2;
     //public bool isallbutton;
     Text ButtonText1, ButtonText2;
     public GameObject Button1, Button2;
+    int whatnum;
 
     // Start is called before the first frame update
     void Awake()
     {
+        firstimgs = Resources.LoadAll<Sprite>("Sprites/FirstStory");
         text1 = GetComponent<Text>();
         ButtonText1 = Button1.GetComponent<Text>();
         ButtonText2 = Button2.GetComponent<Text>();
@@ -80,6 +83,31 @@ public class ChatEffect : MonoBehaviour
             Button1_On(game.select1);
             Invoke("Button2_On", 0.2f);
             game.isButton = false;
+        }
+        else if (game.isFirstImg)
+        {
+            Image FirstImg = GameObject.Find("FirstStory").transform.GetChild(0).GetComponent<Image>();
+            if(game.isman)
+            {
+                if (!isSetWhatNum)
+                {
+                    whatnum = 1;
+                    isSetWhatNum = true;
+                }
+                FirstImg.sprite = firstimgs[whatnum];
+                whatnum++;
+            }
+            else if(game.iswoman)
+            {
+                if (!isSetWhatNum)
+                {
+                    whatnum = 9;
+                    isSetWhatNum = true;
+                }
+                FirstImg.sprite = firstimgs[whatnum];
+                whatnum++;
+            }
+            game.isFirstImg = false;
         }
     }
 

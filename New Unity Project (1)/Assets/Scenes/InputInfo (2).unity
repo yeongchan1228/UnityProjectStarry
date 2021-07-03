@@ -5916,6 +5916,7 @@ GameObject:
   - component: {fileID: 274010944}
   - component: {fileID: 274010943}
   - component: {fileID: 274010947}
+  - component: {fileID: 274010949}
   m_Layer: 0
   m_Name: Man_Player
   m_TagString: Untagged
@@ -6101,6 +6102,20 @@ MonoBehaviour:
   isHoeing: 0
   SeedField_name: []
   count: 0
+--- !u!114 &274010949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274010941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bfa02a914d60141807920626a557ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: man
+  isNPC: 0
 --- !u!1 &274229621
 GameObject:
   m_ObjectHideFlags: 0
@@ -15103,6 +15118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d888ef7a88b2d8f42b4370015197df15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  user_man: {fileID: 0}
+  user_woman: {fileID: 0}
   spriteimg:
   - {fileID: 21300000, guid: 9d96818e7b4ba4fedb4f5e03a7ffe741, type: 3}
   - {fileID: 21300000, guid: 2e9dcb0b6a3244ad9b171c6ba5bac782, type: 3}
@@ -15112,6 +15129,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  userInfo: {fileID: 0}
 --- !u!4 &694321736
 Transform:
   m_ObjectHideFlags: 0
@@ -43898,6 +43916,7 @@ GameObject:
   - component: {fileID: 1997066908}
   - component: {fileID: 1997066906}
   - component: {fileID: 1997066907}
+  - component: {fileID: 1997066912}
   m_Layer: 0
   m_Name: Woman_Player
   m_TagString: Untagged
@@ -44083,6 +44102,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1997066912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997066904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bfa02a914d60141807920626a557ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: woman
+  isNPC: 0
 --- !u!1 &1998319042
 GameObject:
   m_ObjectHideFlags: 0

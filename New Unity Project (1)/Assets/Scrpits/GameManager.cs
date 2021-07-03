@@ -18,12 +18,12 @@ public class GameManager : MonoBehaviour
     public bool isAction; // 대화창이 켜져있는지 아닌지 확인
     public GameObject button1;
     public GameObject button2;
-    public bool isButton;
+    public bool isButton, isFirstImg, isman, iswoman;
     public string select1, select2, select3;
     public GameObject user_man;
     public GameObject user_woman;
     bool getinfo;
-    UserInfo userInfo;
+    public UserInfo userInfo;
 
 
     void Start()
@@ -124,6 +124,10 @@ public class GameManager : MonoBehaviour
                     isButton = true;
                     select1 = talkData.Split(':')[2];
                     select2 = talkData.Split(':')[3];
+                }
+                else if (select3 == "3")
+                {
+                    isFirstImg = true;
                 }
             }
         }
