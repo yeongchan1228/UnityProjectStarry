@@ -6,7 +6,7 @@ public class NPC_DATA : MonoBehaviour
 {
     public string id;
     public bool isNPC;
-
+    public bool isSELLER;
     void Start()
     {
     }
