@@ -368,7 +368,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (targetobj.tag.Equals("Sea") && userInfo.isFishingRod && isnow_fishing == false)
             {
-                Debug.LogError(isnow_fishing);
                 Do_Fishing();
             }  
         }
@@ -855,6 +854,7 @@ public class PlayerController : MonoBehaviour
         textmanager.isAction = false;
         isnow_fishing = false;
         isFishing = false;
+        anim.SetBool("isFishing", isFishing);
     }
 
     void OnTriggerStay2D(Collider2D o)

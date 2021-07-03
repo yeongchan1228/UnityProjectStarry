@@ -24,6 +24,7 @@ public class MenuControl : MonoBehaviour
     private Sprite[] genders;
     public Button Menu_Button1, Menu_Button2;
     public Sprite[] seeds, fruit_afters, fruit_befores, invens;
+    private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
     //public Image man, woman;
     //Image ManImage, WomanImage;
     UserInfo userInfo;
@@ -47,6 +48,16 @@ public class MenuControl : MonoBehaviour
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
         fruit_befores = Resources.LoadAll<Sprite>("Sprites/Fruit/before");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
+        fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/난이도1"); // 1마리
+        fishes2 = Resources.LoadAll<Sprite>("Sprites/fish/난이도2"); // 2마리
+        fishes3 = Resources.LoadAll<Sprite>("Sprites/fish/난이도3"); // 2마리
+        fishes4 = Resources.LoadAll<Sprite>("Sprites/fish/난이도4"); // 2마리
+        fishes5 = Resources.LoadAll<Sprite>("Sprites/fish/난이도5"); // 2마리
+        fishes6 = Resources.LoadAll<Sprite>("Sprites/fish/난이도6"); // 2마리
+        fishes7 = Resources.LoadAll<Sprite>("Sprites/fish/난이도7"); // 4마리
+        fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
+        fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
+        fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
         //GetInfo();
         //Menu_Button1 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject.GetComponent<Button>();
         //Menu_Button2 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(4).gameObject.GetComponent<Button>();
@@ -523,6 +534,28 @@ public class MenuControl : MonoBehaviour
         else if (parentname.Equals("tnsan1")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
         else if (parentname.Equals("Tomato")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
         else if (parentname.Equals("watermelon")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
+
+        if (parentname.Equals("평범한물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("빨강물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("주황물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("노랑물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("초록물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("남색물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("하늘색물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("보라물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("의사물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("농부물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("무지개물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("공주물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("군인물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("신부물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("신사물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("악마물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("천사물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("스태리팜물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("공대생물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("할머니의사랑물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+
         GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
         isDelete.SetActive(false);
     }
@@ -536,8 +569,12 @@ public class MenuControl : MonoBehaviour
     {
         Delete_Button = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
         Delete_Inventory = Delete_Button.transform.parent.gameObject;
-        GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
-        isDelete.SetActive(true);
+        GameObject parentImg = Delete_Button.transform.GetChild(0).gameObject;
+        if (parentImg.activeSelf)
+        {
+            GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
+            isDelete.SetActive(true);
+        }
         
     }
 
@@ -583,6 +620,53 @@ public class MenuControl : MonoBehaviour
             GameObject text = bottonobj.transform.GetChild(1).gameObject;
             Text Fruittext = text.GetComponent<Text>(); // 과일 개수
             Fruittext.text = userInfo.FruitItem[userInfo.FruitItemkey[i]].ToString();
+            text.SetActive(true);
+        }
+    }
+
+    void Delete_Item_Fish(string name, Image parentImg, Image buttonImg, GameObject Inventory)
+    {
+        userInfo.FishItem.Remove(name);
+        userInfo.FishItemkey.Remove(name);
+        int count = userInfo.FishItemkey.Count;
+        Inventory.transform.GetChild(count).transform.GetChild(0).gameObject.SetActive(false);
+        Inventory.transform.GetChild(count).transform.GetChild(1).gameObject.SetActive(false);
+        buttonImg.sprite = invens[0] as Sprite;
+        for (int i = 0; i < userInfo.FishItemkey.Count; i++)
+        {
+            GameObject bottonobj = InventoryFish.transform.GetChild(i).gameObject;
+            bottonobj.SetActive(true);
+            Image bottonimg = bottonobj.GetComponent<Image>();
+            if (i == 0)
+            {
+                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
+            }
+            GameObject Image = bottonobj.transform.GetChild(0).gameObject;
+            Image Fishimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+            if (userInfo.FishItemkey[i].Equals("평범한물고기")) { Fishimg.sprite = fishes1[0]; }
+            else if (userInfo.FishItemkey[i].Equals("빨강물고기")) { Fishimg.sprite = fishes2[0]; }
+            else if (userInfo.FishItemkey[i].Equals("주황물고기")) { Fishimg.sprite = fishes2[1]; }
+            else if (userInfo.FishItemkey[i].Equals("노랑물고기")) { Fishimg.sprite = fishes3[0]; }
+            else if (userInfo.FishItemkey[i].Equals("초록물고기")) { Fishimg.sprite = fishes3[1]; }
+            else if (userInfo.FishItemkey[i].Equals("남색물고기")) { Fishimg.sprite = fishes4[0]; }
+            else if (userInfo.FishItemkey[i].Equals("하늘색물고기")) { Fishimg.sprite = fishes4[1]; }
+            else if (userInfo.FishItemkey[i].Equals("보라물고기")) { Fishimg.sprite = fishes5[0]; }
+            else if (userInfo.FishItemkey[i].Equals("의사물고기")) { Fishimg.sprite = fishes5[1]; }
+            else if (userInfo.FishItemkey[i].Equals("농부물고기")) { Fishimg.sprite = fishes6[0]; }
+            else if (userInfo.FishItemkey[i].Equals("무지개물고기")) { Fishimg.sprite = fishes6[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공주물고기")) { Fishimg.sprite = fishes7[0]; }
+            else if (userInfo.FishItemkey[i].Equals("군인물고기")) { Fishimg.sprite = fishes7[1]; }
+            else if (userInfo.FishItemkey[i].Equals("신부물고기")) { Fishimg.sprite = fishes7[2]; }
+            else if (userInfo.FishItemkey[i].Equals("신사물고기")) { Fishimg.sprite = fishes7[3]; }
+            else if (userInfo.FishItemkey[i].Equals("악마물고기")) { Fishimg.sprite = fishes8[0]; }
+            else if (userInfo.FishItemkey[i].Equals("천사물고기")) { Fishimg.sprite = fishes8[1]; }
+            else if (userInfo.FishItemkey[i].Equals("스태리팜물고기")) { Fishimg.sprite = fishes9[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공대생물고기")) { Fishimg.sprite = fishes9[0]; }
+            else if (userInfo.FishItemkey[i].Equals("할머니의사랑물고기")) { Fishimg.sprite = fishes10[0]; }
+            Image.SetActive(true);
+            GameObject text = bottonobj.transform.GetChild(1).gameObject;
+            Text Fishtext = text.GetComponent<Text>(); // 과일 개수
+            Fishtext.text = userInfo.FishItem[userInfo.FishItemkey[i]].ToString();
             text.SetActive(true);
         }
     }

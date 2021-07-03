@@ -6256,6 +6256,7 @@ MonoBehaviour:
   isHoeing: 0
   isFishing: 0
   Fishing_Result: 0
+  isnow_fishing: 0
   SeedField_name: []
   count: 0
   fish_clicked: 0
@@ -19228,7 +19229,6 @@ GameObject:
   - component: {fileID: 925433813}
   - component: {fileID: 925433815}
   - component: {fileID: 925433814}
-  - component: {fileID: 925433816}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -19305,18 +19305,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925433812}
   m_CullTransparentMesh: 1
---- !u!114 &925433816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925433812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dfa75384090cc8468d46d61e7e4ffb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &928155129
 GameObject:
   m_ObjectHideFlags: 0
@@ -32992,6 +32980,7 @@ MonoBehaviour:
   ExpInfo: {fileID: 0}
   PowerInfo: {fileID: 0}
   ArmorInfo: {fileID: 0}
+  soundManager: {fileID: 0}
 --- !u!4 &1489857745
 Transform:
   m_ObjectHideFlags: 0
@@ -44523,6 +44512,7 @@ MonoBehaviour:
   isHoeing: 0
   isFishing: 0
   Fishing_Result: 0
+  isnow_fishing: 0
   SeedField_name: []
   count: 0
   fish_clicked: 0
