@@ -2095,7 +2095,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000011444, y: 0}
-  m_SizeDelta: {x: 31.4151, y: 41.0814}
+  m_SizeDelta: {x: 30, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &83700745
 MonoBehaviour:
@@ -3315,7 +3315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344, y: -179.1}
+  m_AnchoredPosition: {x: -341, y: -194}
   m_SizeDelta: {x: 160, y: 26.9112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &131964043
@@ -6100,8 +6100,10 @@ MonoBehaviour:
   scanObj: {fileID: 0}
   isPlayerUI: 0
   isHoeing: 0
+  isFishing: 0
   SeedField_name: []
   count: 0
+  storeUIManager: {fileID: 0}
 --- !u!114 &274010949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6116,6 +6118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: man
   isNPC: 0
+  isSELLER: 0
 --- !u!1 &274229621
 GameObject:
   m_ObjectHideFlags: 0
@@ -9086,7 +9089,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 31.4151, y: 41.0814}
+  m_SizeDelta: {x: 30, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &403715637
 MonoBehaviour:
@@ -12071,7 +12074,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344, y: -71.45557}
+  m_AnchoredPosition: {x: -341, y: -86.35556}
   m_SizeDelta: {x: 160, y: 26.9112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541058940
@@ -14948,11 +14951,15 @@ MonoBehaviour:
   button1: {fileID: 1571424292}
   button2: {fileID: 1894636737}
   isButton: 0
+  isFirstImg: 0
+  isman: 0
+  iswoman: 0
   select1: 
   select2: 
   select3: 
   user_man: {fileID: 0}
   user_woman: {fileID: 0}
+  userInfo: {fileID: 0}
 --- !u!4 &681972387
 Transform:
   m_ObjectHideFlags: 0
@@ -25206,7 +25213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1155401889
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25223,8 +25230,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -293.47684, y: 62}
-  m_SizeDelta: {x: 332.8227, y: 209.3117}
+  m_AnchoredPosition: {x: -295, y: 50}
+  m_SizeDelta: {x: 250, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1155401890
 MonoBehaviour:
@@ -25298,7 +25305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344, y: -125.28}
+  m_AnchoredPosition: {x: -341, y: -140.18}
   m_SizeDelta: {x: 160, y: 26.9112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158675398
@@ -29494,7 +29501,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.23, y: 0}
-  m_SizeDelta: {x: 31.4151, y: 41.0814}
+  m_SizeDelta: {x: 30, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1366383903
 MonoBehaviour:
@@ -33326,7 +33333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344, y: -98.367}
+  m_AnchoredPosition: {x: -341, y: -113.26699}
   m_SizeDelta: {x: 160, y: 26.9112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513276999
@@ -33651,7 +33658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344, y: -152.19}
+  m_AnchoredPosition: {x: -341, y: -167.09}
   m_SizeDelta: {x: 160, y: 26.9112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1521244955
@@ -34063,7 +34070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1550358295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34080,8 +34087,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -293.47684, y: 62}
-  m_SizeDelta: {x: 332.8227, y: 209.3117}
+  m_AnchoredPosition: {x: -295, y: 50}
+  m_SizeDelta: {x: 250, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550358296
 MonoBehaviour:
@@ -43236,6 +43243,7 @@ MonoBehaviour:
   game: {fileID: 681972386}
   doing: 0
   buttonOn: 0
+  isSetWhatNum: 0
   Button1: {fileID: 1635673381}
   Button2: {fileID: 501342939}
 --- !u!114 &1951068598
@@ -44030,8 +44038,10 @@ MonoBehaviour:
   scanObj: {fileID: 0}
   isPlayerUI: 0
   isHoeing: 0
+  isFishing: 0
   SeedField_name: []
   count: 0
+  storeUIManager: {fileID: 0}
 --- !u!212 &1997066910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44116,6 +44126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: woman
   isNPC: 0
+  isSELLER: 0
 --- !u!1 &1998319042
 GameObject:
   m_ObjectHideFlags: 0

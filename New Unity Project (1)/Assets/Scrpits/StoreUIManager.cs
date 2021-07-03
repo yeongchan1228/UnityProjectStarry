@@ -13,18 +13,36 @@ public class StoreUIManager : MonoBehaviour
     //public Animator display;
     public GameObject scanobject;
     public GameObject storePanel;
+    public GameObject storePart;
+    public GameObject upgradePart;
     public bool isAction;
     public Button btExit;
+    public Button btStore;
+    public Button btUpgrade;
 
     void Start()
     {
         btExit.onClick.AddListener(ExitWindow);
+        btStore.onClick.AddListener(OpenStore);
+        btUpgrade.onClick.AddListener(OpenUpgrade);
     }
 
     public void ExitWindow()
     {
         isAction = false;
         storePanel.SetActive(isAction);
+    }
+
+    public void OpenStore()
+    {
+        storePart.SetActive(true);
+        upgradePart.SetActive(false);
+    }
+
+    public void OpenUpgrade()
+    {
+        upgradePart.SetActive(true);
+        storePart.SetActive(false);
     }
 
     public void Action(GameObject scanobj)
