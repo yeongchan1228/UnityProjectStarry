@@ -12,18 +12,21 @@ public class StoreUIManager : MonoBehaviour
     public Text Price;
     //public Animator display;
     public GameObject scanobject;
+    public GameObject storePanel;
     public bool isAction;
 
     public void Action(GameObject scanobj)
     {
         if (isAction) isAction = false;
-        else if (!isAction)
+        else 
         {
+            isAction = true;
             scanobject = scanobj;
             NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
             if (npc_Data.isSELLER == true) Display(npc_Data.id, npc_Data.isNPC);
             //display.SetBool("isDisplay", isAction);
         }
+        storePanel.SetActive(isAction);
     }
 
     void Display(string id, bool isNPC)
