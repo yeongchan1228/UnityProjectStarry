@@ -350,8 +350,9 @@ public class MenuControl : MonoBehaviour
 
     public void Fish_Clicked() // 물고기 버튼 클릭
     {
-        if(fish_progressimg == null) { fish_progressimg = GameObject.Find("Fishing").transform.GetChild(1).transform.GetChild(3).GetComponent<Image>(); }
+        if(fish_progressimg == null) { fish_progressimg = GameObject.Find("Fishing").transform.GetChild(0).transform.GetChild(0).transform.GetChild(3).GetComponent<Image>(); }
         fish_progressimg.fillAmount += userInfo.getItem_FishingRod().GetFishingRodEfficiency() * (float)(playercontrol.fish_difficulty * 0.05);
+        Debug.LogError("Clicked : " + fish_progressimg.fillAmount);
     }
     public void On_DeleteButton()  // Delete 버튼 On
     {

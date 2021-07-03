@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
-        fruit_afters = Resources.LoadAll<Sprite>("Sprites/fish/Result");
+        fish_results = Resources.LoadAll<Sprite>("Sprites/fish/Result");
         fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/난이도1"); // 1마리
         fishes2 = Resources.LoadAll<Sprite>("Sprites/fish/난이도2"); // 2마리
         fishes3 = Resources.LoadAll<Sprite>("Sprites/fish/난이도3"); // 2마리
@@ -664,12 +664,16 @@ public class PlayerController : MonoBehaviour
     void Do_Fishing()
     {
         Debug.Log("바다 낚시");
+        textmanager.isAction = true;
         isFishing = true;
         Fishing_Result = false;
-        fish_progressimg = GameObject.Find("Fishing").transform.GetChild(1).transform.GetChild(3).GetComponent<Image>();
+        fish_progressimg = GameObject.Find("Fishing").transform.GetChild(0).transform.GetChild(0).transform.GetChild(3).GetComponent<Image>();
+        Button fish_button = GameObject.Find("Fishing").transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Button>();
+        fish_button.onClick.AddListener(menuControl.Fish_Clicked);
         fish_progressimg.fillAmount = 0;
         anim.SetBool("isFishing", isFishing);
         int random = Random.Range(1, 11); // 1~10초
+        Debug.LogError("random : " + random);
         Invoke("GoFishing", random); // random 초 후 실행
     }
 
@@ -683,6 +687,7 @@ public class PlayerController : MonoBehaviour
 
         //filled량 설정
         int difficulty = Random.Range(1, 100); // 물고기 난이도
+        Debug.LogError("difficulty : " + difficulty);
         if(difficulty < 20) { fish_difficulty = 1; } // 최하 난이도 1
         else if(difficulty < 40) { fish_difficulty = 0.9f; } // 2
         else if (difficulty < 60) { fish_difficulty = 0.8f; } // 3
@@ -702,6 +707,7 @@ public class PlayerController : MonoBehaviour
     void Filled_FishBar()
     {
         float finish = fish_progressimg.fillAmount;
+        Debug.LogError("finish : " + finish);
         if (finish > 0.99f) 
         {
             Fishing_Result = true;
@@ -710,6 +716,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            Debug.LogError("이거 실행됨");
             Invoke("Filled_FishBar", 0.1f);
         }
 
@@ -822,16 +829,20 @@ public class PlayerController : MonoBehaviour
         GameObject Fishing_obj = GameObject.Find("Fishing").transform.GetChild(0).gameObject;
         Fishing_obj.SetActive(false);
         GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
+        Debug.LogError(Result_obj);
         Result_obj.SetActive(true);
         Image resultimg = Result_obj.GetComponent<Image>();
+        Debug.LogError(resultimg);
         if (userInfo.getGender().Equals("man")) { resultimg.sprite = fish_results[0]; }
         else { resultimg.sprite = fish_results[3]; }
         Invoke("finish_result", 2f);
     }
     void finish_result()
     {
+        Debug.LogError("마무리 실행됨");
         GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
         Result_obj.SetActive(false);
+        textmanager.isAction = false;
     }
 
     void OnTriggerStay2D(Collider2D o)
