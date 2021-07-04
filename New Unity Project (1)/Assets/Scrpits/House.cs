@@ -56,6 +56,7 @@ public class House : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(5);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
                 userInfo.getItem_Pick().SetPickKinds("Blueberry");
+                
                 menuControl.NameInfo.text = "이름 : " + userInfo.getName();
                 menuControl.FarmNameInfo.text = "농장 이름 : " + userInfo.getFarmName();
                 menuControl.isSeed = true;
@@ -130,6 +131,8 @@ public class House : MonoBehaviour
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(1f);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
                 userInfo.getItem_Pick().SetPickKinds("Blueberry");
+                userInfo.getItem_Weapon().SetWeaponName("rustysword");
+                userInfo.getItem_Weapon().SetWeaponPower(5);
                 menuControl.NameInfo.text = "이름 : " + userInfo.getName();
                 menuControl.FarmNameInfo.text = "농장 이름 : " + userInfo.getFarmName();
                 menuControl.WomanInfo.SetActive(true);

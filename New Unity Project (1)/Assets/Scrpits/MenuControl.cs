@@ -109,6 +109,7 @@ public class MenuControl : MonoBehaviour
             textmanager.isAction = false;
             Map.SetActive(false);
             treasure_Map.SetActive(false);
+            chat.buttonOn = false;
             isMap = false;
         }
     }

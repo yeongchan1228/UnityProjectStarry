@@ -22,8 +22,8 @@ public class StoreUIManager : MonoBehaviour
     MenuControl menuControl;
     public Button btUpgrade;
     public Scrollbar scrollbar;
-    public GameObject obj, store, Inventory;
-    public GameObject Delete_obj, noSale_obj, Buy_obj, noBuy_obj;
+    public GameObject obj, store, Inventory, upgrade;
+    public GameObject Delete_obj, noSale_obj, Buy_obj, noBuy_obj, upgrade_obj;
     public InputField input, input2;
     string select_delete_item, select_buy_item;
     int save_i, save_j, select_buy_item_price, seed_count;
@@ -31,8 +31,9 @@ public class StoreUIManager : MonoBehaviour
     UserInfo userInfo;
     GameObject user_man, user_woman;
     int sale_count, buy_count;
-    public Sprite[] fruit_afters, invens;
+    public Sprite[] fruit_afters, invens, seeds, swords;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
+    int sword_price, armor_price, fishrod_price, hoe_price, waterPPU_price;
 
     void Start()
     {
@@ -44,7 +45,9 @@ public class StoreUIManager : MonoBehaviour
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
+        seeds = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
+        swords = Resources.LoadAll<Sprite>("Sprites/sword");
         fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/³­ÀÌµµ1"); // 1¸¶¸®
         fishes2 = Resources.LoadAll<Sprite>("Sprites/fish/³­ÀÌµµ2"); // 2¸¶¸®
         fishes3 = Resources.LoadAll<Sprite>("Sprites/fish/³­ÀÌµµ3"); // 2¸¶¸®
@@ -66,13 +69,206 @@ public class StoreUIManager : MonoBehaviour
             userInfo = user_woman.GetComponent<UserInfo>();
         }
         Parent = salePart.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Transform>();
-
+        userInfo.setGold(50000);
         store = storePart.transform.GetChild(0).transform.GetChild(0).gameObject;
+        upgrade = upgradePart.transform.GetChild(0).transform.GetChild(0).gameObject;
         for(int i = 0; i < store.transform.childCount; i++) // ±¸¸Å ¹öÆ° ¸®½º³Êµî·Ï
         {
             Button btt = store.transform.GetChild(i).transform.GetChild(5).GetComponent<Button>();
             btt.onClick.AddListener(IntoInven);
         }
+        for (int i = 0; i < upgrade.transform.childCount; i++) // ±¸¸Å ¹öÆ° ¸®½º³Êµî·Ï
+        {
+            Button btt = upgrade.transform.GetChild(i).transform.GetChild(5).GetComponent<Button>();
+            btt.onClick.AddListener(Item_Upgrade);
+        }
+        set_Sword();
+        set_Armor();
+        set_Fishrod();
+        set_Hoe();
+        set_WaterPPU();
+    }
+
+    public void Item_Upgrade()
+    {
+        GameObject Upgrade_Button = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+        if (Upgrade_Button.name.Equals("Sword"))
+        {
+            Text price = upgrade.transform.GetChild(0).transform.GetChild(2).GetComponent<Text>();
+            Button btt = upgrade.transform.GetChild(0).transform.GetChild(5).GetComponent<Button>();
+            Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
+            Image UISword = PlayerUI.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
+            int usergold = userInfo.getGold();
+            if (userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword") && usergold > sword_price) 
+            { 
+                usergold -= sword_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "5,000G";
+                UISword.sprite = swords[9] as Sprite;
+                sword_price = 5000;
+                userInfo.getItem_Weapon().SetWeaponName("woodsword");
+                userInfo.getItem_Weapon().SetWeaponPower(10);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("woodsword") && usergold > sword_price) 
+            {
+                usergold -= sword_price; 
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[8] as Sprite;
+                sword_price = 15000;
+                price.text = "15,000G";
+                userInfo.getItem_Weapon().SetWeaponName("steelsword");
+                userInfo.getItem_Weapon().SetWeaponPower(20);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("steelsword") && usergold > sword_price) 
+            {
+                usergold -= sword_price; 
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[7] as Sprite;
+                sword_price = 28000;
+                price.text = "28,000G";
+                userInfo.getItem_Weapon().SetWeaponName("silversword");
+                userInfo.getItem_Weapon().SetWeaponPower(30);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("silversword") && usergold > sword_price) 
+            {
+                usergold -= sword_price;
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[0] as Sprite;
+                sword_price = 50000;
+                price.text = "50,000G";
+                userInfo.getItem_Weapon().SetWeaponName("cutlass");
+                userInfo.getItem_Weapon().SetWeaponPower(40);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("cutlass") && usergold > sword_price) 
+            {
+                usergold -= sword_price;
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[1] as Sprite;
+                sword_price = 80000;
+                price.text = "80,000G";
+                userInfo.getItem_Weapon().SetWeaponName("darksword");
+                userInfo.getItem_Weapon().SetWeaponPower(50);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("darksword") && usergold > sword_price)
+            {
+                usergold -= sword_price;
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[5] as Sprite;
+                sword_price = 170000;
+                price.text = "170,000G";
+                userInfo.getItem_Weapon().SetWeaponName("obsidian");
+                userInfo.getItem_Weapon().SetWeaponPower(60);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("obsidian") && usergold > sword_price) 
+            {
+                usergold -= sword_price;
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[3] as Sprite;
+                sword_price = 350000;
+                price.text = "350,000G";
+                userInfo.getItem_Weapon().SetWeaponName("holysword");
+                userInfo.getItem_Weapon().SetWeaponPower(70);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("holysword") && usergold > sword_price) 
+            {
+                usergold -= sword_price;
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[4] as Sprite;
+                sword_price = 500000;
+                price.text = "500,000G";
+                userInfo.getItem_Weapon().SetWeaponName("lavasword");
+                userInfo.getItem_Weapon().SetWeaponPower(80);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("lavasword") && usergold > sword_price) 
+            {
+                usergold -= sword_price;
+                userInfo.setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                UISword.sprite = swords[2] as Sprite;
+                sword_price = 0;
+                price.text = "0G";
+                btt.interactable = false;
+                userInfo.getItem_Weapon().SetWeaponName("galaxysword");
+                userInfo.getItem_Weapon().SetWeaponPower(100);
+                upgrade_obj.SetActive(true);
+            }
+            else
+            {
+                noBuy_obj.SetActive(true);
+            }
+        }
+    }
+    void set_Sword()
+    {
+        Text price = upgrade.transform.GetChild(0).transform.GetChild(2).GetComponent<Text>();
+        Button btt = upgrade.transform.GetChild(0).transform.GetChild(5).GetComponent<Button>();
+        if (userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) { sword_price = 1500; price.text = "1,500G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("woodsword")) { sword_price = 5000; price.text = "5,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("steelsword")) { sword_price = 15000; price.text = "15,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("silversword")) { sword_price = 28000; price.text = "28,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("cutlass")) { sword_price = 50000; price.text = "50,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("darksword")) { sword_price = 80000; price.text = "80,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("obsidian")) { sword_price = 170000; price.text = "170,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("holysword")) { sword_price = 350000; price.text = "350,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("lavasword")) { sword_price = 500000; price.text = "500,000G"; }
+        else if (userInfo.getItem_Weapon().GetWeaponName().Equals("galaxysword")) { sword_price = 0; price.text = "0G"; btt.interactable = false; }
+    }
+    void set_Armor()
+    {
+        Text price = upgrade.transform.GetChild(1).transform.GetChild(2).GetComponent<Text>();
+        Debug.LogError(price);
+        Button btt = upgrade.transform.GetChild(1).transform.GetChild(5).GetComponent<Button>();
+        if (userInfo.getItem_Armor().GetArmorName() == null) { armor_price = 25000; price.text = "25,000G"; }
+        else if (userInfo.getItem_Armor().GetArmorName().Equals("stonetop")) { armor_price = 70000; price.text = "70,000G"; }
+        else if (userInfo.getItem_Armor().GetArmorName().Equals("silvertop")) { armor_price = 150000; price.text = "150,000G"; }
+        else if (userInfo.getItem_Armor().GetArmorName().Equals("iridiumtop")) { armor_price = 300000; price.text = "300,000G"; }
+        else if (userInfo.getItem_Armor().GetArmorName().Equals("diatop")) { armor_price = 0; price.text = "0G"; btt.interactable = false; }
+    }
+    void set_Fishrod()
+    {
+        Text price = upgrade.transform.GetChild(2).transform.GetChild(2).GetComponent<Text>();
+        Button btt = upgrade.transform.GetChild(2).transform.GetChild(5).GetComponent<Button>();
+        if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Stone_FishingRod")) { fishrod_price = 10000; price.text = "10,000G"; }
+        else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Guri_FishingRod")) { fishrod_price = 30000; price.text = "30,000G"; }
+        else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Silver_FishingRod")) { fishrod_price = 50000; price.text = "50,000G"; }
+        else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Iridium_FishingRod")) { fishrod_price = 80000; price.text = "80,000G"; }
+        else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Dia_FishingRod")) { fishrod_price = 0; price.text = "0G"; btt.interactable = false; }
+    }
+    void set_Hoe()
+    {
+        Text price = upgrade.transform.GetChild(3).transform.GetChild(2).GetComponent<Text>();
+        Button btt = upgrade.transform.GetChild(3).transform.GetChild(5).GetComponent<Button>();
+        if (userInfo.getItem_Hoe().GetHoeName().Equals("Stone_Hoe")) { hoe_price = 10000; price.text = "10,000G"; }
+        else if (userInfo.getItem_Hoe().GetHoeName().Equals("Guri_Hoe")) { hoe_price = 30000; price.text = "30,000G"; }
+        else if (userInfo.getItem_Hoe().GetHoeName().Equals("Silver_Hoe")) { hoe_price = 50000; price.text = "50,000G"; }
+        else if (userInfo.getItem_Hoe().GetHoeName().Equals("Iridium_Hoe")) { hoe_price = 80000; price.text = "80,000G"; }
+        else if (userInfo.getItem_Hoe().GetHoeName().Equals("Dia_Hoe")) { hoe_price = 0; price.text = "0G"; btt.interactable = false; }
+    }
+    void set_WaterPPU()
+    {
+        Text price = upgrade.transform.GetChild(4).transform.GetChild(2).GetComponent<Text>();
+        Button btt = upgrade.transform.GetChild(4).transform.GetChild(5).GetComponent<Button>();
+        if (userInfo.getItem_WaterPPU().GetWaterPPUName().Equals("Stone_Water")) { waterPPU_price = 10000; price.text = "10,000G"; }
+        else if (userInfo.getItem_WaterPPU().GetWaterPPUName().Equals("Guri_Water")) { waterPPU_price = 30000; price.text = "30,000G"; }
+        else if (userInfo.getItem_WaterPPU().GetWaterPPUName().Equals("Silver_Water")) { waterPPU_price = 50000; price.text = "50,000G"; }
+        else if (userInfo.getItem_WaterPPU().GetWaterPPUName().Equals("Iridium_Water")) { waterPPU_price = 80000; price.text = "80,000G"; }
+        else if (userInfo.getItem_WaterPPU().GetWaterPPUName().Equals("Dia_Water")) { waterPPU_price = 0; price.text = "0G"; btt.interactable = false; }
     }
 
     public void ExitWindow()
@@ -211,105 +407,115 @@ public class StoreUIManager : MonoBehaviour
     public void IntoInven()
     {
         buy_count = 0;
+        seed_count = 0;
         input2.text = "0";
         GameObject Buy_Button = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
         Text select_buy = Buy_Button.transform.GetChild(0).GetComponent<Text>();
         Text select_buy_price = Buy_Button.transform.GetChild(2).GetComponent<Text>();
+        Debug.LogError(select_buy_price);
+        Debug.LogError(select_buy_price.text);
         select_buy_item = select_buy.text;
-        select_buy_item_price = int.Parse(select_buy_price.text);
         Buy_obj.SetActive(true);
     }
 
     public void buy_Okay()
     {
         buy_count = int.Parse(input2.text);
-        if(select_buy_item.Equals("¿À¸£°ñ")) { user_Inven(); }
-        else if(select_buy_item.Equals("¹Ð ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("°¨ÀÚ ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("´ç±Ù ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("¿Á¼ö¼ö ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("¾Æº¸Ä«µµ ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("Æ÷µµ ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("·¹¸ó ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("ºí·çº£¸® ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("¸á·Ð ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("ÆÄÀÎ¾ÖÇÃ ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("È£¹Ú ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("°¡Áö ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("µþ±â ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("¼ø¹« ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("Åä¸¶Åä ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("¼ö¹Ú ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("¾Ç¸¶ÀÇ °úÀÏ ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("Ãµ»çÀÇ °úÀÏ ¾¾¾Ñ")) { }
-        else if (select_buy_item.Equals("º°ºû °úÀÏ ¾¾¾Ñ")) { }
+        if(select_buy_item.Equals("¿À¸£°ñ")) { select_buy_item_price = 100000; user_Inven(); }
+        else if(select_buy_item.Equals("¹Ð ¾¾¾Ñ")) { select_buy_item_price = 30; user_Inven(); }
+        else if (select_buy_item.Equals("°¨ÀÚ ¾¾¾Ñ")) { select_buy_item_price = 45; user_Inven(); }
+        else if (select_buy_item.Equals("´ç±Ù ¾¾¾Ñ")) { select_buy_item_price = 60; user_Inven(); }
+        else if (select_buy_item.Equals("¿Á¼ö¼ö ¾¾¾Ñ")) { select_buy_item_price = 100; user_Inven(); }
+        else if (select_buy_item.Equals("¾Æº¸Ä«µµ ¾¾¾Ñ")) { select_buy_item_price = 250; user_Inven(); }
+        else if (select_buy_item.Equals("Æ÷µµ ¾¾¾Ñ")) { select_buy_item_price = 150; user_Inven(); }
+        else if (select_buy_item.Equals("·¹¸ó ¾¾¾Ñ")) { select_buy_item_price = 500; user_Inven(); }
+        else if (select_buy_item.Equals("ºí·çº£¸® ¾¾¾Ñ")) { select_buy_item_price = 350; user_Inven(); }
+        else if (select_buy_item.Equals("¸á·Ð ¾¾¾Ñ")) { select_buy_item_price = 220; user_Inven(); }
+        else if (select_buy_item.Equals("ÆÄÀÎ¾ÖÇÃ ¾¾¾Ñ")) { select_buy_item_price = 450; user_Inven(); }
+        else if (select_buy_item.Equals("È£¹Ú ¾¾¾Ñ")) { select_buy_item_price = 320; user_Inven(); }
+        else if (select_buy_item.Equals("°¡Áö ¾¾¾Ñ")) { select_buy_item_price = 80; user_Inven(); }
+        else if (select_buy_item.Equals("µþ±â ¾¾¾Ñ")) { select_buy_item_price = 420; user_Inven(); }
+        else if (select_buy_item.Equals("¼ø¹« ¾¾¾Ñ")) { select_buy_item_price = 170; user_Inven(); }
+        else if (select_buy_item.Equals("Åä¸¶Åä ¾¾¾Ñ")) { select_buy_item_price = 200; user_Inven(); }
+        else if (select_buy_item.Equals("¼ö¹Ú ¾¾¾Ñ")) { select_buy_item_price = 480; user_Inven(); }
+        else if (select_buy_item.Equals("¾Ç¸¶ÀÇ °úÀÏ ¾¾¾Ñ")) { select_buy_item_price = 666; user_Inven(); }
+        else if (select_buy_item.Equals("Ãµ»çÀÇ °úÀÏ ¾¾¾Ñ")) { select_buy_item_price = 777; user_Inven(); }
+        else if (select_buy_item.Equals("º°ºû °úÀÏ ¾¾¾Ñ")) { select_buy_item_price = 999; user_Inven(); }
     }
     
     void user_Inven()
     {
-        /*int userGold = userInfo.getGold();
-        if(userGold > select_buy_item_price * buy_count)
+        int userGold = userInfo.getGold();
+        if (userGold > select_buy_item_price * buy_count && buy_count != 0)
         {
             userInfo.setGold(userGold - select_buy_item_price * buy_count);
+            Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
+            UIGold.text = userInfo.getGold().ToString();
             for (int i = 0; i < userInfo.SeedItemkey.Count; i++)
             {
                 if (userInfo.SeedItemkey[i].Equals(select_buy_item))
                 {
-                    seed_count = userInfo.FishItem[Fish_name];
+                    seed_count = userInfo.SeedItem[select_buy_item];
+                    isSamekey = true;
                 }
             }
-            Fish_count++;
-            for (int i = 0; i < userInfo.FishItemkey.Count; i++)
+            seed_count = seed_count + buy_count;
+            if (!isSamekey)
             {
-                if (userInfo.FishItemkey[i].Equals(Fish_name)) { isSameKey = true; }
+                userInfo.SeedItemkey.Add(select_buy_item);
+                userInfo.SeedItem.Add(select_buy_item, seed_count);
             }
-            if (!isSameKey)
+            userInfo.SeedItem[select_buy_item] = seed_count;
+            isSamekey = false;
+            for (int i = 0; i < userInfo.SeedItemkey.Count; i++)
             {
-                userInfo.FishItemkey.Add(Fish_name);
-                userInfo.FishItem.Add(Fish_name, Fish_count);
-            }
-            userInfo.FishItem[Fish_name] = Fish_count;
-            isSameKey = false;
-            for (int i = 0; i < userInfo.FishItemkey.Count; i++)
-            {
-                GameObject bottonobj = menuControl.InventoryFish.transform.GetChild(i).gameObject;
+                GameObject bottonobj = menuControl.InventorySeed.transform.GetChild(i).gameObject;
+
                 bottonobj.SetActive(true);
                 Image bottonimg = bottonobj.GetComponent<Image>();
+
                 if (i == 0)
                 {
                     bottonimg.sprite = invens[1] as Sprite; // ÀÎº¥ ¼±ÅÃ
                 }
                 GameObject Image = bottonobj.transform.GetChild(0).gameObject;
-                Image Fishimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
-                if (userInfo.FishItemkey[i].Equals("Æò¹üÇÑ¹°°í±â")) { Fishimg.sprite = fishes1[0]; }
-                else if (userInfo.FishItemkey[i].Equals("»¡°­¹°°í±â")) { Fishimg.sprite = fishes2[0]; }
-                else if (userInfo.FishItemkey[i].Equals("ÁÖÈ²¹°°í±â")) { Fishimg.sprite = fishes2[1]; }
-                else if (userInfo.FishItemkey[i].Equals("³ë¶û¹°°í±â")) { Fishimg.sprite = fishes3[0]; }
-                else if (userInfo.FishItemkey[i].Equals("ÃÊ·Ï¹°°í±â")) { Fishimg.sprite = fishes3[1]; }
-                else if (userInfo.FishItemkey[i].Equals("³²»ö¹°°í±â")) { Fishimg.sprite = fishes4[0]; }
-                else if (userInfo.FishItemkey[i].Equals("ÇÏ´Ã»ö¹°°í±â")) { Fishimg.sprite = fishes4[1]; }
-                else if (userInfo.FishItemkey[i].Equals("º¸¶ó¹°°í±â")) { Fishimg.sprite = fishes5[0]; }
-                else if (userInfo.FishItemkey[i].Equals("ÀÇ»ç¹°°í±â")) { Fishimg.sprite = fishes5[1]; }
-                else if (userInfo.FishItemkey[i].Equals("³óºÎ¹°°í±â")) { Fishimg.sprite = fishes6[0]; }
-                else if (userInfo.FishItemkey[i].Equals("¹«Áö°³¹°°í±â")) { Fishimg.sprite = fishes6[1]; }
-                else if (userInfo.FishItemkey[i].Equals("°øÁÖ¹°°í±â")) { Fishimg.sprite = fishes7[0]; }
-                else if (userInfo.FishItemkey[i].Equals("±ºÀÎ¹°°í±â")) { Fishimg.sprite = fishes7[1]; }
-                else if (userInfo.FishItemkey[i].Equals("½ÅºÎ¹°°í±â")) { Fishimg.sprite = fishes7[2]; }
-                else if (userInfo.FishItemkey[i].Equals("½Å»ç¹°°í±â")) { Fishimg.sprite = fishes7[3]; }
-                else if (userInfo.FishItemkey[i].Equals("¾Ç¸¶¹°°í±â")) { Fishimg.sprite = fishes8[0]; }
-                else if (userInfo.FishItemkey[i].Equals("Ãµ»ç¹°°í±â")) { Fishimg.sprite = fishes8[1]; }
-                else if (userInfo.FishItemkey[i].Equals("½ºÅÂ¸®ÆÊ¹°°í±â")) { Fishimg.sprite = fishes9[1]; }
-                else if (userInfo.FishItemkey[i].Equals("°ø´ë»ý¹°°í±â")) { Fishimg.sprite = fishes9[0]; }
-                else if (userInfo.FishItemkey[i].Equals("ÇÒ¸Ó´ÏÀÇ»ç¶û¹°°í±â")) { Fishimg.sprite = fishes10[0]; }
+                Image seedimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+                if (userInfo.SeedItemkey[i].Equals("¿À¸£°ñ")) { seedimg.sprite = seeds[10]; }
+                else if (userInfo.SeedItemkey[i].Equals("¹Ð ¾¾¾Ñ")) { seedimg.sprite = seeds[9]; }
+                else if (userInfo.SeedItemkey[i].Equals("°¨ÀÚ ¾¾¾Ñ")) { seedimg.sprite = seeds[12]; }
+                else if (userInfo.SeedItemkey[i].Equals("´ç±Ù ¾¾¾Ñ")) { seedimg.sprite = seeds[1]; }
+                else if (userInfo.SeedItemkey[i].Equals("¿Á¼ö¼ö ¾¾¾Ñ")) { seedimg.sprite = seeds[3]; }
+                else if (userInfo.SeedItemkey[i].Equals("¾Æº¸Ä«µµ ¾¾¾Ñ")) { seedimg.sprite = seeds[4]; }
+                else if (userInfo.SeedItemkey[i].Equals("Æ÷µµ ¾¾¾Ñ")) { seedimg.sprite = seeds[5]; }
+                else if (userInfo.SeedItemkey[i].Equals("·¹¸ó ¾¾¾Ñ")) { seedimg.sprite = seeds[6]; }
+                else if (userInfo.SeedItemkey[i].Equals("ºí·çº£¸® ¾¾¾Ñ")) { seedimg.sprite = seeds[0]; }
+                else if (userInfo.SeedItemkey[i].Equals("¸á·Ð ¾¾¾Ñ")) { seedimg.sprite = seeds[8]; }
+                else if (userInfo.SeedItemkey[i].Equals("ÆÄÀÎ¾ÖÇÃ ¾¾¾Ñ")) { seedimg.sprite = seeds[11]; }
+                else if (userInfo.SeedItemkey[i].Equals("È£¹Ú ¾¾¾Ñ")) { seedimg.sprite = seeds[13]; }
+                else if (userInfo.SeedItemkey[i].Equals("°¡Áö ¾¾¾Ñ")) { seedimg.sprite = seeds[14]; }
+                else if (userInfo.SeedItemkey[i].Equals("µþ±â ¾¾¾Ñ")) { seedimg.sprite = seeds[16]; }
+                else if (userInfo.SeedItemkey[i].Equals("¼ø¹« ¾¾¾Ñ")) { seedimg.sprite = seeds[17]; }
+                else if (userInfo.SeedItemkey[i].Equals("Åä¸¶Åä ¾¾¾Ñ")) { seedimg.sprite = seeds[18]; }
+                else if (userInfo.SeedItemkey[i].Equals("¼ö¹Ú ¾¾¾Ñ")) { seedimg.sprite = seeds[19]; }
+                else if (userInfo.SeedItemkey[i].Equals("¾Ç¸¶ÀÇ °úÀÏ ¾¾¾Ñ")) { seedimg.sprite = seeds[2]; }
+                else if (userInfo.SeedItemkey[i].Equals("Ãµ»çÀÇ °úÀÏ ¾¾¾Ñ")) { seedimg.sprite = seeds[7]; }
+                else if (userInfo.SeedItemkey[i].Equals("º°ºû °úÀÏ ¾¾¾Ñ")) { seedimg.sprite = seeds[15]; }
                 Image.SetActive(true);
                 GameObject text = bottonobj.transform.GetChild(1).gameObject;
-                Text Fishtext = text.GetComponent<Text>(); // °úÀÏ °³¼ö
-                Fishtext.text = userInfo.FishItem[userInfo.FishItemkey[i]].ToString();
+                Debug.LogError(text);
+                Text Seedtext = text.GetComponent<Text>(); // °úÀÏ °³¼ö
+                Seedtext.text = userInfo.SeedItem[userInfo.SeedItemkey[i]].ToString();
                 text.SetActive(true);
                 seed_count = 0;
+                Buy_obj.SetActive(false);
             }
-
-        }*/
+        }
+        else if(buy_count == 0) { Buy_obj.SetActive(false); }
+        else
+        {
+            Buy_obj.SetActive(false);
+            noBuy_obj.SetActive(true);
+        }
     }
     public void buy_Cancel()
     {
@@ -587,7 +793,10 @@ public class StoreUIManager : MonoBehaviour
         {
             Delete_obj.SetActive(false);
         }
-
+        public void Upgrade_finish()
+    {
+        upgrade_obj.SetActive(false);
+    }
         public void Buy_No()
         {
             noBuy_obj.SetActive(false);
