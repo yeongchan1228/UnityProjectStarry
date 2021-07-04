@@ -333,7 +333,7 @@ public class MenuControl : MonoBehaviour
                 }
                 if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1"))
                 {
-                    if (userInfo.getDay() - SeedDay > 4) // 5일 지나면  자라기
+                    if (userInfo.getDay() - SeedDay > 1) // 5일 지나면  자라기
                     {
                         if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Blueberry")) { spriteR.sprite = fruit_befores[0]; }
                         else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("carrot")) { spriteR.sprite = fruit_befores[1]; }
