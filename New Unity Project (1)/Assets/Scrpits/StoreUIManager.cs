@@ -31,7 +31,7 @@ public class StoreUIManager : MonoBehaviour
     UserInfo userInfo;
     GameObject user_man, user_woman;
     int sale_count, buy_count;
-    public Sprite[] fruit_afters, invens, seeds, swords;
+    public Sprite[] fruit_afters, invens, seeds, swords, tools;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
     int sword_price, armor_price, fishrod_price, hoe_price, waterPPU_price;
 
@@ -48,6 +48,7 @@ public class StoreUIManager : MonoBehaviour
         seeds = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
         swords = Resources.LoadAll<Sprite>("Sprites/sword");
+        tools = Resources.LoadAll<Sprite>("Sprites/Tool");
         fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/난이도1"); // 1마리
         fishes2 = Resources.LoadAll<Sprite>("Sprites/fish/난이도2"); // 2마리
         fishes3 = Resources.LoadAll<Sprite>("Sprites/fish/난이도3"); // 2마리
@@ -99,8 +100,8 @@ public class StoreUIManager : MonoBehaviour
             Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
             Image UISword = PlayerUI.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
             int usergold = userInfo.getGold();
-            if (userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword") && usergold > sword_price) 
-            { 
+            if (userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword") && usergold > sword_price)
+            {
                 usergold -= sword_price; userInfo.
                 setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
@@ -111,9 +112,9 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(10);
                 upgrade_obj.SetActive(true);
             }
-            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("woodsword") && usergold > sword_price) 
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("woodsword") && usergold > sword_price)
             {
-                usergold -= sword_price; 
+                usergold -= sword_price;
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 UISword.sprite = swords[8] as Sprite;
@@ -123,9 +124,9 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(20);
                 upgrade_obj.SetActive(true);
             }
-            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("steelsword") && usergold > sword_price) 
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("steelsword") && usergold > sword_price)
             {
-                usergold -= sword_price; 
+                usergold -= sword_price;
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 UISword.sprite = swords[7] as Sprite;
@@ -135,7 +136,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(30);
                 upgrade_obj.SetActive(true);
             }
-            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("silversword") && usergold > sword_price) 
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("silversword") && usergold > sword_price)
             {
                 usergold -= sword_price;
                 userInfo.setGold(usergold);
@@ -147,7 +148,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(40);
                 upgrade_obj.SetActive(true);
             }
-            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("cutlass") && usergold > sword_price) 
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("cutlass") && usergold > sword_price)
             {
                 usergold -= sword_price;
                 userInfo.setGold(usergold);
@@ -171,7 +172,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(60);
                 upgrade_obj.SetActive(true);
             }
-            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("obsidian") && usergold > sword_price) 
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("obsidian") && usergold > sword_price)
             {
                 usergold -= sword_price;
                 userInfo.setGold(usergold);
@@ -183,7 +184,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(70);
                 upgrade_obj.SetActive(true);
             }
-            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("holysword") && usergold > sword_price) 
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("holysword") && usergold > sword_price)
             {
                 usergold -= sword_price;
                 userInfo.setGold(usergold);
@@ -195,7 +196,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.getItem_Weapon().SetWeaponPower(80);
                 upgrade_obj.SetActive(true);
             }
-            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("lavasword") && usergold > sword_price) 
+            else if (userInfo.getItem_Weapon().GetWeaponName().Equals("lavasword") && usergold > sword_price)
             {
                 usergold -= sword_price;
                 userInfo.setGold(usergold);
@@ -212,6 +213,123 @@ public class StoreUIManager : MonoBehaviour
             {
                 noBuy_obj.SetActive(true);
             }
+        }
+        else if (Upgrade_Button.name.Equals("Armor"))
+        {
+            Text price = upgrade.transform.GetChild(1).transform.GetChild(2).GetComponent<Text>();
+            Button btt = upgrade.transform.GetChild(1).transform.GetChild(5).GetComponent<Button>();
+            Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
+            int usergold = userInfo.getGold();
+            if (userInfo.getItem_Armor().GetArmorName() == null && usergold > armor_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "70,000G";
+                armor_price = 70000;
+                userInfo.getItem_Armor().SetArmorName("stonetop");
+                userInfo.getItem_Armor().SetArmorPower(3);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Armor().GetArmorName().Equals("stonetop") && usergold > armor_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "150,000G";
+                armor_price = 150000;
+                userInfo.getItem_Armor().SetArmorName("silvertop");
+                userInfo.getItem_Armor().SetArmorPower(7);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Armor().GetArmorName().Equals("silvertop") && usergold > armor_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "300,000G";
+                armor_price = 300000;
+                userInfo.getItem_Armor().SetArmorName("iridiumtop");
+                userInfo.getItem_Armor().SetArmorPower(12);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_Armor().GetArmorName().Equals("iridiumtop") && usergold > armor_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "0G";
+                armor_price = 0;
+                userInfo.getItem_Armor().SetArmorName("diatop");
+                userInfo.getItem_Armor().SetArmorPower(20);
+                btt.interactable = false;
+                upgrade_obj.SetActive(true);
+            }
+        }
+        else if (Upgrade_Button.name.Equals("Fish"))
+        {
+            Text price = upgrade.transform.GetChild(2).transform.GetChild(2).GetComponent<Text>();
+            Button btt = upgrade.transform.GetChild(2).transform.GetChild(5).GetComponent<Button>();
+            Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
+            Image UIFishing = PlayerUI.transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).GetComponent<Image>();
+            int usergold = userInfo.getGold();
+            if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Stone_FishingRod") && usergold > fishrod_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "30,000G";
+                armor_price = 30000;
+                UIFishing.sprite = tools[2] as Sprite;
+                userInfo.getItem_FishingRod().SetFishingRodName("Guri_FishingRod");
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(2);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Guri_FishingRod") && usergold > fishrod_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "50,000G";
+                armor_price = 50000;
+                UIFishing.sprite = tools[8] as Sprite;
+                userInfo.getItem_FishingRod().SetFishingRodName("Sliver_FishingRod");
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(3);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Sliver_FishingRod") && usergold > fishrod_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "80,000G";
+                armor_price = 80000;
+                UIFishing.sprite = tools[5] as Sprite;
+                userInfo.getItem_FishingRod().SetFishingRodName("Iridium_FishingRod");
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(4);
+                upgrade_obj.SetActive(true);
+            }
+            else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Iridium_FishingRod") && usergold > fishrod_price)
+            {
+                usergold -= armor_price; userInfo.
+                setGold(usergold);
+                UIGold.text = userInfo.getGold().ToString();
+                price.text = "0G";
+                armor_price = 0;
+                UIFishing.sprite = tools[0] as Sprite;
+                userInfo.getItem_FishingRod().SetFishingRodName("Dia_FishingRod");
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(6);
+                btt.interactable = false;
+                upgrade_obj.SetActive(true);
+            }
+        }
+        else if (Upgrade_Button.name.Equals("Homi"))
+        {
+            Text price = upgrade.transform.GetChild(3).transform.GetChild(2).GetComponent<Text>();
+            Button btt = upgrade.transform.GetChild(3).transform.GetChild(5).GetComponent<Button>();
+            Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
+            Image UIFishing = PlayerUI.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
+            int usergold = userInfo.getGold();
         }
     }
     void set_Sword()
