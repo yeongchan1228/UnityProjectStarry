@@ -34,7 +34,7 @@ public class Farm : MonoBehaviour
             RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
             pos.anchoredPosition = new Vector2(-30, -20);
             Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-            maptext.text = "Farm";
+            maptext.text = "농장";
             player = user_woman.GetComponent<PlayerController>();
             userInfo = user_woman.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_woman.transform.position = new Vector3(-288.67f, 60.9f, 0); userInfo.userWhere = 0; } // 집에서 나오기

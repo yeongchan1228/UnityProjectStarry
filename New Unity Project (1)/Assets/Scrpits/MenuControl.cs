@@ -15,7 +15,7 @@ public class MenuControl : MonoBehaviour
     Image fish_progressimg;
     GameObject PlayerUI;
     GameObject chatEffect;
-    GameObject Sleep, realSleep, Back , Delete_Button, Delete_Inventory;
+    GameObject Sleep, realSleep, Back , Delete_Button, Delete_Inventory, Map, treasure_Map;
     Animator SleepAni;
     ChatEffect chat;
     bool isMan; // 남자인지
@@ -31,6 +31,7 @@ public class MenuControl : MonoBehaviour
     public GameObject Inventory, SeedItem, FruitItem, FishItem, ManInfo, WomanInfo;
 
     public GameObject InventorySeed, InventoryFruit, InventoryFish;
+    bool isMap = false; // 지도 봤는지
 
     GameObject InvenInfo;
     public Text NameInfo, FarmNameInfo, ExpInfo, PowerInfo, ArmorInfo;
@@ -101,6 +102,14 @@ public class MenuControl : MonoBehaviour
                 soundManager.GetSlider();
                 textmanager.isAction = true; // 캐릭터 움직이지 못하게 막기
             }
+        }
+
+        if ((Input.GetKeyDown(KeyCode.Space)) && (isMap == true)) // 스페이스바 눌렀을 때 지도 꺼지게
+        {
+            textmanager.isAction = false;
+            Map.SetActive(false);
+            treasure_Map.SetActive(false);
+            isMap = false;
         }
     }
 
@@ -248,6 +257,19 @@ public class MenuControl : MonoBehaviour
             //chat.isallbutton = false;
         }
 
+        if(playercontrol.scanObj.name.Equals("dog")) // 강아지한테 지도 본다고 했을 때
+        {
+            textmanager.talk.SetBool("isShow", false);
+            textmanager.button1.SetActive(false);
+            textmanager.button2.SetActive(false);
+            textmanager.talkIndex = 0;
+            Map = GameObject.Find("Treasure_Map").transform.GetChild(0).gameObject;
+            treasure_Map = Map.transform.GetChild(0).gameObject; // Map 배경
+            Map.SetActive(true);
+            treasure_Map.SetActive(true);
+            isMap = true;
+        }
+
     }
 
     public void Menu2Clicked()
@@ -267,6 +289,18 @@ public class MenuControl : MonoBehaviour
             //chat.isbt2 = false;
             //chat.isallbutton = false;
         }
+
+        if (playercontrol.scanObj.name.Equals("dog")) // 강아지한테 지도 안 본다고 했을 때
+        {
+            textmanager.isAction = false; // 다시 움직이게
+            textmanager.talk.SetBool("isShow", false);
+            textmanager.button1.SetActive(false);
+            textmanager.button2.SetActive(false);
+            chat.buttonOn = false;
+            textmanager.talkIndex = 0;
+            isMap = false;
+        }
+
         else if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때 (잠자기)
         {
             textmanager.button1.SetActive(false);

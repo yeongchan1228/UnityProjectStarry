@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         //Chat.SetActive(true);
         scanobject = scanobj;
         NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
-        Talking(npc_Data.id, npc_Data.isNPC);
+        Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isOLDWOMAN);
         talk.SetBool("isShow", isAction);
         if (!isAction)
         {
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     
 
-    void Talking(string id, bool isNPC)
+    void Talking(string id, bool isNPC, bool isOLDWOMAN)
     {
 
         button1.SetActive(false);
@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
             {
                 chatEffect.Setting(talkData.Split(':')[0]);
 
-
                 img.color = new Color(1, 1, 1, 1);
                 img.sprite = talkManager.Getimg(id, 0);
                 select3 = talkData.Split(':')[1];
@@ -108,9 +107,45 @@ public class GameManager : MonoBehaviour
                     select2 = talkData.Split(':')[3];
                 }
             }
-
-
         }
+
+        else if(isOLDWOMAN)
+        {
+            if (talkData == null) { chatEffect.Setting("널값임."); }
+            else
+            {
+                chatEffect.Setting(talkData.Split(':')[0]);
+
+                img.color = new Color(1, 1, 1, 1);
+                img.sprite = talkManager.Getimg(id, 0);
+
+    
+                select3 = talkData.Split(':')[1];
+                while (true)
+                {
+                    int value = Random.Range(10, 18);
+                    if (int.Parse(select3) == value)
+                    {
+                        isButton = false;
+                        break;
+                    }
+                    else
+                        continue;
+                }
+                
+
+                /*
+                select3 = talkData.Split(':')[1];
+                if (select3 == "1")
+                {
+                    isButton = true;
+                    select1 = talkData.Split(':')[2];
+                    select2 = talkData.Split(':')[3];
+                }
+                */
+            }
+        }
+
         else
         {
             if (talkData == null) { chatEffect.Setting("널값임."); }

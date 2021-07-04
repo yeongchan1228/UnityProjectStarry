@@ -28,13 +28,26 @@ public class TalkManager : MonoBehaviour
             userInfo = user_man.GetComponent<UserInfo>();
         }
         else { userInfo = user_woman.GetComponent<UserInfo>(); }
-       
+
         //대화
-        talking.Add("worker", new string[] { "여기는 몬스터가 살고있는 동굴이야.:0", "위험하니깐 저리가.:0", "그래도 들어갈꺼야?\n\n:1: 들어간다.: 돌아간다." });
-        talking.Add("dog", new string[] { "멍멍!:0", "멍멍머엉!!!(꺼져):0" });
+        talking.Add("coworker", new string[] { "지금은 공사 중이라 못 지나간단다. 나중에 다시 오렴.:0" });
+      
+        talking.Add("worker", new string[] { "여기는 몬스터가 살고있는 동굴이야.:0", "위험하니깐 저리가.:0", "그래도 들어갈 거야?\n\n:1: 동굴에 들어간다.: 집으로 돌아간다." });
+        talking.Add("dog", new string[] { "멍멍멍멍! 멍멍멍? (할머니가 남긴 선물이야. 볼래?)\n\n:1: 본다. : 안 본다." });
   
         if (user_man != null|| user_woman != null) { talking.Add("sign", new string[] { "'" + userInfo.getName() + "'" + "님의 집입니다.:0" }); }
         talking.Add("bed", new string[] { "침대에 왔어요, 뭘 할까요?\n\n:1: 휴식을 취한다.: 잠을 잔다." });
+
+        talking.Add("oldwoman", new string[] {
+            "반갑구나. 네가 이번에 새로 이사온 " + userInfo.getName() +"(이)라고 했지?:10",
+            "너희 할머니가 생전에 우리 딸이랑 정말 잘 놀아줬는데 말야.:11",
+            "내 남편도 너희 할머니를 정말 예뻐했단다. 호호.:12",
+            "너희 할머니가 유난히 좋아하던 과일이 있었는데 말야, 혹시 아니? 바로 딸기란다.:13",
+            "우리 가게에 파는 별빛 과일 먹어봤니? 그게 재배하면 정말 달고 맛있단다. 너희 할머니도 좋아하실 텐데.:14",
+            "천사의 과일은 어쩌면 우리가 만날 수 없는 것들을 다시 볼 수 있게 해줄지도 모른단다.:15",
+            "악마의 과일이라고 꼭 나쁜 건 아니란다. 너희 할머니랑 나랑 처음으로 여행 갔을 때 발견한 과일이거든.:16",
+            "네 할머니가 너를 좋아하는 마음을 꼭 닮은 물고기가 있던데, 우리 가게에 팔아보는 건 어때?:17"});
+
 
         //처음 스토리
 
@@ -86,6 +99,8 @@ public class TalkManager : MonoBehaviour
         img.Add("worker", spriteimg[0]);
         img.Add("dog", spriteimg[1]);
         img.Add("grandma", spriteimg[2]);
+        img.Add("coworker", spriteimg[3]);
+        img.Add("oldwoman", spriteimg[4]);
     }
 
     public string GetTalk(string id, int talkIndex)
