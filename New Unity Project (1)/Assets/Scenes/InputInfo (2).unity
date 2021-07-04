@@ -6277,6 +6277,7 @@ MonoBehaviour:
   id: man
   isNPC: 0
   isSELLER: 0
+  isOLDWOMAN: 0
 --- !u!1 &274229621
 GameObject:
   m_ObjectHideFlags: 0
@@ -15283,6 +15284,7 @@ MonoBehaviour:
   ImgAnimator: {fileID: 1829244418}
   img: {fileID: 1829244419}
   talkIndex: 0
+  talkIndex2: 0
   isAction: 0
   button1: {fileID: 1571424292}
   button2: {fileID: 1894636737}
@@ -15469,9 +15471,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6bb6ca507b3ed6d4cb9727a042c89ad0, type: 3}
   - {fileID: 21300000, guid: b8c8d2c3d0f3844a482ace7ddcb2574b, type: 3}
   - {fileID: 21300000, guid: 4f4a24271d363431297b5790cddf88d7, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 6e526ef3a847d49609da9d0cd9acb2f6, type: 3}
+  - {fileID: 21300000, guid: 249230eea0d1740f58df58df278ef6a8, type: 3}
+  - {fileID: 21300000, guid: d14cecebfff034ba39a49cc38e95e1b8, type: 3}
+  - {fileID: 21300000, guid: 8dfc93a197e8745b2805ed63f5b184d9, type: 3}
   userInfo: {fileID: 0}
 --- !u!4 &694321736
 Transform:
@@ -44603,6 +44606,7 @@ MonoBehaviour:
   id: woman
   isNPC: 0
   isSELLER: 0
+  isOLDWOMAN: 0
 --- !u!1 &1998319042
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Animator talk;
     public Animator ImgAnimator;
     public Image img; // 초상화
-    public int talkIndex;
+    public int talkIndex, talkIndex2;
     public bool isAction; // 대화창이 켜져있는지 아닌지 확인
     public GameObject button1;
     public GameObject button2;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject user_woman;
     bool getinfo;
     public UserInfo userInfo;
-
+    int count;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         //Chat.SetActive(true);
         scanobject = scanobj;
         NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
-        Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isOLDWOMAN);
+        Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isHINT);
         talk.SetBool("isShow", isAction);
         if (!isAction)
         {
@@ -49,22 +49,29 @@ public class GameManager : MonoBehaviour
 
     
 
-    void Talking(string id, bool isNPC, bool isOLDWOMAN)
+    void Talking(string id, bool isNPC, bool isHINT)
     {
-
         button1.SetActive(false);
         button2.SetActive(false);
         
         string talkData = talkManager.GetTalk(id, talkIndex);
-        if(talkIndex > 0)
+
+        //talkIndex2 = Random.Range(0, 8);
+        //string talkData2 = talkManager.GetTalk(id, talkIndex2);
+
+
+        if (talkIndex > 0)
         {
             ImgAnimator.SetTrigger("Effect");
         }
+
+    
 
         if (talkData == null && chatEffect.doing == false)
         {
             isAction = false;
             talkIndex = 0;
+            
             if (!getinfo)
             {
                 user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
@@ -77,6 +84,7 @@ public class GameManager : MonoBehaviour
                 else { userInfo = user_woman.GetComponent<UserInfo>(); }
                 getinfo = true;
             }
+
             if (userInfo.storycounter < 1)
             {
                 IsFirstStory isFirst = GameObject.Find("Trigger").GetComponent<IsFirstStory>();
@@ -109,7 +117,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        else if(isOLDWOMAN)
+        else if(isHINT)
         {
             if (talkData == null) { chatEffect.Setting("널값임."); }
             else
@@ -118,32 +126,9 @@ public class GameManager : MonoBehaviour
 
                 img.color = new Color(1, 1, 1, 1);
                 img.sprite = talkManager.Getimg(id, 0);
-
-    
-                select3 = talkData.Split(':')[1];
-                while (true)
-                {
-                    int value = Random.Range(10, 18);
-                    if (int.Parse(select3) == value)
-                    {
-                        isButton = false;
-                        break;
-                    }
-                    else
-                        continue;
-                }
-                
-
-                /*
-                select3 = talkData.Split(':')[1];
-                if (select3 == "1")
-                {
-                    isButton = true;
-                    select1 = talkData.Split(':')[2];
-                    select2 = talkData.Split(':')[3];
-                }
-                */
+                count = 1;
             }
+
         }
 
         else

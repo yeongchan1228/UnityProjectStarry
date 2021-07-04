@@ -40489,7 +40489,7 @@ MonoBehaviour:
   id: coworker
   isNPC: 1
   isSELLER: 0
-  isOLDWOMAN: 0
+  isHINT: 0
 --- !u!61 &884937344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41828,7 +41828,7 @@ MonoBehaviour:
   id: oldwoman
   isNPC: 0
   isSELLER: 0
-  isOLDWOMAN: 1
+  isHINT: 1
 --- !u!61 &910891084
 BoxCollider2D:
   m_ObjectHideFlags: 0

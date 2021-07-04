@@ -39,15 +39,13 @@ public class TalkManager : MonoBehaviour
         talking.Add("bed", new string[] { "침대에 왔어요, 뭘 할까요?\n\n:1: 휴식을 취한다.: 잠을 잔다." });
 
         talking.Add("oldwoman", new string[] {
-            "반갑구나. 네가 이번에 새로 이사온 " + userInfo.getName() +"(이)라고 했지?:10",
-            "너희 할머니가 생전에 우리 딸이랑 정말 잘 놀아줬는데 말야.:11",
-            "내 남편도 너희 할머니를 정말 예뻐했단다. 호호.:12",
-            "너희 할머니가 유난히 좋아하던 과일이 있었는데 말야, 혹시 아니? 바로 딸기란다.:13",
-            "우리 가게에 파는 별빛 과일 먹어봤니? 그게 재배하면 정말 달고 맛있단다. 너희 할머니도 좋아하실 텐데.:14",
-            "천사의 과일은 어쩌면 우리가 만날 수 없는 것들을 다시 볼 수 있게 해줄지도 모른단다.:15",
-            "악마의 과일이라고 꼭 나쁜 건 아니란다. 너희 할머니랑 나랑 처음으로 여행 갔을 때 발견한 과일이거든.:16",
-            "네 할머니가 너를 좋아하는 마음을 꼭 닮은 물고기가 있던데, 우리 가게에 팔아보는 건 어때?:17"});
+            "너희 할머니가 생전에 우리 딸이랑 정말 잘 놀아줬는데 말야.\n내 남편도 너희 할머니를 정말 예뻐했단다. 호호.:0",
+            "아, 참! 악마의 과일이라고 꼭 나쁜 건 아니란다.\n너희 할머니랑 나랑 처음으로 여행 갔을 때 발견한 과일이거든.:0"});
 
+        talking.Add("oldman", new string[] {"너희 할머니가 유난히 좋아하던 과일이 있었는데 말야, 혹시 아니?\n:0", "바로 딸기란다, 허허. 스태리팜의 명물이지.:0"});
+        talking.Add("frog", new string[] { "할머니의 사랑이 담긴 물고기를 상점에 팔면 엄청난 걸 준다는 소문이 있어!:0" });
+        talking.Add("boy", new string[] { "상점에 파는 별빛 과일은 우리 할아버지 최애템이야!\n어른들은 다 좋아한댔어!:0" });
+        talking.Add("boy2", new string[] { "천사의 과일은 만날 수 없는 걸 다시 볼 수 있게 해줄지도 모른대.:0" });
 
         //처음 스토리
 
@@ -101,6 +99,10 @@ public class TalkManager : MonoBehaviour
         img.Add("grandma", spriteimg[2]);
         img.Add("coworker", spriteimg[3]);
         img.Add("oldwoman", spriteimg[4]);
+        img.Add("oldman", spriteimg[5]);
+        img.Add("frog", spriteimg[6]);
+        img.Add("boy", spriteimg[7]);
+        img.Add("boy2", spriteimg[8]);
     }
 
     public string GetTalk(string id, int talkIndex)
