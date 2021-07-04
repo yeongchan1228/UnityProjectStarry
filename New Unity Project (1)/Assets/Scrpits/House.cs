@@ -52,7 +52,7 @@ public class House : MonoBehaviour
                 userInfo.getItem_Hoe().SetHoeSpeed(10f);
                 userInfo.getItem_FishingRod().SetFishingRodName("Stone_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(1f);
-                userInfo.getItem_Weapon().SetWeaponName("CutlassSword");
+                userInfo.getItem_Weapon().SetWeaponName("rustysword");
                 userInfo.getItem_Weapon().SetWeaponPower(5);
                 userInfo.getItem_Pick().SetPickName("blueberrySeed");
                 userInfo.getItem_Pick().SetPickKinds("Blueberry");
@@ -80,7 +80,7 @@ public class House : MonoBehaviour
                     GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
                     Image selectItemBox = itembox1.GetComponent<Image>();
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
-                    ItemImg1.sprite = swords[0]; // 검
+                    ItemImg1.sprite = swords[6]; // 검
                     Image ItemImg2 = itemobj2.GetComponent<Image>();
                     ItemImg2.sprite = tools[14]; // 호미
                     Image ItemImg3 = itemobj3.GetComponent<Image>();
@@ -154,7 +154,7 @@ public class House : MonoBehaviour
                     GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
                     Image selectItemBox = itembox1.GetComponent<Image>();
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
-                    ItemImg1.sprite = swords[0]; // 검
+                    ItemImg1.sprite = swords[6]; // 검
                     Image ItemImg2 = itemobj2.GetComponent<Image>();
                     ItemImg2.sprite = tools[14]; // 호미
                     Image ItemImg3 = itemobj3.GetComponent<Image>();
