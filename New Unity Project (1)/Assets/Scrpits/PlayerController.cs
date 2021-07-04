@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteR;
     private Sprite[] seeds, tools, Uiboxs, invens, fruit_afters, fish_results;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
+    private Sprite[] hole;
     GameObject chatEffect, Sleep, user_man, user_woman;
     Animator SleepAni;
     public GameObject PlayerUI;
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
         fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
         fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
         fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
+        hole = Resources.LoadAll<Sprite>("Sprites/Hole");
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
     }
         
@@ -371,8 +373,22 @@ public class PlayerController : MonoBehaviour
                 Do_Fishing();
             }  
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj != null && userInfo.getItem_Weapon().GetWeaponName().Equals("GalaxySword")) // 갤럭시 검 장착 + 스페이스바 누를 시 
+        {
+            if (targetobj.tag.Equals("goHole"))
+            {
+                Go_Hole();
+            }
+        }
     }
     
+    void Go_Hole() // 갤럭시 검으로 특정 지점 캤을 때
+    {
+      
+
+    }
+
     void Input_playerUI()
     {
         if(PlayerUI == null) { PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; Leveltext = PlayerUI.transform.GetChild(5).transform.GetChild(0).GetComponent<Text>(); }
@@ -833,7 +849,7 @@ public class PlayerController : MonoBehaviour
         Text resulttext = Result_obj.transform.GetChild(1).GetComponent<Text>();
         textmanager.isAction = true;
         if (userInfo.getGender().Equals("man")) { resultimg.sprite = fish_results[0]; }
-        else { resultimg.sprite = fish_results[3]; }
+        else { resultimg.sprite = fish_results[2]; }
         if (fish_difficulty == 1) { get_fish_name = fishes1[0].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
         else if (fish_difficulty == 0.5f) { int result = Random.Range(0, 2); get_fish_name = fishes2[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
         else if (fish_difficulty == 0.1f) { int result = Random.Range(0, 2); get_fish_name = fishes3[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
