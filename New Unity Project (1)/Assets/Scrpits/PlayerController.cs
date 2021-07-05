@@ -374,10 +374,13 @@ public class PlayerController : MonoBehaviour
             }  
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && targetobj != null && userInfo.getItem_Weapon().GetWeaponName().Equals("GalaxySword")) // 갤럭시 검 장착 + 스페이스바 누를 시 
+        if (Input.GetKeyDown(KeyCode.Space) && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) // 갤럭시 검 장착 + 스페이스바 누를 시
+            // 우선 예시로 부서진 검 등록해둠
         {
-            if (targetobj.tag.Equals("goHole"))
+            Debug.Log("여기 들어가긴 하나?");
+            if (gameObject.tag.Equals("goHole"))
             {
+                Debug.Log("여기는?");
                 Go_Hole();
             }
         }
@@ -385,8 +388,9 @@ public class PlayerController : MonoBehaviour
     
     void Go_Hole() // 갤럭시 검으로 특정 지점 캤을 때
     {
-      
-
+        spriteR = gameObject.GetComponent<SpriteRenderer>();
+        if(spriteR.sprite.name.Equals("backyard_20"))
+             spriteR.sprite = hole[0];
     }
 
     void Input_playerUI()
