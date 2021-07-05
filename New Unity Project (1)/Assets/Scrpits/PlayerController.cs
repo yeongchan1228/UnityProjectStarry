@@ -437,7 +437,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // ************* 나중에 코드 추가할 거
-        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 != null && isSecret == false && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) // 갤럭시 검 장착 + 스페이스바 누를 시                                                                                                                                                                           // 우선 예시로 부서진 검 등록해둠
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 != null && isSecret == false && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("galaxysword")) // 갤럭시 검 장착 + 스페이스바 누를 시                                                                                                                                                                           // 우선 예시로 부서진 검 등록해둠
         {
             if (targetobj2.tag.Equals("goHole"))
             {
@@ -447,7 +447,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 != null && isSecret == true && isGoHole == true && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) //
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 != null && isSecret == true && isGoHole == true && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("galaxysword")) //
         {
             textmanager.isAction = true;
             See_Hole();
