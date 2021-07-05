@@ -104,15 +104,6 @@ public class MenuControl : MonoBehaviour
                 textmanager.isAction = true; // 캐릭터 움직이지 못하게 막기
             }
         }
-
-        if ((Input.GetKeyDown(KeyCode.Space)) && (isMap == true)) // 스페이스바 눌렀을 때 지도 꺼지게
-        {
-            textmanager.isAction = false;
-            Map.SetActive(false);
-            treasure_Map.SetActive(false);
-            chat.buttonOn = false;
-            isMap = false;
-        }
     }
 
     void GetInfo()

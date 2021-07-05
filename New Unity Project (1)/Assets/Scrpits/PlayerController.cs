@@ -42,6 +42,14 @@ public class PlayerController : MonoBehaviour
     int aniDir, pick_count;
     monsterHP mHP;
 
+    /**************************꼰 코드에 추가할 거 ******************/
+    public GameObject Hole_UI, furnace, fin_box, proobj2, exit;
+    public Image progressimg2;
+    public Text progresstext2;
+    public bool isSecret;
+    public bool isSeeSecret;
+    public bool isGoHole;
+
 
     // Start is called before the first frame update
     void Start()
@@ -428,23 +436,66 @@ public class PlayerController : MonoBehaviour
             }  
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 !=null && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) // 갤럭시 검 장착 + 스페이스바 누를 시
-            // 우선 예시로 부서진 검 등록해둠
+        // ************* 나중에 코드 추가할 거
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 != null && isSecret == false && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) // 갤럭시 검 장착 + 스페이스바 누를 시                                                                                                                                                                           // 우선 예시로 부서진 검 등록해둠
         {
             if (targetobj2.tag.Equals("goHole"))
             {
                 Go_Hole();
+                isGoHole = true;
+                Change_Hole();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 != null && isSecret == true && isGoHole == true && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) //
+        {
+            textmanager.isAction = true;
+            See_Hole();
+            isSecret = false;
+        }
+
+
     }
-    
+
     void Go_Hole() // 갤럭시 검으로 특정 지점 캤을 때
     {
         spriteR = targetobj2.GetComponent<SpriteRenderer>();
-        if(spriteR.sprite.name.Equals("goHole"))
-             spriteR.sprite = hole[0]; // 구멍이 생긴 땅으로 바뀜
+        if (spriteR.sprite.name.Equals("goHole"))
+        {
+            proobj2 = GameObject.Find("Secret").transform.GetChild(0).gameObject;
+            progressimg2 = proobj2.transform.GetChild(1).gameObject.GetComponent<Image>();
+            progresstext2 = proobj2.transform.GetChild(2).gameObject.GetComponent<Text>();
+            progressimg2.fillAmount = 0;
+            textmanager.isAction = true;
+            proobj2.SetActive(true);
+        }
+    }
+
+    void Change_Hole()
+    {
+        if (isGoHole == true)
+        {
+            spriteR.sprite = hole[0]; // 구멍이 생긴 땅으로 바뀜
+            textmanager.isAction = false;
+            isSeeSecret = true;
+        }
 
     }
+    void See_Hole()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && spriteR.sprite.name.Equals("hole") && isSeeSecret == true)
+        {
+            Hole_UI = GameObject.Find("Hole_UI").transform.GetChild(0).gameObject;
+            furnace = Hole_UI.transform.GetChild(0).gameObject;
+            fin_box = Hole_UI.transform.GetChild(1).gameObject;
+            exit = Hole_UI.transform.GetChild(2).gameObject;
+            Hole_UI.SetActive(true);
+            furnace.SetActive(true);
+            fin_box.SetActive(true);
+            exit.SetActive(true);
+        }
+    }
+
 
     void Input_playerUI()
     {
