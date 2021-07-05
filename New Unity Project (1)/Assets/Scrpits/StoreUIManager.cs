@@ -59,7 +59,7 @@ public class StoreUIManager : MonoBehaviour
         fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
         fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
         fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
-        PlayerUI = GameObject.Find("PlayerUI").gameObject;
+        PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
         if (userinfo2.isTrue)
         {

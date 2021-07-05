@@ -11,6 +11,7 @@ public class MenuControl : MonoBehaviour
     GameManager textmanager;
     GameObject user_man, user_woman;
     PlayerController playercontrol;
+    public bool issave, issavefirst;
     public GameObject game1, game2;
     Image fish_progressimg;
     GameObject PlayerUI;
@@ -104,6 +105,16 @@ public class MenuControl : MonoBehaviour
                 textmanager.isAction = true; // 캐릭터 움직이지 못하게 막기
             }
         }
+        if (issave && issavefirst == false) // 세이브 실행시 한번만
+        {
+            Debug.LogError("세이브시 한번만 실행");
+            user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
+            user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
+            UserInfo user2 = user_man.GetComponent<UserInfo>();
+            if (user2.isTrue) { userInfo = user_man.GetComponent<UserInfo>(); playercontrol = user_man.GetComponent<PlayerController>(); }
+            else { userInfo = user_woman.GetComponent<UserInfo>(); playercontrol = user_woman.GetComponent<PlayerController>(); }
+            issavefirst = true;
+        }
     }
 
     void GetInfo()
@@ -138,6 +149,10 @@ public class MenuControl : MonoBehaviour
         //PlayerPefs 데이터 저장 함수
         //플레이어 위치 저장
         if (userInfo.getGender().Equals("man")) {
+            Debug.LogError("실행됨");
+            Debug.LogError(user_man.transform.position.x);
+            Debug.LogError(user_man.transform.position.y);
+
             PlayerPrefs.SetFloat("PlayerX", user_man.transform.position.x);
             PlayerPrefs.SetFloat("PlayerY", user_man.transform.position.y);
         }
@@ -368,20 +383,27 @@ public class MenuControl : MonoBehaviour
             Invoke("Off_Sleep", 4.6f);
             int checkday = userInfo.getCheckDay();
             int day = userInfo.getDay();
+            if (checkday == 121)
+            {
+                userInfo.setCheckDay(0);
+                checkday = 0;
+            }
+            if(day == 30)
+            {
+                userInfo.setDay(0);
+                day = 0;
+            }
             userInfo.setCheckDay(++checkday);
             userInfo.setDay(++day);
             userInfo.setHp(100);
             PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
             userInfo.setUIHp();
             Text Daytext = PlayerUI.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-            if (userInfo.getCheckDay() < 30)
-            {
-                Daytext.text = "봄, " + userInfo.getDay() + "일";
-            }
-            else if (userInfo.getCheckDay() < 60)
-            {
-                Daytext.text = "여름, " + userInfo.getDay() + "일";
-            }
+            if (userInfo.getCheckDay() < 31) { Daytext.text = "봄, " + userInfo.getDay() + "일"; }
+            else if (userInfo.getCheckDay() < 61) { Daytext.text = "여름, " + userInfo.getDay() + "일"; }
+            else if (userInfo.getCheckDay() < 91) { Daytext.text = "가을, " + userInfo.getDay() + "일"; }
+            else if (userInfo.getCheckDay() < 121) { Daytext.text = "겨울, " + userInfo.getDay() + "일"; }
+
             //chat.isbt1 = true;
             //chat.isbt2 = false;
             //chat.isallbutton = false;
@@ -1158,6 +1180,7 @@ public class MenuControl : MonoBehaviour
 
     public void Item_Button_click()
     {
+        
         PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
         GameObject select_button = EventSystem.current.currentSelectedGameObject;
         GameObject select_Item = select_button.transform.parent.gameObject;
@@ -1178,7 +1201,7 @@ public class MenuControl : MonoBehaviour
             sbottonimg.sprite = invens[1] as Sprite; // 인벤 선택
             if(!asd.activeSelf) { return; }
             if (ibuttonimg.sprite.name.Equals("milSeed")) { UISeed.sprite = seed2s[9]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("mil1"); UISeedimg.SetActive(true); }
-            else if (ibuttonimg.sprite.name.Equals("potatoSeed")) { UISeed.sprite = seed2s[12]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Potato"); UISeedimg.SetActive(true); }
+            else if (ibuttonimg.sprite.name.Equals("potatoSeed")) { UISeed.sprite = seed2s[12]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString();  userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name);  userInfo.getItem_Pick().SetPickKinds("Potato");  UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("carrotSeed")) { UISeed.sprite = seed2s[1]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("carrot"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("dhrtntnSeed")) { UISeed.sprite = seed2s[3]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("dhrtntn1"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("dkqhzkehSeed")) { UISeed.sprite = seed2s[4]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("dkqhzkeh1"); UISeedimg.SetActive(true); }
