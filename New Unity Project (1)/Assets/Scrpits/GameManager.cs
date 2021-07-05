@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public GameObject user_woman;
     bool getinfo;
     public UserInfo userInfo;
-    int count;
 
     void Start()
     {
@@ -126,7 +125,6 @@ public class GameManager : MonoBehaviour
 
                 img.color = new Color(1, 1, 1, 1);
                 img.sprite = talkManager.Getimg(id, 0);
-                count = 1;
             }
 
         }

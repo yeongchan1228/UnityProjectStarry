@@ -55,7 +55,7 @@ public class House : MonoBehaviour
                 Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
                 Image Fishimg = Inventory.transform.GetChild(2).GetComponent<Image>();
                 Image Fruitimg = Inventory.transform.GetChild(3).GetComponent<Image>();
-                Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+                Image Storyimg = Inventory.transform.GetChild(11).GetComponent<Image>();
                 Seedimg.sprite = invens[2] as Sprite;
                 Fishimg.sprite = invens[3] as Sprite;
                 Fruitimg.sprite = invens[3] as Sprite;
@@ -133,7 +133,7 @@ public class House : MonoBehaviour
                 Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
                 Image Fishimg = Inventory.transform.GetChild(2).GetComponent<Image>();
                 Image Fruitimg = Inventory.transform.GetChild(3).GetComponent<Image>();
-                Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+                Image Storyimg = Inventory.transform.GetChild(11).GetComponent<Image>();
                 Seedimg.sprite = invens[2] as Sprite;
                 Fishimg.sprite = invens[3] as Sprite;
                 Fruitimg.sprite = invens[3] as Sprite;

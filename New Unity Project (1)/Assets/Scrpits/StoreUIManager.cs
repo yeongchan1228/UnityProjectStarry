@@ -707,7 +707,7 @@ public class StoreUIManager : MonoBehaviour
                     userInfo.StoryItemkey.Add(select_buy_item);
                     userInfo.StoryItem.Add(select_buy_item, story_count);
                 }
-                userInfo.StoryItem[select_buy_item] = seed_count;
+                userInfo.StoryItem[select_buy_item] = story_count;
                 isSamekey = false;
                 for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
                 {
@@ -720,10 +720,10 @@ public class StoreUIManager : MonoBehaviour
                     if (userInfo.StoryItemkey[i].Equals("Orgol")) { seedimg.sprite = seeds[10]; }
                     Image.SetActive(true);
                     GameObject text = bottonobj.transform.GetChild(1).gameObject;
-                    Text Storytext = text.GetComponent<Text>(); 
+                    Text Storytext = text.GetComponent<Text>();
                     Storytext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
                     text.SetActive(true);
-                    seed_count = 0;
+                    story_count = 0;
                     Buy_obj.SetActive(false);
                 }
                 return;
@@ -753,8 +753,7 @@ public class StoreUIManager : MonoBehaviour
                 Image bottonimg = bottonobj.GetComponent<Image>();
                 GameObject Image = bottonobj.transform.GetChild(0).gameObject;
                 Image seedimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
-                if (userInfo.SeedItemkey[i].Equals("Orgol")) { seedimg.sprite = seeds[10]; }
-                else if (userInfo.SeedItemkey[i].Equals("milSeed")) { seedimg.sprite = seeds[9]; }
+                if (userInfo.SeedItemkey[i].Equals("milSeed")) { seedimg.sprite = seeds[9]; }
                 else if (userInfo.SeedItemkey[i].Equals("potatoSeed")) { seedimg.sprite = seeds[12]; }
                 else if (userInfo.SeedItemkey[i].Equals("carrotSeed")) { seedimg.sprite = seeds[1]; }
                 else if (userInfo.SeedItemkey[i].Equals("dhrtntnSeed")) { seedimg.sprite = seeds[3]; }

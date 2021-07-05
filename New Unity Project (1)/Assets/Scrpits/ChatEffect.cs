@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class ChatEffect : MonoBehaviour
 {
-    string msg; // ÅØ½ºÆ®
+    string msg; // ï¿½Ø½ï¿½Æ®
     public GameObject End_Button;
-    public int EffectSpeed; // ±ÛÀÚ ³ª¿À´Â ¼Óµµ
+    public int EffectSpeed; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
     Text text1;
     int index;
     Sprite[] firstimgs;
-    AudioSource audio;
+    AudioSource audio1;
     float Invoke_speed;
     public GameManager game;
     public bool doing;
@@ -26,7 +26,7 @@ public class ChatEffect : MonoBehaviour
     void Awake()
     {
         firstimgs = Resources.LoadAll<Sprite>("Sprites/FirstStory");
-        audio = GetComponent<AudioSource>();
+        audio1 = GetComponent<AudioSource>();
         text1 = GetComponent<Text>();
         ButtonText1 = Button1.GetComponent<Text>();
         ButtonText2 = Button2.GetComponent<Text>();
@@ -54,7 +54,7 @@ public class ChatEffect : MonoBehaviour
         }
 
     }
-    void sEffect() // ½ÃÀÛ
+    void sEffect() // ï¿½ï¿½ï¿½ï¿½
     {
         text1.text = "";
         index = 0;
@@ -63,9 +63,9 @@ public class ChatEffect : MonoBehaviour
         Invoke_speed = 1.0f / EffectSpeed;
         Invoke("dEffect", Invoke_speed);
     }
-    void dEffect() // ÁøÇà
+    void dEffect() // ï¿½ï¿½ï¿½ï¿½
     {
-        if(text1.text == msg) // ¸ðµç ¹®ÀÚ¿­ Ãâ·Â
+        if(text1.text == msg) // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½
         {
             eEffect();
             return;
@@ -73,7 +73,7 @@ public class ChatEffect : MonoBehaviour
         text1.text += msg[index];
 
         if(msg[index] != ' ' || msg[index] != '.')
-            audio.Play();
+            GetComponent<AudioSource>().Play();
 
         index++;
 
@@ -83,7 +83,7 @@ public class ChatEffect : MonoBehaviour
 
         Invoke("dEffect", Invoke_speed);
     }
-    void eEffect() // ³¡
+    void eEffect() // ï¿½ï¿½
     {
         End_Button.SetActive(true);
         doing = false;

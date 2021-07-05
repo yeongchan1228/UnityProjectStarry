@@ -14,10 +14,7 @@ public class FirstMenuHandle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     public void GameLoad() // 저장 데이터 불러오기
     {
         if (!PlayerPrefs.HasKey("PlayerX")) // 키 PlayerX 찾기
@@ -26,6 +23,11 @@ public class FirstMenuHandle : MonoBehaviour
         }
         //float x = PlayerPrefs.GetFloat("PlayerX");
         //float y = PlayerPrefs.GetFloat("PlayerY");
+
+
+
+
+
         string scene = PlayerPrefs.GetString("Scene");
         SceneManager.LoadScene(scene);
         //user_man.transform.position = new Vector3(x, y, 0);

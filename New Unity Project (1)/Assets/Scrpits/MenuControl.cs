@@ -31,7 +31,6 @@ public class MenuControl : MonoBehaviour
     public GameObject Inventory, SeedItem, FruitItem, FishItem, ManInfo, WomanInfo;
 
     public GameObject InventorySeed, InventoryFruit, InventoryFish, InventoryStory;
-    bool isMap = false; // 지도 봤는지
 
     GameObject InvenInfo;
     public Text NameInfo, FarmNameInfo, ExpInfo, PowerInfo, ArmorInfo;
@@ -85,7 +84,7 @@ public class MenuControl : MonoBehaviour
         InventorySeed = Inventory.transform.GetChild(6).gameObject;
         InventoryFruit = Inventory.transform.GetChild(7).gameObject;
         InventoryFish = Inventory.transform.GetChild(8).gameObject;
-        InventoryStory = Inventory.transform.GetChild(13).gameObject;
+        InventoryStory = Inventory.transform.GetChild(12).gameObject;
     }
 
     // Update is called once per frame
@@ -162,9 +161,48 @@ public class MenuControl : MonoBehaviour
         PlayerPrefs.SetString("Gender", userInfo.getGender());
 
         //user Item 저장
-
-
-
+        PlayerPrefs.SetString("Weapon_Name", userInfo.getItem_Weapon().GetWeaponName());
+        PlayerPrefs.SetInt("Weapon_Power", userInfo.getItem_Weapon().GetWeaponPower());
+        if (userInfo.getItem_Armor().GetArmorName() != null)
+        {
+            PlayerPrefs.SetString("Armor_Name", userInfo.getItem_Armor().GetArmorName());
+            PlayerPrefs.SetInt("Armor_Power", userInfo.getItem_Armor().GetArmorPower());
+        }
+        PlayerPrefs.SetString("Hoe_Name", userInfo.getItem_Hoe().GetHoeName());
+        PlayerPrefs.SetFloat("Hoe_Speed", userInfo.getItem_Hoe().GetHoeSpeed());
+        PlayerPrefs.SetString("FishingRod_Name", userInfo.getItem_FishingRod().GetFishingRodName());
+        PlayerPrefs.SetFloat("FishingRod_Efficiency", userInfo.getItem_FishingRod().GetFishingRodEfficiency());
+        PlayerPrefs.SetString("WaterPPU_Name", userInfo.getItem_WaterPPU().GetWaterPPUName());
+        PlayerPrefs.SetInt("WaterPPU_Filled", userInfo.getItem_WaterPPU().GetWaterPPUFilled());
+        PlayerPrefs.SetInt("SeedItemCount", userInfo.SeedItem.Count);
+        PlayerPrefs.SetInt("FishItemCount", userInfo.FishItem.Count);
+        PlayerPrefs.SetInt("FruitItemCount", userInfo.FruitItem.Count);
+        PlayerPrefs.SetInt("StoryItemCount", userInfo.StoryItem.Count);
+        //user Inven 저장
+        for (int i = 0; i < userInfo.SeedItemkey.Count; i++)
+        {
+            PlayerPrefs.SetString("SeedItem" + i, userInfo.SeedItemkey[i]); //Itemkey
+            PlayerPrefs.SetString("SeedItemKey"+i, userInfo.SeedItemkey[i]); //Item <- key
+            PlayerPrefs.SetInt("SeedItemValue" + i, userInfo.SeedItem[userInfo.SeedItemkey[i]]);//Item <- value
+        }
+        for (int i = 0; i < userInfo.FruitItemkey.Count; i++)
+        {
+            PlayerPrefs.SetString("FruitItem" + i, userInfo.FruitItemkey[i]); //Itemkey
+            PlayerPrefs.SetString("FruitItemKey" + i, userInfo.FruitItemkey[i]); //Item <- key
+            PlayerPrefs.SetInt("FruitItemValue" + i, userInfo.FruitItem[userInfo.FruitItemkey[i]]);//Item <- value
+        }
+        for (int i = 0; i < userInfo.FishItemkey.Count; i++)
+        {
+            PlayerPrefs.SetString("FishItem" + i, userInfo.FishItemkey[i]); //Itemkey
+            PlayerPrefs.SetString("FishItemKey" + i, userInfo.FishItemkey[i]); //Item <- key
+            PlayerPrefs.SetInt("FishItemValue" + i, userInfo.FishItem[userInfo.FishItemkey[i]]);//Item <- value
+        }
+        for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
+        {
+            PlayerPrefs.SetString("StoryItem" + i, userInfo.StoryItemkey[i]); //Itemkey
+            PlayerPrefs.SetString("StoryItemKey" + i, userInfo.StoryItemkey[i]); //Item <- key
+            PlayerPrefs.SetInt("StoryItemValue" + i, userInfo.StoryItem[userInfo.StoryItemkey[i]]);//Item <- value
+        }
         //PlayerPrefs에 저장
         PlayerPrefs.Save();
 
@@ -282,7 +320,6 @@ public class MenuControl : MonoBehaviour
             treasure_Map = Map.transform.GetChild(0).gameObject; // Map 배경
             Map.SetActive(true);
             treasure_Map.SetActive(true);
-            isMap = true;
         }
 
     }
@@ -312,7 +349,6 @@ public class MenuControl : MonoBehaviour
             textmanager.button2.SetActive(false);
             chat.buttonOn = false;
             textmanager.talkIndex = 0;
-            isMap = false;
         }
 
         else if (playercontrol.scanObj.name.Equals("bed")) // 침대일 때 (잠자기)
@@ -654,6 +690,13 @@ public class MenuControl : MonoBehaviour
                     InventoryFish.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
                 }
             }
+            else if (isStory)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryStory.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                }
+            }
             isDeleteButton = false;
         }
         else
@@ -677,6 +720,13 @@ public class MenuControl : MonoBehaviour
                 for (int i = 0; i < 20; i++)
                 {
                     InventoryFish.transform.GetChild(i).GetChild(2).gameObject.SetActive(true);
+                }
+            }
+            else if (isStory)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    InventoryStory.transform.GetChild(i).GetChild(2).gameObject.SetActive(true);
                 }
             }
             isDeleteButton = true;
@@ -720,7 +770,7 @@ public class MenuControl : MonoBehaviour
         Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
         Image Fishimg = Inventory.transform.GetChild(3).GetComponent<Image>();
         Image Fruitimg = Inventory.transform.GetChild(2).GetComponent<Image>();
-        Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+        Image Storyimg = Inventory.transform.GetChild(11).GetComponent<Image>();
         Seedimg.sprite = invens[2] as Sprite;
         Fishimg.sprite = invens[3] as Sprite;
         Fruitimg.sprite = invens[3] as Sprite;
@@ -764,7 +814,7 @@ public class MenuControl : MonoBehaviour
         Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
         Image Fishimg = Inventory.transform.GetChild(3).GetComponent<Image>();
         Image Fruitimg = Inventory.transform.GetChild(2).GetComponent<Image>();
-        Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+        Image Storyimg = Inventory.transform.GetChild(11).GetComponent<Image>();
         Seedimg.sprite = invens[3] as Sprite;
         Fishimg.sprite = invens[3] as Sprite;
         Fruitimg.sprite = invens[2] as Sprite;
@@ -808,7 +858,7 @@ public class MenuControl : MonoBehaviour
         Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
         Image Fishimg = Inventory.transform.GetChild(3).GetComponent<Image>();
         Image Fruitimg = Inventory.transform.GetChild(2).GetComponent<Image>();
-        Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+        Image Storyimg = Inventory.transform.GetChild(11).GetComponent<Image>();
         Seedimg.sprite = invens[3] as Sprite;
         Fishimg.sprite = invens[2] as Sprite;
         Fruitimg.sprite = invens[3] as Sprite;
@@ -852,7 +902,7 @@ public class MenuControl : MonoBehaviour
         Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
         Image Fishimg = Inventory.transform.GetChild(3).GetComponent<Image>();
         Image Fruitimg = Inventory.transform.GetChild(2).GetComponent<Image>();
-        Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+        Image Storyimg = Inventory.transform.GetChild(11).GetComponent<Image>();
         Seedimg.sprite = invens[3] as Sprite;
         Fishimg.sprite = invens[3] as Sprite;
         Fruitimg.sprite = invens[3] as Sprite;
@@ -869,7 +919,9 @@ public class MenuControl : MonoBehaviour
     public void Delete_Okay() 
     {
         Image buttonImg = Delete_Button.GetComponent<Image>();
+        GameObject asd = Delete_Button.transform.GetChild(0).gameObject;
         Image parentImg = Delete_Button.transform.GetChild(0).GetComponent<Image>();
+        if (!asd.activeSelf) { return; }
         string parentname = parentImg.sprite.name;
         if (parentname.Equals("Blueberry")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
         else if (parentname.Equals("carrot")) { Delete_Item_Fruit(parentname, parentImg, buttonImg, Delete_Inventory); }
@@ -911,8 +963,30 @@ public class MenuControl : MonoBehaviour
         else if (parentname.Equals("스태리팜물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
         else if (parentname.Equals("공대생물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
         else if (parentname.Equals("할머니의사랑물고기")) { Delete_Item_Fish(parentname, parentImg, buttonImg, Delete_Inventory); }
+        
+        if (parentname.Equals("milSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("potatoSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("carrotSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("dhrtntnSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("dkqhzkehSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("GrapeSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("lemonSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("blueberrySeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("melonSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("pineappleSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("pumpkinSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("rkwlSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("strawberrySeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("tnsanSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("tomatoSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("watermelonSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("darkSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("lightSeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("starrySeed")) { Delete_Item_Seed(parentname, parentImg, buttonImg, Delete_Inventory); }
 
-        GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
+
+        if (parentname.Equals("Orgol")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(13).gameObject;
         isDelete.SetActive(false);
     }
     public void Delete_Cancel() 
@@ -928,7 +1002,7 @@ public class MenuControl : MonoBehaviour
         GameObject parentImg = Delete_Button.transform.GetChild(0).gameObject;
         if (parentImg.activeSelf)
         {
-            GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(10).gameObject;
+            GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(13).gameObject;
             isDelete.SetActive(true);
         }
         
@@ -947,10 +1021,6 @@ public class MenuControl : MonoBehaviour
             GameObject bottonobj = InventoryFruit.transform.GetChild(i).gameObject;
             bottonobj.SetActive(true);
             Image bottonimg = bottonobj.GetComponent<Image>();
-            if (i == 0)
-            {
-                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
-            }
             GameObject Image = bottonobj.transform.GetChild(0).gameObject;
             Image Fruitimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
             if (userInfo.FruitItemkey[i].Equals("Blueberry")) { Fruitimg.sprite = fruit_afters[0]; }
@@ -979,7 +1049,70 @@ public class MenuControl : MonoBehaviour
             text.SetActive(true);
         }
     }
-
+    void Delete_Item_Seed(string name, Image parentImg, Image buttonImg, GameObject Inventory)
+    {
+        userInfo.SeedItem.Remove(name);
+        userInfo.SeedItemkey.Remove(name);
+        int count = userInfo.SeedItemkey.Count;
+        Inventory.transform.GetChild(count).transform.GetChild(0).gameObject.SetActive(false);
+        Inventory.transform.GetChild(count).transform.GetChild(1).gameObject.SetActive(false);
+        buttonImg.sprite = invens[0] as Sprite;
+        for (int i = 0; i < userInfo.SeedItemkey.Count; i++)
+        {
+            GameObject bottonobj = InventorySeed.transform.GetChild(i).gameObject;
+            bottonobj.SetActive(true);
+            Image bottonimg = bottonobj.GetComponent<Image>();
+            GameObject Image = bottonobj.transform.GetChild(0).gameObject;
+            Image seedimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+            if (userInfo.SeedItemkey[i].Equals("milSeed")) { seedimg.sprite = seed2s[9]; }
+            else if (userInfo.SeedItemkey[i].Equals("potatoSeed")) { seedimg.sprite = seed2s[12]; }
+            else if (userInfo.SeedItemkey[i].Equals("carrotSeed")) { seedimg.sprite = seed2s[1]; }
+            else if (userInfo.SeedItemkey[i].Equals("dhrtntnSeed")) { seedimg.sprite = seed2s[3]; }
+            else if (userInfo.SeedItemkey[i].Equals("dkqhzkehSeed")) { seedimg.sprite = seed2s[4]; }
+            else if (userInfo.SeedItemkey[i].Equals("GrapeSeed")) { seedimg.sprite = seed2s[5]; }
+            else if (userInfo.SeedItemkey[i].Equals("lemonSeed")) { seedimg.sprite = seed2s[6]; }
+            else if (userInfo.SeedItemkey[i].Equals("blueberrySeed")) { seedimg.sprite = seed2s[0]; }
+            else if (userInfo.SeedItemkey[i].Equals("melonSeed")) { seedimg.sprite = seed2s[8]; }
+            else if (userInfo.SeedItemkey[i].Equals("pineappleSeed")) { seedimg.sprite = seed2s[11]; }
+            else if (userInfo.SeedItemkey[i].Equals("pumpkinSeed")) { seedimg.sprite = seed2s[13]; }
+            else if (userInfo.SeedItemkey[i].Equals("rkwlSeed")) { seedimg.sprite = seed2s[14]; }
+            else if (userInfo.SeedItemkey[i].Equals("strawberrySeed")) { seedimg.sprite = seed2s[16]; }
+            else if (userInfo.SeedItemkey[i].Equals("tnsanSeed")) { seedimg.sprite = seed2s[17]; }
+            else if (userInfo.SeedItemkey[i].Equals("tomatoSeed")) { seedimg.sprite = seed2s[18]; }
+            else if (userInfo.SeedItemkey[i].Equals("watermelonSeed")) { seedimg.sprite = seed2s[19]; }
+            else if (userInfo.SeedItemkey[i].Equals("darkSeed")) { seedimg.sprite = seed2s[2]; }
+            else if (userInfo.SeedItemkey[i].Equals("lightSeed")) { seedimg.sprite = seed2s[7]; }
+            else if (userInfo.SeedItemkey[i].Equals("starrySeed")) { seedimg.sprite = seed2s[15]; }
+            Image.SetActive(true);
+            GameObject text = bottonobj.transform.GetChild(1).gameObject;
+            Text Fruittext = text.GetComponent<Text>(); // 과일 개수
+            Fruittext.text = userInfo.SeedItem[userInfo.SeedItemkey[i]].ToString();
+            text.SetActive(true);
+        }
+    }
+    void Delete_Item_Story(string name, Image parentImg, Image buttonImg, GameObject Inventory)
+    {
+        userInfo.StoryItem.Remove(name);
+        userInfo.StoryItemkey.Remove(name);
+        int count = userInfo.StoryItemkey.Count;
+        Inventory.transform.GetChild(count).transform.GetChild(0).gameObject.SetActive(false);
+        Inventory.transform.GetChild(count).transform.GetChild(1).gameObject.SetActive(false);
+        buttonImg.sprite = invens[0] as Sprite;
+        for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
+        {
+            GameObject bottonobj = InventoryStory.transform.GetChild(i).gameObject;
+            bottonobj.SetActive(true);
+            Image bottonimg = bottonobj.GetComponent<Image>();
+            GameObject Image = bottonobj.transform.GetChild(0).gameObject;
+            Image seedimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+            if (userInfo.StoryItemkey[i].Equals("Orgol")) { seedimg.sprite = seed2s[10]; }
+            Image.SetActive(true);
+            GameObject text = bottonobj.transform.GetChild(1).gameObject;
+            Text Fruittext = text.GetComponent<Text>(); // 과일 개수
+            Fruittext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
+            text.SetActive(true);
+        }
+    }
     void Delete_Item_Fish(string name, Image parentImg, Image buttonImg, GameObject Inventory)
     {
         userInfo.FishItem.Remove(name);
@@ -993,10 +1126,6 @@ public class MenuControl : MonoBehaviour
             GameObject bottonobj = InventoryFish.transform.GetChild(i).gameObject;
             bottonobj.SetActive(true);
             Image bottonimg = bottonobj.GetComponent<Image>();
-            if (i == 0)
-            {
-                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
-            }
             GameObject Image = bottonobj.transform.GetChild(0).gameObject;
             Image Fishimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
             if (userInfo.FishItemkey[i].Equals("평범한물고기")) { Fishimg.sprite = fishes1[0]; }
