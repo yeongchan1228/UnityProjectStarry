@@ -11,7 +11,7 @@ public class House : MonoBehaviour
     PlayerController player;
     UserInfo userInfo;
     public Animator sleep;
-    private Sprite[] tools, Uiboxs, swords, seedbarrels;
+    private Sprite[] tools, Uiboxs, swords, seedbarrels,invens;
     MenuControl menuControl;
     //public Button Menu_Button1, Menu_Button2;
     //MenuControl menuControl;
@@ -28,6 +28,7 @@ public class House : MonoBehaviour
         tools = Resources.LoadAll<Sprite>("Sprites/Tool");
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
         swords = Resources.LoadAll<Sprite>("Sprites/sword");
+        invens = Resources.LoadAll<Sprite>("Sprites/Inven");
         seedbarrels = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
         //GameObject Camera1 = GameObject.Find("Main Camera");
@@ -50,7 +51,15 @@ public class House : MonoBehaviour
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(1f);
                 userInfo.getItem_Weapon().SetWeaponName("rustysword");
                 userInfo.getItem_Weapon().SetWeaponPower(5);
-                
+                GameObject Inventory = GameObject.Find("Canvas").transform.GetChild(4).gameObject;
+                Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
+                Image Fishimg = Inventory.transform.GetChild(2).GetComponent<Image>();
+                Image Fruitimg = Inventory.transform.GetChild(3).GetComponent<Image>();
+                Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+                Seedimg.sprite = invens[2] as Sprite;
+                Fishimg.sprite = invens[3] as Sprite;
+                Fruitimg.sprite = invens[3] as Sprite;
+                Storyimg.sprite = invens[3] as Sprite;
                 menuControl.NameInfo.text = "이름 : " + userInfo.getName();
                 menuControl.FarmNameInfo.text = "농장 이름 : " + userInfo.getFarmName();
                 menuControl.isSeed = true;
@@ -120,6 +129,15 @@ public class House : MonoBehaviour
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(1f);
                 userInfo.getItem_Weapon().SetWeaponName("rustysword");
                 userInfo.getItem_Weapon().SetWeaponPower(5);
+                GameObject Inventory = GameObject.Find("Canvas").transform.GetChild(4).gameObject;
+                Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
+                Image Fishimg = Inventory.transform.GetChild(2).GetComponent<Image>();
+                Image Fruitimg = Inventory.transform.GetChild(3).GetComponent<Image>();
+                Image Storyimg = Inventory.transform.GetChild(12).GetComponent<Image>();
+                Seedimg.sprite = invens[2] as Sprite;
+                Fishimg.sprite = invens[3] as Sprite;
+                Fruitimg.sprite = invens[3] as Sprite;
+                Storyimg.sprite = invens[3] as Sprite;
                 menuControl.NameInfo.text = "이름 : " + userInfo.getName();
                 menuControl.FarmNameInfo.text = "농장 이름 : " + userInfo.getFarmName();
                 menuControl.WomanInfo.SetActive(true);

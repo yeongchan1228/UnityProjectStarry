@@ -16,7 +16,7 @@ public class Farm : MonoBehaviour
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
         if (userinfo2.isTrue)
         { // 남자
-            GameObject PlayerUI = GameObject.Find("PlayerUI").gameObject;
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
             RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
             pos.anchoredPosition = new Vector2(-30, -20);
             Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
@@ -30,7 +30,7 @@ public class Farm : MonoBehaviour
         }
         else
         { // 여자
-            GameObject PlayerUI = GameObject.Find("PlayerUI").gameObject;
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
             RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
             pos.anchoredPosition = new Vector2(-30, -20);
             Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();

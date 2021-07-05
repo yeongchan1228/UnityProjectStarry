@@ -593,6 +593,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject gameogj = GameObject.Find("WaterPPU").transform.GetChild(0).gameObject;
                 gameogj.SetActive(true);
+                return;
             }
             if (SeedField_name.Count > 0)
             {
@@ -622,6 +623,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject gameogj = GameObject.Find("WaterPPU").transform.GetChild(0).gameObject;
                 gameogj.SetActive(true);
+                return;
             }
             if (SeedField_name.Count > 0)
             {
@@ -846,12 +848,34 @@ public class PlayerController : MonoBehaviour
             userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()] = userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()] - 1;
             pick_count = userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()];
             UISeedcount.text = pick_count.ToString();
+            for(int i = 0; i<userInfo.SeedItemkey.Count; i++)
+            {
+                GameObject seedi = menuControl.InventorySeed.transform.GetChild(i).gameObject;
+                Image img = seedi.transform.GetChild(0).GetComponent<Image>();
+                Debug.LogError(userInfo.getItem_Pick().GetPickName());
+                if (img.sprite.name.Equals(userInfo.getItem_Pick().GetPickName()))
+                {
+                    Text text = seedi.transform.GetChild(1).GetComponent<Text>();
+                    text.text = pick_count.ToString();
+                }
+            }
             if(pick_count == 0)
             {
                 UISeedimg.SetActive(false);
                 UISeedcount0.SetActive(false);
                 userInfo.getItem_Pick().SetPickName(null);
                 userInfo.getItem_Pick().SetPickName(null);
+                for (int i = 0; i < userInfo.SeedItemkey.Count; i++)
+                {
+                    GameObject seedi = menuControl.InventorySeed.transform.GetChild(i).gameObject;
+                    Image img = seedi.transform.GetChild(0).GetComponent<Image>();
+                    Debug.LogError(userInfo.getItem_Pick().GetPickName());
+                    if (img.sprite.name.Equals(userInfo.getItem_Pick().GetPickName()))
+                    {
+                        Text text = seedi.transform.GetChild(1).GetComponent<Text>();
+                        text.text = pick_count.ToString();
+                    }
+                }
             }
         }
     }
@@ -884,10 +908,6 @@ public class PlayerController : MonoBehaviour
             GameObject bottonobj = menuControl.InventoryFruit.transform.GetChild(i).gameObject;
             bottonobj.SetActive(true);
             Image bottonimg = bottonobj.GetComponent<Image>();
-            if( i == 0)
-            {
-                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
-            }
             GameObject Image = bottonobj.transform.GetChild(0).gameObject;
             Image Fruitimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
             if (userInfo.FruitItemkey[i].Equals("Blueberry"))
@@ -1193,10 +1213,6 @@ public class PlayerController : MonoBehaviour
             GameObject bottonobj = menuControl.InventoryFish.transform.GetChild(i).gameObject;
             bottonobj.SetActive(true);
             Image bottonimg = bottonobj.GetComponent<Image>();
-            if (i == 0)
-            {
-                bottonimg.sprite = invens[1] as Sprite; // 인벤 선택
-            }
             GameObject Image = bottonobj.transform.GetChild(0).gameObject;
             Image Fishimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
             if (userInfo.FishItemkey[i].Equals("평범한물고기")) { Fishimg.sprite = fishes1[0]; }
@@ -1252,7 +1268,6 @@ public class PlayerController : MonoBehaviour
     }
     void finish_result()
     {
-        Debug.LogError("마무리 실행됨");
         GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
         Result_obj.SetActive(false);
         textmanager.isAction = false;

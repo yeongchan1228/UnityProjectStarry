@@ -3472,7 +3472,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1489857744}
         m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
-        m_MethodName: On_FishItem
+        m_MethodName: On_StoryItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41595,6 +41595,7 @@ MonoBehaviour:
   isSeed: 0
   isFruit: 0
   isFish: 0
+  isStory: 0
   Menu_Button1: {fileID: 0}
   Menu_Button2: {fileID: 0}
   seeds: []
@@ -41611,6 +41612,7 @@ MonoBehaviour:
   InventorySeed: {fileID: 0}
   InventoryFruit: {fileID: 0}
   InventoryFish: {fileID: 0}
+  InventoryStory: {fileID: 0}
   NameInfo: {fileID: 0}
   FarmNameInfo: {fileID: 0}
   ExpInfo: {fileID: 0}
@@ -42331,8 +42333,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -341, y: -113.26699}
-  m_SizeDelta: {x: 160, y: 26.9112}
+  m_AnchoredPosition: {x: -323.234, y: -113.27}
+  m_SizeDelta: {x: 195.532, y: 26.913}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513276999
 MonoBehaviour:
