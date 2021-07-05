@@ -32,7 +32,7 @@ public class TalkManager : MonoBehaviour
         //대화
         talking.Add("coworker", new string[] { "지금은 공사 중이라 못 지나간단다. 나중에 다시 오렴.:0" });
       
-        talking.Add("worker", new string[] { "여기는 몬스터가 살고있는 동굴이야.:0", "위험하니깐 저리가.:0", "그래도 들어갈 거야?\n\n:1: 동굴에 들어간다.: 집으로 돌아간다." });
+        talking.Add("worker", new string[] { "여기는 슬라임이 살고있는 동굴이야.:0", "위험하니깐 저리가.:0", "그래도 들어갈 거야?\n\n:1: 동굴에 들어간다.: 집으로 돌아간다." });
         talking.Add("dog", new string[] { "멍멍멍멍! 멍멍멍? (할머니가 남긴 선물이야. 볼래?)\n\n:1: 본다. : 안 본다." });
   
         if (user_man != null|| user_woman != null) { talking.Add("sign", new string[] { "'" + userInfo.getName() + "'" + "님의 집입니다.:0" }); }

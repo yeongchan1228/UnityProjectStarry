@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     Image progressimg, fish_progressimg;
     Text progresstext, Leveltext;
     public GameObject targetobj; // 씨앗을 뿌릴 땅 저장 오브젝트
+    public GameObject targetobj2; // 구멍으로 갈 땅...
     private SpriteRenderer spriteR;
     private Sprite[] seeds, tools, Uiboxs, invens, fruit_afters, fish_results;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
@@ -405,13 +406,11 @@ public class PlayerController : MonoBehaviour
             }  
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) // 갤럭시 검 장착 + 스페이스바 누를 시
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj2 !=null && userInfo.isSword == true && userInfo.getItem_Weapon().GetWeaponName().Equals("rustysword")) // 갤럭시 검 장착 + 스페이스바 누를 시
             // 우선 예시로 부서진 검 등록해둠
         {
-            Debug.Log("여기 들어가긴 하나?");
-            if (gameObject.tag.Equals("goHole"))
+            if (targetobj2.tag.Equals("goHole"))
             {
-                Debug.Log("여기는?");
                 Go_Hole();
             }
         }
@@ -419,9 +418,10 @@ public class PlayerController : MonoBehaviour
     
     void Go_Hole() // 갤럭시 검으로 특정 지점 캤을 때
     {
-        spriteR = gameObject.GetComponent<SpriteRenderer>();
-        if(spriteR.sprite.name.Equals("backyard_20"))
-             spriteR.sprite = hole[0];
+        spriteR = targetobj2.GetComponent<SpriteRenderer>();
+        if(spriteR.sprite.name.Equals("goHole"))
+             spriteR.sprite = hole[0]; // 구멍이 생긴 땅으로 바뀜
+
     }
 
     void Input_playerUI()
@@ -982,6 +982,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerStay2D(Collider2D o)
     {
         targetobj = o.gameObject;
+        targetobj2 = o.gameObject;
         if (o.gameObject.name.Equals("not_feed4 (10)") || o.gameObject.name.Equals("not_feed4 (1)") || o.gameObject.name.Equals("not_feed4 (9)"))
         {
             targetobj = null;
