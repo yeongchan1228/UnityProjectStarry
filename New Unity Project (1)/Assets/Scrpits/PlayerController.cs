@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     Vector3 viewpos, dirVec;
     private Animator anim;
     Image progressimg, fish_progressimg;
-    Text progresstext, Leveltext;
+    Text progresstext, Leveltext, Hptext;
     public GameObject targetobj; // ¾¾¾ÑÀ» »Ñ¸± ¶¥ ÀúÀå ¿ÀºêÁ§Æ®
     public GameObject targetobj2; // ±¸¸ÛÀ¸·Î °¥ ¶¥...
     private SpriteRenderer spriteR;
@@ -27,19 +27,19 @@ public class PlayerController : MonoBehaviour
     ChatEffect chat;
     public GameObject scanObj; // ½ºÄµ ¿ÀºêÁ§Æ®
     UserInfo userInfo;
-    public bool isPlayerUI, isHoeing, isFishing, Fishing_Result, isnow_fishing;
+    public bool isPlayerUI, isHoeing, isFishing, Fishing_Result, isnow_fishing, isInven;
     GameObject proobj;
     public Dictionary<string, List<string>> SeedField; // 0. ½ÉÀº ³¯, 1. Á¾·ù, 2. ¹° È½¼ö 3. ¿À´Ã ¹° »Ñ·È´ÂÁö? 4. »óÅÂ
     public List<GameObject> SeedField_name;
     public int count;
     public float fish_clicked, fish_difficulty;
     int FruitCount = 0, Fish_count = 0; // ÀÎº¥ °úÀÏ °³¼ö
-    bool isSameKey, isFarm;
+    bool isSameKey, isFarm, isbtfirst;
     MenuControl menuControl;
     string NowField;
     public StoreUIManager storeUIManager;
     string get_fish_name;
-    int aniDir;
+    int aniDir, pick_count;
     monsterHP mHP;
 
 
@@ -223,7 +223,11 @@ public class PlayerController : MonoBehaviour
             Exp -= 150;
             userInfo.setLevel(Level);
             userInfo.setExp(Exp);
-            Leveltext.text = "Lv. "+userInfo.getLevel().ToString();
+            int maxHp = userInfo.getMaxHp();
+            maxHp = maxHp + 10;
+            userInfo.setMaxHp(maxHp);
+            Hptext.text = userInfo.getHp() + " / " + userInfo.getMaxHp();
+            Leveltext.text = "Lv. "+userInfo.getLevel().ToString();    
             menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
         }
         else if(userInfo.getLevel() < 20 && userInfo.getExp() > 350)
@@ -234,6 +238,10 @@ public class PlayerController : MonoBehaviour
             Exp -= 350;
             userInfo.setLevel(Level);
             userInfo.setExp(Exp);
+            int maxHp = userInfo.getMaxHp();
+            maxHp = maxHp + 10;
+            userInfo.setMaxHp(maxHp);
+            Hptext.text = userInfo.getHp() + " / " + userInfo.getMaxHp();
             Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
             menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
         }
@@ -245,6 +253,10 @@ public class PlayerController : MonoBehaviour
             Exp -= 650;
             userInfo.setLevel(Level);
             userInfo.setExp(Exp);
+            int maxHp = userInfo.getMaxHp();
+            maxHp = maxHp + 10;
+            userInfo.setMaxHp(maxHp);
+            Hptext.text = userInfo.getHp() + " / " + userInfo.getMaxHp();
             Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
             menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
         }
@@ -256,6 +268,10 @@ public class PlayerController : MonoBehaviour
             Exp -= 650;
             userInfo.setLevel(Level);
             userInfo.setExp(Exp);
+            int maxHp = userInfo.getMaxHp();
+            maxHp = maxHp + 10;
+            userInfo.setMaxHp(maxHp);
+            Hptext.text = userInfo.getHp() + " / " + userInfo.getMaxHp();
             Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
             menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
         }
@@ -267,6 +283,10 @@ public class PlayerController : MonoBehaviour
             Exp -= 650;
             userInfo.setLevel(Level);
             userInfo.setExp(Exp);
+            int maxHp = userInfo.getMaxHp();
+            maxHp = maxHp + 10;
+            userInfo.setMaxHp(maxHp);
+            Hptext.text = userInfo.getHp() + " / " + userInfo.getMaxHp();
             Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
             menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
         }
@@ -324,10 +344,12 @@ public class PlayerController : MonoBehaviour
             if (menuControl.Inventory.activeSelf)
             {
                 menuControl.Inventory.SetActive(false);
+                isInven = false;
             }
             else
             {
                 menuControl.Inventory.SetActive(true);
+                isInven = true;
             }
         }
 
@@ -394,7 +416,7 @@ public class PlayerController : MonoBehaviour
             }
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Space) && targetobj != null && isHoeing == false) // ½ºÆäÀÌ½º¹Ù ´©¸¦ ½Ã 
+        if (Input.GetKeyDown(KeyCode.Space) && targetobj != null && isHoeing == false &&isInven == false) // ½ºÆäÀÌ½º¹Ù ´©¸¦ ½Ã 
         {
             if (targetobj.tag.Equals("Not_Feed_Field"))
             {
@@ -426,7 +448,13 @@ public class PlayerController : MonoBehaviour
 
     void Input_playerUI()
     {
-        if(PlayerUI == null) { PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; Leveltext = PlayerUI.transform.GetChild(5).transform.GetChild(0).GetComponent<Text>(); }
+        if(PlayerUI == null) 
+        { 
+            PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; 
+            Leveltext = PlayerUI.transform.GetChild(5).transform.GetChild(0).GetComponent<Text>(); 
+            Hptext = PlayerUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>();
+
+        }
     }
     void FixedUpdate()
     {
@@ -434,14 +462,22 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(rigid2D.position);
         //Ray º¸´Â ¹æÇâ ¿ÀºêÁ§Æ® Á¤º¸ ÀúÀå
         RaycastHit2D rayHit = Physics2D.Raycast(rigid2D.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
-        if(rayHit.collider != null)
+        RaycastHit2D rayHit2 = Physics2D.Raycast(rigid2D.position, dirVec, 0.7f, LayerMask.GetMask("Water"));
+        if (rayHit.collider != null)
         {
             scanObj = rayHit.collider.gameObject;
-           // Debug.Log(scanObj);
         }
         else
         {
             scanObj = null;
+        }
+        if (rayHit2.collider != null)
+        {
+            if(Input.GetKeyDown(KeyCode.Space) && userInfo.isWaterPPU)
+            {
+                GameObject gameogj = GameObject.Find("WaterPPU").transform.GetChild(1).gameObject;
+                gameogj.SetActive(true);
+            }
         }
     }
    
@@ -484,6 +520,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (spriteR.sprite.name.Equals("Hoeing") && userInfo.isPick && userInfo.getItem_Pick().GetPickName() != null) // ¾¾ »Ñ¸®±â
         {
+            if (userInfo.getItem_Pick().GetPickName().Equals("Orgol")) { return; }
+            if (userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()] == 0)
+            {
+                return;
+            }
+
             proobj.SetActive(true);
             progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
             progressimg.fillAmount = 0;
@@ -496,6 +538,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (spriteR.sprite.name.Equals("Seed") && userInfo.isWaterPPU) // ¹° ÁÖ±â
         {
+            if(userInfo.getItem_WaterPPU().GetWaterPPUFilled() <= 0)
+            {
+                GameObject gameogj = GameObject.Find("WaterPPU").transform.GetChild(0).gameObject;
+                gameogj.SetActive(true);
+            }
             if (SeedField_name.Count > 0)
             {
                 for (int i = 0; i < SeedField_name.Count; i++)
@@ -518,8 +565,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if ((!spriteR.sprite.name.Equals("Seed") || !spriteR.sprite.name.Equals("not_feed") || spriteR.sprite.name.Equals("Hoeing")) && userInfo.isWaterPPU) // ¹° ÁÖ±â
+        else if ((!spriteR.sprite.name.Equals("Seed") || !spriteR.sprite.name.Equals("not_feed") || spriteR.sprite.name.Equals("Hoeing")) && userInfo.isWaterPPU && userInfo.getItem_WaterPPU().GetWaterPPUFilled() > 0) // ¹° ÁÖ±â
         {
+            if (userInfo.getItem_WaterPPU().GetWaterPPUFilled() <= 0)
+            {
+                GameObject gameogj = GameObject.Find("WaterPPU").transform.GetChild(0).gameObject;
+                gameogj.SetActive(true);
+            }
             if (SeedField_name.Count > 0)
             {
                 for (int i = 0; i < SeedField_name.Count; i++)
@@ -557,7 +609,6 @@ public class PlayerController : MonoBehaviour
             count = 4;
         }
     }
-
 
     void Attack(int aniDir)
     {
@@ -660,6 +711,9 @@ public class PlayerController : MonoBehaviour
                         if (Water < 3) { Water++; }
                         SeedField[targetobj.name][2] = Water.ToString();
                         SeedField[targetobj.name][3] = "1";
+                        int waterP = userInfo.getItem_WaterPPU().GetWaterPPUFilled();
+                        waterP = waterP - 20;
+                        userInfo.getItem_WaterPPU().SetWaterPPUFilled(waterP);
                         textmanager.isAction = false;
                         isFarm = false;
                     }
@@ -681,6 +735,9 @@ public class PlayerController : MonoBehaviour
                         if (Water < 3) { Water++; }
                         SeedField[targetobj.name][2] = Water.ToString();
                         SeedField[targetobj.name][3] = "1";
+                        int waterP = userInfo.getItem_WaterPPU().GetWaterPPUFilled();
+                        waterP = waterP - 20;
+                        userInfo.getItem_WaterPPU().SetWaterPPUFilled(waterP);
                         textmanager.isAction = false;
                         isFarm = false;
                     }
@@ -690,19 +747,62 @@ public class PlayerController : MonoBehaviour
     }
     void Seed_Seed() // ¾¾ »Ñ¸®±â
     {
-        for(int i = 0; i < SeedField_name.Count; i++)
+        Input_playerUI();
+        for (int i = 0; i < SeedField_name.Count; i++)
         {
             if (SeedField_name[i].name.Equals(targetobj.name))
             {
                 return;
             }
         }
+        if (userInfo.getItem_Pick().GetPickName().Equals("milSeed")) { count_Seed();  }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("potatoSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("carrotSeed")) { count_Seed();  }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("dhrtntnSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("dkqhzkehSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("GrapeSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("lemonSeed")) { count_Seed();  }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("blueberrySeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("melonSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("pineappleSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("pumpkinSeed")) { count_Seed();}
+        else if (userInfo.getItem_Pick().GetPickName().Equals("rkwlSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("strawberrySeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("tnsanSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("tomatoSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("watermelonSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("darkSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("lightSeed")) { count_Seed(); }
+        else if (userInfo.getItem_Pick().GetPickName().Equals("starrySeed")) { count_Seed(); }
+
+
         spriteR.sprite = seeds[2]; // ¾¾¾Ñ»Ñ¸° ¶¥À¸·Î º¯°æ
         int Day = userInfo.getDay();
         SeedField.Add(targetobj.name, new List<string> { Day.ToString(), userInfo.getItem_Pick().GetPickKinds(), "3", "0", "0" });
         SeedField_name.Add(targetobj);
         textmanager.isAction = false;
         isFarm = false;
+    }
+    void count_Seed()
+    {
+        Image UISeed = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(0).GetComponent<Image>();
+        GameObject UISeedcount0 = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(2).gameObject;
+        GameObject UISeedimg = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(0).gameObject;
+        Text UISeedcount = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(2).GetComponent<Text>();
+        pick_count = userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()];
+        if (pick_count > 0)
+        {
+            userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()] = userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()] - 1;
+            pick_count = userInfo.SeedItem[userInfo.getItem_Pick().GetPickName()];
+            UISeedcount.text = pick_count.ToString();
+            if(pick_count == 0)
+            {
+                UISeedimg.SetActive(false);
+                UISeedcount0.SetActive(false);
+                userInfo.getItem_Pick().SetPickName(null);
+                userInfo.getItem_Pick().SetPickName(null);
+            }
+        }
     }
     void Seed_Get() // ¼öÈ®ÇÏ±â
     {
@@ -739,25 +839,157 @@ public class PlayerController : MonoBehaviour
             }
             GameObject Image = bottonobj.transform.GetChild(0).gameObject;
             Image Fruitimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
-            if (userInfo.FruitItemkey[i].Equals("Blueberry")) { Fruitimg.sprite = fruit_afters[0]; }
-            else if (userInfo.FruitItemkey[i].Equals("carrot")) { Fruitimg.sprite = fruit_afters[1]; }
-            else if (userInfo.FruitItemkey[i].Equals("DARK")) { Fruitimg.sprite = fruit_afters[2]; }
-            else if (userInfo.FruitItemkey[i].Equals("dhrtntn1")) { Fruitimg.sprite = fruit_afters[3]; }
-            else if (userInfo.FruitItemkey[i].Equals("dkqhzkeh1")) { Fruitimg.sprite = fruit_afters[4]; }
-            else if (userInfo.FruitItemkey[i].Equals("Grape")) { Fruitimg.sprite = fruit_afters[5]; }
-            else if (userInfo.FruitItemkey[i].Equals("lemon1")) { Fruitimg.sprite = fruit_afters[6]; }
-            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { Fruitimg.sprite = fruit_afters[7]; }
-            else if (userInfo.FruitItemkey[i].Equals("melon")) { Fruitimg.sprite = fruit_afters[8]; }
-            else if (userInfo.FruitItemkey[i].Equals("mil1")) { Fruitimg.sprite = fruit_afters[9]; }
-            else if (userInfo.FruitItemkey[i].Equals("pineapple1")) { Fruitimg.sprite = fruit_afters[10]; }
-            else if (userInfo.FruitItemkey[i].Equals("Potato")) { Fruitimg.sprite = fruit_afters[11]; }
-            else if (userInfo.FruitItemkey[i].Equals("Pumpkin")) { Fruitimg.sprite = fruit_afters[12]; }
-            else if (userInfo.FruitItemkey[i].Equals("rkwl1")) { Fruitimg.sprite = fruit_afters[13]; }
-            else if (userInfo.FruitItemkey[i].Equals("starry")) { Fruitimg.sprite = fruit_afters[14]; }
-            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { Fruitimg.sprite = fruit_afters[15]; }
-            else if (userInfo.FruitItemkey[i].Equals("tnsan1")) { Fruitimg.sprite = fruit_afters[16]; }
-            else if (userInfo.FruitItemkey[i].Equals("Tomato")) { Fruitimg.sprite = fruit_afters[17]; }
-            else if (userInfo.FruitItemkey[i].Equals("watermelon")) { Fruitimg.sprite = fruit_afters[18]; }
+            if (userInfo.FruitItemkey[i].Equals("Blueberry"))
+            { 
+                Fruitimg.sprite = fruit_afters[0]; 
+                int Exp = userInfo.getExp();
+                Exp += 50;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("carrot")) 
+            { 
+                Fruitimg.sprite = fruit_afters[1];
+                int Exp = userInfo.getExp();
+                Exp += 40;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("DARK")) 
+            { 
+                Fruitimg.sprite = fruit_afters[2];
+                int Exp = userInfo.getExp();
+                Exp += 200;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("dhrtntn1")) 
+            { 
+                Fruitimg.sprite = fruit_afters[3];
+                int Exp = userInfo.getExp();
+                Exp += 200;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("dkqhzkeh1")) 
+            { 
+                Fruitimg.sprite = fruit_afters[4];
+                int Exp = userInfo.getExp();
+                Exp += 130;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("Grape")) 
+            { 
+                Fruitimg.sprite = fruit_afters[5];
+                int Exp = userInfo.getExp();
+                Exp += 80;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("lemon1")) 
+            { 
+                Fruitimg.sprite = fruit_afters[6];
+                int Exp = userInfo.getExp();
+                Exp += 110;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) 
+            { 
+                Fruitimg.sprite = fruit_afters[7];
+                int Exp = userInfo.getExp();
+                Exp += 200;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("melon")) 
+            { 
+                Fruitimg.sprite = fruit_afters[8];
+                int Exp = userInfo.getExp();
+                Exp += 120;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("mil1")) 
+            { 
+                Fruitimg.sprite = fruit_afters[9];
+                int Exp = userInfo.getExp();
+                Exp += 30;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("pineapple1")) 
+            {
+                Fruitimg.sprite = fruit_afters[10];
+                int Exp = userInfo.getExp();
+                Exp += 170;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("Potato")) 
+            { 
+                Fruitimg.sprite = fruit_afters[11];
+                int Exp = userInfo.getExp();
+                Exp += 100;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("Pumpkin")) 
+            { 
+                Fruitimg.sprite = fruit_afters[12];
+                int Exp = userInfo.getExp();
+                Exp += 120;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("rkwl1")) 
+            { 
+                Fruitimg.sprite = fruit_afters[13];
+                int Exp = userInfo.getExp();
+                Exp += 160;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("starry")) 
+            { 
+                Fruitimg.sprite = fruit_afters[14];
+                int Exp = userInfo.getExp();
+                Exp += 300;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) 
+            { 
+                Fruitimg.sprite = fruit_afters[15];
+                int Exp = userInfo.getExp();
+                Exp += 130;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("tnsan1")) {
+                Fruitimg.sprite = fruit_afters[16];
+                int Exp = userInfo.getExp();
+                Exp += 100;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("Tomato")) 
+            {
+                Fruitimg.sprite = fruit_afters[17];
+                int Exp = userInfo.getExp();
+                Exp += 110;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
+            else if (userInfo.FruitItemkey[i].Equals("watermelon")) 
+            {
+                Fruitimg.sprite = fruit_afters[18];
+                int Exp = userInfo.getExp();
+                Exp += 180;
+                userInfo.setExp(Exp);
+                menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
+            }
             Image.SetActive(true);
             GameObject text = bottonobj.transform.GetChild(1).gameObject;
             Text Fruittext = text.GetComponent<Text>(); // °úÀÏ °³¼ö
@@ -776,10 +1008,6 @@ public class PlayerController : MonoBehaviour
                 spriteR.sprite = seeds[1]; // ¾¾¾Ñ»Ñ¸° ¶¥À¸·Î º¯°æ
                 textmanager.isAction = false;
                 isFarm = false;
-                int Exp = userInfo.getExp();
-                Exp += 30;
-                userInfo.setExp(Exp);
-                menuControl.ExpInfo.text = "Exp : "+userInfo.getExp().ToString();
                 NowField = null;
                 break;
             }

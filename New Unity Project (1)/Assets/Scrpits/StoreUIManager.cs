@@ -14,7 +14,7 @@ public class StoreUIManager : MonoBehaviour
     public GameObject storePart;
     public GameObject upgradePart;
     public GameObject salePart;
-    public bool isAction, isSamekey;
+    public bool isAction, isSamekey, isfirst;
     //bool isfrist;
     public Button btExit;
     public Button btStore;
@@ -294,7 +294,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "30,000G";
-                armor_price = 30000;
+                fishrod_price = 30000;
                 UIFishing.sprite = tools[2] as Sprite;
                 userInfo.getItem_FishingRod().SetFishingRodName("Guri_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(2);
@@ -306,7 +306,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "50,000G";
-                armor_price = 50000;
+                fishrod_price = 50000;
                 UIFishing.sprite = tools[8] as Sprite;
                 userInfo.getItem_FishingRod().SetFishingRodName("Sliver_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(3);
@@ -318,7 +318,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "80,000G";
-                armor_price = 80000;
+                fishrod_price = 80000;
                 UIFishing.sprite = tools[5] as Sprite;
                 userInfo.getItem_FishingRod().SetFishingRodName("Iridium_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(4);
@@ -330,7 +330,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "0G";
-                armor_price = 0;
+                fishrod_price = 0;
                 UIFishing.sprite = tools[0] as Sprite;
                 userInfo.getItem_FishingRod().SetFishingRodName("Dia_FishingRod");
                 userInfo.getItem_FishingRod().SetFishingRodEfficiency(6);
@@ -351,7 +351,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "30,000G";
-                armor_price = 30000;
+                hoe_price = 30000;
                 UIHoe.sprite = tools[4] as Sprite;
                 userInfo.getItem_Hoe().SetHoeName("Guri_Hoe");
                 userInfo.getItem_Hoe().SetHoeSpeed(8);
@@ -363,7 +363,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "50,000G";
-                armor_price = 50000;
+                hoe_price = 50000;
                 UIHoe.sprite = tools[10] as Sprite;
                 userInfo.getItem_Hoe().SetHoeName("Sliver_Hoe");
                 userInfo.getItem_Hoe().SetHoeSpeed(6);
@@ -375,7 +375,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "80,000G";
-                armor_price = 80000;
+                hoe_price = 80000;
                 UIHoe.sprite = tools[7] as Sprite;
                 userInfo.getItem_Hoe().SetHoeName("Iridium_Hoe");
                 userInfo.getItem_Hoe().SetHoeSpeed(4);
@@ -387,7 +387,7 @@ public class StoreUIManager : MonoBehaviour
                 userInfo.setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "0G";
-                armor_price = 0;
+                hoe_price = 0;
                 UIHoe.sprite = tools[1] as Sprite;
                 userInfo.getItem_Hoe().SetHoeName("Dia_Hoe");
                 userInfo.getItem_Hoe().SetHoeSpeed(2);
@@ -408,7 +408,7 @@ public class StoreUIManager : MonoBehaviour
                 setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "30,000G";
-                armor_price = 30000;
+                waterPPU_price = 30000;
                 UIWater.sprite = tools[15] as Sprite;
                 userInfo.getItem_WaterPPU().SetWaterPPUName("Guri_Water");
                 userInfo.getItem_WaterPPU().SetWaterPPUFilled(150);
@@ -420,7 +420,7 @@ public class StoreUIManager : MonoBehaviour
                 setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "50,000G";
-                armor_price = 50000;
+                waterPPU_price = 50000;
                 UIWater.sprite = tools[18] as Sprite;
                 userInfo.getItem_WaterPPU().SetWaterPPUName("Silver_Water");
                 userInfo.getItem_WaterPPU().SetWaterPPUFilled(200);
@@ -432,7 +432,7 @@ public class StoreUIManager : MonoBehaviour
                 setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "80,000G";
-                armor_price = 80000;
+                waterPPU_price = 80000;
                 UIWater.sprite = tools[17] as Sprite;
                 userInfo.getItem_WaterPPU().SetWaterPPUName("Iridium_Water");
                 userInfo.getItem_WaterPPU().SetWaterPPUFilled(250);
@@ -444,7 +444,7 @@ public class StoreUIManager : MonoBehaviour
                 setGold(usergold);
                 UIGold.text = userInfo.getGold().ToString();
                 price.text = "0G";
-                armor_price = 0;
+                waterPPU_price = 0;
                 UIWater.sprite = tools[16] as Sprite;
                 userInfo.getItem_WaterPPU().SetWaterPPUName("Dia_Water");
                 userInfo.getItem_WaterPPU().SetWaterPPUFilled(300);
@@ -531,7 +531,7 @@ public class StoreUIManager : MonoBehaviour
     }
     public void OpenSale()
     {
-        scrollbar.size = 1f;
+        isfirst = true;
         save_i = 0;
         save_j = 0;
         upgradePart.SetActive(false);
@@ -551,6 +551,10 @@ public class StoreUIManager : MonoBehaviour
             userInfo.FishItem.Add("천사물고기", 1);
             isfrist = true;
         }*/
+        if (isfirst)
+        {
+            return;
+        }
         GameObject Child;
         for(int i = 0, j = 0; i < userInfo.FruitItemkey.Count; i++,j++)
         {

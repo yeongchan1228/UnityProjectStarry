@@ -10,7 +10,8 @@ public class ChatEffect : MonoBehaviour
     public int EffectSpeed; // 글자 나오는 속도
     Text text1;
     int index;
-    Sprite[] firstimgs; 
+    Sprite[] firstimgs;
+    AudioSource audio;
     float Invoke_speed;
     public GameManager game;
     public bool doing;
@@ -25,6 +26,7 @@ public class ChatEffect : MonoBehaviour
     void Awake()
     {
         firstimgs = Resources.LoadAll<Sprite>("Sprites/FirstStory");
+        audio = GetComponent<AudioSource>();
         text1 = GetComponent<Text>();
         ButtonText1 = Button1.GetComponent<Text>();
         ButtonText2 = Button2.GetComponent<Text>();
@@ -70,7 +72,14 @@ public class ChatEffect : MonoBehaviour
         }
         text1.text += msg[index];
 
+        if(msg[index] != ' ' || msg[index] != '.')
+            audio.Play();
+
         index++;
+
+
+
+
 
         Invoke("dEffect", Invoke_speed);
     }

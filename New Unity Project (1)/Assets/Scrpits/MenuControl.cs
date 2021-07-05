@@ -277,7 +277,6 @@ public class MenuControl : MonoBehaviour
     public void Menu2Clicked()
     {
         chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
-        Debug.Log(chatEffect);
         chat = chatEffect.GetComponent<ChatEffect>();
         if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
         {
@@ -330,7 +329,7 @@ public class MenuControl : MonoBehaviour
             {
                 Daytext.text = "봄, " + userInfo.getDay() + "일";
             }
-            else if(userInfo.getCheckDay() < 60)
+            else if (userInfo.getCheckDay() < 60)
             {
                 Daytext.text = "여름, " + userInfo.getDay() + "일";
             }
@@ -338,7 +337,7 @@ public class MenuControl : MonoBehaviour
             //chat.isbt2 = false;
             //chat.isallbutton = false;
 
-           
+
             for (int i = 0; i < playercontrol.SeedField_name.Count;)
             {
                 SpriteRenderer spriteR = playercontrol.SeedField_name[i].GetComponent<SpriteRenderer>();
@@ -358,47 +357,260 @@ public class MenuControl : MonoBehaviour
                     continue;
                 }
                 int SeedDay = int.Parse(playercontrol.SeedField[playercontrol.SeedField_name[i].name][0]);
-                if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0"))
+                if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") || playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1"))
                 {
-                    if (userInfo.getDay() - SeedDay > 1) // 2일 지나면 새싹 자라기
+                    if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Blueberry"))
                     {
-                        playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
-                        spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
-                        playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 1) // 2일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 4)
+                        {
+                            spriteR.sprite = fruit_befores[0];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("carrot"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 0) // 2일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 3)
+                        {
+                            spriteR.sprite = fruit_befores[1];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("DARK"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 6) // 7일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 13)
+                        {
+                            spriteR.sprite = fruit_befores[2];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dhtntn1"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 2) // 3일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 5)
+                        {
+                            spriteR.sprite = fruit_befores[3];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dkqhzkeh1"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 3) // 4일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 7)
+                        {
+                            spriteR.sprite = fruit_befores[4];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Grape"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 2) // 3일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 4)
+                        {
+                            spriteR.sprite = fruit_befores[5];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("lamon1"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 2) // 3일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 6)
+                        {
+                            spriteR.sprite = fruit_befores[6];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("LIGHT"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 6) // 7일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 13)
+                        {
+                            spriteR.sprite = fruit_befores[7];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("melon"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 3) // 4일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 8)
+                        {
+                            spriteR.sprite = fruit_befores[8];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("mil1"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 0) // 1일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 2)
+                        {
+                            spriteR.sprite = fruit_befores[9];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("pineapple1"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 5) // 6일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 10)
+                        {
+                            spriteR.sprite = fruit_befores[10];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Potato"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 1) // 2일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 5)
+                        {
+                            spriteR.sprite = fruit_befores[11];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Pumpkin"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 3) // 4일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 8)
+                        {
+                            spriteR.sprite = fruit_befores[12];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("rkwl1"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 3) // 4일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 9)
+                        {
+                            spriteR.sprite = fruit_befores[13];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("starry"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 8) // 9일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 15)
+                        {
+                            spriteR.sprite = fruit_befores[14];
+                        }
+                    }
+                    else if(playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Strawberry"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 3) // 4일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 7)
+                        {
+                            spriteR.sprite = fruit_befores[15];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("tnsan1"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 2) // 3일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 5)
+                        {
+                            spriteR.sprite = fruit_befores[16];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Tomato"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 2) // 3일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 6)
+                        {
+                            spriteR.sprite = fruit_befores[17];
+                        }
+                    }
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("watermelon"))
+                    {
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 5) // 6일 지나면 새싹 자라기
+                        {
+                            playercontrol.SeedField_name[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); // 다시 돌려주기
+                            spriteR.sprite = seeds[3]; // 새싹이 난 땅으로 변경
+                            playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "1";
+                        }
+                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1") && userInfo.getDay() - SeedDay > 11)
+                        {
+                            spriteR.sprite = fruit_befores[18];
+                        }
                     }
                 }
-                if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("1"))
-                {
-                    if (userInfo.getDay() - SeedDay > 1) // 5일 지나면  자라기
-                    {
-                        if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Blueberry")) { spriteR.sprite = fruit_befores[0]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("carrot")) { spriteR.sprite = fruit_befores[1]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("DARK")) { spriteR.sprite = fruit_befores[2]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dhrtntn1")) { spriteR.sprite = fruit_befores[3]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dkqhzkeh1")) { spriteR.sprite = fruit_befores[4]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Grape")) { spriteR.sprite = fruit_befores[5]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("lemon1")) { spriteR.sprite = fruit_befores[6]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("LIGHT")) { spriteR.sprite = fruit_befores[7]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("melon")) { spriteR.sprite = fruit_befores[8]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("mil1")) { spriteR.sprite = fruit_befores[9]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("pineapple1")) { spriteR.sprite = fruit_befores[10]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Potato")) { spriteR.sprite = fruit_befores[11]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Pumpkin")) { spriteR.sprite = fruit_befores[12]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("rkwl1")) { spriteR.sprite = fruit_befores[13]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("starry")) { spriteR.sprite = fruit_befores[14]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Strawberry")) { spriteR.sprite = fruit_befores[15]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("tnsan1")) { spriteR.sprite = fruit_befores[16]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("Tomato")) { spriteR.sprite = fruit_befores[17]; }
-                        else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("watermelon")) { spriteR.sprite = fruit_befores[18]; }
-                        playercontrol.SeedField[playercontrol.SeedField_name[i].name][4] = "2";
-                    }
-                }
-                i++;
+            i++;
             }
         }
-
     }
-
     public void Fish_Clicked() // 물고기 버튼 클릭
     {
         if(fish_progressimg == null) { fish_progressimg = GameObject.Find("Fishing").transform.GetChild(0).transform.GetChild(0).transform.GetChild(3).GetComponent<Image>(); }
@@ -461,6 +673,7 @@ public class MenuControl : MonoBehaviour
 
     public void Cancel_Inventory()
     {
+        playercontrol.isInven = false;
         Inventory.SetActive(false);
     } // Inventory 종료
 
@@ -736,7 +949,7 @@ public class MenuControl : MonoBehaviour
             else if (ibuttonimg.sprite.name.Equals("lemonSeed")) { UISeed.sprite = seed2s[6]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("lemon1"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("blueberrySeed")) { UISeed.sprite = seed2s[0]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Blueberry"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("melonSeed")) { UISeed.sprite = seed2s[8]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("melon"); UISeedimg.SetActive(true); }
-            else if (ibuttonimg.sprite.name.Equals("pineappleSeed")) { UISeed.sprite = seed2s[11]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("pineaple1"); UISeedimg.SetActive(true); }
+            else if (ibuttonimg.sprite.name.Equals("pineappleSeed")) { UISeed.sprite = seed2s[11]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("pineapple1"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("pumpkinSeed")) { UISeed.sprite = seed2s[13]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Pumpkin"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("rkwlSeed")) { UISeed.sprite = seed2s[14]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("rkwl1"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("strawberrySeed")) { UISeed.sprite = seed2s[16]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Strawberry"); UISeedimg.SetActive(true); }
