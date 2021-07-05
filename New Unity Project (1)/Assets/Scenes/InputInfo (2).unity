@@ -6277,7 +6277,7 @@ MonoBehaviour:
   id: man
   isNPC: 0
   isSELLER: 0
-  isOLDWOMAN: 0
+  isHINT: 0
 --- !u!1 &274229621
 GameObject:
   m_ObjectHideFlags: 0
@@ -44606,7 +44606,7 @@ MonoBehaviour:
   id: woman
   isNPC: 0
   isSELLER: 0
-  isOLDWOMAN: 0
+  isHINT: 0
 --- !u!1 &1998319042
 GameObject:
   m_ObjectHideFlags: 0

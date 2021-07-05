@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
     string NowField;
     public StoreUIManager storeUIManager;
     string get_fish_name;
+    int aniDir;
+    monsterHP mHP;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -285,6 +289,33 @@ public class PlayerController : MonoBehaviour
                 textmanager.isAction = false;
                 textmanager.talk.SetBool("isShow", textmanager.isAction);
             }
+            if (userInfo.isSword == true &&
+                (SceneManager.GetActiveScene().name == "Dungeon (11)" ||
+            SceneManager.GetActiveScene().name == "Dungeon1 (12)" ||
+            SceneManager.GetActiveScene().name == "Dungeon2 (13)"))
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManDown") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManIdle"))
+                {
+                    aniDir = 0; // 정면, 즉 아래를 보고 있을 때
+                    anim.SetBool("isFrontSword", userInfo.isSword);
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManLeftIdle"))
+                {
+                    aniDir = 1; // 왼쪽을 보고 있을 때
+                    anim.SetBool("isLeftSword", userInfo.isSword);
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManRight") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManRightIdle"))
+                {
+                    aniDir = 2; // 오른쪽을 보고 있을 때
+                    anim.SetBool("isRightSword", userInfo.isSword);
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManUp") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManBackIdle"))
+                {
+                    aniDir = 3; // Back, 즉 위를 보고 있을 때
+                    anim.SetBool("isBackSword", userInfo.isSword);
+                }
+                Attack(aniDir);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.I) && userInfo.storycounter > 0)
@@ -526,6 +557,77 @@ public class PlayerController : MonoBehaviour
             count = 4;
         }
     }
+
+
+    void Attack(int aniDir)
+    {
+        if (SceneManager.GetActiveScene().name == "Dungeon (11)" ||
+            SceneManager.GetActiveScene().name == "Dungeon1 (12)" ||
+            SceneManager.GetActiveScene().name == "Dungeon2 (13)")
+        {
+            List<GameObject> slimeObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Slime"));
+            GameObject enemy = slimeObjects[0];
+            if (aniDir == 0 || aniDir == 3) // 0 : 정면 - 아래 / 3 : 뒷모습 - 위
+            {
+                float disY = slimeObjects[0].transform.position.y - transform.position.y;
+                foreach (GameObject found in slimeObjects) // y좌표값 차이의 절댓값이 가장 작은 경우를 찾음.
+                {
+                    float dy = found.transform.position.y - transform.position.y;
+
+                    if (Mathf.Abs(disY) > Mathf.Abs(dy)) // dy의 절댓값이 더 작을 때
+                    {
+                        enemy = found;
+                        disY = dy;
+                    }
+                }
+                if (Mathf.Abs(enemy.transform.position.x - transform.position.x) >= 1)
+                    return;
+                if (aniDir == 0 && 0 > disY && disY > -1)
+                {
+                    Debug.Log("아래로 공격 성공");
+                    mHP = enemy.GetComponent<monsterHP>();
+                    mHP.Hit(10);
+                }
+                else if (aniDir == 3 && 0 < disY && disY < 1)
+                {
+                    Debug.Log("위로 공격 성공");
+                    mHP = enemy.GetComponent<monsterHP>();
+                    mHP.Hit(10); // 10은 임시로 넣은 값. 이후 무기에 따라서 값 넣어줘야 함.
+                }
+            }
+            else if (aniDir == 1 || aniDir == 2) // 1 : 왼쪽/ 2 : 오른쪽
+            {
+                float disX = slimeObjects[0].transform.position.x - transform.position.x;
+                foreach (GameObject found in slimeObjects) // y좌표값 차이의 절댓값이 가장 작은 경우를 찾음.
+                {
+                    float dx = found.transform.position.x - transform.position.x;
+
+                    if (Mathf.Abs(disX) > Mathf.Abs(dx)) // dy의 절댓값이 더 작을 때
+                    {
+                        enemy = found;
+                        disX = dx;
+                    }
+                }
+
+                if (Mathf.Abs(enemy.transform.position.y - transform.position.y) >= 1)
+                    return;
+                if (aniDir == 1 && 0 > disX && disX > -1.5)
+                {
+                    Debug.Log("왼쪽으로 공격 성공");
+                    mHP = enemy.GetComponent<monsterHP>();
+                    mHP.Hit(10);
+                }
+                else if (aniDir == 2 && 0 < disX && disX < 1.5)
+                {
+                    Debug.Log("오른쪽으로 공격 성공");
+                    mHP = enemy.GetComponent<monsterHP>();
+                    mHP.Hit(10);
+                }
+
+            }
+        }
+    }
+
 
     void Seed_Hoeing() // 밭 갈기
     {
