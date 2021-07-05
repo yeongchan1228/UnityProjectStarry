@@ -17,6 +17,16 @@ public class FirstMenuHandle : MonoBehaviour
 
     public void GameLoad() // 저장 데이터 불러오기
     {
+
+        string gender = PlayerPrefs.GetString("Gender");
+        if (gender.Equals("man"))
+        {
+            GameObject user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
+        }
+
+
+
+
         if (!PlayerPrefs.HasKey("PlayerX")) // 키 PlayerX 찾기
         {
             return;

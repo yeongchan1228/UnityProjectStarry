@@ -629,7 +629,6 @@ public class StoreUIManager : MonoBehaviour
             else if (userInfo.FishItemkey[i].Equals("공대생물고기")) { Name.text = "공대생 물고기"; Price.text = "7,000G"; Detail.text = "개발자의 기운이 담긴 공대생 물고기다."; image.sprite = fishes9[0]; }
             else if (userInfo.FishItemkey[i].Equals("할머니의사랑물고기")) { Name.text = "할머니의사랑 물고기"; Price.text = "100,000G"; Detail.text = "할머니의 사랑이 잔뜩 느껴지는 물고기다."; image.sprite = fishes10[0]; }
         }
-    }
         save_i = 0; save_j = 0;
     }
     public void Action(GameObject scanobj)
