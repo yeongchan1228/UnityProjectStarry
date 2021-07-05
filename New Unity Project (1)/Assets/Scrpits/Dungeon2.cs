@@ -12,7 +12,7 @@ public class Dungeon2 : MonoBehaviour
     UserInfo userInfo;
     void Awake()
     {
-        GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
         Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
         maptext.text = "던전 상층부";
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;

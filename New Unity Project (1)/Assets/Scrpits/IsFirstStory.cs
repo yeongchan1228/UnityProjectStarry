@@ -13,8 +13,9 @@ public class IsFirstStory : MonoBehaviour
 
     void Start()
     {
+        GameObject scene = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        scene.SetActive(false);
         GameObject obj = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
-        GameObject obj2 = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
         firstimgs = Resources.LoadAll<Sprite>("Sprites/FirstStory");
         TalkMake = GameObject.Find("TalkManager").GetComponent<TalkManager>();
@@ -27,7 +28,6 @@ public class IsFirstStory : MonoBehaviour
         {
             scanObj = TalkMake.user_woman;
         }
-        Destroy(obj2);
         obj.SetActive(true);
         if (textmanager.isman)
         {

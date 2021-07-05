@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         SeedField_name = new List<GameObject>();
         SeedField = new Dictionary<string, List<string>>();
-        chatEffect = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).gameObject;
+        chatEffect = GameObject.Find("Talk").transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
@@ -501,7 +501,7 @@ public class PlayerController : MonoBehaviour
     {
         if(PlayerUI == null) 
         { 
-            PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; 
+            PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
             Leveltext = PlayerUI.transform.GetChild(5).transform.GetChild(0).GetComponent<Text>(); 
             Hptext = PlayerUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>();
 

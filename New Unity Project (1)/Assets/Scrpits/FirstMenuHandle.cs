@@ -24,9 +24,10 @@ public class FirstMenuHandle : MonoBehaviour
         {
             return;
         }
-        float x = PlayerPrefs.GetFloat("PlayerX");
-        float y = PlayerPrefs.GetFloat("PlayerY");
-
+        //float x = PlayerPrefs.GetFloat("PlayerX");
+        //float y = PlayerPrefs.GetFloat("PlayerY");
+        string scene = PlayerPrefs.GetString("Scene");
+        SceneManager.LoadScene(scene);
         //user_man.transform.position = new Vector3(x, y, 0);
     }
 

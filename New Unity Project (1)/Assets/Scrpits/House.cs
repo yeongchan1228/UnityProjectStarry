@@ -19,21 +19,17 @@ public class House : MonoBehaviour
     //public Animator ImgAnimator;
     void Awake()
     {
-       
+        GameObject firststory = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+        firststory.SetActive(false);
         //sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject.GetComponent<Animator>();
         GameObject game = GameObject.Find("Player");
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
-        GameObject obj = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         tools = Resources.LoadAll<Sprite>("Sprites/Tool");
         Uiboxs = Resources.LoadAll<Sprite>("Sprites/ItemBox");
         swords = Resources.LoadAll<Sprite>("Sprites/sword");
         seedbarrels = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
-        if (obj.name.Equals("FirstStoryImage"))
-        {
-            Destroy(obj); // FirstImage Áö¿ì±â
-        }
         //GameObject Camera1 = GameObject.Find("Main Camera");
         //Camera camera = Camera1.GetComponent<Camera>();
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
@@ -62,7 +58,7 @@ public class House : MonoBehaviour
                 if (menuControl.WomanInfo.activeSelf) { menuControl.WomanInfo.SetActive(false); }
                 if (!player.isPlayerUI)
                 {
-                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
                     RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
                     pos.anchoredPosition = new Vector2(-120, -20);
                     Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
@@ -97,7 +93,7 @@ public class House : MonoBehaviour
                 }
             }
             else {
-                PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+                PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
                 RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
                 pos.anchoredPosition = new Vector2(-120, -20);
                 Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
@@ -131,7 +127,7 @@ public class House : MonoBehaviour
                 menuControl.isSeed = true;
                 if (!player.isPlayerUI)
                 {
-                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+                    PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
                     RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
                     pos.anchoredPosition = new Vector2(-120, -20);
                     Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
@@ -166,7 +162,7 @@ public class House : MonoBehaviour
                 }
             }
             else {
-                PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+                PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
                 RectTransform pos = PlayerUI.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
                 pos.anchoredPosition = new Vector2(-120, -20);
                 Text maptext = PlayerUI.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();

@@ -303,6 +303,6 @@ public class UserInfo : MonoBehaviour
 
     void Input_PlayerUI()
     {
-        if(PlayerUI == null) { PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject; }
+        if(PlayerUI == null) { PlayerUI = GameObject.Find("PlayerUI").gameObject; }
     }
 }

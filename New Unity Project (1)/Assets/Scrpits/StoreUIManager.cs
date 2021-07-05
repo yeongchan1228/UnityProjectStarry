@@ -37,7 +37,7 @@ public class StoreUIManager : MonoBehaviour
 
     void Start()
     {
-        Inventory = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+        Inventory = GameObject.Find("Canvas").transform.GetChild(4).gameObject;
         btExit.onClick.AddListener(ExitWindow);
         btStore.onClick.AddListener(OpenStore);
         btUpgrade.onClick.AddListener(OpenUpgrade);
@@ -59,7 +59,7 @@ public class StoreUIManager : MonoBehaviour
         fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
         fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
         fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
-        PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        PlayerUI = GameObject.Find("PlayerUI").gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
         if (userinfo2.isTrue)
         {
@@ -595,7 +595,6 @@ public class StoreUIManager : MonoBehaviour
         }
         for(int i = 0; i<userInfo.FishItemkey.Count; i++, save_i++, save_j++)
         {
-            Debug.LogError("실행됨");
             Child = Instantiate(obj, new Vector3(0, 0, 0), Quaternion.identity);
             Child.SetActive(true);
             Child.name = userInfo.FishItemkey[i];

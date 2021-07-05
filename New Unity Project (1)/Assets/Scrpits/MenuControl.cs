@@ -67,7 +67,7 @@ public class MenuControl : MonoBehaviour
         //Menu_Button2.onClick.AddListener(Menu2Clicked);
 
         ///////////////////////Inventory////////////////////////////
-        Inventory = GameObject.Find("Canvas").transform.GetChild(5).gameObject;
+        Inventory = GameObject.Find("Canvas").transform.GetChild(4).gameObject;
         SeedItem = Inventory.transform.GetChild(1).gameObject;
         FruitItem = Inventory.transform.GetChild(2).gameObject;
         FishItem = Inventory.transform.GetChild(3).gameObject;
@@ -157,10 +157,10 @@ public class MenuControl : MonoBehaviour
         isWoman = false;
         textmanager.isman = true;
         textmanager.iswoman = false;
-        GameObject Man = GameObject.Find("Canvas").transform.GetChild(0).gameObject.transform.GetChild(5).gameObject;
+        GameObject Man = GameObject.Find("Canvas").transform.GetChild(0).transform.GetChild(5).gameObject;
         Text textman = Man.GetComponent<Text>();
         Shadow shadowman = Man.GetComponent<Shadow>();
-        GameObject Woman = GameObject.Find("Canvas").transform.GetChild(0).gameObject.transform.GetChild(6).gameObject;
+        GameObject Woman = GameObject.Find("Canvas").transform.GetChild(0).transform.GetChild(6).gameObject;
         Text textwoman = Woman.GetComponent<Text>();
         Shadow shadowwoman = Woman.GetComponent<Shadow>();
         textman.color = new Color(152 / 255f, 78 / 255f, 233 / 255f, 255 / 255f);
@@ -175,10 +175,10 @@ public class MenuControl : MonoBehaviour
         isWoman = true;
         textmanager.isman = false;
         textmanager.iswoman = true;
-        GameObject Man = GameObject.Find("Canvas").transform.GetChild(0).gameObject.transform.GetChild(5).gameObject;
+        GameObject Man = GameObject.Find("Canvas").transform.GetChild(0).transform.GetChild(5).gameObject;
         Text textman = Man.GetComponent<Text>();
         Shadow shadowman = Man.GetComponent<Shadow>();
-        GameObject Woman = GameObject.Find("Canvas").transform.GetChild(0).gameObject.transform.GetChild(6).gameObject;
+        GameObject Woman = GameObject.Find("Canvas").transform.GetChild(0).transform.GetChild(6).gameObject;
         Text textwoman = Woman.GetComponent<Text>();
         Shadow shadowwoman = Woman.GetComponent<Shadow>();
         textman.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 255 / 255f);
@@ -212,7 +212,7 @@ public class MenuControl : MonoBehaviour
 
     public void Menu1Clicked()
     {
-        chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
+        chatEffect = GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
         {
@@ -267,7 +267,7 @@ public class MenuControl : MonoBehaviour
 
     public void Menu2Clicked()
     {
-        chatEffect = GameObject.Find("Canvas").transform.GetChild(1).transform.GetChild(0).gameObject;
+        chatEffect = GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         if (playercontrol.scanObj.name.Equals("poor-kid1")) // 광부일 때
         {
@@ -313,7 +313,7 @@ public class MenuControl : MonoBehaviour
             userInfo.setCheckDay(++checkday);
             userInfo.setDay(++day);
             userInfo.setHp(100);
-            PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+            PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
             userInfo.setUIHp();
             Text Daytext = PlayerUI.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
             if (userInfo.getCheckDay() < 30)
@@ -913,7 +913,7 @@ public class MenuControl : MonoBehaviour
 
     public void Item_Button_click()
     {
-        PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
         GameObject select_button = EventSystem.current.currentSelectedGameObject;
         GameObject select_Item = select_button.transform.parent.gameObject;
         Image UISeed = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(0).GetComponent<Image>();
@@ -930,7 +930,7 @@ public class MenuControl : MonoBehaviour
             Image sbottonimg = select_button.GetComponent<Image>();
             Image ibuttonimg = select_button.transform.GetChild(0).GetComponent<Image>();
             sbottonimg.sprite = invens[1] as Sprite; // 인벤 선택
-            if (ibuttonimg.sprite.name.Equals("Orgol")) { UISeed.sprite = seed2s[10]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Orgol"); UISeedimg.SetActive(true); }
+            if (ibuttonimg.sprite.name.Equals("Orgol")) { Debug.LogError("실행"); UISeed.sprite = seed2s[10]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Orgol"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("milSeed")) { UISeed.sprite = seed2s[9]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("mil1"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("potatoSeed")) { UISeed.sprite = seed2s[12]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Potato"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("carrotSeed")) { UISeed.sprite = seed2s[1]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("carrot"); UISeedimg.SetActive(true); }
