@@ -71,6 +71,7 @@ public class StoreUIManager : MonoBehaviour
         }
         Parent = salePart.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Transform>();
         store = storePart.transform.GetChild(0).transform.GetChild(0).gameObject;
+        userInfo.setGold(500000);
         upgrade = upgradePart.transform.GetChild(0).transform.GetChild(0).gameObject;
         for(int i = 0; i < store.transform.childCount; i++) // ±¸¸Å ¹öÆ° ¸®½º³Êµî·Ï
         {
@@ -657,7 +658,7 @@ public class StoreUIManager : MonoBehaviour
     {
         buy_count = int.Parse(input2.text);
         if(select_buy_item.Equals("¿À¸£°ñ")) { select_buy_item = "Orgol"; select_buy_item_price = 100000; user_Inven(); }
-        else if(select_buy_item.Equals("¹Ð ¾¾¾Ñ")) { select_buy_item = "millSeed"; select_buy_item_price = 30; user_Inven(); }
+        else if(select_buy_item.Equals("¹Ð ¾¾¾Ñ")) { select_buy_item = "milSeed"; select_buy_item_price = 30; user_Inven(); }
         else if (select_buy_item.Equals("°¨ÀÚ ¾¾¾Ñ")) { select_buy_item = "potatoSeed"; select_buy_item_price = 45; user_Inven(); }
         else if (select_buy_item.Equals("´ç±Ù ¾¾¾Ñ")) { select_buy_item = "carrotSeed"; select_buy_item_price = 60; user_Inven(); }
         else if (select_buy_item.Equals("¿Á¼ö¼ö ¾¾¾Ñ")) { select_buy_item = "dhrtntnSeed"; select_buy_item_price = 100; user_Inven(); }
@@ -716,7 +717,7 @@ public class StoreUIManager : MonoBehaviour
                 GameObject Image = bottonobj.transform.GetChild(0).gameObject;
                 Image seedimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
                 if (userInfo.SeedItemkey[i].Equals("Orgol")) { seedimg.sprite = seeds[10]; }
-                else if (userInfo.SeedItemkey[i].Equals("millSeed")) { seedimg.sprite = seeds[9]; }
+                else if (userInfo.SeedItemkey[i].Equals("milSeed")) { seedimg.sprite = seeds[9]; }
                 else if (userInfo.SeedItemkey[i].Equals("potatoSeed")) { seedimg.sprite = seeds[12]; }
                 else if (userInfo.SeedItemkey[i].Equals("carrotSeed")) { seedimg.sprite = seeds[1]; }
                 else if (userInfo.SeedItemkey[i].Equals("dhrtntnSeed")) { seedimg.sprite = seeds[3]; }

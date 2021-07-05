@@ -23,7 +23,7 @@ public class MenuControl : MonoBehaviour
     public bool isDeleteButton, isSeed, isFruit, isFish; // Delete 버튼이 커져있는지  
     private Sprite[] genders;
     public Button Menu_Button1, Menu_Button2;
-    public Sprite[] seeds, fruit_afters, fruit_befores, invens;
+    public Sprite[] seeds, fruit_afters, fruit_befores, invens, seed2s;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
     //public Image man, woman;
     //Image ManImage, WomanImage;
@@ -46,6 +46,7 @@ public class MenuControl : MonoBehaviour
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         seeds = Resources.LoadAll<Sprite>("Sprites/Seed");
+        seed2s = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
         fruit_befores = Resources.LoadAll<Sprite>("Sprites/Fruit/before");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
@@ -706,6 +707,69 @@ public class MenuControl : MonoBehaviour
         }
     }
 
+    public void Item_Button_click()
+    {
+        PlayerUI = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        GameObject select_button = EventSystem.current.currentSelectedGameObject;
+        GameObject select_Item = select_button.transform.parent.gameObject;
+        Image UISeed = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(0).GetComponent<Image>();
+        GameObject UISeedcount0 = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(2).gameObject;
+        Text UISeedcount = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(2).GetComponent<Text>();
+        if (select_Item.name.Equals("InventorySeed"))
+        {
+            for(int i = 0; i < 20; i++)
+            {
+                Image bottonimg = select_Item.transform.GetChild(i).GetComponent<Image>();
+                bottonimg.sprite = invens[0] as Sprite; // 인벤 비선택
+            }
+            Image sbottonimg = select_button.GetComponent<Image>();
+            Image ibuttonimg = select_button.transform.GetChild(0).GetComponent<Image>();
+            sbottonimg.sprite = invens[1] as Sprite; // 인벤 선택
+            if (ibuttonimg.sprite.name.Equals("Orgol")) { UISeed.sprite = seed2s[10]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("milSeed")) {  UISeed.sprite = seed2s[9]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("potatoSeed")) { UISeed.sprite = seed2s[12]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("carrotSeed")) { UISeed.sprite = seed2s[1]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("dhrtntnSeed")) { UISeed.sprite = seed2s[3]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("dkqhzkehSeed")) { UISeed.sprite = seed2s[4]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("GrapeSeed")) { UISeed.sprite = seed2s[5]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("lemonSeed")) { UISeed.sprite = seed2s[6]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("blueberrySeed")) { UISeed.sprite = seed2s[0]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("melonSeed")) { UISeed.sprite = seed2s[8]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("pineappleSeed")) { UISeed.sprite = seed2s[11]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("pumpkinSeed")) { UISeed.sprite = seed2s[13]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("rkwlSeed")) { UISeed.sprite = seed2s[14]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("strawberrySeed")) { UISeed.sprite = seed2s[16]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("tnsanSeed")) { UISeed.sprite = seed2s[17]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("tomatoSeed")) { UISeed.sprite = seed2s[18]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("watermelonSeed")) { UISeed.sprite = seed2s[19]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("darkSeed")) { UISeed.sprite = seed2s[2]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("lightSeed")) { UISeed.sprite = seed2s[7]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+            else if (ibuttonimg.sprite.name.Equals("starrySeed")) { UISeed.sprite = seed2s[15]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); }
+        }
+        else if (select_Item.name.Equals("InventoryFruit")) 
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Image bottonimg = select_Item.transform.GetChild(i).GetComponent<Image>();
+                bottonimg.sprite = invens[0] as Sprite; // 인벤 비선택
+            }
+            Image sbottonimg = select_button.GetComponent<Image>();
+            Image ibuttonimg = select_button.transform.GetChild(0).GetComponent<Image>();
+            sbottonimg.sprite = invens[1] as Sprite; // 인벤 선택
+        }
+        else if (select_Item.name.Equals("InventoryFish"))
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Image bottonimg = select_Item.transform.GetChild(i).GetComponent<Image>();
+                bottonimg.sprite = invens[0] as Sprite; // 인벤 비선택
+            }
+            Image sbottonimg = select_button.GetComponent<Image>();
+            Image ibuttonimg = select_button.transform.GetChild(0).GetComponent<Image>();
+            sbottonimg.sprite = invens[1] as Sprite; // 인벤 선택
+        }
+    }
+
     void Off_Sleep()
     {
         realSleep.SetActive(false);
@@ -722,5 +786,4 @@ public class MenuControl : MonoBehaviour
         Back.SetActive(false);
         textmanager.isAction = false; // 다시 움직이게
     }
-
 }

@@ -1095,6 +1095,7 @@ MonoBehaviour:
   id: sign
   isNPC: 0
   isSELLER: 0
+  isHINT: 0
 --- !u!1 &22137412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4726,7 +4727,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107885553}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
@@ -10731,6 +10732,7 @@ MonoBehaviour:
   id: worker
   isNPC: 1
   isSELLER: 0
+  isHINT: 0
 --- !u!61 &234898248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50381,6 +50383,7 @@ MonoBehaviour:
   id: dog
   isNPC: 1
   isSELLER: 0
+  isHINT: 0
 --- !u!1 &1139348848
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,8 @@ public class HoeingLoading : MonoBehaviour
         if(counter2 != 0)
         {
             if (count == 10) { progressBar.fillAmount += 0.1f; }
+            else if (count == 8) { progressBar.fillAmount += 0.125f; }
+            else if (count == 6) { progressBar.fillAmount += 0.166f; }
             else if (count == 4) { progressBar.fillAmount += 0.25f; }
             else if (count == 2) { progressBar.fillAmount += 0.5f; }
             count2++;
