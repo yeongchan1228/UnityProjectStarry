@@ -23,7 +23,7 @@ public class ButtonHandler : MonoBehaviour
     Sprite[] spec_orgol;
     Sprite[] special;
 
-    bool isPinkKey, isGreenKey, isBlueKey, isPurpleKey, isFinalKey;
+    //bool isPinkKey, isGreenKey, isBlueKey, isPurpleKey, isFinalKey;
     int isOk = 0; // 알림창이 중복으로 뜨는 것을 방지
     
     int fruitcount = 0;
@@ -127,12 +127,12 @@ public class ButtonHandler : MonoBehaviour
             else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { fruitcount++; }   
         }
 
-        if(isGreenKey == false && isOk == 0 && fruitcount == 4) // 열쇠 만들기 가능
+        if(userInfo.isGreenKey == false && isOk == 0 && fruitcount == 4) // 열쇠 만들기 가능
         {
             make_greenKey();
         }
 
-        else if(isGreenKey == false && isOk == 0 && fruitcount != 4) // 실패했을 시 알림창
+        else if(userInfo.isGreenKey == false && isOk == 0 && fruitcount != 4) // 실패했을 시 알림창
         {
             show_fail();
         }
@@ -146,12 +146,12 @@ public class ButtonHandler : MonoBehaviour
         }
 
 
-        if (isPinkKey == false && isOk== 0 && orgolcount==1) // 성공
+        if (userInfo.isPinkKey == false && isOk== 0 && orgolcount==1) // 성공
         {
             make_pinkKey();
         }
-
-        else if (isPinkKey == false && isOk == 0 && orgolcount != 1) // 실패
+        
+        else if (userInfo.isPinkKey == false && isOk == 0 && orgolcount != 1) // 실패
         {
             show_fail();
         }
@@ -164,12 +164,12 @@ public class ButtonHandler : MonoBehaviour
                 teddycount++;
         }
 
-        if (isBlueKey == false && isOk == 0 && teddycount == 1) // 성공
+        if (userInfo.isBlueKey == false && isOk == 0 && teddycount == 1) // 성공
         {
             make_blueKey();
         }
 
-        else if (isBlueKey == false && isOk == 0 && teddycount!= 1) // 실패
+        else if (userInfo.isBlueKey == false && isOk == 0 && teddycount!= 1) // 실패
         {
             show_fail();
         }
@@ -182,12 +182,12 @@ public class ButtonHandler : MonoBehaviour
                 hatcount++;
         }
 
-        if (isPurpleKey == false && isOk == 0 && hatcount == 1) // 성공
+        if (userInfo.isPurpleKey == false && isOk == 0 && hatcount == 1) // 성공
         {
             make_purpleKey();
         }
 
-        else if (isPurpleKey == false && isOk == 0 && hatcount !=1) // 실패
+        else if (userInfo.isPurpleKey == false && isOk == 0 && hatcount !=1) // 실패
         {
             show_fail();
         }
@@ -206,12 +206,12 @@ public class ButtonHandler : MonoBehaviour
                 keycount++;
         }
 
-        if (isFinalKey == false && isOk == 0 && keycount==4) // 성공
+        if (userInfo.isFinalKey == false && isOk == 0 && keycount==4) // 성공
         {
             make_finalKey();
         }
 
-        else if (isFinalKey == false && isOk == 0 && keycount != 4) // 실패
+        else if (userInfo.isFinalKey == false && isOk == 0 && keycount != 4) // 실패
         {
             show_fail();
         }
@@ -219,7 +219,6 @@ public class ButtonHandler : MonoBehaviour
 
     void active_false()
     {
-        Debug.Log("1");
         confirm.SetActive(false);
         ok.SetActive(false);
         fail.SetActive(false);
@@ -249,7 +248,7 @@ public class ButtonHandler : MonoBehaviour
         //인벤토리에 초록색 열쇠 넣기 (작물 4개)
         userInfo.StoryItemkey.Add("초록색 열쇠");
         userInfo.StoryItem.Add("초록색 열쇠", 1);
-        isGreenKey = true;
+        userInfo.isGreenKey = true;
 
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
         {
@@ -280,7 +279,6 @@ public class ButtonHandler : MonoBehaviour
 
     void make_pinkKey()
     {
-        Debug.Log("2");
         musicbox.SetActive(true);
         pinkKey.SetActive(true);
 
@@ -298,7 +296,7 @@ public class ButtonHandler : MonoBehaviour
         //인벤토리에 분홍색 열쇠 넣기 (오르골)
         userInfo.StoryItemkey.Add("분홍색 열쇠");
         userInfo.StoryItem.Add("분홍색 열쇠", 1);
-        isPinkKey = true;
+        userInfo.isPinkKey = true;
 
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
         {
@@ -345,7 +343,7 @@ public class ButtonHandler : MonoBehaviour
         userInfo.StoryItemkey.Add("하늘색 열쇠");
         userInfo.StoryItem.Add("하늘색 열쇠", 1);
 
-        isBlueKey = true;
+        userInfo.isBlueKey = true;
 
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
         {
@@ -391,7 +389,7 @@ public class ButtonHandler : MonoBehaviour
         userInfo.StoryItemkey.Add("보라색 열쇠");
         userInfo.StoryItem.Add("보라색 열쇠", 1);
 
-        isPurpleKey = true;
+        userInfo.isPurpleKey = true;
 
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
         {
@@ -440,7 +438,7 @@ public class ButtonHandler : MonoBehaviour
         userInfo.StoryItemkey.Add("최종 열쇠");
         userInfo.StoryItem.Add("최종 열쇠", 1);
 
-        isFinalKey = true;
+        userInfo.isFinalKey = true;
 
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
         {
@@ -470,7 +468,6 @@ public class ButtonHandler : MonoBehaviour
 
     void show_fail()
     {
-        Debug.Log("3");
         fruitcount = 0;
         orgolcount = 0;
         teddycount = 0;
@@ -488,7 +485,7 @@ public class ButtonHandler : MonoBehaviour
     public void click_finalbox()
     {
         //최종 열쇠를 만들었을 때
-        if(isFinalKey == true)
+        if(userInfo.isFinalKey == true)
         {
             // 나중에 여기에 엔딩 씬 추가하기.
         }
@@ -496,7 +493,6 @@ public class ButtonHandler : MonoBehaviour
 
     public void click_ok()
     {
-        Debug.Log("4");
         confirm.SetActive(false);
         ok.SetActive(false);
         success.SetActive(false);

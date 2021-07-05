@@ -105,6 +105,7 @@ public class TalkManager : MonoBehaviour
         img.Add("frog", spriteimg[6]);
         img.Add("boy", spriteimg[7]);
         img.Add("boy2", spriteimg[8]);
+        img.Add("seller", spriteimg[9]);
     }
 
     public string GetTalk(string id, int talkIndex)

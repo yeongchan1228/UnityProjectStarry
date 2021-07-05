@@ -24,7 +24,7 @@ public class MenuControl : MonoBehaviour
     public bool isDeleteButton, isSeed, isFruit, isFish, isStory; // Delete 버튼이 커져있는지  
     private Sprite[] genders;
     public Button Menu_Button1, Menu_Button2;
-    public Sprite[] seeds, fruit_afters, fruit_befores, invens, seed2s;
+    public Sprite[] seeds, fruit_afters, fruit_befores, invens, seed2s, special;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
     //public Image man, woman;
     //Image ManImage, WomanImage;
@@ -49,6 +49,7 @@ public class MenuControl : MonoBehaviour
         seed2s = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
         fruit_befores = Resources.LoadAll<Sprite>("Sprites/Fruit/before");
+        special = Resources.LoadAll<Sprite>("Sprites/Final");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
         fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/난이도1"); // 1마리
         fishes2 = Resources.LoadAll<Sprite>("Sprites/fish/난이도2"); // 2마리
@@ -60,6 +61,7 @@ public class MenuControl : MonoBehaviour
         fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
         fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
         fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
+
         //GetInfo();
         //Menu_Button1 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject.GetComponent<Button>();
         //Menu_Button2 = GameObject.Find("Canvas").transform.GetChild(1).gameObject.transform.GetChild(4).gameObject.GetComponent<Button>();
@@ -1008,6 +1010,14 @@ public class MenuControl : MonoBehaviour
 
 
         if (parentname.Equals("Orgol")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("하늘색 열쇠")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("초록색 열쇠")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("분홍색 열쇠")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("최종 열쇠")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("할머니의 밀짚모자")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("곰인형")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+        else if (parentname.Equals("보라색 열쇠")) { Delete_Item_Story(parentname, parentImg, buttonImg, Delete_Inventory); }
+
         GameObject isDelete = Delete_Inventory.transform.parent.gameObject.transform.GetChild(13).gameObject;
         isDelete.SetActive(false);
     }
@@ -1128,6 +1138,14 @@ public class MenuControl : MonoBehaviour
             GameObject Image = bottonobj.transform.GetChild(0).gameObject;
             Image seedimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
             if (userInfo.StoryItemkey[i].Equals("Orgol")) { seedimg.sprite = seed2s[10]; }
+            else if (userInfo.StoryItemkey[i].Equals("하늘색 열쇠")) { seedimg.sprite = special[0]; }
+            else if (userInfo.StoryItemkey[i].Equals("최종 열쇠")) { seedimg.sprite = special[1]; }
+            else if (userInfo.StoryItemkey[i].Equals("초록색 열쇠")) { seedimg.sprite = special[2]; }
+            else if (userInfo.StoryItemkey[i].Equals("할머니의 밀짚모자")) { seedimg.sprite = special[3]; }
+            else if (userInfo.StoryItemkey[i].Equals("분홍색 열쇠")) { seedimg.sprite = special[4]; }
+            else if (userInfo.StoryItemkey[i].Equals("보라색 열쇠")) { seedimg.sprite = special[5]; }
+            else if (userInfo.StoryItemkey[i].Equals("곰인형")) { seedimg.sprite = special[6]; }
+
             Image.SetActive(true);
             GameObject text = bottonobj.transform.GetChild(1).gameObject;
             Text Fruittext = text.GetComponent<Text>(); // 과일 개수

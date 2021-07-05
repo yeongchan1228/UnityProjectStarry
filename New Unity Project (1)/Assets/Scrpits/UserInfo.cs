@@ -153,6 +153,7 @@ public class UserInfo : MonoBehaviour
     private string FarmName; // 농장 이름
     public string Gender; // 성별
     public bool isTrue, isHoe, isWaterPPU, isFishingRod, isSword, isPick; // 남자, 여자 선택, 호미인지, 물뿌리개인지, 낚시대인지, 검인지, 곡괭이인지
+    public bool isPinkKey, isGreenKey, isBlueKey, isPurpleKey, isFinalKey;
     public int storycounter; // 스토리 카운터
     public int userWhere; // 어디서 왔는지
     private int CheckDay; // 계속 증가

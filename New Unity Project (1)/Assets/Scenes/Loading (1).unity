@@ -7894,6 +7894,11 @@ MonoBehaviour:
   isFishingRod: 0
   isSword: 0
   isPick: 0
+  isPinkKey: 0
+  isGreenKey: 0
+  isBlueKey: 0
+  isPurpleKey: 0
+  isFinalKey: 0
   storycounter: 0
   userWhere: 0
   SeedItemkey: []
@@ -20316,6 +20321,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 249230eea0d1740f58df58df278ef6a8, type: 3}
   - {fileID: 21300000, guid: d14cecebfff034ba39a49cc38e95e1b8, type: 3}
   - {fileID: 21300000, guid: 8dfc93a197e8745b2805ed63f5b184d9, type: 3}
+  - {fileID: 21300000, guid: 0f6fde63554e44c9b9e3a11442fb54b7, type: 3}
   userInfo: {fileID: 0}
 --- !u!4 &694321736
 Transform:
@@ -41607,6 +41613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 1990022101}
+  issave: 0
+  issavefirst: 0
   game1: {fileID: 346813088}
   game2: {fileID: 1465495519}
   isDeleteButton: 0
@@ -41614,7 +41622,6 @@ MonoBehaviour:
   isFruit: 0
   isFish: 0
   isStory: 0
-  issave: 0
   Menu_Button1: {fileID: 0}
   Menu_Button2: {fileID: 0}
   seeds: []
@@ -41622,6 +41629,7 @@ MonoBehaviour:
   fruit_befores: []
   invens: []
   seed2s: []
+  special: []
   Inventory: {fileID: 0}
   SeedItem: {fileID: 0}
   FruitItem: {fileID: 0}
@@ -54577,6 +54585,11 @@ MonoBehaviour:
   isFishingRod: 0
   isSword: 0
   isPick: 0
+  isPinkKey: 0
+  isGreenKey: 0
+  isBlueKey: 0
+  isPurpleKey: 0
+  isFinalKey: 0
   storycounter: 0
   userWhere: 0
   SeedItemkey: []
