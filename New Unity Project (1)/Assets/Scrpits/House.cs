@@ -71,12 +71,10 @@ public class House : MonoBehaviour
                     GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
                     GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
                     GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
-                    GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
                     GameObject itemobj1 = itembox1.transform.GetChild(0).gameObject;
                     GameObject itemobj2 = itembox2.transform.GetChild(0).gameObject;
                     GameObject itemobj3 = itembox3.transform.GetChild(0).gameObject;
                     GameObject itemobj4 = itembox4.transform.GetChild(0).gameObject;
-                    GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
                     Image selectItemBox = itembox1.GetComponent<Image>();
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
                     ItemImg1.sprite = swords[6]; // ∞À
@@ -86,8 +84,6 @@ public class House : MonoBehaviour
                     ItemImg3.sprite = tools[11]; // ≥¨Ω√¥Î
                     Image ItemImg4 = itemobj4.GetComponent<Image>();
                     ItemImg4.sprite = tools[14]; // π∞ª—∏Æ∞≥
-                    Image ItemImg5 = itemobj5.GetComponent<Image>();
-                    ItemImg5.sprite = seedbarrels[0]; // æææ—≈Î
                     PlayerUI.SetActive(true);
                     selectItemBox.sprite = Uiboxs[0]; // º±≈√¿∏∑Œ ∫Ø∞Ê
                     userInfo.isSword = true;
@@ -95,7 +91,6 @@ public class House : MonoBehaviour
                     itemobj2.SetActive(true);
                     itemobj3.SetActive(true);
                     itemobj4.SetActive(true);
-                    itemobj5.SetActive(true);
                     PlayerUI.SetActive(true);
                     player.isPlayerUI = true;
 
@@ -145,12 +140,10 @@ public class House : MonoBehaviour
                     GameObject itembox2 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
                     GameObject itembox3 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
                     GameObject itembox4 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
-                    GameObject itembox5 = PlayerUI.transform.GetChild(0).gameObject.transform.GetChild(4).gameObject;
                     GameObject itemobj1 = itembox1.transform.GetChild(0).gameObject;
                     GameObject itemobj2 = itembox2.transform.GetChild(0).gameObject;
                     GameObject itemobj3 = itembox3.transform.GetChild(0).gameObject;
                     GameObject itemobj4 = itembox4.transform.GetChild(0).gameObject;
-                    GameObject itemobj5 = itembox5.transform.GetChild(0).gameObject;
                     Image selectItemBox = itembox1.GetComponent<Image>();
                     Image ItemImg1 = itemobj1.GetComponent<Image>();
                     ItemImg1.sprite = swords[6]; // ∞À
@@ -160,8 +153,6 @@ public class House : MonoBehaviour
                     ItemImg3.sprite = tools[11]; // ≥¨Ω√¥Î
                     Image ItemImg4 = itemobj4.GetComponent<Image>();
                     ItemImg4.sprite = tools[14]; // π∞ª—∏Æ∞≥
-                    Image ItemImg5 = itemobj5.GetComponent<Image>();
-                    ItemImg5.sprite = seedbarrels[0]; // æææ—≈Î
                     PlayerUI.SetActive(true);
                     PlayerUI.SetActive(true);
                     selectItemBox.sprite = Uiboxs[0]; // º±≈√¿∏∑Œ ∫Ø∞Ê
@@ -170,7 +161,6 @@ public class House : MonoBehaviour
                     itemobj2.SetActive(true);
                     itemobj3.SetActive(true);
                     itemobj4.SetActive(true);
-                    itemobj5.SetActive(true);
                     PlayerUI.SetActive(true);
                     player.isPlayerUI = true;
                 }

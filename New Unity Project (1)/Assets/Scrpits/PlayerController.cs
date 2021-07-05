@@ -482,7 +482,7 @@ public class PlayerController : MonoBehaviour
             }
                
         }
-        else if (spriteR.sprite.name.Equals("Hoeing") && userInfo.isPick) // ¾¾ »Ñ¸®±â
+        else if (spriteR.sprite.name.Equals("Hoeing") && userInfo.isPick && userInfo.getItem_Pick().GetPickName() != null) // ¾¾ »Ñ¸®±â
         {
             proobj.SetActive(true);
             progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
