@@ -572,24 +572,24 @@ public class StoreUIManager : MonoBehaviour
             childtrans.anchoredPosition = new Vector2(264.8705f, -63.0913f * (i+1+j));
             childtrans.sizeDelta = new Vector2(529.741f, 126.1826f);
             if (userInfo.FruitItemkey[i].Equals("Blueberry")) { Name.text = "블루베리"; Price.text = "520G"; Detail.text = "아주 달콤한 고급 블루베리이다."; image.sprite = fruit_afters[0]; }
-            else if (userInfo.FruitItemkey[i].Equals("carrot")) { Name.text = "당근"; Price.text = "110G"; Detail.text = "싱싱한 당근이다."; image.sprite = fruit_afters[1]; }
-            else if (userInfo.FruitItemkey[i].Equals("DARK")) { Name.text = "악마의 과일"; Price.text = "2,666G"; Detail.text = "먹으면 큰일이 날 것 같은 과일이다."; image.sprite = fruit_afters[2]; }
-            else if (userInfo.FruitItemkey[i].Equals("dhrtntn1")) { Name.text = "옥수수"; Price.text = "290G"; Detail.text = "달콤한 옥수수이다."; image.sprite = fruit_afters[3]; }
-            else if (userInfo.FruitItemkey[i].Equals("dkqhzkeh1")) { Name.text = "아보카도"; Price.text = "570G"; Detail.text = "부드러운 아보카도이다."; image.sprite = fruit_afters[4]; }
-            else if (userInfo.FruitItemkey[i].Equals("Grape")) { Name.text = "포도"; Price.text = "280G"; Detail.text = "맛있는 포도이다."; image.sprite = fruit_afters[5]; }
-            else if (userInfo.FruitItemkey[i].Equals("lemon1")) { Name.text = "레몬"; Price.text = "800G"; Detail.text = "새콤한 레몬이다."; image.sprite = fruit_afters[6]; }
-            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { Name.text = "천사의 과일"; Price.text = "2,777G"; Detail.text = "신성한 힘이 느껴지는 과일이다."; image.sprite = fruit_afters[7]; }
-            else if (userInfo.FruitItemkey[i].Equals("melon")) { Name.text = "멜론"; Price.text = "600G"; Detail.text = "달달한 레몬이다."; image.sprite = fruit_afters[8]; }
-            else if (userInfo.FruitItemkey[i].Equals("mil1")) { Name.text = "밀"; Price.text = "50G"; Detail.text = "밀이다."; image.sprite = fruit_afters[9]; }
-            else if (userInfo.FruitItemkey[i].Equals("pineapple1")) { Name.text = "파인애플"; Price.text = "1,000G"; Detail.text = "상큼한 파인애플이다."; image.sprite = fruit_afters[10]; }
-            else if (userInfo.FruitItemkey[i].Equals("Potato")) { Name.text = "감자"; Price.text = "195G"; Detail.text = "감자이다."; image.sprite = fruit_afters[11]; }
-            else if (userInfo.FruitItemkey[i].Equals("Pumpkin")) { Name.text = "호박"; Price.text = "740G"; Detail.text = "몸에 좋은 호박이다."; image.sprite = fruit_afters[12]; }
+            else if (userInfo.FruitItemkey[i].Equals("carrot")) { Name.text = "당근"; Price.text = "110G"; Detail.text = "햇볕에서 맛있게 자란 싱싱한 당근이다."; image.sprite = fruit_afters[1]; }
+            else if (userInfo.FruitItemkey[i].Equals("DARK")) { Name.text = "악마의 과일"; Price.text = "2,666G"; Detail.text = "먹으면 큰일이 날 것 같은 악마의 과일이다."; image.sprite = fruit_afters[2]; }
+            else if (userInfo.FruitItemkey[i].Equals("dhrtntn1")) { Name.text = "옥수수"; Price.text = "290G"; Detail.text = "달콤하고 고소한 옥수수이다."; image.sprite = fruit_afters[3]; }
+            else if (userInfo.FruitItemkey[i].Equals("dkqhzkeh1")) { Name.text = "아보카도"; Price.text = "570G"; Detail.text = "후숙이 잘 된 부드러운 아보카도이다."; image.sprite = fruit_afters[4]; }
+            else if (userInfo.FruitItemkey[i].Equals("Grape")) { Name.text = "포도"; Price.text = "280G"; Detail.text = "보랏빝으로 잘 익은 맛있는 포도이다."; image.sprite = fruit_afters[5]; }
+            else if (userInfo.FruitItemkey[i].Equals("lemon1")) { Name.text = "레몬"; Price.text = "800G"; Detail.text = "새콤달콤하게 잘 익은 노란 레몬이다."; image.sprite = fruit_afters[6]; }
+            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { Name.text = "천사의 과일"; Price.text = "2,777G"; Detail.text = "신성한 힘이 느껴지는 천사의 과일이다."; image.sprite = fruit_afters[7]; }
+            else if (userInfo.FruitItemkey[i].Equals("melon")) { Name.text = "멜론"; Price.text = "600G"; Detail.text = "연두빛으로 잘 익은 달콤한 메론이다."; image.sprite = fruit_afters[8]; }
+            else if (userInfo.FruitItemkey[i].Equals("mil1")) { Name.text = "밀"; Price.text = "50G"; Detail.text = "맛있는 걸 잔뜩 만들 수 있을 것 같은 밀이다."; image.sprite = fruit_afters[9]; }
+            else if (userInfo.FruitItemkey[i].Equals("pineapple1")) { Name.text = "파인애플"; Price.text = "1,000G"; Detail.text = "상콤달콤 잘 익은 파인애플이다."; image.sprite = fruit_afters[10]; }
+            else if (userInfo.FruitItemkey[i].Equals("Potato")) { Name.text = "감자"; Price.text = "195G"; Detail.text = "포슬포슬하게 잘 익을 것 같은 감자이다."; image.sprite = fruit_afters[11]; }
+            else if (userInfo.FruitItemkey[i].Equals("Pumpkin")) { Name.text = "호박"; Price.text = "740G"; Detail.text = "몸에 좋은 주황빛 호박이다."; image.sprite = fruit_afters[12]; }
             else if (userInfo.FruitItemkey[i].Equals("rkwl1")) { Name.text = "가지"; Price.text = "480G"; Detail.text = "몸에 아주 좋은 가지이다."; image.sprite = fruit_afters[13]; }
-            else if (userInfo.FruitItemkey[i].Equals("starry")) { Name.text = "별빛"; Price.text = "3,939G"; Detail.text = "먹으면 큰일이 날 것 같은 과일이다."; image.sprite = fruit_afters[14]; }
-            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { Name.text = "딸기"; Price.text = "770G"; Detail.text = "스태리팜의 기운이 담겨있는 과일이다."; image.sprite = fruit_afters[15]; }
-            else if (userInfo.FruitItemkey[i].Equals("tnsan1")) { Name.text = "순무"; Price.text = "390G"; Detail.text = "싱싱한 순무이다."; image.sprite = fruit_afters[16]; }
-            else if (userInfo.FruitItemkey[i].Equals("Tomato")) { Name.text = "토마토"; Price.text = "450G"; Detail.text = "싱싱한 토마토이다."; image.sprite = fruit_afters[17]; }
-            else if (userInfo.FruitItemkey[i].Equals("watermelon")) { Name.text = "수박"; Price.text = "1,200G"; Detail.text = "아주 시원한 수박이다."; image.sprite = fruit_afters[18]; }
+            else if (userInfo.FruitItemkey[i].Equals("starry")) { Name.text = "별빛"; Price.text = "3,939G"; Detail.text = "스태리팜의 기운이 담겨있는 별빛 과일이다."; image.sprite = fruit_afters[14]; }
+            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { Name.text = "딸기"; Price.text = "770G"; Detail.text = "사랑이 느껴지는 빨간 딸기이다."; image.sprite = fruit_afters[15]; }
+            else if (userInfo.FruitItemkey[i].Equals("tnsan1")) { Name.text = "순무"; Price.text = "390G"; Detail.text = "싱싱하고 아삭아삭한 순무이다."; image.sprite = fruit_afters[16]; }
+            else if (userInfo.FruitItemkey[i].Equals("Tomato")) { Name.text = "토마토"; Price.text = "450G"; Detail.text = "새빨갛게 잘 익은 맛있는 토마토이다."; image.sprite = fruit_afters[17]; }
+            else if (userInfo.FruitItemkey[i].Equals("watermelon")) { Name.text = "수박"; Price.text = "1,200G"; Detail.text = "아주 시원하게 잘 익은 수박이다."; image.sprite = fruit_afters[18]; }
             save_i++;
             save_j++;
         }
@@ -608,27 +608,28 @@ public class StoreUIManager : MonoBehaviour
             button.onClick.AddListener(On_Sale_Item);
             childtrans.anchoredPosition = new Vector2(264.8705f, -63.0913f * (save_i + 1 + save_j));
             childtrans.sizeDelta = new Vector2(529.741f, 126.1826f);
-            if (userInfo.FishItemkey[i].Equals("평범한물고기")) { Name.text = "평범한 물고기"; Price.text = "250G"; Detail.text = "이지원닮음"; image.sprite = fishes1[0]; }
-            else if (userInfo.FishItemkey[i].Equals("빨강물고기")) { Name.text = "빨강 물고기"; Price.text = "300G"; Detail.text = "이지원닮음"; image.sprite = fishes2[0]; }
-            else if (userInfo.FishItemkey[i].Equals("주황물고기")) { Name.text = "주황 물고기"; Price.text = "300G"; Detail.text = "이지원닮음"; image.sprite = fishes2[1]; }
-            else if (userInfo.FishItemkey[i].Equals("노랑물고기")) { Name.text = "노랑 물고기"; Price.text = "400G"; Detail.text = "이지원닮음"; image.sprite = fishes3[0]; }
-            else if (userInfo.FishItemkey[i].Equals("초록물고기")) { Name.text = "초록 물고기"; Price.text = "400G"; Detail.text = "이지원닮음"; image.sprite = fishes3[1]; }
-            else if (userInfo.FishItemkey[i].Equals("남색물고기")) { Name.text = "남색 물고기"; Price.text = "550G"; Detail.text = "이지원닮음"; image.sprite = fishes4[0]; }
-            else if (userInfo.FishItemkey[i].Equals("하늘색물고기")) { Name.text = "하늘색 물고기"; Price.text = "550G"; Detail.text = "이지원닮음"; image.sprite = fishes4[1]; }
-            else if (userInfo.FishItemkey[i].Equals("보라물고기")) { Name.text = "보라 물고기"; Price.text = "550G"; Detail.text = "이지원닮음"; image.sprite = fishes5[0]; }
-            else if (userInfo.FishItemkey[i].Equals("의사물고기")) { Name.text = "의사 물고기"; Price.text = "800G"; Detail.text = "이지원닮음"; image.sprite = fishes5[1]; }
-            else if (userInfo.FishItemkey[i].Equals("농부물고기")) { Name.text = "농부 물고기"; Price.text = "800G"; Detail.text = "이지원닮음"; image.sprite = fishes6[0]; }
-            else if (userInfo.FishItemkey[i].Equals("무지개물고기")) { Name.text = "무지개 물고기"; Price.text = "1,500G"; Detail.text = "이지원닮음"; image.sprite = fishes6[1]; }
-            else if (userInfo.FishItemkey[i].Equals("공주물고기")) { Name.text = "공주 물고기"; Price.text = "3,000G"; Detail.text = "이지원닮음"; image.sprite = fishes7[0]; }
-            else if (userInfo.FishItemkey[i].Equals("군인물고기")) { Name.text = "군인 물고기"; Price.text = "3,000G"; Detail.text = "이지원닮음"; image.sprite = fishes7[1]; }
-            else if (userInfo.FishItemkey[i].Equals("신부물고기")) { Name.text = "신부 물고기"; Price.text = "3,000G"; Detail.text = "이지원닮음"; image.sprite = fishes7[2]; }
-            else if (userInfo.FishItemkey[i].Equals("신사물고기")) { Name.text = "신사 물고기"; Price.text = "3,000G"; Detail.text = "이지원닮음"; image.sprite = fishes7[3]; }
-            else if (userInfo.FishItemkey[i].Equals("악마물고기")) { Name.text = "악마 물고기"; Price.text = "5,000G"; Detail.text = "이지원닮음"; image.sprite = fishes8[0]; }
-            else if (userInfo.FishItemkey[i].Equals("천사물고기")) { Name.text = "천사 물고기"; Price.text = "5,000G"; Detail.text = "이지원닮음"; image.sprite = fishes8[1]; }
-            else if (userInfo.FishItemkey[i].Equals("스태리팜물고기")) { Name.text = "스태리팜 물고기"; Price.text = "7,000G"; Detail.text = "이지원닮음"; image.sprite = fishes9[1]; }
-            else if (userInfo.FishItemkey[i].Equals("공대생물고기")) { Name.text = "공대생 물고기"; Price.text = "7,000G"; Detail.text = "이지원닮음"; image.sprite = fishes9[0]; }
-            else if (userInfo.FishItemkey[i].Equals("할머니의사랑물고기")) { Name.text = "할머니의사랑 물고기"; Price.text = "100,000G"; Detail.text = "이지원닮음"; image.sprite = fishes10[0]; }
+            if (userInfo.FishItemkey[i].Equals("평범한물고기")) { Name.text = "평범한 물고기"; Price.text = "250G"; Detail.text = "어디에서나 잡을 수 있을 것 같은 평범한 물고기다."; image.sprite = fishes1[0]; }
+            else if (userInfo.FishItemkey[i].Equals("빨강물고기")) { Name.text = "빨강 물고기"; Price.text = "300G"; Detail.text = "붉은빛이 감도는 귀여운 빨강 물고기다."; image.sprite = fishes2[0]; }
+            else if (userInfo.FishItemkey[i].Equals("주황물고기")) { Name.text = "주황 물고기"; Price.text = "300G"; Detail.text = "주황빛이 감도는 부드러운 주황 물고기다."; image.sprite = fishes2[1]; }
+            else if (userInfo.FishItemkey[i].Equals("노랑물고기")) { Name.text = "노랑 물고기"; Price.text = "400G"; Detail.text = "노란빛이 감도는 상큼한 노랑 물고기다."; image.sprite = fishes3[0]; }
+            else if (userInfo.FishItemkey[i].Equals("초록물고기")) { Name.text = "초록 물고기"; Price.text = "400G"; Detail.text = "초록빛이 감도는 건강한 초록 물고기다."; image.sprite = fishes3[1]; }
+            else if (userInfo.FishItemkey[i].Equals("남색물고기")) { Name.text = "남색 물고기"; Price.text = "550G"; Detail.text = "남색빛이 감도는 까칠한 남색 물고기다."; image.sprite = fishes4[0]; }
+            else if (userInfo.FishItemkey[i].Equals("하늘색물고기")) { Name.text = "하늘색 물고기"; Price.text = "550G"; Detail.text = "하늘빛이 감도는 순수한 하늘색 물고기다."; image.sprite = fishes4[1]; }
+            else if (userInfo.FishItemkey[i].Equals("보라물고기")) { Name.text = "보라 물고기"; Price.text = "550G"; Detail.text = "누군갈 떠올리게 하는 듯한 보랏빛 물고기다."; image.sprite = fishes5[0]; }
+            else if (userInfo.FishItemkey[i].Equals("의사물고기")) { Name.text = "의사 물고기"; Price.text = "800G"; Detail.text = "물고기들을 치료해줄 것 같은 의사 물고기다."; image.sprite = fishes5[1]; }
+            else if (userInfo.FishItemkey[i].Equals("농부물고기")) { Name.text = "농부 물고기"; Price.text = "800G"; Detail.text = "농사를 잘 지을 것 같은 농부 물고기다."; image.sprite = fishes6[0]; }
+            else if (userInfo.FishItemkey[i].Equals("무지개물고기")) { Name.text = "무지개 물고기"; Price.text = "1,500G"; Detail.text = "모든 색깔의 기운을 담은 무지개 물고기다."; image.sprite = fishes6[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공주물고기")) { Name.text = "공주 물고기"; Price.text = "3,000G"; Detail.text = "물고기 왕국의 막내 딸내미인 공주 물고기다."; image.sprite = fishes7[0]; }
+            else if (userInfo.FishItemkey[i].Equals("군인물고기")) { Name.text = "군인 물고기"; Price.text = "3,000G"; Detail.text = "국방의 기운이 느껴지는 군인 물고기다."; image.sprite = fishes7[1]; }
+            else if (userInfo.FishItemkey[i].Equals("신부물고기")) { Name.text = "신부 물고기"; Price.text = "3,000G"; Detail.text = "곧 결혼을 앞둔듯한 아름다운 신부 물고기다."; image.sprite = fishes7[2]; }
+            else if (userInfo.FishItemkey[i].Equals("신사물고기")) { Name.text = "신사 물고기"; Price.text = "3,000G"; Detail.text = "곧 결혼을 앞둔듯한 젠틀한 신사 물고기다."; image.sprite = fishes7[3]; }
+            else if (userInfo.FishItemkey[i].Equals("악마물고기")) { Name.text = "악마 물고기"; Price.text = "5,000G"; Detail.text = "어쩐지 나쁜 기운이 느껴지는 악마 물고기다."; image.sprite = fishes8[0]; }
+            else if (userInfo.FishItemkey[i].Equals("천사물고기")) { Name.text = "천사 물고기"; Price.text = "5,000G"; Detail.text = "순수하고 하얀 기운이 가득 담긴 천사 물고기다."; image.sprite = fishes8[1]; }
+            else if (userInfo.FishItemkey[i].Equals("스태리팜물고기")) { Name.text = "스태리팜 물고기"; Price.text = "7,000G"; Detail.text = "별빛의 기운이 담긴 스태리팜 물고기다."; image.sprite = fishes9[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공대생물고기")) { Name.text = "공대생 물고기"; Price.text = "7,000G"; Detail.text = "개발자의 기운이 담긴 공대생 물고기다."; image.sprite = fishes9[0]; }
+            else if (userInfo.FishItemkey[i].Equals("할머니의사랑물고기")) { Name.text = "할머니의사랑 물고기"; Price.text = "100,000G"; Detail.text = "할머니의 사랑이 잔뜩 느껴지는 물고기다."; image.sprite = fishes10[0]; }
         }
+    }
         save_i = 0; save_j = 0;
     }
     public void Action(GameObject scanobj)
