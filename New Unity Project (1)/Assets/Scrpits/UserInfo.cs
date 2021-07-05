@@ -166,9 +166,11 @@ public class UserInfo : MonoBehaviour
     public Dictionary<string, int> SeedItem;
     public Dictionary<string, int> FruitItem;
     public Dictionary<string, int> FishItem;
+    public Dictionary<string, int> StoryItem;
     public List<string> SeedItemkey;
     public List<string> FruitItemkey;
     public List<string> FishItemkey;
+    public List<string> StoryItemkey;
     public UserInfo()
     {
         this.weapon = new Item_Weapon();
@@ -180,9 +182,11 @@ public class UserInfo : MonoBehaviour
         SeedItem = new Dictionary<string, int>();
         FruitItem = new Dictionary<string, int>();
         FishItem = new Dictionary<string, int>();
+        StoryItem = new Dictionary<string, int>();
         SeedItemkey = new List<string>();
         FruitItemkey = new List<string>();
         FishItemkey = new List<string>();
+        StoryItemkey = new List<string>();
     }
 
     // Start is called before the first frame update

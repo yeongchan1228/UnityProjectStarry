@@ -137,10 +137,31 @@ public class MenuControl : MonoBehaviour
     {
         //PlayerPefs 데이터 저장 함수
         //플레이어 위치 저장
-        PlayerPrefs.SetFloat("PlayerX", user_man.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerY", user_man.transform.position.y);
-        
+        if (userInfo.getGender().Equals("man")) {
+            PlayerPrefs.SetFloat("PlayerX", user_man.transform.position.x);
+            PlayerPrefs.SetFloat("PlayerY", user_man.transform.position.y);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("PlayerX", user_woman.transform.position.x);
+            PlayerPrefs.SetFloat("PlayerY", user_woman.transform.position.y);
+        }
+
         //UserInfo 저장
+        PlayerPrefs.SetInt("Day", userInfo.getDay());
+        PlayerPrefs.SetInt("CheckDay", userInfo.getCheckDay());
+        PlayerPrefs.SetInt("Gold", userInfo.getGold());
+        PlayerPrefs.SetInt("Hp", userInfo.getHp());
+        PlayerPrefs.SetInt("MaxHp", userInfo.getMaxHp());
+        PlayerPrefs.SetInt("Level", userInfo.getLevel());
+        PlayerPrefs.SetInt("Exp", userInfo.getExp());
+        PlayerPrefs.SetString("Name", userInfo.getName());
+        PlayerPrefs.SetString("FarmName", userInfo.getFarmName());
+        PlayerPrefs.SetString("Scene", SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetString("Gender", userInfo.getGender());
+
+        //user Item 저장
+
 
 
         //PlayerPrefs에 저장
@@ -606,7 +627,6 @@ public class MenuControl : MonoBehaviour
     {
         if(fish_progressimg == null) { fish_progressimg = GameObject.Find("Fishing").transform.GetChild(0).transform.GetChild(0).transform.GetChild(3).GetComponent<Image>(); }
         fish_progressimg.fillAmount += userInfo.getItem_FishingRod().GetFishingRodEfficiency() * (float)(playercontrol.fish_difficulty * 0.05);
-        Debug.LogError("Clicked : " + fish_progressimg.fillAmount);
     }
     public void On_DeleteButton()  // Delete 버튼 On
     {
@@ -930,8 +950,7 @@ public class MenuControl : MonoBehaviour
             Image sbottonimg = select_button.GetComponent<Image>();
             Image ibuttonimg = select_button.transform.GetChild(0).GetComponent<Image>();
             sbottonimg.sprite = invens[1] as Sprite; // 인벤 선택
-            if (ibuttonimg.sprite.name.Equals("Orgol")) { Debug.LogError("실행"); UISeed.sprite = seed2s[10]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Orgol"); UISeedimg.SetActive(true); }
-            else if (ibuttonimg.sprite.name.Equals("milSeed")) { UISeed.sprite = seed2s[9]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("mil1"); UISeedimg.SetActive(true); }
+            if (ibuttonimg.sprite.name.Equals("milSeed")) { UISeed.sprite = seed2s[9]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("mil1"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("potatoSeed")) { UISeed.sprite = seed2s[12]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("Potato"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("carrotSeed")) { UISeed.sprite = seed2s[1]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("carrot"); UISeedimg.SetActive(true); }
             else if (ibuttonimg.sprite.name.Equals("dhrtntnSeed")) { UISeed.sprite = seed2s[3]; UISeedcount0.SetActive(true); UISeedcount.text = userInfo.SeedItem[ibuttonimg.sprite.name].ToString(); userInfo.getItem_Pick().SetPickName(ibuttonimg.sprite.name); userInfo.getItem_Pick().SetPickKinds("dhrtntn1"); UISeedimg.SetActive(true); }

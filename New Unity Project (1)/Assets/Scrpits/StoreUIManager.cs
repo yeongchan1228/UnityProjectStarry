@@ -71,7 +71,7 @@ public class StoreUIManager : MonoBehaviour
         }
         Parent = salePart.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Transform>();
         store = storePart.transform.GetChild(0).transform.GetChild(0).gameObject;
-        userInfo.setGold(500000);
+        userInfo.setGold(50000000);
         upgrade = upgradePart.transform.GetChild(0).transform.GetChild(0).gameObject;
         for(int i = 0; i < store.transform.childCount; i++) // 구매 버튼 리스너등록
         {
