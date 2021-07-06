@@ -22,14 +22,14 @@ public class Town1 : MonoBehaviour
             player = user_man.GetComponent<PlayerController>();
             userInfo = user_man.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_man.transform.position = new Vector3(-2.9f, -25.4f, 0); userInfo.userWhere = 0; } // 농장에서 나오기
-            if (userInfo.userWhere == 2) { user_man.transform.position = new Vector3(-2.9f, -35.4f, 0); userInfo.userWhere = 0; } // 바다에서 나오기
+            if (userInfo.userWhere == 2) { user_man.transform.position = new Vector3(-2.9f, -35.4f, 0); userInfo.userWhere = 0; player.isfishonclick = false; } // 바다에서 나오기
         }
         else
         {
             player = user_woman.GetComponent<PlayerController>();
             userInfo = user_woman.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_woman.transform.position = new Vector3(-2.9f, -25.4f, 0); userInfo.userWhere = 0; } // 농장에서 나오기
-            if (userInfo.userWhere == 2) { user_woman.transform.position = new Vector3(-2.9f, -35.4f, 0); userInfo.userWhere = 0; } // 바다에서 나오기
+            if (userInfo.userWhere == 2) { user_woman.transform.position = new Vector3(-2.9f, -35.4f, 0); userInfo.userWhere = 0; player.isfishonclick = false; } // 바다에서 나오기
 
         }
     }

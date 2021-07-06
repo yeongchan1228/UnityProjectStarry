@@ -6,7 +6,7 @@ public class water : MonoBehaviour
 {
     GameObject user_woman, user_man;
     UserInfo userInfo;
-    GameManager gameManager;
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,5 +63,7 @@ public class water : MonoBehaviour
         gameogj.SetActive(false);
         gameManager.isAction = false;
         gameManager.isButton = false;
+        ChatEffect chat = GameObject.Find("Canvas").transform.GetChild(3).transform.GetChild(0).GetComponent<ChatEffect>();
+        chat.buttonOn = false;
     }
 }

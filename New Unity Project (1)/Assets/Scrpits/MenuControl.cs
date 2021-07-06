@@ -109,13 +109,14 @@ public class MenuControl : MonoBehaviour
         }
         if (issave && issavefirst == false) // 세이브 실행시 한번만
         {
-            Debug.LogError("세이브시 한번만 실행");
             user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
             user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
             UserInfo user2 = user_man.GetComponent<UserInfo>();
             if (user2.isTrue) { userInfo = user_man.GetComponent<UserInfo>(); playercontrol = user_man.GetComponent<PlayerController>(); }
             else { userInfo = user_woman.GetComponent<UserInfo>(); playercontrol = user_woman.GetComponent<PlayerController>(); }
             issavefirst = true;
+            TalkManager TalkMake = GameObject.Find("TalkManager").GetComponent<TalkManager>();
+            TalkMake.makeTalking();
         }
     }
 
@@ -151,9 +152,6 @@ public class MenuControl : MonoBehaviour
         //PlayerPefs 데이터 저장 함수
         //플레이어 위치 저장
         if (userInfo.getGender().Equals("man")) {
-            Debug.LogError("실행됨");
-            Debug.LogError(user_man.transform.position.x);
-            Debug.LogError(user_man.transform.position.y);
 
             PlayerPrefs.SetFloat("PlayerX", user_man.transform.position.x);
             PlayerPrefs.SetFloat("PlayerY", user_man.transform.position.y);
