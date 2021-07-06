@@ -6,4 +6,5 @@ public class MonsterInformation : MonoBehaviour
 {
     public float hp;
     public float hpMax;
+    //public string kinds;
 }

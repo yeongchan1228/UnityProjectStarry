@@ -7,6 +7,7 @@ public class SlimeMovement : MonoBehaviour
     public float movePower = 1f;
     GameObject traceTarget;
     bool isTracing;
+    //public Animator animator;
     Animator animator;
     Vector3 movement;
     private Rigidbody2D rigid2D;
@@ -16,6 +17,15 @@ public class SlimeMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        //animator = ani;
+        rigid2D = GetComponent<Rigidbody2D>();
+        StartCoroutine("ChangeMovement");
+    }
+
+    public void Spawn(Animator ani)
+    {
+        animator = GetComponent<Animator>();
+        //animator = ani;
         rigid2D = GetComponent<Rigidbody2D>();
         StartCoroutine("ChangeMovement");
     }
