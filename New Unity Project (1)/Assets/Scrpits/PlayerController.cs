@@ -1096,6 +1096,10 @@ public class PlayerController : MonoBehaviour
         Button fish_button = GameObject.Find("Fishing").transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Button>();
         fish_button.onClick.AddListener(menuControl.Fish_Clicked);
         fish_progressimg.fillAmount = 0;
+        int hp = userInfo.getHp();
+        hp = hp - 10;
+        userInfo.setHp(hp);
+        userInfo.setUIHp();
         anim.SetBool("isFishing", isFishing);
         int random = Random.Range(1, 11); // 1~10√ 
         Debug.LogError("random : " + random);

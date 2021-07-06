@@ -163,7 +163,7 @@ public class UserInfo : MonoBehaviour
     Item_Hoe hoe; // 호미? 괭이
     Item_WaterPPU waterPPU; // 물뿌리개
     Item_Pick pick;
-    GameObject PlayerUI;
+    GameObject PlayerUI, InvenInfo;
     public Dictionary<string, int> SeedItem;
     public Dictionary<string, int> FruitItem;
     public Dictionary<string, int> FishItem;
@@ -275,13 +275,31 @@ public class UserInfo : MonoBehaviour
     {
         this.Gold = Gold;
     }
+    public void setUIGold()
+    {
+        Input_PlayerUI();
+        Text Goldtext = PlayerUI.transform.GetChild(4).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        Goldtext.text = getGold().ToString();
+    }
     public void setLevel(int Level)
     {
         this.Level = Level;
     }
+    public void setUILevel()
+    {
+        Input_PlayerUI();
+        Text Leveltext = PlayerUI.transform.GetChild(5).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        Leveltext.text = "Lv, " + getLevel() ;
+    }
     public void setExp(int Exp)
     {
         this.Exp = Exp;
+    }
+    public void setExpInfo()
+    {
+        Input_InvenInfo();
+        Text Exptext = InvenInfo.transform.GetChild(9).transform.GetChild(4).GetComponent<Text>();
+        Exptext.text = "경험치 : " + getExp();
     }
     public void setHp(int Hp)
     {
@@ -301,13 +319,40 @@ public class UserInfo : MonoBehaviour
     {
         this.Name = Name;
     }
+    public void setNameInfo()
+    {
+        Input_InvenInfo();
+        Text Nametext = InvenInfo.transform.GetChild(9).transform.GetChild(2).GetComponent<Text>();
+        Nametext.text = "이름 : " + getName();
+    }
     public void setFarmName(string FarmName)
     {
         this.FarmName = FarmName;
     }
-
+    public void setFarmNameInfo()
+    {
+        Input_InvenInfo();
+        Text FarmNametext = InvenInfo.transform.GetChild(9).transform.GetChild(3).GetComponent<Text>();
+        FarmNametext.text = "농장 이름 : " + getFarmName();
+    }
+    public void setWeapon_powerInfo()
+    {
+        Input_InvenInfo();
+        Text Weapontext = InvenInfo.transform.GetChild(9).transform.GetChild(5).GetComponent<Text>();
+        Weapontext.text = "공격력 : " + getItem_Weapon().GetWeaponPower().ToString();
+    }
+    public void setArmor_powerInfo()
+    {
+        Input_InvenInfo();
+        Text Armortext = InvenInfo.transform.GetChild(9).transform.GetChild(6).GetComponent<Text>();
+        Armortext.text = "방어력 : " + getItem_Armor().GetArmorPower().ToString();
+    }
     void Input_PlayerUI()
     {
         if(PlayerUI == null) { PlayerUI = GameObject.Find("PlayerUI").gameObject; }
+    }
+    void Input_InvenInfo()
+    {
+        if (InvenInfo == null) { InvenInfo = GameObject.Find("Canvas").transform.getChild(4).gameObject; }
     }
 }
