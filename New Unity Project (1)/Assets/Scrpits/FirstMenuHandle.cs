@@ -10,6 +10,8 @@ public class FirstMenuHandle : MonoBehaviour
     UserInfo userInfo;
     // Start is called before the first frame update
     public Sprite[] fruit_afters, invens, seeds, swords, tools;
+    private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
+
     void Start()
     {
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
@@ -17,6 +19,16 @@ public class FirstMenuHandle : MonoBehaviour
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
         swords = Resources.LoadAll<Sprite>("Sprites/sword");
         tools = Resources.LoadAll<Sprite>("Sprites/Tool");
+        fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/난이도1"); // 1마리
+        fishes2 = Resources.LoadAll<Sprite>("Sprites/fish/난이도2"); // 2마리
+        fishes3 = Resources.LoadAll<Sprite>("Sprites/fish/난이도3"); // 2마리
+        fishes4 = Resources.LoadAll<Sprite>("Sprites/fish/난이도4"); // 2마리
+        fishes5 = Resources.LoadAll<Sprite>("Sprites/fish/난이도5"); // 2마리
+        fishes6 = Resources.LoadAll<Sprite>("Sprites/fish/난이도6"); // 2마리
+        fishes7 = Resources.LoadAll<Sprite>("Sprites/fish/난이도7"); // 4마리
+        fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
+        fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
+        fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
     }
 
     // Update is called once per frame
@@ -186,8 +198,32 @@ public class FirstMenuHandle : MonoBehaviour
         userInfo.setArmor_powerInfo();
 
 
+        ////////인벤토리 내용 채우기
+        PlayerPrefs.SetInt("SeedItemCount", userInfo.SeedItem.Count);
+        PlayerPrefs.SetInt("FishItemCount", userInfo.FishItem.Count);
+        PlayerPrefs.SetInt("FruitItemCount", userInfo.FruitItem.Count);
+        PlayerPrefs.SetInt("StoryItemCount", userInfo.StoryItem.Count);
+        int seeditemcount = PlayerPrefs.GetInt("SeedItemCount");
+        int fishitemcount = PlayerPrefs.GetInt("FishItemCount");
+        int fruititemcount = PlayerPrefs.GetInt("FruitItemCount");
+        int storyitemcount = PlayerPrefs.GetInt("StoryItemCount");
 
+        ///////씨앗 통 정보 받아오기
+        for (int i = 0; i < seeditemcount; i++)
+        {
+            userInfo.SeedItemkey.Add(PlayerPrefs.GetString("SeedItem" + i));
+            userInfo.SeedItem.Add(PlayerPrefs.GetString("SeedItemKey" + i), PlayerPrefs.GetInt("SeedItemValue"+i));
+        }
 
+        ///////씨앗 통 인벤에 넣기
+        GameObject InventorySeed = Inventory.transform.GetChild(6).gameObject;
+        for (int i = 0; i < seeditemcount; i++)
+        {
+            Image Seedimg = InventorySeed.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
+            Text Seedtext = InventorySeed.transform.GetChild(i).transform.GetChild(1).GetComponent<Text>();
+
+            Seedtext.text = userInfo.SeedItem[userInfo.SeedItemkey[i]].ToString();
+        }
 
 
         PlayerUI.SetActive(true);

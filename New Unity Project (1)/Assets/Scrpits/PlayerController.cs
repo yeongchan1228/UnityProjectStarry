@@ -1116,6 +1116,14 @@ public class PlayerController : MonoBehaviour
 
     void Do_Fishing()
     {
+        int hp = userInfo.getHp();
+        if(hp < 11)
+        {
+            return;
+        }
+        hp = hp - 10;
+        userInfo.setHp(hp);
+        userInfo.setUIHp();
         textmanager.isAction = true;
         isnow_fishing = true;
         isFishing = true;
@@ -1128,10 +1136,6 @@ public class PlayerController : MonoBehaviour
             isfishonclick = true;
         }
         fish_progressimg.fillAmount = 0;
-        int hp = userInfo.getHp();
-        hp = hp - 10;
-        userInfo.setHp(hp);
-        userInfo.setUIHp();
         anim.SetBool("isFishing", isFishing);
         int random = Random.Range(1, 11); // 1~10ÃÊ
         Debug.LogError("random : " + random);
