@@ -317,13 +317,15 @@ public class PlayerController : MonoBehaviour
                 {
                     textmanager.Action(scanObj);
                     userInfo.grandmaFish++; // 해당 대화가 다시 실행되는 걸 방지하는 용도
+                    userInfo.npcSay = true;
 
                 }
-                else
+                else if(userInfo.npcSay == false)
                 {
                     storeUIManager = GameObject.Find("StoreUIManager").GetComponent<StoreUIManager>();
                     storeUIManager.Action(scanObj);
                 }
+
 
             }
             else if (!chat.buttonOn)
