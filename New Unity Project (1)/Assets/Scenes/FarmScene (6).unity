@@ -7186,7 +7186,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.53134346}
+  m_Offset: {x: -0.014205933, y: 0.53134346}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7197,7 +7197,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 6.937313}
+  m_Size: {x: 6.3765564, y: 6.937313}
   m_EdgeRadius: 0
 --- !u!50 &167922890
 Rigidbody2D:
@@ -58518,6 +58518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1311821301}
   - component: {fileID: 1311821302}
+  - component: {fileID: 1311821303}
   m_Layer: 0
   m_Name: map20_135 (3)
   m_TagString: Untagged
@@ -58590,6 +58591,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1311821303
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311821300}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -5.662491, y: -3.5662842}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.0625, y: 4.125}
+    newSize: {x: 4.0625, y: 4.125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 15.387482, y: 10.713097}
+  m_EdgeRadius: 0
 --- !u!1 &1312630966
 GameObject:
   m_ObjectHideFlags: 0
@@ -61879,7 +61906,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.43405613}
+  m_Offset: {x: -0.77893066, y: -0.43405613}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -61890,7 +61917,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.13188773}
+  m_Size: {x: 2.6444092, y: 0.13188773}
   m_EdgeRadius: 0
 --- !u!1 &1370856979
 GameObject:
@@ -71888,12 +71915,14 @@ PolygonCollider2D:
       - {x: -0.42550516, y: -0.41161108}
       - {x: -0.44179845, y: 0.15248865}
       - {x: -0.43311048, y: 0.4930874}
-      - {x: -0.5, y: 0.5272558}
+      - {x: -1.5082703, y: 0.75205994}
+      - {x: -2.269043, y: 1.1596642}
+      - {x: -2.4919739, y: 1.2406003}
       - {x: -0.5, y: -0.5}
       - {x: 0.5, y: -0.5}
       - {x: 0.50943804, y: 0.22205597}
       - {x: 0.5131922, y: 0.5092659}
-      - {x: 0.5131922, y: 0.5092659}
+      - {x: 1.153573, y: 1.7675552}
       - {x: 0.4454882, y: 0.5272558}
 --- !u!1 &1601406732
 GameObject:

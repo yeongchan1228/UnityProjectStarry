@@ -2323,7 +2323,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3293395, y: -1.8699147}
+  m_Offset: {x: -0.3080879, y: -2.0724885}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2334,7 +2334,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.374094, y: 3.937909}
+  m_Size: {x: 0.33159077, y: 3.532761}
   m_EdgeRadius: 0
 --- !u!1 &152401833
 GameObject:
@@ -3560,7 +3560,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.543497, y: -0.12582493}
+  m_Offset: {x: 7.93809, y: -0.12582493}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3571,7 +3571,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.383316, y: 0.867571}
+  m_Size: {x: 19.59413, y: 0.867571}
   m_EdgeRadius: 0
 --- !u!212 &193248422
 SpriteRenderer:
@@ -11293,7 +11293,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 8.3457, y: -0.26111624}
+  m_Offset: {x: 8.194449, y: -0.26111624}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -11304,7 +11304,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.77891, y: 0.5969884}
+  m_Size: {x: 19.081411, y: 0.5969884}
   m_EdgeRadius: 0
 --- !u!212 &613952994
 SpriteRenderer:
@@ -26927,7 +26927,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10979462, y: 0.17253494}
+  m_Offset: {x: 0.049562454, y: 0.07214928}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -26938,7 +26938,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1570892, y: 1.8450699}
+  m_Size: {x: 1.0366249, y: 1.6442986}
   m_EdgeRadius: 0
 --- !u!1 &1582919288
 GameObject:
@@ -28597,7 +28597,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.543497, y: -0.12582493}
+  m_Offset: {x: 7.543497, y: -0.21484089}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -28608,7 +28608,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.383316, y: 0.867571}
+  m_Size: {x: 20.383316, y: 0.6895391}
   m_EdgeRadius: 0
 --- !u!212 &1679934689
 SpriteRenderer:
@@ -31009,8 +31009,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837843090}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.84, y: -32.56, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -43.8558, y: -32.56, z: 0}
+  m_LocalScale: {x: 1.0316, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 752102736}
   m_RootOrder: 33
@@ -31899,7 +31899,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.17355824, y: 10.396086}
+  m_Offset: {x: 0.12292576, y: 10.396086}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -31910,7 +31910,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7654133, y: 25.3278}
+  m_Size: {x: 0.86667824, y: 25.3278}
   m_EdgeRadius: 0
 --- !u!1 &1882884199
 GameObject:
@@ -32501,7 +32501,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.28715158, y: 0.21828312}
+  m_Offset: {x: -0.03162384, y: 0.21828318}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -32512,7 +32512,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.613935, y: 4.0517845}
+  m_Size: {x: 3.1249905, y: 4.0517845}
   m_EdgeRadius: 0
 --- !u!114 &1911578568
 MonoBehaviour:
@@ -32529,6 +32529,7 @@ MonoBehaviour:
   id: bed
   isNPC: 0
   isSELLER: 0
+  isHINT: 0
 --- !u!1 &1915728256
 GameObject:
   m_ObjectHideFlags: 0

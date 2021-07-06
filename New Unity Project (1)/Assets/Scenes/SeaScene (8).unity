@@ -18039,6 +18039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 494059886}
   - component: {fileID: 494059887}
+  - component: {fileID: 494059888}
   m_Layer: 0
   m_Name: map20_86 (2)
   m_TagString: Untagged
@@ -18111,6 +18112,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &494059888
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494059885}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &495336000
 GameObject:
   m_ObjectHideFlags: 0
@@ -20750,6 +20767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 563212296}
   - component: {fileID: 563212297}
+  - component: {fileID: 563212298}
   m_Layer: 0
   m_Name: map20_86
   m_TagString: Untagged
@@ -20822,6 +20840,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &563212298
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563212295}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &564219459
 GameObject:
   m_ObjectHideFlags: 0
@@ -22635,6 +22669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 619639343}
   - component: {fileID: 619639344}
+  - component: {fileID: 619639345}
   m_Layer: 0
   m_Name: map20_86 (1)
   m_TagString: Untagged
@@ -22707,6 +22742,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &619639345
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619639342}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &623854063
 GameObject:
   m_ObjectHideFlags: 0
@@ -35978,7 +36029,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.44296646, y: 3.3422427}
+  m_Offset: {x: 0.94449234, y: 3.3422427}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -35989,7 +36040,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11406708, y: 12.454898}
+  m_Size: {x: 1.4514694, y: 12.454898}
   m_EdgeRadius: 0
 --- !u!1 &901851651
 GameObject:
@@ -37891,7 +37942,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.12602139}
+  m_Offset: {x: 0.095559835, y: 0.12602139}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -37902,7 +37953,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.81, y: 5.857958}
+  m_Size: {x: 6.001119, y: 5.857958}
   m_EdgeRadius: 0
 --- !u!1 &959040375
 GameObject:
@@ -68002,6 +68053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1753039273}
   - component: {fileID: 1753039274}
+  - component: {fileID: 1753039275}
   m_Layer: 0
   m_Name: Bonfire_v1_01
   m_TagString: Untagged
@@ -68074,6 +68126,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1753039275
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753039272}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.49072266}
+  serializedVersion: 2
+  m_Radius: 0.66552734
 --- !u!1 &1755144109
 GameObject:
   m_ObjectHideFlags: 0
@@ -75580,6 +75648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1958536884}
   - component: {fileID: 1958536885}
+  - component: {fileID: 1958536886}
   m_Layer: 0
   m_Name: map20_86 (3)
   m_TagString: Untagged
@@ -75594,13 +75663,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958536883}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0008329977, w: 0.99999964}
   m_LocalPosition: {x: -64.71, y: -15.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 519665748}
   m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.095}
 --- !u!212 &1958536885
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75652,6 +75721,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1958536886
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958536883}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &1958790255
 GameObject:
   m_ObjectHideFlags: 0
