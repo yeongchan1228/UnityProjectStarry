@@ -7,5 +7,8 @@ public class MonsterInformation : MonoBehaviour
     public float hp;
     public float hpMax;
     public int power;
+    public int exp;
+    public float startX;
+    public float startY;
     //public string kinds;
 }
