@@ -906,7 +906,6 @@ public class PlayerController : MonoBehaviour
                 {
                     GameObject seedi = menuControl.InventorySeed.transform.GetChild(i).gameObject;
                     Image img = seedi.transform.GetChild(0).GetComponent<Image>();
-                    Debug.LogError(userInfo.getItem_Pick().GetPickName());
                     if (img.sprite.name.Equals(userInfo.getItem_Pick().GetPickName()))
                     {
                         Text text = seedi.transform.GetChild(1).GetComponent<Text>();

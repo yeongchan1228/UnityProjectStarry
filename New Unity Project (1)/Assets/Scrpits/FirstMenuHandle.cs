@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class FirstMenuHandle : MonoBehaviour
 {
     UserInfo userInfo;
+    PlayerController player;
     // Start is called before the first frame update
     public Sprite[] fruit_afters, invens, seeds, swords, tools;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
@@ -67,7 +68,7 @@ public class FirstMenuHandle : MonoBehaviour
         if (gender.Equals("man")) // 남자
         {
             GameObject user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
-            PlayerController player = user_man.GetComponent<PlayerController>();
+            player = user_man.GetComponent<PlayerController>();
             userInfo = user_man.GetComponent<UserInfo>();
             userInfo.isTrue = true;
             user_man.SetActive(true);
@@ -85,7 +86,7 @@ public class FirstMenuHandle : MonoBehaviour
         else // 여자
         {
             GameObject user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
-            PlayerController player = user_woman.GetComponent<PlayerController>();
+            player = user_woman.GetComponent<PlayerController>();
             userInfo = user_woman.GetComponent<UserInfo>();
             userInfo.isTrue = true;
             user_woman.SetActive(true);
@@ -367,6 +368,18 @@ public class FirstMenuHandle : MonoBehaviour
             Storyimg_On.SetActive(true);
             Storycount_On.SetActive(true);
         }
+
+        ///////농사 중인 땅 받기
+        int savefieldcount = PlayerPrefs.GetInt("Saved_FieldCount");
+        for(int i = 0; i < savefieldcount; i++)
+        {
+            player.SeedField_name.Add(GameObject.Find(PlayerPrefs.GetString("Saved_Field_Object" + i)));
+            player.SeedField.Add(player.SeedField_name[i].name, new List<string> { PlayerPrefs.GetString("Saved_Field_value1_" + i), PlayerPrefs.GetString("Saved_Field_value2_" + i),
+            PlayerPrefs.GetString("Saved_Field_value3_" + i),PlayerPrefs.GetString("Saved_Field_value4_" + i),PlayerPrefs.GetString("Saved_Field_value5_" + i)});
+        }
+
+
+
 
         PlayerUI.SetActive(true);
         string scene = PlayerPrefs.GetString("Scene");

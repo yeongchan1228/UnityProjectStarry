@@ -218,6 +218,27 @@ public class MenuControl : MonoBehaviour
             PlayerPrefs.SetString("StoryItemKey" + i, userInfo.StoryItemkey[i]); //Item <- key
             PlayerPrefs.SetInt("StoryItemValue" + i, userInfo.StoryItem[userInfo.StoryItemkey[i]]);//Item <- value
         }
+
+
+        ///³ó»ç ¶¥ ÀúÀå
+        PlayerPrefs.SetInt("Saved_FieldCount", playercontrol.SeedField.Count);
+        for(int i = 0; i< playercontrol.SeedField.Count; i++)
+        {
+            PlayerPrefs.SetString("Saved_Field_Object" + i, playercontrol.SeedField_name[i].name);
+            PlayerPrefs.SetString("Saved_Field_value1_" + i, playercontrol.SeedField[playercontrol.SeedField_name[i].name][0]);
+            PlayerPrefs.SetString("Saved_Field_value2_" + i, playercontrol.SeedField[playercontrol.SeedField_name[i].name][1]);
+            PlayerPrefs.SetString("Saved_Field_value3_" + i, playercontrol.SeedField[playercontrol.SeedField_name[i].name][2]);
+            PlayerPrefs.SetString("Saved_Field_value4_" + i, playercontrol.SeedField[playercontrol.SeedField_name[i].name][3]);
+            PlayerPrefs.SetString("Saved_Field_value5_" + i, playercontrol.SeedField[playercontrol.SeedField_name[i].name][4]);
+            Debug.LogError(playercontrol.SeedField_name[0].name);
+            Debug.LogError(playercontrol.SeedField[playercontrol.SeedField_name[0].name][0]);
+            Debug.LogError(playercontrol.SeedField[playercontrol.SeedField_name[0].name][1]);
+            Debug.LogError(playercontrol.SeedField[playercontrol.SeedField_name[0].name][2]);
+            Debug.LogError(playercontrol.SeedField[playercontrol.SeedField_name[0].name][3]);
+            Debug.LogError(playercontrol.SeedField[playercontrol.SeedField_name[0].name][4]);
+        }
+
+
         //PlayerPrefs¿¡ ÀúÀå
         PlayerPrefs.Save();
 
