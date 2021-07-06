@@ -114,15 +114,23 @@ public class SlimeMovement : MonoBehaviour
         if (isTracing)
         {
             Vector3 playerPos = traceTarget.transform.position;
-
-            if (playerPos.x < transform.position.x)
-                dist = "Left";
-            else if (playerPos.x > transform.position.x)
-                dist = "Right";
-            else if (playerPos.y < transform.position.y)
-                dist = "Back";
-            else if (playerPos.y > transform.position.y)
-                dist = "Front";
+            float deltaX, deltaY;
+            deltaX = transform.position.x - playerPos.x;
+            deltaY = transform.position.y - playerPos.y;
+            if(Mathf.Abs(deltaX) < Mathf.Abs(deltaY))
+            {
+                if (playerPos.y < transform.position.y)
+                    dist = "Front";
+                else if (playerPos.y > transform.position.y)
+                    dist = "Back";
+            }
+            else
+            {
+                if (playerPos.x < transform.position.x)
+                    dist = "Left";
+                else if (playerPos.x > transform.position.x)
+                    dist = "Right";
+            }          
         }
         else
         {

@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
     string get_fish_name;
     int aniDir, pick_count;
     monsterHP mHP;
+    public MonsterInformation monsterInformation;
+    bool isUnBeatTime;
+    bool isDie;
+    public GameObject DieImage;
 
     /**************************꼰 코드에 추가할 거 ******************/
     public GameObject Hole_UI, furnace, fin_box, proobj2, exit;
@@ -96,6 +100,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDie)
+        {
+            WaitAwake();
+            return;
+        }
+        else if(userInfo.getHp()<=0) Die();
         x = textmanager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
         y = textmanager.isAction ? 0 : Input.GetAxisRaw("Vertical");
         bool hDown = textmanager.isAction ? false : Input.GetButtonDown("Horizontal");
@@ -521,6 +531,12 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (isDie)
+        {
+            WaitAwake();
+            return;
+        }
+        else if (userInfo.getHp() <= 0) Die();
         Move();// 이동
         //Debug.Log(rigid2D.position);
         //Ray 보는 방향 오브젝트 정보 저장
@@ -1390,6 +1406,74 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "Slime" && !isUnBeatTime && !isDie)
+        {
+            int maxHp = userInfo.getMaxHp();
+            int damage = 0;
+            monsterInformation = collision.gameObject.GetComponent<MonsterInformation>();
+            damage = monsterInformation.power; //나중에 갑옷 방어력만큼 빼줘야 함. 
+            userInfo.setHp(userInfo.getHp() - damage);
+            userInfo.setUIHp();
+            if (userInfo.getHp() > 1)
+            {
+                isUnBeatTime = true;
+                spriteR = gameObject.GetComponent<SpriteRenderer>();
+                StartCoroutine("UnBeatTime");
+            }
+            else Die();
+        }
+    }
+
+    private void Die()
+    {
+        DieImage = GameObject.Find("DieCanvas").transform.GetChild(0).gameObject;
+        isDie = true;
+        if (userInfo.getGold() <= 0)
+        {
+            DieImage.transform.GetChild(0).gameObject.GetComponent<Text>().text = "큰 부상을 입은 당신을 긴급 의료 서비스가 출동해 치료했습니다.\n원래는 치료비를 받아야하지만, 돈이 한 푼도 없는 당신을 불쌍하게 여겨 돈을 받지 않고 치료해주었습니다..\n깨어나려면 Enter키를 눌러주세요.";
+        }
+        DieImage.SetActive(true);
+        userInfo.setGold(userInfo.getGold() / 2);
+        userInfo.setUIGold();
+        WaitAwake();
+    }
+
+    private void WaitAwake()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            DieImage = GameObject.Find("DieCanvas").transform.GetChild(0).gameObject;
+            SceneManager.LoadScene("HouseScene (5)");
+            DieImage.SetActive(false);
+            userInfo.setHp(userInfo.getMaxHp());
+            userInfo.setUIHp();
+            isDie = false;
+        }
+    }
+
+    IEnumerator UnBeatTime()
+    {
+        int countTime = 0;
+        spriteR.color = new Color32(255, 0, 0, 180);
+        yield return new WaitForSeconds(0.05f);
+        while (countTime < 9)
+        {
+            if (countTime % 2 == 0)
+                spriteR.color = new Color32(255, 255, 255, 90);
+            else
+                spriteR.color = new Color32(255, 255, 255, 180);
+            yield return new WaitForSeconds(0.15f);
+            countTime++;
+        }
+        spriteR.color = new Color32(255, 255, 255, 255);
+        isUnBeatTime = false;
+        yield return null;
+    }
+
     void Off_Sleep()
     {
         Sleep = GameObject.Find("Sleep").transform.GetChild(0).gameObject;
