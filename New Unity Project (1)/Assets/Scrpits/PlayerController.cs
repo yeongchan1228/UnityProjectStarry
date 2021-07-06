@@ -319,7 +319,36 @@ public class PlayerController : MonoBehaviour
             Leveltext.text = "Lv. " + userInfo.getLevel().ToString();
             menuControl.ExpInfo.text = "Exp : " + userInfo.getExp().ToString();
         }
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (userInfo.isSword == true &&
+            (SceneManager.GetActiveScene().name == "Dungeon (11)" ||
+            SceneManager.GetActiveScene().name == "Dungeon1 (12)" ||
+            SceneManager.GetActiveScene().name == "Dungeon2 (13)"))
+            {
+                if (dirVec == Vector3.down)
+                {
+                    aniDir = 0; // 정면, 즉 아래를 보고 있을 때
+                    anim.SetTrigger("isFrontSword");
+                }
+                else if (dirVec == Vector3.left)
+                {
+                    aniDir = 1; // 왼쪽을 보고 있을 때
+                    anim.SetTrigger("isLeftSword");
+                }
+                else if (dirVec == Vector3.right)
+                {
+                    aniDir = 2; // 오른쪽을 보고 있을 때
+                    anim.SetTrigger("isRightSword");
+                }
+                else if (dirVec == Vector3.up)
+                {
+                    aniDir = 3; // Back, 즉 위를 보고 있을 때
+                    anim.SetTrigger("isBackSword");
+                }
+                Attack(aniDir);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space) && scanObj != null && isFarm == false)
         {
             if (SceneManager.GetActiveScene().name == "StoreScene (10)")
@@ -333,15 +362,11 @@ public class PlayerController : MonoBehaviour
                     storeUIManager = GameObject.Find("StoreUIManager").GetComponent<StoreUIManager>();
                     storeUIManager.Action(scanObj);
                 }
-
-
             }
             else if (!chat.buttonOn)
             {
                 textmanager.Action(scanObj); // 대화창 출력
             }
-
-
         }
         else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null && isFarm == false && isnow_fishing == false) // 가끔 발생하는 오류 해결 
         {
@@ -349,33 +374,6 @@ public class PlayerController : MonoBehaviour
             {
                 textmanager.isAction = false;
                 textmanager.talk.SetBool("isShow", textmanager.isAction);
-            }
-            if (userInfo.isSword == true &&
-                (SceneManager.GetActiveScene().name == "Dungeon (11)" ||
-            SceneManager.GetActiveScene().name == "Dungeon1 (12)" ||
-            SceneManager.GetActiveScene().name == "Dungeon2 (13)"))
-            {
-                if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManDown") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManIdle"))
-                {
-                    aniDir = 0; // 정면, 즉 아래를 보고 있을 때
-                    anim.SetBool("isFrontSword", userInfo.isSword);
-                }
-                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManLeftIdle"))
-                {
-                    aniDir = 1; // 왼쪽을 보고 있을 때
-                    anim.SetBool("isLeftSword", userInfo.isSword);
-                }
-                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManRight") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManRightIdle"))
-                {
-                    aniDir = 2; // 오른쪽을 보고 있을 때
-                    anim.SetBool("isRightSword", userInfo.isSword);
-                }
-                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("ManUp") || anim.GetCurrentAnimatorStateInfo(0).IsName("ManBackIdle"))
-                {
-                    aniDir = 3; // Back, 즉 위를 보고 있을 때
-                    anim.SetBool("isBackSword", userInfo.isSword);
-                }
-                Attack(aniDir);
             }
         }
 
