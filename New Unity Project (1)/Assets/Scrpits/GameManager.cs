@@ -18,12 +18,13 @@ public class GameManager : MonoBehaviour
     public bool isAction; // 대화창이 켜져있는지 아닌지 확인
     public GameObject button1;
     public GameObject button2;
-    public bool isButton, isFirstImg, isman, iswoman;
+    public bool isButton, isFirstImg, isFinimg, is_off, isman, iswoman;
     public string select1, select2, select3;
     public GameObject user_man;
     public GameObject user_woman;
     bool getinfo;
     public UserInfo userInfo;
+    ButtonHandler buttonHandler;
 
     void Start()
     {
@@ -53,6 +54,15 @@ public class GameManager : MonoBehaviour
         Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isHINT, npc_Data.isSELLER);
         talk.SetBool("isShow", isAction);
         if(!isAction && npc_Data.isSELLER && userInfo.grandmaFish == 1) { userInfo.npcFinish = true; }
+        if(!isAction && scanobj.name.Equals("final_man")) 
+        {
+            GameObject off_img = GameObject.Find("Hole_UI").transform.GetChild(7).gameObject;
+            GameObject enddingimg = GameObject.Find("Hole_UI").transform.GetChild(8).gameObject;
+            off_img.SetActive(false);
+            buttonHandler = GameObject.Find("ButtonHandler").GetComponent<ButtonHandler>();
+            buttonHandler.scanObj = null;
+            enddingimg.SetActive(true);
+        }
         if (!isAction)
         {
             GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
@@ -85,7 +95,6 @@ public class GameManager : MonoBehaviour
 
         if (talkData == null && chatEffect.doing == false)
         {
-            Debug.Log("여기까지 제어가 가나");
             isAction = false;
             talkIndex = 0;
             
@@ -186,6 +195,14 @@ public class GameManager : MonoBehaviour
                 else if (select3 == "3")
                 {
                     isFirstImg = true;
+                }
+                else if (select3 == "4")
+                {
+                    is_off = true;
+                }
+                else if (select3 == "5")
+                {
+                    isFinimg = true;
                 }
             }
         }

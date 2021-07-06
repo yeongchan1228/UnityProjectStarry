@@ -10,7 +10,7 @@ public class ChatEffect : MonoBehaviour
     public int EffectSpeed; // ���� ������ �ӵ�
     Text text1;
     int index;
-    Sprite[] firstimgs;
+    public Sprite[] firstimgs, finimgs;
     AudioSource audio1;
     float Invoke_speed;
     public GameManager game;
@@ -20,12 +20,13 @@ public class ChatEffect : MonoBehaviour
     //public bool isallbutton;
     Text ButtonText1, ButtonText2;
     public GameObject Button1, Button2;
-    int whatnum;
+    int whatnum, finnum;
 
     // Start is called before the first frame update
     void Awake()
     {
         firstimgs = Resources.LoadAll<Sprite>("Sprites/FirstStory");
+        finimgs = Resources.LoadAll<Sprite>("Sprites/FinalStory");
         audio1 = GetComponent<AudioSource>();
         text1 = GetComponent<Text>();
         ButtonText1 = Button1.GetComponent<Text>();
@@ -34,6 +35,13 @@ public class ChatEffect : MonoBehaviour
 
     public void Setting(string getmsg)
     {
+        if (game.is_off)
+        {
+            GameObject Fin_off = GameObject.Find("Hole_UI").transform.GetChild(7).gameObject;
+            Fin_off.SetActive(false);
+            game.is_off = false;
+        }
+
         if (doing)
         {
             text1.text = msg;
@@ -119,6 +127,16 @@ public class ChatEffect : MonoBehaviour
             }
             game.isFirstImg = false;
         }
+        else if (game.isFinimg)
+        {
+            GameObject ison = GameObject.Find("Hole_UI").transform.GetChild(7).gameObject;
+            if (!ison.activeSelf) { ison.SetActive(true); }
+            Image FinImg = GameObject.Find("Hole_UI").transform.GetChild(7).transform.GetChild(0).GetComponent<Image>();
+            FinImg.sprite = finimgs[finnum];
+            finnum++;
+            game.isFinimg = false;
+        }
+
     }
 
     void Button1_On(string text1)

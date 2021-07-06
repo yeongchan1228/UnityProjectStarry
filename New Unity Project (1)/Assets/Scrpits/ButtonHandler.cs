@@ -11,16 +11,17 @@ public class ButtonHandler : MonoBehaviour
     public GameManager textmanager;
     public GameObject text1, text2, text3;
 
-    public GameObject confirm, fail, text5, ok, success, text6;
+    public GameObject confirm, fail, text5, ok, success, text6, scanObj;
     public GameObject pinkKey, blueKey, greenKey, purpleKey, finalKey;
     public GameObject pinkKey2, blueKey2, greenKey2, purpleKey2;
     public GameObject strawberry, angel, devil, bear, hat, musicbox, starry;
 
+    AudioSource audioSource;
     UserInfo userInfo;
     GameObject user_man, user_woman;
     MenuControl menuControl;
-
-    Sprite[] spec_orgol;
+    bool isFinstory;
+    Sprite[] spec_orgol, finstory;
     Sprite[] special;
 
     //bool isPinkKey, isGreenKey, isBlueKey, isPurpleKey, isFinalKey;
@@ -33,8 +34,11 @@ public class ButtonHandler : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
         spec_orgol = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         special = Resources.LoadAll<Sprite>("Sprites/Final");
+        finstory = Resources.LoadAll<Sprite>("Sprites/FinalStory");
 
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
@@ -95,6 +99,15 @@ public class ButtonHandler : MonoBehaviour
         else
         {
             userInfo = user_woman.GetComponent<UserInfo>();
+        }
+        
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && scanObj != null)
+        {
+            textmanager.Action(scanObj); // 대화창 출력
         }
     }
 
@@ -546,10 +559,30 @@ public class ButtonHandler : MonoBehaviour
         //최종 열쇠를 만들었을 때
         if(userInfo.isFinalKey == true)
         {
-            // 나중에 여기에 엔딩 씬 추가하기.
+            scanObj = GameObject.Find("final_man");
+            isFinstory = true;
+            GameObject background = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+            GameObject finbox = GameObject.Find("Hole_UI").transform.GetChild(7).gameObject;
+            GameObject hole = GameObject.Find("Hole_UI").transform.GetChild(1).gameObject;
+            GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+            GameObject BGM = GameObject.Find("BGM");
+            if (isFinstory)
+            {
+                hole.SetActive(false);
+                background.SetActive(true);
+                PlayerUI.SetActive(false);
+                Destroy(BGM);
+                audioSource.Play();
+                //finbox.SetActive(true);
+                textmanager.Action(scanObj); // 대화창 출력
+            }
         }
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
     public void click_ok()
     {
         confirm.SetActive(false);
