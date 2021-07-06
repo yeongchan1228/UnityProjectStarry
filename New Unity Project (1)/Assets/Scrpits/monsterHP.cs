@@ -23,6 +23,8 @@ public class monsterHP : MonoBehaviour
         PlayerUI = GameObject.Find("PlayerUI").gameObject;
         userInfo = GameObject.FindGameObjectWithTag("Player").GetComponent<UserInfo>();
         mi = gameObject.GetComponent<MonsterInformation>();
+        mi.startX = transform.position.x;
+        mi.startY = transform.position.y;
         //slimeMovement = gameObject.GetComponent<SlimeMovement>();
         respawnTime = 5.0F;
         if (mi.hpMax == 100)
@@ -106,6 +108,7 @@ public class monsterHP : MonoBehaviour
     */
     void Respawn()
     {
+        gameObject.transform.position = new Vector3(mi.startX, mi.startY, 0);
         gameObject.SetActive(true);
         hpBar.gameObject.SetActive(true);
         if (isKing)
