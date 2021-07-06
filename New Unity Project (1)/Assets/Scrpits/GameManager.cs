@@ -28,17 +28,31 @@ public class GameManager : MonoBehaviour
     void Start()
     {
     }
-
+    void user_Infp()
+    {
+        if (userInfo == null)
+        {
+            user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
+            user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
+            UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
+            if (userinfo2.isTrue)
+            {
+                userInfo = user_man.GetComponent<UserInfo>();
+            }
+            else { userInfo = user_woman.GetComponent<UserInfo>(); }
+        }
+    }
 
     public void Action(GameObject scanobj)
     {
+        user_Infp();
         //Chat.SetActive(true);
-        Debug.Log("여기는");
         
         scanobject = scanobj;
         NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
         Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isHINT, npc_Data.isSELLER);
         talk.SetBool("isShow", isAction);
+        if(!isAction && npc_Data.isSELLER && userInfo.grandmaFish == 1) { userInfo.npcFinish = true; }
         if (!isAction)
         {
             GameObject PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
@@ -52,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     void Talking(string id, bool isNPC, bool isHINT, bool isSELLER)
     {
+        user_Infp();
         button1.SetActive(false);
         button2.SetActive(false);
         
@@ -104,9 +119,6 @@ public class GameManager : MonoBehaviour
         {
             if (talkData == null) {
                 chatEffect.Setting("널값임.");
-                userInfo.npcSay = false;
-                userInfo.grandmaFish++;
-                userInfo.npcFinish = true;
             }
             else
             {

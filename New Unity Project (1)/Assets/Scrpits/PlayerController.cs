@@ -324,12 +324,9 @@ public class PlayerController : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "StoreScene (10)")
             {
-                if (userInfo.npcFinish == false && userInfo.grandmaFish == 1)
+                if (userInfo.npcFinish == false && userInfo.grandmaFish == 1 && userInfo.npcFinish != true)
                 {
                     textmanager.Action(scanObj);
-                    //userInfo.grandmaFish++; // 해당 대화가 다시 실행되는 걸 방지하는 용도
-                    userInfo.npcSay = true;
-
                 }
                 else if (userInfo.npcSay == false)
                 {

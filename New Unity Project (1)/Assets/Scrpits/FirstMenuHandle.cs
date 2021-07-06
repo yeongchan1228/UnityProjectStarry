@@ -302,7 +302,6 @@ public class FirstMenuHandle : MonoBehaviour
             Fruitcount_On.SetActive(true);
         }
 
-
         ///////¹°°í±â Á¤º¸ ¹Þ¾Æ¿À±â
         for (int i = 0; i < fishitemcount; i++)
         {
@@ -358,7 +357,7 @@ public class FirstMenuHandle : MonoBehaviour
             Image storyimg = InventoryStory.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
             GameObject Storycount_On = InventoryStory.transform.GetChild(i).transform.GetChild(1).gameObject;
             Text storytext = InventoryStory.transform.GetChild(i).transform.GetChild(1).GetComponent<Text>();
-            if (userInfo.StoryItemkey[i].Equals("Orgol")) { storyimg.sprite = spec_orgol[10]; }
+            if (userInfo.StoryItemkey[i].Equals("Orgol")) {  storyimg.sprite = spec_orgol[10]; }
             else if (userInfo.StoryItemkey[i].Equals("ÇÏ´Ã»ö ¿­¼è")) { storyimg.sprite = special[0]; }
             else if (userInfo.StoryItemkey[i].Equals("ÃÖÁ¾ ¿­¼è")) { storyimg.sprite = special[1]; }
             else if (userInfo.StoryItemkey[i].Equals("ÃÊ·Ï»ö ¿­¼è")) { storyimg.sprite = special[2]; }
@@ -366,7 +365,7 @@ public class FirstMenuHandle : MonoBehaviour
             else if (userInfo.StoryItemkey[i].Equals("ºÐÈ«»ö ¿­¼è")) { storyimg.sprite = special[4]; }
             else if (userInfo.StoryItemkey[i].Equals("º¸¶ó»ö ¿­¼è")) { storyimg.sprite = special[5]; }
             else if (userInfo.StoryItemkey[i].Equals("°õÀÎÇü")) { storyimg.sprite = special[6]; }
-            storytext.text = userInfo.FishItem[userInfo.FishItemkey[i]].ToString();
+            storytext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
             Storyimg_On.SetActive(true);
             Storycount_On.SetActive(true);
         }
@@ -406,6 +405,7 @@ public class FirstMenuHandle : MonoBehaviour
             else if (sprite_name.Equals(fruit_befores[18].name)) { SpriteR.sprite = fruit_befores[18] as Sprite; }
         }
 
+        if (PlayerPrefs.HasKey("npcFinish2")) { userInfo.npcFinish = true; }
 
 
 

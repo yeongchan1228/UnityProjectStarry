@@ -24,7 +24,6 @@ public class Town2 : MonoBehaviour
             userInfo = user_man.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_man.transform.position = new Vector3(3.5f, -26f, 0); userInfo.userWhere = 0; } // farm에서 나오기
             if (userInfo.userWhere == 2) { user_man.transform.position = new Vector3(19.27f, -13.5f, 0); userInfo.userWhere = 0; // store에서 나오기
-                player.moveSpeed = 10; // 속도 변경
                 user_man.transform.localScale = new Vector3(1f, 1f, 0); // 사이즈 변경
             } // store에서 나오기
 
@@ -35,7 +34,6 @@ public class Town2 : MonoBehaviour
             userInfo = user_woman.GetComponent<UserInfo>();
             if (userInfo.userWhere == 1) { user_woman.transform.position = new Vector3(3.5f, -26f, 0); userInfo.userWhere = 0; } // farm에서 나오기
             if (userInfo.userWhere == 2) { user_woman.transform.position = new Vector3(19.27f, -13.5f, 0); userInfo.userWhere = 0; // store에서 나오기
-                player.moveSpeed = 10; // 속도 변경
                 user_woman.transform.localScale = new Vector3(1f, 1f, 0); // 사이즈 변경
             } // store에서 나오기
 

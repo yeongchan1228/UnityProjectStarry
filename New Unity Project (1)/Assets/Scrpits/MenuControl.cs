@@ -233,7 +233,12 @@ public class MenuControl : MonoBehaviour
             PlayerPrefs.SetString("Saved_Field_value4_" + i, playercontrol.SeedField[playercontrol.SeedField_name[i].name][3]);
             PlayerPrefs.SetString("Saved_Field_value5_" + i, playercontrol.SeedField[playercontrol.SeedField_name[i].name][4]);
         }
-
+        Debug.LogError(userInfo.npcFinish);
+        if (userInfo.npcFinish)
+        {
+            Debug.LogError("실행");
+            PlayerPrefs.SetInt("npcFinish2", 1);
+        }
 
         //PlayerPrefs에 저장
         PlayerPrefs.Save();
