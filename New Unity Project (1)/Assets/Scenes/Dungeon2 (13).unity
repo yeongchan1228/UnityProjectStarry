@@ -1954,6 +1954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 300
   hpMax: 300
+  power: 0
 --- !u!114 &49407731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10594,7 +10595,7 @@ GameObject:
   - component: {fileID: 282262034}
   m_Layer: 0
   m_Name: king
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10627,6 +10628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 700
   hpMax: 700
+  power: 0
 --- !u!114 &282262028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20338,7 +20340,7 @@ GameObject:
   - component: {fileID: 503998579}
   m_Layer: 0
   m_Name: dark (1)
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20371,6 +20373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 366
   hpMax: 366
+  power: 0
 --- !u!114 &503998573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23492,7 +23495,7 @@ GameObject:
   - component: {fileID: 607197200}
   m_Layer: 0
   m_Name: starry (1)
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23525,6 +23528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 500
   hpMax: 500
+  power: 0
 --- !u!114 &607197194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27827,7 +27831,7 @@ GameObject:
   - component: {fileID: 703135946}
   m_Layer: 0
   m_Name: starry
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27860,6 +27864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   hpMax: 100
+  power: 0
 --- !u!114 &703135940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31483,7 +31488,7 @@ GameObject:
   - component: {fileID: 784073660}
   m_Layer: 0
   m_Name: dark (2)
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31516,6 +31521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 366
   hpMax: 366
+  power: 0
 --- !u!114 &784073654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39402,7 +39408,7 @@ GameObject:
   - component: {fileID: 1006014848}
   m_Layer: 0
   m_Name: dark
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39435,6 +39441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 366
   hpMax: 366
+  power: 0
 --- !u!114 &1006014842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55514,6 +55521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 300
   hpMax: 300
+  power: 0
 --- !u!114 &1428335586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80379,7 +80387,7 @@ GameObject:
   - component: {fileID: 2036665685}
   m_Layer: 0
   m_Name: light
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80412,6 +80420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 300
   hpMax: 300
+  power: 0
 --- !u!114 &2036665679
 MonoBehaviour:
   m_ObjectHideFlags: 0

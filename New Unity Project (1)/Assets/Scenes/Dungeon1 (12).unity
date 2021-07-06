@@ -6276,7 +6276,7 @@ GameObject:
   - component: {fileID: 178546771}
   m_Layer: 0
   m_Name: light
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6309,6 +6309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 300
   hpMax: 300
+  power: 0
 --- !u!114 &178546765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34846,7 +34847,7 @@ GameObject:
   - component: {fileID: 941782919}
   m_Layer: 0
   m_Name: starry (1)
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34879,6 +34880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 500
   hpMax: 500
+  power: 0
 --- !u!114 &941782913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60729,7 +60731,7 @@ GameObject:
   - component: {fileID: 1623547303}
   m_Layer: 0
   m_Name: dark (1)
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60762,6 +60764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 366
   hpMax: 366
+  power: 0
 --- !u!114 &1623547297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63917,7 +63920,7 @@ GameObject:
   - component: {fileID: 1711082023}
   m_Layer: 0
   m_Name: dark
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63950,6 +63953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 366
   hpMax: 366
+  power: 0
 --- !u!114 &1711082017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66599,7 +66603,7 @@ GameObject:
   - component: {fileID: 1749122641}
   m_Layer: 0
   m_Name: starry
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66632,6 +66636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 500
   hpMax: 500
+  power: 0
 --- !u!114 &1749122635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69725,7 +69730,7 @@ GameObject:
   - component: {fileID: 1846623955}
   m_Layer: 0
   m_Name: dark (2)
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69758,6 +69763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 366
   hpMax: 366
+  power: 0
 --- !u!114 &1846623949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75452,6 +75458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 150
   hpMax: 150
+  power: 0
 --- !u!114 &2009208428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78763,6 +78770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 150
   hpMax: 150
+  power: 0
 --- !u!114 &2108090541
 MonoBehaviour:
   m_ObjectHideFlags: 0
