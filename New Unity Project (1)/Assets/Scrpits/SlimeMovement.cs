@@ -46,7 +46,7 @@ public class SlimeMovement : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isTracing = true;
-            //StopCoroutine("ChangeMovement");
+            StopCoroutine("ChangeMovement");
         }
     }
 
@@ -56,7 +56,7 @@ public class SlimeMovement : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isTracing = false;
-            StopCoroutine("ChangeMovement");
+            StartCoroutine("ChangeMovement");
         }
     }
 

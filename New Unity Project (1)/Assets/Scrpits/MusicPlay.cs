@@ -8,7 +8,8 @@ public class MusicPlay : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip[] audioClip;
     private GameObject[] musics;
-    
+    public bool isDie;
+
     private void Awake()
     {
         musics = GameObject.FindGameObjectsWithTag("Music");
@@ -38,9 +39,14 @@ public class MusicPlay : MonoBehaviour
     void Update()
     {
         int Index = SceneManager.GetActiveScene().buildIndex;
-        if (Index>0)
+        if (Index>0 && !isDie)
         {
             audioSource.clip = audioClip[Index];
+            PlayMusic();
+        }
+        if (isDie)
+        {
+            audioSource.clip = audioClip[12];
             PlayMusic();
         }
     }

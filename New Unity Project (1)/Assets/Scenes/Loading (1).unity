@@ -7854,6 +7854,7 @@ GameObject:
   - component: {fileID: 274010943}
   - component: {fileID: 274010947}
   - component: {fileID: 274010949}
+  - component: {fileID: 274010950}
   m_Layer: 0
   m_Name: Man_Player
   m_TagString: Player
@@ -7906,6 +7907,7 @@ MonoBehaviour:
   FishItemkey: []
   StoryItemkey: []
   grandmaFish: 0
+  npcSay: 0
 --- !u!50 &274010944
 Rigidbody2D:
   serializedVersion: 4
@@ -8049,6 +8051,7 @@ MonoBehaviour:
   Fishing_Result: 0
   isnow_fishing: 0
   isInven: 0
+  isfishonclick: 0
   SeedField_name: []
   count: 0
   fish_clicked: 0
@@ -8056,6 +8059,9 @@ MonoBehaviour:
   storeUIManager: {fileID: 0}
   monsterInformation: {fileID: 0}
   DieImage: {fileID: 1424910442}
+  audioAttacked: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  audioAttack: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  audioSuccess: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
   Hole_UI: {fileID: 0}
   furnace: {fileID: 0}
   fin_box: {fileID: 0}
@@ -8082,6 +8088,102 @@ MonoBehaviour:
   isNPC: 0
   isSELLER: 0
   isHINT: 0
+--- !u!82 &274010950
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274010941}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &274634403
 GameObject:
   m_ObjectHideFlags: 0
@@ -17013,8 +17115,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD070 \uBD80\uC0C1\uC744 \uC785\uC740 \uB2F9\uC2E0\uC744 \uAE34\uAE09
-    \uC758\uB8CC \uC11C\uBE44\uC2A4\uAC00 \uCD9C\uB3D9\uD574 \uCE58\uB8CC\uD588\uC2B5\uB2C8\uB2E4.\n\uCE58\uB8CC\uBE44\uB85C
+  m_Text: "GAME OVER!!!\n\n\uD070 \uBD80\uC0C1\uC744 \uC785\uC740 \uB2F9\uC2E0\uC744
+    \uAE34\uAE09 \uC758\uB8CC \uC11C\uBE44\uC2A4\uAC00 \uCD9C\uB3D9\uD574 \uCE58\uB8CC\uD588\uC2B5\uB2C8\uB2E4.\n\uCE58\uB8CC\uBE44\uB85C
     \uAC00\uC9C4 \uB3C8\uC758 \uC808\uBC18\uC744 \uC18C\uBE44\uD588\uC2B5\uB2C8\uB2E4.\n\n\uAE68\uC5B4\uB098\uB824\uBA74
     Space\uD0A4\uB97C \uB20C\uB7EC\uC8FC\uC138\uC694."
 --- !u!222 &597040880
@@ -45632,6 +45734,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a47f04f13a0c50f4cba70d6f79dd5ff6, type: 3}
   - {fileID: 8300000, guid: a47f04f13a0c50f4cba70d6f79dd5ff6, type: 3}
   - {fileID: 8300000, guid: a47f04f13a0c50f4cba70d6f79dd5ff6, type: 3}
+  - {fileID: 8300000, guid: 4bf801a0214b24847b66e2d1f9133d27, type: 3}
+  isDie: 0
 --- !u!1 &1640750139
 GameObject:
   m_ObjectHideFlags: 0
@@ -54971,6 +55075,7 @@ GameObject:
   - component: {fileID: 1997066906}
   - component: {fileID: 1997066907}
   - component: {fileID: 1997066912}
+  - component: {fileID: 1997066913}
   m_Layer: 0
   m_Name: Woman_Player
   m_TagString: Player
@@ -55023,6 +55128,7 @@ MonoBehaviour:
   FishItemkey: []
   StoryItemkey: []
   grandmaFish: 0
+  npcSay: 0
 --- !u!61 &1997066907
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55096,6 +55202,7 @@ MonoBehaviour:
   Fishing_Result: 0
   isnow_fishing: 0
   isInven: 0
+  isfishonclick: 0
   SeedField_name: []
   count: 0
   fish_clicked: 0
@@ -55103,6 +55210,9 @@ MonoBehaviour:
   storeUIManager: {fileID: 0}
   monsterInformation: {fileID: 0}
   DieImage: {fileID: 1424910442}
+  audioAttacked: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  audioAttack: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  audioSuccess: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
   Hole_UI: {fileID: 0}
   furnace: {fileID: 0}
   fin_box: {fileID: 0}
@@ -55199,6 +55309,102 @@ MonoBehaviour:
   isNPC: 0
   isSELLER: 0
   isHINT: 0
+--- !u!82 &1997066913
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997066904}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2004334126
 GameObject:
   m_ObjectHideFlags: 0

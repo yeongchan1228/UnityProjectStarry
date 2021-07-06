@@ -45,6 +45,11 @@ public class PlayerController : MonoBehaviour
     bool isUnBeatTime;
     bool isDie;
     public GameObject DieImage;
+    AudioSource playerAudio;
+    public AudioClip audioAttacked;
+    public AudioClip audioAttack;
+    public AudioClip audioSuccess;
+    MusicPlay BGM;
 
     /**************************꼰 코드에 추가할 거 ******************/
     public GameObject Hole_UI, furnace, fin_box, proobj2, exit;
@@ -68,6 +73,9 @@ public class PlayerController : MonoBehaviour
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
+        playerAudio = GetComponent<AudioSource>();
+        BGM = GameObject.Find("BGM").GetComponent<MusicPlay>();
+
         if (userinfo2.isTrue)
         {
             userInfo = user_man.GetComponent<UserInfo>();
@@ -707,6 +715,8 @@ public class PlayerController : MonoBehaviour
         {
             List<GameObject> slimeObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Slime"));
             GameObject enemy = slimeObjects[0];
+            playerAudio.clip = audioAttack;
+            playerAudio.Play();
             if (aniDir == 0 || aniDir == 3) // 0 : 정면 - 아래 / 3 : 뒷모습 - 위
             {
                 float disY = slimeObjects[0].transform.position.y - transform.position.y;
@@ -1214,7 +1224,9 @@ public class PlayerController : MonoBehaviour
         }
     }
     void Success_fishing()
-    { 
+    {
+        playerAudio.clip = audioSuccess;
+        playerAudio.Play();
         GameObject Fishing_obj = GameObject.Find("Fishing").transform.GetChild(0).gameObject;
         Fishing_obj.SetActive(false);
         GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
@@ -1433,9 +1445,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-
         if (collision.gameObject.tag == "Slime" && !isUnBeatTime && !isDie)
         {
+            playerAudio.clip = audioAttacked;
+            playerAudio.Play();
             int maxHp = userInfo.getMaxHp();
             int damage = 0;
             monsterInformation = collision.gameObject.GetComponent<MonsterInformation>();
@@ -1455,12 +1468,15 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         DieImage = GameObject.Find("DieCanvas").transform.GetChild(0).gameObject;
+        BGM.isDie = true;
         isDie = true;
         if (userInfo.getGold() <= 0)
         {
-            DieImage.transform.GetChild(0).gameObject.GetComponent<Text>().text = "큰 부상을 입은 당신을 긴급 의료 서비스가 출동해 치료했습니다.\n원래는 치료비를 받아야하지만, 돈이 한 푼도 없는 당신을 불쌍하게 여겨 돈을 받지 않고 치료해주었습니다..\n깨어나려면 Enter키를 눌러주세요.";
+            DieImage.transform.GetChild(0).gameObject.GetComponent<Text>().text = "GAME OVER!!!\n\n\n큰 부상을 입은 당신을 긴급 의료 서비스가 출동해 치료했습니다.\n원래는 치료비를 받아야하지만, 돈이 한 푼도 없는 당신을 불쌍하게 여겨 돈을 받지 않고 치료해주었습니다..\n\n깨어나려면 Enter키를 눌러주세요.";
         }
         DieImage.SetActive(true);
+        if (userInfo.getGender() == "man") DieImage.transform.GetChild(2).gameObject.SetActive(true);
+        else DieImage.transform.GetChild(1).gameObject.SetActive(true);
         userInfo.setGold(userInfo.getGold() / 2);
         userInfo.setUIGold();
         WaitAwake();
@@ -1472,9 +1488,10 @@ public class PlayerController : MonoBehaviour
         {
             DieImage = GameObject.Find("DieCanvas").transform.GetChild(0).gameObject;
             SceneManager.LoadScene("HouseScene (5)");
-            DieImage.SetActive(false);
             userInfo.setHp(userInfo.getMaxHp());
             userInfo.setUIHp();
+            DieImage.SetActive(false);
+            BGM.isDie = false;
             isDie = false;
         }
     }
