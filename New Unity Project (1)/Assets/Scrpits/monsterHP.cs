@@ -26,17 +26,35 @@ public class monsterHP : MonoBehaviour
         //slimeMovement = gameObject.GetComponent<SlimeMovement>();
         respawnTime = 5.0F;
         if (mi.hpMax == 100)
+        {
             mi.power = 5;
+            mi.exp = 30;
+        }
         else if (mi.hpMax == 150)
+        {
             mi.power = 10;
+            mi.exp = 50;
+        }
         else if (mi.hpMax == 300)
+        {
             mi.power = 15;
+            mi.exp = 80;
+        }
         else if (mi.hpMax == 366)
+        {
             mi.power = 16;
+            mi.exp = 90;
+        }
         else if (mi.hpMax == 500)
+        {
             mi.power = 20;
+            mi.exp = 150;
+        }
         else if (mi.hpMax == 700)
+        {
             mi.power = 30;
+            mi.exp = 250;
+        }
         // 슬라임 종 랜덤으로 정해줌.  값에 따른 종--> 0~20 : 레드/ 21~40 : 그린/ 41~60 : 블루/ 61~75 : 라이트/ 76~90 : 다크/ 91~96 : 스태리/ 97~100 : 킹
         //mi.kinds = DecideKinds();
         //slimeMovement.SetActive(true);
@@ -54,6 +72,8 @@ public class monsterHP : MonoBehaviour
             Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
             EarnGold = (int)mi.hpMax * 10;
             userInfo.setGold(userInfo.getGold() + EarnGold);
+            userInfo.setExp(userInfo.getExp() + mi.exp);
+            userInfo.setExpInfo();
             UIGold.text = userInfo.getGold().ToString();
             hpBar.gameObject.SetActive(false);
             if (isKing)
