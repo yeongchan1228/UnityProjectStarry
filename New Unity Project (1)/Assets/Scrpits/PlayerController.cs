@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public GameObject scanObj; // 스캔 오브젝트
     UserInfo userInfo;
     public bool isPlayerUI, isHoeing, isFishing, Fishing_Result, isnow_fishing, isInven, isfishonclick;
-    GameObject proobj;
+    GameObject proobj, save_target_obj;
     public Dictionary<string, List<string>> SeedField; // 0. 심은 날, 1. 종류, 2. 물 횟수 3. 오늘 물 뿌렸는지? 4. 상태
     public List<GameObject> SeedField_name;
     public int count;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     MenuControl menuControl;
     string NowField;
     public StoreUIManager storeUIManager;
-    string get_fish_name;
+    string get_fish_name, save_target;
     int aniDir, pick_count;
     monsterHP mHP;
     public MonsterInformation monsterInformation;
@@ -450,12 +450,18 @@ public class PlayerController : MonoBehaviour
         {
             if (targetobj.tag.Equals("Not_Feed_Field"))
             {
+                save_target = null;
                 Do_Farming();
             }
             else if (targetobj.tag.Equals("Sea") && userInfo.isFishingRod && isnow_fishing == false)
             {
                 Do_Fishing();
             }  
+            else if(targetobj.tag.Equals("Water") && userInfo.isWaterPPU)
+            {
+                GameObject gameogj = GameObject.Find("WaterPPU").transform.GetChild(1).gameObject;
+                gameogj.SetActive(true);
+            }
         }
 
         // ************* 나중에 코드 추가할 거
@@ -541,7 +547,6 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(rigid2D.position);
         //Ray 보는 방향 오브젝트 정보 저장
         RaycastHit2D rayHit = Physics2D.Raycast(rigid2D.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
-        RaycastHit2D rayHit2 = Physics2D.Raycast(rigid2D.position, dirVec, 0.7f, LayerMask.GetMask("Water"));
         if (rayHit.collider != null)
         {
             scanObj = rayHit.collider.gameObject;
@@ -550,14 +555,7 @@ public class PlayerController : MonoBehaviour
         {
             scanObj = null;
         }
-        if (rayHit2.collider != null)
-        {
-            if(Input.GetKeyDown(KeyCode.Space) && userInfo.isWaterPPU)
-            {
-                GameObject gameogj = GameObject.Find("WaterPPU").transform.GetChild(1).gameObject;
-                gameogj.SetActive(true);
-            }
-        }
+
     }
    
     public void SetStartXY(float x, float y)
@@ -582,6 +580,7 @@ public class PlayerController : MonoBehaviour
 
         if (spriteR.sprite.name.Equals("not_feed") && userInfo.isHoe) // 밭 갈기
         {
+            save_target = targetobj.name;
             int UserHp = userInfo.getHp();
             if (UserHp > 1)
             {
@@ -604,7 +603,8 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-
+            save_target = targetobj.name;
+            save_target_obj = targetobj;
             proobj.SetActive(true);
             progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
             progressimg.fillAmount = 0;
@@ -623,13 +623,14 @@ public class PlayerController : MonoBehaviour
                 gameogj.SetActive(true);
                 return;
             }
+            save_target = targetobj.name;
             if (SeedField_name.Count > 0)
             {
                 for (int i = 0; i < SeedField_name.Count; i++)
                 {
-                    if (SeedField_name[i].name.Equals(targetobj.name))
+                    if (SeedField_name[i].name.Equals(save_target))
                     {
-                        if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                        if (int.Parse(SeedField[save_target][3]) != 1)
                         {
                             proobj.SetActive(true);
                             progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
@@ -653,13 +654,14 @@ public class PlayerController : MonoBehaviour
                 gameogj.SetActive(true);
                 return;
             }
+            save_target = targetobj.name;
             if (SeedField_name.Count > 0)
             {
                 for (int i = 0; i < SeedField_name.Count; i++)
                 {
-                    if (SeedField_name[i].name.Equals(targetobj.name))
+                    if (SeedField_name[i].name.Equals(save_target))
                     {
-                        if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                        if (int.Parse(SeedField[save_target][3]) != 1)
                         {
                             proobj.SetActive(true);
                             progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
@@ -678,8 +680,9 @@ public class PlayerController : MonoBehaviour
         else if (!spriteR.sprite.name.Equals("Seed") && !spriteR.sprite.name.Equals("Hoeing") && !spriteR.sprite.name.Equals("not_feed") 
             && !spriteR.sprite.name.Equals("Water") && !spriteR.sprite.name.Equals("Sprout") && userInfo.isHoe) // 수확하기
         {
+            save_target = targetobj.name;
             proobj.SetActive(true);
-            NowField = targetobj.name;
+            NowField = save_target;
             progressimg = proobj.transform.GetChild(1).gameObject.GetComponent<Image>();
             progressimg.fillAmount = 0;
             progresstext.text = "Harvesting...";
@@ -775,6 +778,7 @@ public class PlayerController : MonoBehaviour
         userInfo.setUIHp();
         textmanager.isAction = false;
         isFarm = false;
+        save_target = null;
     }
 
     void Seed_Water() // 물주기
@@ -783,20 +787,21 @@ public class PlayerController : MonoBehaviour
         {
             for(int i = 0; i < SeedField_name.Count; i++)
             {
-                if (SeedField_name[i].name.Equals(targetobj.name))
+                if (SeedField_name[i].name.Equals(save_target))
                 {
-                    if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                    if (int.Parse(SeedField[save_target][3]) != 1)
                     {
                         spriteR.sprite = seeds[4]; // 물뿌린 땅으로 변경
-                        int Water = int.Parse(SeedField[targetobj.name][2]);
+                        int Water = int.Parse(SeedField[save_target][2]);
                         if (Water < 3) { Water++; }
-                        SeedField[targetobj.name][2] = Water.ToString();
-                        SeedField[targetobj.name][3] = "1";
+                        SeedField[save_target][2] = Water.ToString();
+                        SeedField[save_target][3] = "1";
                         int waterP = userInfo.getItem_WaterPPU().GetWaterPPUFilled();
                         waterP = waterP - 20;
                         userInfo.getItem_WaterPPU().SetWaterPPUFilled(waterP);
                         textmanager.isAction = false;
                         isFarm = false;
+                        save_target = null;
                     }
                 }
             }
@@ -808,19 +813,20 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < SeedField_name.Count; i++)
             {
-                if (SeedField_name[i].name.Equals(targetobj.name))
+                if (SeedField_name[i].name.Equals(save_target))
                 {
-                    if (int.Parse(SeedField[targetobj.name][3]) != 1)
+                    if (int.Parse(SeedField[save_target][3]) != 1)
                     {
-                        int Water = int.Parse(SeedField[targetobj.name][2]);
+                        int Water = int.Parse(SeedField[save_target][2]);
                         if (Water < 3) { Water++; }
-                        SeedField[targetobj.name][2] = Water.ToString();
-                        SeedField[targetobj.name][3] = "1";
+                        SeedField[save_target][2] = Water.ToString();
+                        SeedField[save_target][3] = "1";
                         int waterP = userInfo.getItem_WaterPPU().GetWaterPPUFilled();
                         waterP = waterP - 20;
                         userInfo.getItem_WaterPPU().SetWaterPPUFilled(waterP);
                         textmanager.isAction = false;
                         isFarm = false;
+                        save_target = null;
                     }
                 }
             }
@@ -831,7 +837,7 @@ public class PlayerController : MonoBehaviour
         Input_playerUI();
         for (int i = 0; i < SeedField_name.Count; i++)
         {
-            if (SeedField_name[i].name.Equals(targetobj.name))
+            if (SeedField_name[i].name.Equals(save_target))
             {
                 return;
             }
@@ -859,8 +865,10 @@ public class PlayerController : MonoBehaviour
 
         spriteR.sprite = seeds[2]; // 씨앗뿌린 땅으로 변경
         int Day = userInfo.getDay();
-        SeedField.Add(targetobj.name, new List<string> { Day.ToString(), userInfo.getItem_Pick().GetPickKinds(), "3", "0", "0" });
-        SeedField_name.Add(targetobj);
+        SeedField.Add(save_target, new List<string> { Day.ToString(), userInfo.getItem_Pick().GetPickKinds(), "3", "0", "0" });
+        SeedField_name.Add(save_target_obj);
+        save_target = null;
+        save_target_obj = null;
         textmanager.isAction = false;
         isFarm = false;
     }
@@ -880,7 +888,6 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject seedi = menuControl.InventorySeed.transform.GetChild(i).gameObject;
                 Image img = seedi.transform.GetChild(0).GetComponent<Image>();
-                Debug.LogError(userInfo.getItem_Pick().GetPickName());
                 if (img.sprite.name.Equals(userInfo.getItem_Pick().GetPickName()))
                 {
                     Text text = seedi.transform.GetChild(1).GetComponent<Text>();
@@ -1098,10 +1105,10 @@ public class PlayerController : MonoBehaviour
         }
 
         /////// List 삭제
-        SeedField.Remove(targetobj.name);
+        SeedField.Remove(save_target);
         for (int i = 0; i < SeedField_name.Count; i++)
         { 
-            if (SeedField_name[i].name.Equals(targetobj.name))
+            if (SeedField_name[i].name.Equals(save_target))
             {
                 SeedField_name.RemoveAt(i);
                 spriteR.sprite = seeds[1]; // 씨앗뿌린 땅으로 변경
@@ -1334,6 +1341,10 @@ public class PlayerController : MonoBehaviour
         {
             targetobj = null;
             isFishing = false;
+        }
+        if (o.gameObject.tag.Equals("NoWater"))
+        {
+            targetobj = null;
         }
     }
 

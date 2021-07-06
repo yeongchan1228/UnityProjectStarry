@@ -1042,7 +1042,7 @@ public class MenuControl : MonoBehaviour
     {
         userInfo.FruitItem.Remove(name);
         userInfo.FruitItemkey.Remove(name);
-        int count = userInfo.FishItemkey.Count;
+        int count = userInfo.FruitItemkey.Count;
         Inventory.transform.GetChild(count).transform.GetChild(0).gameObject.SetActive(false);
         Inventory.transform.GetChild(count).transform.GetChild(1).gameObject.SetActive(false);
         buttonImg.sprite = invens[0] as Sprite;
@@ -1083,6 +1083,10 @@ public class MenuControl : MonoBehaviour
     {
         userInfo.SeedItem.Remove(name);
         userInfo.SeedItemkey.Remove(name);
+        GameObject off_img = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(0).gameObject;
+        GameObject off_text = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(2).gameObject;
+        Image deleteimg = PlayerUI.transform.GetChild(0).transform.GetChild(4).transform.GetChild(0).GetComponent<Image>();
+        if (deleteimg.sprite.name.Equals(name)){ userInfo.getItem_Pick().SetPickName(null); off_img.SetActive(false); off_text.SetActive(false); }
         int count = userInfo.SeedItemkey.Count;
         Inventory.transform.GetChild(count).transform.GetChild(0).gameObject.SetActive(false);
         Inventory.transform.GetChild(count).transform.GetChild(1).gameObject.SetActive(false);

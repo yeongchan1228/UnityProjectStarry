@@ -11,6 +11,8 @@ public class FirstMenuHandle : MonoBehaviour
     // Start is called before the first frame update
     public Sprite[] fruit_afters, invens, seeds, swords, tools;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
+    Sprite[] spec_orgol;
+    Sprite[] special;
 
     void Start()
     {
@@ -29,6 +31,8 @@ public class FirstMenuHandle : MonoBehaviour
         fishes8 = Resources.LoadAll<Sprite>("Sprites/fish/난이도8"); // 2마리
         fishes9 = Resources.LoadAll<Sprite>("Sprites/fish/난이도9"); // 2마리
         fishes10 = Resources.LoadAll<Sprite>("Sprites/fish/난이도10"); // 1마리
+        spec_orgol = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
+        special = Resources.LoadAll<Sprite>("Sprites/Final");
     }
 
     // Update is called once per frame
@@ -199,10 +203,18 @@ public class FirstMenuHandle : MonoBehaviour
 
 
         ////////인벤토리 내용 채우기
-        PlayerPrefs.SetInt("SeedItemCount", userInfo.SeedItem.Count);
-        PlayerPrefs.SetInt("FishItemCount", userInfo.FishItem.Count);
-        PlayerPrefs.SetInt("FruitItemCount", userInfo.FruitItem.Count);
-        PlayerPrefs.SetInt("StoryItemCount", userInfo.StoryItem.Count);
+        Image Seedimg = Inventory.transform.GetChild(1).GetComponent<Image>();
+        Image Fishimg = Inventory.transform.GetChild(3).GetComponent<Image>();
+        Image Fruitimg = Inventory.transform.GetChild(2).GetComponent<Image>();
+        Image Storyimg = Inventory.transform.GetChild(11).GetComponent<Image>();
+        Seedimg.sprite = invens[2] as Sprite;
+        Fishimg.sprite = invens[3] as Sprite;
+        Fruitimg.sprite = invens[3] as Sprite;
+        Storyimg.sprite = invens[3] as Sprite;
+        menu.isSeed = true;
+        menu.isFish = false;
+        menu.isFruit = false;
+        menu.isStory = false;
         int seeditemcount = PlayerPrefs.GetInt("SeedItemCount");
         int fishitemcount = PlayerPrefs.GetInt("FishItemCount");
         int fruititemcount = PlayerPrefs.GetInt("FruitItemCount");
@@ -219,12 +231,142 @@ public class FirstMenuHandle : MonoBehaviour
         GameObject InventorySeed = Inventory.transform.GetChild(6).gameObject;
         for (int i = 0; i < seeditemcount; i++)
         {
-            Image Seedimg = InventorySeed.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
-            Text Seedtext = InventorySeed.transform.GetChild(i).transform.GetChild(1).GetComponent<Text>();
-
-            Seedtext.text = userInfo.SeedItem[userInfo.SeedItemkey[i]].ToString();
+            GameObject Seedimg_On = InventorySeed.transform.GetChild(i).transform.GetChild(0).gameObject;
+            Image seedimg = InventorySeed.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
+            GameObject Seedcount_On = InventorySeed.transform.GetChild(i).transform.GetChild(1).gameObject;
+            Text seedtext = InventorySeed.transform.GetChild(i).transform.GetChild(1).GetComponent<Text>();
+            if (userInfo.SeedItemkey[i].Equals("milSeed")) { seedimg.sprite = seeds[9]; }
+            else if (userInfo.SeedItemkey[i].Equals("potatoSeed")) { seedimg.sprite = seeds[12]; }
+            else if (userInfo.SeedItemkey[i].Equals("carrotSeed")) { seedimg.sprite = seeds[1]; }
+            else if (userInfo.SeedItemkey[i].Equals("dhrtntnSeed")) { seedimg.sprite = seeds[3]; }
+            else if (userInfo.SeedItemkey[i].Equals("dkqhzkehSeed")) { seedimg.sprite = seeds[4]; }
+            else if (userInfo.SeedItemkey[i].Equals("GrapeSeed")) { seedimg.sprite = seeds[5]; }
+            else if (userInfo.SeedItemkey[i].Equals("lemonSeed")) { seedimg.sprite = seeds[6]; }
+            else if (userInfo.SeedItemkey[i].Equals("blueberrySeed")) { seedimg.sprite = seeds[0]; }
+            else if (userInfo.SeedItemkey[i].Equals("melonSeed")) { seedimg.sprite = seeds[8]; }
+            else if (userInfo.SeedItemkey[i].Equals("pineappleSeed")) { seedimg.sprite = seeds[11]; }
+            else if (userInfo.SeedItemkey[i].Equals("pumpkinSeed")) { seedimg.sprite = seeds[13]; }
+            else if (userInfo.SeedItemkey[i].Equals("rkwlSeed")) { seedimg.sprite = seeds[14]; }
+            else if (userInfo.SeedItemkey[i].Equals("strawberrySeed")) { seedimg.sprite = seeds[16]; }
+            else if (userInfo.SeedItemkey[i].Equals("tnsanSeed")) { seedimg.sprite = seeds[17]; }
+            else if (userInfo.SeedItemkey[i].Equals("tomatoSeed")) { seedimg.sprite = seeds[18]; }
+            else if (userInfo.SeedItemkey[i].Equals("watermelonSeed")) { seedimg.sprite = seeds[19]; }
+            else if (userInfo.SeedItemkey[i].Equals("darkSeed")) { seedimg.sprite = seeds[2]; }
+            else if (userInfo.SeedItemkey[i].Equals("lightSeed")) { seedimg.sprite = seeds[7]; }
+            else if (userInfo.SeedItemkey[i].Equals("starrySeed")) { seedimg.sprite = seeds[15]; }
+            seedtext.text = userInfo.SeedItem[userInfo.SeedItemkey[i]].ToString();
+            Seedimg_On.SetActive(true);
+            Seedcount_On.SetActive(true);
         }
 
+
+        ///////과일 정보 받아오기
+        for (int i = 0; i < fruititemcount; i++)
+        {
+            userInfo.FruitItemkey.Add(PlayerPrefs.GetString("FruitItem" + i));
+            userInfo.FruitItem.Add(PlayerPrefs.GetString("FruitItemKey" + i), PlayerPrefs.GetInt("FruitItemValue" + i));
+        }
+
+        ////////과일 인벤에 넣기
+        GameObject InventoryFruit = Inventory.transform.GetChild(7).gameObject;
+        for (int i = 0; i < fruititemcount; i++)
+        {
+            GameObject Fruitimg_On = InventoryFruit.transform.GetChild(i).transform.GetChild(0).gameObject;
+            Image fruitimg = InventoryFruit.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
+            GameObject Fruitcount_On = InventoryFruit.transform.GetChild(i).transform.GetChild(1).gameObject;
+            Text fruittext = InventoryFruit.transform.GetChild(i).transform.GetChild(1).GetComponent<Text>();
+            if (userInfo.FruitItemkey[i].Equals("Blueberry")) { fruitimg.sprite = fruit_afters[0]; }
+            else if (userInfo.FruitItemkey[i].Equals("carrot")) { fruitimg.sprite = fruit_afters[1]; }
+            else if (userInfo.FruitItemkey[i].Equals("DARK")) { fruitimg.sprite = fruit_afters[2]; }
+            else if (userInfo.FruitItemkey[i].Equals("dhrtntn1")) { fruitimg.sprite = fruit_afters[3]; }
+            else if (userInfo.FruitItemkey[i].Equals("dkqhzkeh1")) { fruitimg.sprite = fruit_afters[4]; }
+            else if (userInfo.FruitItemkey[i].Equals("Grape")) { fruitimg.sprite = fruit_afters[5]; }
+            else if (userInfo.FruitItemkey[i].Equals("lemon1")) { fruitimg.sprite = fruit_afters[6]; }
+            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { fruitimg.sprite = fruit_afters[7]; }
+            else if (userInfo.FruitItemkey[i].Equals("melon")) { fruitimg.sprite = fruit_afters[8]; }
+            else if (userInfo.FruitItemkey[i].Equals("mil1")) { fruitimg.sprite = fruit_afters[9]; }
+            else if (userInfo.FruitItemkey[i].Equals("pineapple1")) { fruitimg.sprite = fruit_afters[10]; }
+            else if (userInfo.FruitItemkey[i].Equals("Potato")) { fruitimg.sprite = fruit_afters[11]; }
+            else if (userInfo.FruitItemkey[i].Equals("Pumpkin")) { fruitimg.sprite = fruit_afters[12]; }
+            else if (userInfo.FruitItemkey[i].Equals("rkwl1")) { fruitimg.sprite = fruit_afters[13]; }
+            else if (userInfo.FruitItemkey[i].Equals("starry")) { fruitimg.sprite = fruit_afters[14]; }
+            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { fruitimg.sprite = fruit_afters[15]; }
+            else if (userInfo.FruitItemkey[i].Equals("tnsan1")) { fruitimg.sprite = fruit_afters[16]; }
+            else if (userInfo.FruitItemkey[i].Equals("Tomato")) { fruitimg.sprite = fruit_afters[17]; }
+            else if (userInfo.FruitItemkey[i].Equals("watermelon")) { fruitimg.sprite = fruit_afters[18]; }
+            fruittext.text = userInfo.FruitItem[userInfo.FruitItemkey[i]].ToString();
+            Fruitimg_On.SetActive(true);
+            Fruitcount_On.SetActive(true);
+        }
+
+
+        ///////물고기 정보 받아오기
+        for (int i = 0; i < fishitemcount; i++)
+        {
+            userInfo.FishItemkey.Add(PlayerPrefs.GetString("FishItem" + i));
+            userInfo.FishItem.Add(PlayerPrefs.GetString("FishItemKey" + i), PlayerPrefs.GetInt("FishItemValue" + i));
+        }
+
+        ////////물고기 인벤에 넣기
+        GameObject InventoryFish = Inventory.transform.GetChild(8).gameObject;
+        for (int i = 0; i < fishitemcount; i++)
+        {
+            GameObject Fishimg_On = InventoryFish.transform.GetChild(i).transform.GetChild(0).gameObject;
+            Image fishimg = InventoryFish.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
+            GameObject Fishcount_On = InventoryFish.transform.GetChild(i).transform.GetChild(1).gameObject;
+            Text fishtext = InventoryFish.transform.GetChild(i).transform.GetChild(1).GetComponent<Text>();
+            if (userInfo.FishItemkey[i].Equals("평범한물고기")) { fishimg.sprite = fishes1[0]; }
+            else if (userInfo.FishItemkey[i].Equals("빨강물고기")) { fishimg.sprite = fishes2[0]; }
+            else if (userInfo.FishItemkey[i].Equals("주황물고기")) { fishimg.sprite = fishes2[1]; }
+            else if (userInfo.FishItemkey[i].Equals("노랑물고기")) { fishimg.sprite = fishes3[0]; }
+            else if (userInfo.FishItemkey[i].Equals("초록물고기")) { fishimg.sprite = fishes3[1]; }
+            else if (userInfo.FishItemkey[i].Equals("남색물고기")) { fishimg.sprite = fishes4[0]; }
+            else if (userInfo.FishItemkey[i].Equals("하늘색물고기")) { fishimg.sprite = fishes4[1]; }
+            else if (userInfo.FishItemkey[i].Equals("보라물고기")) { fishimg.sprite = fishes5[0]; }
+            else if (userInfo.FishItemkey[i].Equals("의사물고기")) { fishimg.sprite = fishes5[1]; }
+            else if (userInfo.FishItemkey[i].Equals("농부물고기")) { fishimg.sprite = fishes6[0]; }
+            else if (userInfo.FishItemkey[i].Equals("무지개물고기")) { fishimg.sprite = fishes6[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공주물고기")) { fishimg.sprite = fishes7[0]; }
+            else if (userInfo.FishItemkey[i].Equals("군인물고기")) { fishimg.sprite = fishes7[1]; }
+            else if (userInfo.FishItemkey[i].Equals("신부물고기")) { fishimg.sprite = fishes7[2]; }
+            else if (userInfo.FishItemkey[i].Equals("신사물고기")) { fishimg.sprite = fishes7[3]; }
+            else if (userInfo.FishItemkey[i].Equals("악마물고기")) { fishimg.sprite = fishes8[0]; }
+            else if (userInfo.FishItemkey[i].Equals("천사물고기")) { fishimg.sprite = fishes8[1]; }
+            else if (userInfo.FishItemkey[i].Equals("스태리팜물고기")) { fishimg.sprite = fishes9[1]; }
+            else if (userInfo.FishItemkey[i].Equals("공대생물고기")) { fishimg.sprite = fishes9[0]; }
+            else if (userInfo.FishItemkey[i].Equals("할머니의사랑물고기")) { fishimg.sprite = fishes10[0]; }
+            fishtext.text = userInfo.FishItem[userInfo.FishItemkey[i]].ToString();
+            Fishimg_On.SetActive(true);
+            Fishcount_On.SetActive(true);
+        }
+
+        ///////스토리 정보 받아오기
+        for (int i = 0; i < storyitemcount; i++)
+        {
+            userInfo.StoryItemkey.Add(PlayerPrefs.GetString("StoryItem" + i));
+            userInfo.StoryItem.Add(PlayerPrefs.GetString("StoryItemKey" + i), PlayerPrefs.GetInt("StoryItemValue" + i));
+        }
+
+        ////////스토리 인벤에 넣기
+        GameObject InventoryStory = Inventory.transform.GetChild(12).gameObject;
+        for (int i = 0; i < storyitemcount; i++)
+        {
+            GameObject Storyimg_On = InventoryStory.transform.GetChild(i).transform.GetChild(0).gameObject;
+            Image storyimg = InventoryStory.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
+            GameObject Storycount_On = InventoryStory.transform.GetChild(i).transform.GetChild(1).gameObject;
+            Text storytext = InventoryStory.transform.GetChild(i).transform.GetChild(1).GetComponent<Text>();
+            if (userInfo.StoryItemkey[i].Equals("Orgol")) { storyimg.sprite = spec_orgol[10]; }
+            else if (userInfo.StoryItemkey[i].Equals("하늘색 열쇠")) { storyimg.sprite = special[0]; }
+            else if (userInfo.StoryItemkey[i].Equals("최종 열쇠")) { storyimg.sprite = special[1]; }
+            else if (userInfo.StoryItemkey[i].Equals("초록색 열쇠")) { storyimg.sprite = special[2]; }
+            else if (userInfo.StoryItemkey[i].Equals("할머니의 밀짚모자")) { storyimg.sprite = special[3]; }
+            else if (userInfo.StoryItemkey[i].Equals("분홍색 열쇠")) { storyimg.sprite = special[4]; }
+            else if (userInfo.StoryItemkey[i].Equals("보라색 열쇠")) { storyimg.sprite = special[5]; }
+            else if (userInfo.StoryItemkey[i].Equals("곰인형")) { storyimg.sprite = special[6]; }
+            storytext.text = userInfo.FishItem[userInfo.FishItemkey[i]].ToString();
+            Storyimg_On.SetActive(true);
+            Storycount_On.SetActive(true);
+        }
 
         PlayerUI.SetActive(true);
         string scene = PlayerPrefs.GetString("Scene");

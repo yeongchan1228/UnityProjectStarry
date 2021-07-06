@@ -11,6 +11,8 @@ TagManager:
   - Music
   - goHole
   - Slime
+  - Water
+  - NoWater
   layers:
   - Default
   - TransparentFX
