@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public void Action(GameObject scanobj)
     {
         //Chat.SetActive(true);
+        Debug.Log("여기는");
+        
         scanobject = scanobj;
         NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
         Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isHINT, npc_Data.isSELLER);
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
 
         if (talkData == null && chatEffect.doing == false)
         {
+            Debug.Log("여기까지 제어가 가나");
             isAction = false;
             talkIndex = 0;
             
@@ -100,8 +103,10 @@ public class GameManager : MonoBehaviour
         if (isSELLER)
         {
             if (talkData == null) {
+                chatEffect.Setting("널값임.");
                 userInfo.npcSay = false;
-                chatEffect.Setting("널값임."); 
+                userInfo.grandmaFish++;
+                userInfo.npcFinish = true;
             }
             else
             {

@@ -25229,7 +25229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: seller
-  isNPC: 1
+  isNPC: 0
   isSELLER: 1
   isHINT: 0
 --- !u!1 &884881240
@@ -27251,6 +27251,7 @@ MonoBehaviour:
   salePart: {fileID: 860161272}
   isAction: 0
   isSamekey: 0
+  isfirst: 0
   btExit: {fileID: 1880912332}
   btStore: {fileID: 1541163045}
   btUpgrade: {fileID: 577412775}
