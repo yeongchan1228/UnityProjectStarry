@@ -1116,7 +1116,6 @@ public class PlayerController : MonoBehaviour
 
         //filled량 설정
         int difficulty = Random.Range(1, 100); // 물고기 난이도
-        Debug.LogError("difficulty : " + difficulty);
         if(difficulty < 20) { fish_difficulty = 1; } // 최하 난이도 1
         else if(difficulty < 40) { fish_difficulty = 0.5f; } // 2
         else if (difficulty < 60) { fish_difficulty = 0.1f; } // 3

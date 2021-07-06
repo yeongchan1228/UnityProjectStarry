@@ -165,6 +165,31 @@ public class FirstMenuHandle : MonoBehaviour
         PlayerUI_Water.SetActive(true);
 
         ///////// 인벤 UI 다 채우기 사진부터
+        if (userInfo.getGender().Equals("man"))
+        {
+            GameObject maninfo = Inventory.transform.GetChild(9).transform.GetChild(0).gameObject;
+            GameObject womaninfo = Inventory.transform.GetChild(9).transform.GetChild(1).gameObject;
+            maninfo.SetActive(true);
+            womaninfo.SetActive(false);
+        }
+        else
+        {
+            GameObject maninfo = Inventory.transform.GetChild(9).transform.GetChild(0).gameObject;
+            GameObject womaninfo = Inventory.transform.GetChild(9).transform.GetChild(1).gameObject;
+            maninfo.SetActive(false);
+            womaninfo.SetActive(true);
+        }
+        userInfo.setExpInfo();
+        userInfo.setNameInfo();
+        userInfo.setFarmNameInfo();
+        userInfo.setWeapon_powerInfo();
+        userInfo.setArmor_powerInfo();
+
+
+
+
+
+
         PlayerUI.SetActive(true);
         string scene = PlayerPrefs.GetString("Scene");
         SceneManager.LoadScene(scene);

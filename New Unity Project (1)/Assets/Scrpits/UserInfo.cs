@@ -353,6 +353,6 @@ public class UserInfo : MonoBehaviour
     }
     void Input_InvenInfo()
     {
-        if (InvenInfo == null) { InvenInfo = GameObject.Find("Canvas").transform.getChild(4).gameObject; }
+        if (InvenInfo == null) { InvenInfo = GameObject.Find("Canvas").transform.GetChild(4).gameObject; }
     }
 }
