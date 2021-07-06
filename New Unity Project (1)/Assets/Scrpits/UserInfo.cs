@@ -174,6 +174,7 @@ public class UserInfo : MonoBehaviour
     public List<string> StoryItemkey;
 
     public int grandmaFish = 0; // 할머니의 사랑 물고기를 얻었는지 체크
+    public bool npcSay; // 상점 npc랑 대화했는지 체크.
 
     public UserInfo()
     {

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         //Chat.SetActive(true);
         scanobject = scanobj;
         NPC_DATA npc_Data = scanobject.GetComponent<NPC_DATA>();
-        Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isHINT);
+        Talking(npc_Data.id, npc_Data.isNPC, npc_Data.isHINT, npc_Data.isSELLER);
         talk.SetBool("isShow", isAction);
         if (!isAction)
         {
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     
 
-    void Talking(string id, bool isNPC, bool isHINT)
+    void Talking(string id, bool isNPC, bool isHINT, bool isSELLER)
     {
         button1.SetActive(false);
         button2.SetActive(false);
@@ -97,7 +97,29 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (isNPC)
+        if (isSELLER)
+        {
+            if (talkData == null) {
+                userInfo.npcSay = false;
+                chatEffect.Setting("널값임."); 
+            }
+            else
+            {
+                chatEffect.Setting(talkData.Split(':')[0]);
+
+                img.color = new Color(1, 1, 1, 1);
+                img.sprite = talkManager.Getimg(id, 0);
+                select3 = talkData.Split(':')[1];
+                if (select3 == "1")
+                {
+                    isButton = true;
+                    select1 = talkData.Split(':')[2];
+                    select2 = talkData.Split(':')[3];
+                }
+            }
+        }
+
+        else if (isNPC)
         {
             if (talkData == null) { chatEffect.Setting("널값임."); }
             else
@@ -116,6 +138,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        
         else if(isHINT)
         {
             if (talkData == null) { chatEffect.Setting("널값임."); }
