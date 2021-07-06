@@ -1088,7 +1088,6 @@ public class PlayerController : MonoBehaviour
 
     void Do_Fishing()
     {
-        Debug.Log("바다 낚시");
         textmanager.isAction = true;
         isnow_fishing = true;
         isFishing = true;
@@ -1104,7 +1103,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void GoFishing()
-    {
+    { 
         isFishing = false; // 낚시 중인 애니 종료
         
         //고기잡이 창 시작
@@ -1118,12 +1117,12 @@ public class PlayerController : MonoBehaviour
         else if(difficulty < 40) { fish_difficulty = 0.5f; } // 2
         else if (difficulty < 60) { fish_difficulty = 0.1f; } // 3
         else if (difficulty < 68) { fish_difficulty = 0.08f; } // 4
-        else if (difficulty < 75) { fish_difficulty = 0.05f; } // 5
-        else if (difficulty < 82) { fish_difficulty = 0.04f; } // 6
-        else if (difficulty < 87) { fish_difficulty = 0.03f; } // 7
-        else if (difficulty < 92) { fish_difficulty = 0.02f; } // 8
-        else if (difficulty < 96) { fish_difficulty = 0.009f; } // 9
-        else if (difficulty < 100) { fish_difficulty = 0.004f; } // 10
+        else if (difficulty < 75) { fish_difficulty = 0.06f; } // 5
+        else if (difficulty < 82) { fish_difficulty = 0.05f; } // 6
+        else if (difficulty < 87) { fish_difficulty = 0.04f; } // 7
+        else if (difficulty < 92) { fish_difficulty = 0.03f; } // 8
+        else if (difficulty < 96) { fish_difficulty = 0.02f; } // 9
+        else if (difficulty < 100) { fish_difficulty = 0.01f; } // 10
 
         //물고기 올리는 애니 트리거 실행
         Invoke("Filled_FishBar", 0.1f);
@@ -1165,7 +1164,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     void Success_fishing()
-    {
+    { 
         GameObject Fishing_obj = GameObject.Find("Fishing").transform.GetChild(0).gameObject;
         Fishing_obj.SetActive(false);
         GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
@@ -1179,12 +1178,13 @@ public class PlayerController : MonoBehaviour
         else if (fish_difficulty == 0.5f) { int result = Random.Range(0, 2); get_fish_name = fishes2[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes2[result].name); }
         else if (fish_difficulty == 0.1f) { int result = Random.Range(0, 2); get_fish_name = fishes3[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes3[result].name); }
         else if (fish_difficulty == 0.08f) { int result = Random.Range(0, 2); get_fish_name = fishes4[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes4[result].name); }
-        else if (fish_difficulty == 0.05f) { int result = Random.Range(0, 2); get_fish_name = fishes5[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes5[result].name); }
-        else if (fish_difficulty == 0.04f) { int result = Random.Range(0, 2); get_fish_name = fishes6[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes6[result].name); }
-        else if (fish_difficulty == 0.03f) { int result = Random.Range(0, 5); get_fish_name = fishes7[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes7[result].name); }
-        else if (fish_difficulty == 0.02f) { int result = Random.Range(0, 2); get_fish_name = fishes8[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes8[result].name); }
-        else if (fish_difficulty == 0.009f) { int result = Random.Range(0, 2); get_fish_name = fishes9[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes9[result].name); }
-        else if (fish_difficulty == 0.004f) { get_fish_name = fishes10[0].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes10[0].name); }
+        else if (fish_difficulty == 0.06f) { int result = Random.Range(0, 2); get_fish_name = fishes5[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes5[result].name); }
+        else if (fish_difficulty == 0.05f) { int result = Random.Range(0, 2); get_fish_name = fishes6[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes6[result].name); }
+        else if (fish_difficulty == 0.04f) { int result = Random.Range(0, 5); get_fish_name = fishes7[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes7[result].name); }
+        else if (fish_difficulty == 0.03f) { int result = Random.Range(0, 2); get_fish_name = fishes8[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes8[result].name); }
+        else if (fish_difficulty == 0.02f) { int result = Random.Range(0, 2); get_fish_name = fishes9[result].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes9[result].name); }
+        else if (fish_difficulty == 0.01f) { get_fish_name = fishes10[0].name; resulttext.text = get_fish_name + "를 잡았어요!!!"; Fish_IntoInven(fishes10[0].name); }
+        CancelInvoke("Finish_Fishing");
         Invoke("finish_result", 5f);
     }
     void Fish_IntoInven(string Fish_name)
@@ -1258,21 +1258,23 @@ public class PlayerController : MonoBehaviour
         else if (fish_difficulty == 0.5f) { int result = Random.Range(0, 2); get_fish_name = fishes2[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
         else if (fish_difficulty == 0.1f) { int result = Random.Range(0, 2); get_fish_name = fishes3[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
         else if (fish_difficulty == 0.08f) { int result = Random.Range(0, 2); get_fish_name = fishes4[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
-        else if (fish_difficulty == 0.05f) { int result = Random.Range(0, 2); get_fish_name = fishes5[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
-        else if (fish_difficulty == 0.04f) { int result = Random.Range(0, 2); get_fish_name = fishes6[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
-        else if (fish_difficulty == 0.03f) { int result = Random.Range(0, 5); get_fish_name = fishes7[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
-        else if (fish_difficulty == 0.02f) { int result = Random.Range(0, 2); get_fish_name = fishes8[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
-        else if (fish_difficulty == 0.009f) { int result = Random.Range(0, 2); get_fish_name = fishes9[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
-        else if (fish_difficulty == 0.004f) { get_fish_name = fishes10[0].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
+        else if (fish_difficulty == 0.06f) { int result = Random.Range(0, 2); get_fish_name = fishes5[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
+        else if (fish_difficulty == 0.05f) { int result = Random.Range(0, 2); get_fish_name = fishes6[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
+        else if (fish_difficulty == 0.04f) { int result = Random.Range(0, 5); get_fish_name = fishes7[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
+        else if (fish_difficulty == 0.03f) { int result = Random.Range(0, 2); get_fish_name = fishes8[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
+        else if (fish_difficulty == 0.02f) { int result = Random.Range(0, 2); get_fish_name = fishes9[result].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
+        else if (fish_difficulty == 0.01f) { get_fish_name = fishes10[0].name; resulttext.text = get_fish_name + "를 놓쳤어요..."; }
+        CancelInvoke("Finish_Fishing");
         Invoke("finish_result", 5f);
     }
     void finish_result()
     {
         GameObject Result_obj = GameObject.Find("Fishing").transform.GetChild(1).gameObject;
-        Result_obj.SetActive(false);
         textmanager.isAction = false;
         isnow_fishing = false;
         isFishing = false;
+        Result_obj.SetActive(false);
+
         anim.SetBool("isFishing", isFishing);
     }
 

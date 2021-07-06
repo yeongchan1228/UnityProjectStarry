@@ -321,7 +321,7 @@ public class StoreUIManager : MonoBehaviour
                 fishrod_price = 80000;
                 UIFishing.sprite = tools[5] as Sprite;
                 userInfo.getItem_FishingRod().SetFishingRodName("Iridium_FishingRod");
-                userInfo.getItem_FishingRod().SetFishingRodEfficiency(4);
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(5);
                 upgrade_obj.SetActive(true);
             }
             else if (userInfo.getItem_FishingRod().GetFishingRodName().Equals("Iridium_FishingRod") && usergold > fishrod_price)
@@ -333,7 +333,7 @@ public class StoreUIManager : MonoBehaviour
                 fishrod_price = 0;
                 UIFishing.sprite = tools[0] as Sprite;
                 userInfo.getItem_FishingRod().SetFishingRodName("Dia_FishingRod");
-                userInfo.getItem_FishingRod().SetFishingRodEfficiency(6);
+                userInfo.getItem_FishingRod().SetFishingRodEfficiency(8);
                 btt.interactable = false;
                 upgrade_obj.SetActive(true);
             }
@@ -969,6 +969,7 @@ public class StoreUIManager : MonoBehaviour
                 {
                     Destroy(Parent.GetChild(i).gameObject);
                 }
+            isfirst = false;
                 OpenSale(); // 促矫 备己
                 Reset_Fruit();
                 Delete_obj.SetActive(false);
@@ -1007,7 +1008,8 @@ public class StoreUIManager : MonoBehaviour
                 {
                     Destroy(Parent.GetChild(i).gameObject);
                 }
-                OpenSale(); // 促矫 备己
+            isfirst = false;
+            OpenSale(); // 促矫 备己
                 Reset_Fish();
                 Delete_obj.SetActive(false);
 
