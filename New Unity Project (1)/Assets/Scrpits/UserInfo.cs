@@ -172,6 +172,9 @@ public class UserInfo : MonoBehaviour
     public List<string> FruitItemkey;
     public List<string> FishItemkey;
     public List<string> StoryItemkey;
+
+    public int grandmaFish = 0; // 할머니의 사랑 물고기를 얻었는지 체크
+
     public UserInfo()
     {
         this.weapon = new Item_Weapon();

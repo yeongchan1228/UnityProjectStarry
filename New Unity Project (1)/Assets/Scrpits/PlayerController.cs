@@ -303,13 +303,25 @@ public class PlayerController : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "StoreScene (10)")
             {
-                storeUIManager = GameObject.Find("StoreUIManager").GetComponent<StoreUIManager>();
-                storeUIManager.Action(scanObj);
+                if (userInfo.grandmaFish == 1)
+                {
+                    textmanager.Action(scanObj);
+                    userInfo.grandmaFish++; // 해당 대화가 다시 실행되는 걸 방지하는 용도
+
+                }
+                else
+                {
+                    storeUIManager = GameObject.Find("StoreUIManager").GetComponent<StoreUIManager>();
+                    storeUIManager.Action(scanObj);
+                }
+
             }
             else if (!chat.buttonOn)
             {
                 textmanager.Action(scanObj); // 대화창 출력
             }
+
+
         }
         else if(Input.GetKeyDown(KeyCode.Space) && scanObj == null && isFarm == false && isnow_fishing == false) // 가끔 발생하는 오류 해결 
         {

@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TalkManager : MonoBehaviour
 {
-    Dictionary<string, string[]> talking;
+    public Dictionary<string, string[]> talking;
     Dictionary<string, Sprite> img; // 초상화
     public GameObject user_man;
     public GameObject user_woman;
     public Sprite[] spriteimg;
     public UserInfo userInfo;
+    
+    Sprite[] spec_orgol;
+    Sprite[] special;
+    MenuControl menuControl;
+
     void Awake()
     {
         talking = new Dictionary<string, string[]>();
@@ -20,6 +26,10 @@ public class TalkManager : MonoBehaviour
    
     public void makeTalking() // 대사 넣는 곳 
     {
+        menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
+        spec_orgol = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
+        special = Resources.LoadAll<Sprite>("Sprites/Final");
+
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
         UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
@@ -48,9 +58,8 @@ public class TalkManager : MonoBehaviour
         talking.Add("frog", new string[] { "할머니의 사랑이 담긴 물고기를 상점에 팔면 엄청난 걸 준다는 소문이 있어!:0" });
         talking.Add("boy", new string[] { "상점에 파는 별빛 과일은 우리 할아버지 최애템이야!\n어른들은 다 좋아한댔어!:0" });
         talking.Add("boy2", new string[] { "천사의 과일은 만날 수 없는 걸 다시 볼 수 있게 해줄지도 모른대.:0" });
-
+        
         //처음 스토리
-
         if (userInfo.getGender().Equals("man")) // 남캐일 때
         {
             talking.Add("man", new string[] { "-20xx년.:0", 
