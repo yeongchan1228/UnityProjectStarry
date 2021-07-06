@@ -486,7 +486,7 @@ public class MenuControl : MonoBehaviour
                             spriteR.sprite = fruit_befores[2];
                         }
                     }
-                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dhtntn1"))
+                    else if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][1].Equals("dhrtntn1"))
                     {
                         if (playercontrol.SeedField[playercontrol.SeedField_name[i].name][4].Equals("0") && userInfo.getDay() - SeedDay > 2) // 3일 지나면 새싹 자라기
                         {

@@ -659,7 +659,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if ((!spriteR.sprite.name.Equals("Seed") || !spriteR.sprite.name.Equals("not_feed") || spriteR.sprite.name.Equals("Hoeing")) && userInfo.isWaterPPU && userInfo.getItem_WaterPPU().GetWaterPPUFilled() > 0) // 물 주기
+        else if ((!spriteR.sprite.name.Equals("Seed") || !spriteR.sprite.name.Equals("not_feed") || spriteR.sprite.name.Equals("Hoeing")) && userInfo.isWaterPPU) // 물 주기
         {
             if (userInfo.getItem_WaterPPU().GetWaterPPUFilled() <= 0)
             {
