@@ -10,7 +10,7 @@ public class FirstMenuHandle : MonoBehaviour
     UserInfo userInfo;
     PlayerController player;
     // Start is called before the first frame update
-    public Sprite[] fruit_afters, invens, seeds, swords, tools;
+    public Sprite[] fruit_afters, invens, seeds, swords, tools, seeds2, fruit_befores;
     private Sprite[] fishes1, fishes2, fishes3, fishes4, fishes5, fishes6, fishes7, fishes8, fishes9, fishes10;
     Sprite[] spec_orgol;
     Sprite[] special;
@@ -19,7 +19,9 @@ public class FirstMenuHandle : MonoBehaviour
     {
         fruit_afters = Resources.LoadAll<Sprite>("Sprites/Fruit/after");
         seeds = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
+        seeds2 = Resources.LoadAll<Sprite>("Sprites/Seed");
         invens = Resources.LoadAll<Sprite>("Sprites/Inven");
+        fruit_befores = Resources.LoadAll<Sprite>("Sprites/Fruit/before");
         swords = Resources.LoadAll<Sprite>("Sprites/sword");
         tools = Resources.LoadAll<Sprite>("Sprites/Tool");
         fishes1 = Resources.LoadAll<Sprite>("Sprites/fish/난이도1"); // 1마리
@@ -376,6 +378,32 @@ public class FirstMenuHandle : MonoBehaviour
             player.SeedField_name.Add(GameObject.Find(PlayerPrefs.GetString("Saved_Field_Object" + i)));
             player.SeedField.Add(player.SeedField_name[i].name, new List<string> { PlayerPrefs.GetString("Saved_Field_value1_" + i), PlayerPrefs.GetString("Saved_Field_value2_" + i),
             PlayerPrefs.GetString("Saved_Field_value3_" + i),PlayerPrefs.GetString("Saved_Field_value4_" + i),PlayerPrefs.GetString("Saved_Field_value5_" + i)});
+            string sprite_name = PlayerPrefs.GetString("Saved_Field_Object_sprite" + i);
+            SpriteRenderer SpriteR = player.SeedField_name[i].GetComponent<SpriteRenderer>();
+            if(sprite_name.Equals(seeds2[0])) { SpriteR.sprite = seeds2[0] as Sprite; }
+            else if (sprite_name.Equals(seeds2[1])) { SpriteR.sprite = seeds2[1] as Sprite; }
+            else if (sprite_name.Equals(seeds2[2])) { SpriteR.sprite = seeds2[2] as Sprite; }
+            else if (sprite_name.Equals(seeds2[3])) { SpriteR.sprite = seeds2[3] as Sprite; }
+            else if (sprite_name.Equals(seeds2[4])) { SpriteR.sprite = seeds2[4] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[0])) { SpriteR.sprite = fruit_befores[0] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[1])) { SpriteR.sprite = fruit_befores[1] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[2])) { SpriteR.sprite = fruit_befores[2] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[3])) { SpriteR.sprite = fruit_befores[3] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[4])) { SpriteR.sprite = fruit_befores[4] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[5])) { SpriteR.sprite = fruit_befores[5] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[6])) { SpriteR.sprite = fruit_befores[6] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[7])) { SpriteR.sprite = fruit_befores[7] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[8])) { SpriteR.sprite = fruit_befores[8] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[9])) { SpriteR.sprite = fruit_befores[9] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[10])) { SpriteR.sprite = fruit_befores[10] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[11])) { SpriteR.sprite = fruit_befores[11] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[12])) { SpriteR.sprite = fruit_befores[12] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[13])) { SpriteR.sprite = fruit_befores[13] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[14])) { SpriteR.sprite = fruit_befores[14] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[15])) { SpriteR.sprite = fruit_befores[15] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[16])) { SpriteR.sprite = fruit_befores[16] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[17])) { SpriteR.sprite = fruit_befores[17] as Sprite; }
+            else if (sprite_name.Equals(fruit_befores[18])) { SpriteR.sprite = fruit_befores[18] as Sprite; }
         }
 
 
