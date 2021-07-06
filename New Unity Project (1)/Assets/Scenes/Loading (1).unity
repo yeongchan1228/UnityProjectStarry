@@ -8014,7 +8014,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00002503395, y: -0.36710998}
+  m_Offset: {x: -0.004732482, y: -0.36710998}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8025,7 +8025,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.49899805, y: 0.12305552}
+  m_Size: {x: 0.15064685, y: 0.12305552}
   m_EdgeRadius: 0
 --- !u!114 &274010948
 MonoBehaviour:
@@ -8039,7 +8039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca28ed2352ffabd4da4f86b7c3772efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
   startX: 0
   startY: 0
   textmanager: {fileID: 0}
@@ -8101,8 +8101,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17117,8 +17117,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "GAME OVER!!! \n\n\uD070 \uBD80\uC0C1\uC744 \uC785\uC740 \uB2F9\uC2E0\uC744
-    \uAE34\uAE09 \uC758\uB8CC \uC11C\uBE44\uC2A4\uAC00 \uCD9C\uB3D9\uD574 \uCE58\uB8CC\uD588\uC2B5\uB2C8\uB2E4.\n\uCE58\uB8CC\uBE44\uB85C
+  m_Text: "\uD070 \uBD80\uC0C1\uC744 \uC785\uC740 \uB2F9\uC2E0\uC744 \uAE34\uAE09
+    \uC758\uB8CC \uC11C\uBE44\uC2A4\uAC00 \uCD9C\uB3D9\uD574 \uCE58\uB8CC\uD588\uC2B5\uB2C8\uB2E4.\n\uCE58\uB8CC\uBE44\uB85C
     \uAC00\uC9C4 \uB3C8\uC758 \uC808\uBC18\uC744 \uC18C\uBE44\uD588\uC2B5\uB2C8\uB2E4.\n\n\uAE68\uC5B4\uB098\uB824\uBA74
     Space\uD0A4\uB97C \uB20C\uB7EC\uC8FC\uC138\uC694."
 --- !u!222 &597040880
@@ -55144,7 +55144,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0017565042, y: -0.3688665}
+  m_Offset: {x: 0.0001873523, y: -0.3688665}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55155,7 +55155,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48840895, y: 0.14062047}
+  m_Size: {x: 0.15888754, y: 0.14062047}
   m_EdgeRadius: 0
 --- !u!50 &1997066908
 Rigidbody2D:
@@ -55190,7 +55190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca28ed2352ffabd4da4f86b7c3772efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
   startX: 0
   startY: 0
   textmanager: {fileID: 0}
@@ -55322,8 +55322,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

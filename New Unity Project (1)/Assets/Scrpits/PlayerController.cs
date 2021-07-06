@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour
         chat = chatEffect.GetComponent<ChatEffect>();
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
         user_woman = GameObject.Find("Player").transform.GetChild(0).gameObject;
-        UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
         playerAudio = GetComponent<AudioSource>();
+        UserInfo userinfo2 = user_man.GetComponent<UserInfo>();
         BGM = GameObject.Find("BGM").GetComponent<MusicPlay>();
 
         if (userinfo2.isTrue)

@@ -335,7 +335,7 @@ public class MenuControl : MonoBehaviour
             realSleep.SetActive(true);
             SleepAni.SetTrigger("isRest");
             Invoke("Off_Rest", 2f);
-            userInfo.setHp(100);
+            userInfo.setHp(userInfo.getMaxHp());
             userInfo.setUIHp();
             //chat.isbt1 = true;
             //chat.isbt2 = false;
@@ -412,7 +412,7 @@ public class MenuControl : MonoBehaviour
             }
             userInfo.setCheckDay(++checkday);
             userInfo.setDay(++day);
-            userInfo.setHp(100);
+            userInfo.setHp(userInfo.getMaxHp());
             PlayerUI = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
             userInfo.setUIHp();
             Text Daytext = PlayerUI.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
