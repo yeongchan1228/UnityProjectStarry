@@ -7,7 +7,7 @@ public class ButtonHandler : MonoBehaviour
 {
     public GameObject Hole_UI, furnace, fin_box, exit;
     public GameObject furnace_UI, furnace_inven1, furnace_inven2, furnace_inven3, furnace_inven4, furnace_inven5;
-    public GameObject fire, exit2;
+    public GameObject exit2;
     public GameManager textmanager;
     public GameObject text1, text2, text3;
 
@@ -24,8 +24,7 @@ public class ButtonHandler : MonoBehaviour
     Sprite[] special;
 
     //bool isPinkKey, isGreenKey, isBlueKey, isPurpleKey, isFinalKey;
-    int isOk = 0; // 알림창이 중복으로 뜨는 것을 방지
-    
+
     int fruitcount = 0;
     int orgolcount = 0;
     int teddycount = 0;
@@ -40,25 +39,26 @@ public class ButtonHandler : MonoBehaviour
         textmanager = GameObject.Find("TextManager").GetComponent<GameManager>();
         menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
 
-        Hole_UI = GameObject.Find("Hole_UI").transform.GetChild(0).gameObject;
+        Hole_UI = GameObject.Find("Hole_UI").transform.GetChild(1).gameObject;
         furnace = Hole_UI.transform.GetChild(0).gameObject;
         fin_box = Hole_UI.transform.GetChild(1).gameObject;
         exit = Hole_UI.transform.GetChild(2).gameObject;
 
-        furnace_UI = GameObject.Find("Hole_UI").transform.GetChild(1).gameObject;
+        furnace_UI = GameObject.Find("Hole_UI").transform.GetChild(2).gameObject;
         furnace_inven1 = furnace_UI.transform.GetChild(0).gameObject;
         furnace_inven2 = furnace_UI.transform.GetChild(1).gameObject;
         furnace_inven3 = furnace_UI.transform.GetChild(2).gameObject;
         furnace_inven4 = furnace_UI.transform.GetChild(3).gameObject;
         furnace_inven5 = furnace_UI.transform.GetChild(4).gameObject;
-        fire = furnace_UI.transform.GetChild(5).gameObject;
-        exit2 = furnace_UI.transform.GetChild(6).gameObject;
+        exit2 = furnace_UI.transform.GetChild(5).gameObject;
 
-        text1 = GameObject.Find("Hole_UI").transform.GetChild(2).gameObject;
-        text2 = GameObject.Find("Hole_UI").transform.GetChild(3).gameObject;
-        text3 = GameObject.Find("Hole_UI").transform.GetChild(4).gameObject;
+        text1 = GameObject.Find("Hole_UI").transform.GetChild(3).gameObject;
+        //text2 = GameObject.Find("Hole_UI").transform.GetChild(4).gameObject;
+        text3 = GameObject.Find("Hole_UI").transform.GetChild(5).gameObject;
 
-        confirm = GameObject.Find("Hole_UI").transform.GetChild(5).gameObject;
+
+
+        confirm = GameObject.Find("Hole_UI").transform.GetChild(6).gameObject;
         fail = confirm.transform.GetChild(0).gameObject;
         text5 = confirm.transform.GetChild(1).gameObject;
         ok = confirm.transform.GetChild(2).gameObject;
@@ -107,55 +107,61 @@ public class ButtonHandler : MonoBehaviour
         furnace_inven3.SetActive(true);
         furnace_inven4.SetActive(true);
         furnace_inven5.SetActive(true);
-        fire.SetActive(true);
         exit2.SetActive(true);
 
         text1.SetActive(true);
-        text2.SetActive(true);
+        //text2.SetActive(true);
         text3.SetActive(true);
+
+
+        for(int i = 0; i < userInfo.StoryItemkey.Count; i++)
+        {
+            if (userInfo.StoryItemkey[i].Equals("하늘색 열쇠")) 
+            {
+                blueKey2.SetActive(true);
+                GameObject bt = furnace_inven1.transform.GetChild(2).gameObject;
+                bt.SetActive(false);
+                teddycount = 10;
+            }
+            else if (userInfo.StoryItemkey[i].Equals("초록색 열쇠")) 
+            {
+                greenKey2.SetActive(true);
+                GameObject bt = furnace_inven2.transform.GetChild(2).gameObject;
+                bt.SetActive(false);
+                fruitcount = 10;
+            }
+            else if (userInfo.StoryItemkey[i].Equals("보라색 열쇠")) 
+            {
+                purpleKey2.SetActive(true);
+                GameObject bt = furnace_inven3.transform.GetChild(2).gameObject;
+                bt.SetActive(false);
+                hatcount = 10;
+            }
+            else if (userInfo.StoryItemkey[i].Equals("분홍색 열쇠"))
+            {
+                pinkKey2.SetActive(true);
+                GameObject bt = furnace_inven4.transform.GetChild(5).gameObject;
+                bt.SetActive(false);
+                orgolcount = 10;
+            }
+            else if (userInfo.StoryItemkey[i].Equals("최종 열쇠")) 
+            {
+                pinkKey.SetActive(true);
+                blueKey.SetActive(true);
+                greenKey.SetActive(true);
+                purpleKey.SetActive(true);
+                GameObject bt = furnace_inven5.transform.GetChild(5).gameObject;
+                bt.SetActive(false);
+
+                keycount = 10;
+
+            }
+        }
     }
 
 
-    public void click_fire()
+    public void click1()
     {
-        // 연두색 열쇠 얻는 조건 (과일: 천사, 악마, 스태리, 딸기 보유했을 때)
-        for (int i = 0; i < userInfo.FruitItemkey.Count; i++)
-        {
-            if (userInfo.FruitItemkey[i].Equals("DARK")) { fruitcount++; }
-            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { fruitcount++; }
-            else if (userInfo.FruitItemkey[i].Equals("starry")) { fruitcount++; }
-            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { fruitcount++; }   
-        }
-
-        if(userInfo.isGreenKey == false && isOk == 0 && fruitcount == 4) // 열쇠 만들기 가능
-        {
-            make_greenKey();
-        }
-
-        else if(userInfo.isGreenKey == false && isOk == 0 && fruitcount != 4) // 실패했을 시 알림창
-        {
-            show_fail();
-        }
-
-
-        // 분홍색 열쇠를 얻는 조건 (오르골을 녹였을 때)
-        for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
-        {
-            if (userInfo.StoryItemkey[i].Equals("Orgol"))
-                orgolcount++;
-        }
-
-
-        if (userInfo.isPinkKey == false && isOk== 0 && orgolcount==1) // 성공
-        {
-            make_pinkKey();
-        }
-        
-        else if (userInfo.isPinkKey == false && isOk == 0 && orgolcount != 1) // 실패
-        {
-            show_fail();
-        }
-
 
         // 하늘색 열쇠를 얻는 조건 (곰인형 녹였을 때)
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
@@ -164,16 +170,43 @@ public class ButtonHandler : MonoBehaviour
                 teddycount++;
         }
 
-        if (userInfo.isBlueKey == false && isOk == 0 && teddycount == 1) // 성공
+        if (userInfo.isBlueKey == false && teddycount == 1) // 성공
         {
             make_blueKey();
+            return;
         }
 
-        else if (userInfo.isBlueKey == false && isOk == 0 && teddycount!= 1) // 실패
+        else if (userInfo.isBlueKey == false && teddycount != 1) // 실패
+        {
+            show_fail();
+            return;
+        }
+    }
+
+
+
+    public void click2()
+    {
+        // 연두색 열쇠 얻는 조건 (과일: 천사, 악마, 스태리, 딸기 보유했을 때)
+        for (int i = 0; i < userInfo.FruitItemkey.Count; i++)
+        {
+            if (userInfo.FruitItemkey[i].Equals("DARK")) { fruitcount++; }
+            else if (userInfo.FruitItemkey[i].Equals("LIGHT")) { fruitcount++; }
+            else if (userInfo.FruitItemkey[i].Equals("starry")) { fruitcount++; }
+            else if (userInfo.FruitItemkey[i].Equals("Strawberry")) { fruitcount++; }
+        }
+
+        if (userInfo.isGreenKey == false && fruitcount == 4) // 열쇠 만들기 가능
+        {
+            make_greenKey();
+        }
+        else if (userInfo.isGreenKey == false && fruitcount != 4) // 실패했을 시 알림창
         {
             show_fail();
         }
-
+    }
+    public void click3()
+    {
 
         // 보라색 열쇠 여는 조건 (밀짚모자 녹였을 때)
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
@@ -182,17 +215,39 @@ public class ButtonHandler : MonoBehaviour
                 hatcount++;
         }
 
-        if (userInfo.isPurpleKey == false && isOk == 0 && hatcount == 1) // 성공
+        if (userInfo.isPurpleKey == false && hatcount == 1) // 성공
         {
             make_purpleKey();
         }
 
-        else if (userInfo.isPurpleKey == false && isOk == 0 && hatcount !=1) // 실패
+        else if (userInfo.isPurpleKey == false && hatcount != 1) // 실패
         {
             show_fail();
         }
+    }
+
+    public void click4()
+    {
+        // 분홍색 열쇠를 얻는 조건 (오르골을 녹였을 때)
+        for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
+        {
+            if (userInfo.StoryItemkey[i].Equals("Orgol"))
+                orgolcount++;
+        }
 
 
+        if (userInfo.isPinkKey == false && orgolcount == 1) // 성공
+        {
+            make_pinkKey();
+        }
+
+        else if (userInfo.isPinkKey == false && orgolcount != 1) // 실패
+        {
+            show_fail();
+        }
+    }
+    public void click5()
+    {
         // 최종 열쇠 만들기 (다른 모든 4종류의 열쇠를 만들었을 때)
         for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
         {
@@ -206,18 +261,19 @@ public class ButtonHandler : MonoBehaviour
                 keycount++;
         }
 
-        if (userInfo.isFinalKey == false && isOk == 0 && keycount==4) // 성공
+        if (userInfo.isFinalKey == false && keycount == 4) // 성공
         {
             make_finalKey();
         }
 
-        else if (userInfo.isFinalKey == false && isOk == 0 && keycount != 4) // 실패
+        else if (userInfo.isFinalKey == false && keycount != 4) // 실패
         {
             show_fail();
         }
+
     }
 
-    void active_false()
+   /* void active_false()
     {
         confirm.SetActive(false);
         ok.SetActive(false);
@@ -225,23 +281,21 @@ public class ButtonHandler : MonoBehaviour
         text5.SetActive(false);
         success.SetActive(false);
         text6.SetActive(false);
-    }
+    }*/
 
     void make_greenKey()
     {
-        strawberry.SetActive(true);
-        angel.SetActive(true);
-        devil.SetActive(true);
-        starry.SetActive(true);
-        greenKey.SetActive(true);
+        greenKey2.SetActive(true);
+        GameObject bt = furnace_inven2.transform.GetChild(2).gameObject;
+        bt.SetActive(false);
 
-        isOk++;
 
-        active_false();
         confirm.SetActive(true);
         ok.SetActive(true);
         success.SetActive(true);
         text6.SetActive(true);
+        fail.SetActive(false);
+        text5.SetActive(false);
 
         fruitcount = 0;
 
@@ -279,18 +333,19 @@ public class ButtonHandler : MonoBehaviour
 
     void make_pinkKey()
     {
-        musicbox.SetActive(true);
-        pinkKey.SetActive(true);
+        pinkKey2.SetActive(true);
+        GameObject bt = furnace_inven4.transform.GetChild(5).gameObject;
+        bt.SetActive(false);
 
         orgolcount = 0;
-        isOk++;
 
-        active_false();
 
         confirm.SetActive(true);
         ok.SetActive(true);
         success.SetActive(true);
         text6.SetActive(true);
+        fail.SetActive(false);
+        text5.SetActive(false);
 
 
         //인벤토리에 분홍색 열쇠 넣기 (오르골)
@@ -326,18 +381,20 @@ public class ButtonHandler : MonoBehaviour
 
     void make_blueKey()
     {
-        bear.SetActive(true);
-        blueKey.SetActive(true);
-
-        active_false();
+        //bear.SetActive(true);
+        blueKey2.SetActive(true);
+        GameObject bt = furnace_inven1.transform.GetChild(2).gameObject;
+        bt.SetActive(false);
+        
 
         teddycount = 0;
-        isOk++;
 
         confirm.SetActive(true);
         ok.SetActive(true);
         success.SetActive(true);
         text6.SetActive(true);
+        fail.SetActive(false);
+        text5.SetActive(false);
 
         //인벤토리에 하늘색 열쇠 넣기 (곰인형)
         userInfo.StoryItemkey.Add("하늘색 열쇠");
@@ -373,17 +430,18 @@ public class ButtonHandler : MonoBehaviour
 
     void make_purpleKey()
     {
-        hat.SetActive(true);
-        purpleKey.SetActive(true);
+        purpleKey2.SetActive(true);
+        GameObject bt = furnace_inven3.transform.GetChild(2).gameObject;
+        bt.SetActive(false);
 
-        active_false();
 
-        teddycount = 0;
-        isOk++;
+        hatcount = 0;
         confirm.SetActive(true);
         ok.SetActive(true);
         success.SetActive(true);
         text6.SetActive(true);
+        fail.SetActive(false);
+        text5.SetActive(false);
 
         //인벤토리에 보라색 열쇠 넣기 (밀짚모자)
         userInfo.StoryItemkey.Add("보라색 열쇠");
@@ -419,20 +477,21 @@ public class ButtonHandler : MonoBehaviour
 
     void make_finalKey()
     {
-        pinkKey2.SetActive(true);
-        blueKey2.SetActive(true);
-        greenKey2.SetActive(true);
-        purpleKey2.SetActive(true);
-
-        active_false();
+        pinkKey.SetActive(true);
+        blueKey.SetActive(true);
+        greenKey.SetActive(true);
+        purpleKey.SetActive(true);
+        GameObject bt = furnace_inven5.transform.GetChild(5).gameObject;
+        bt.SetActive(false);
 
         keycount = 0;
-        isOk++;
 
         confirm.SetActive(true);
         ok.SetActive(true);
         success.SetActive(true);
         text6.SetActive(true);
+        fail.SetActive(false);
+        text5.SetActive(false);
 
         //인벤토리에 최종 열쇠 넣기
         userInfo.StoryItemkey.Add("최종 열쇠");
@@ -474,9 +533,9 @@ public class ButtonHandler : MonoBehaviour
         hatcount = 0;
         keycount = 0;
 
-        active_false();
-
         confirm.SetActive(true);
+        success.SetActive(false);
+        text6.SetActive(false);
         ok.SetActive(true);
         fail.SetActive(true);
         text5.SetActive(true);
@@ -499,7 +558,6 @@ public class ButtonHandler : MonoBehaviour
         text6.SetActive(false);
         fail.SetActive(false);
         text5.SetActive(false);
-        isOk = 0;
     }
 
     public void click_exit()
@@ -519,11 +577,10 @@ public class ButtonHandler : MonoBehaviour
         furnace_inven3.SetActive(false);
         furnace_inven4.SetActive(false);
         furnace_inven5.SetActive(false);
-        fire.SetActive(false);
         exit2.SetActive(false);
 
         text1.SetActive(false);
-        text2.SetActive(false);
+        //text2.SetActive(false);
         text3.SetActive(false);
 
         confirm.SetActive(false);
@@ -533,24 +590,17 @@ public class ButtonHandler : MonoBehaviour
         success.SetActive(false);
         text6.SetActive(false);
 
-        pinkKey.SetActive(false);
+        /*pinkKey.SetActive(false);
         blueKey.SetActive(false);
         greenKey.SetActive(false);
         purpleKey.SetActive(false);
-        finalKey.SetActive(false);
+        finalKey.SetActive(false);*/
 
-        pinkKey2.SetActive(false);
+        /*pinkKey2.SetActive(false);
         blueKey2.SetActive(false);
         greenKey2.SetActive(false);
-        purpleKey2.SetActive(false);
+        purpleKey2.SetActive(false);*/
 
-        strawberry.SetActive(false);
-        angel.SetActive(false);
-        devil.SetActive(false);
-        bear.SetActive(false);
-        hat.SetActive(false);
-        musicbox.SetActive(false);
-        starry.SetActive(false);
     }
 
 }

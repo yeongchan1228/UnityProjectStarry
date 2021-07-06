@@ -29,33 +29,33 @@ public class monsterHP : MonoBehaviour
         respawnTime = 5.0F;
         if (mi.hpMax == 100)
         {
-            mi.power = 5;
-            mi.exp = 30;
+            mi.power = 10;
+            mi.exp = 100;
         }
         else if (mi.hpMax == 150)
         {
-            mi.power = 10;
-            mi.exp = 50;
+            mi.power = 13;
+            mi.exp = 200;
         }
         else if (mi.hpMax == 300)
         {
-            mi.power = 15;
-            mi.exp = 80;
+            mi.power = 17;
+            mi.exp = 400;
         }
         else if (mi.hpMax == 366)
         {
-            mi.power = 16;
-            mi.exp = 90;
+            mi.power = 20;
+            mi.exp = 500;
         }
         else if (mi.hpMax == 500)
         {
-            mi.power = 20;
-            mi.exp = 150;
+            mi.power = 22;
+            mi.exp = 700;
         }
         else if (mi.hpMax == 700)
         {
             mi.power = 30;
-            mi.exp = 250;
+            mi.exp = 1200;
         }
         // 슬라임 종 랜덤으로 정해줌.  값에 따른 종--> 0~20 : 레드/ 21~40 : 그린/ 41~60 : 블루/ 61~75 : 라이트/ 76~90 : 다크/ 91~96 : 스태리/ 97~100 : 킹
         //mi.kinds = DecideKinds();
@@ -69,8 +69,9 @@ public class monsterHP : MonoBehaviour
         hpBar.transform.position = new Vector3(transform.position.x, transform.position.y+(float)0.75, 0);
         if(isKing)
             kingLight.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        if (mi.hp == 0)
+        if (mi.hp <= 0)
         {
+
             Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
             EarnGold = (int)mi.hpMax * 10;
             userInfo.setGold(userInfo.getGold() + EarnGold);

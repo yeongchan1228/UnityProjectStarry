@@ -80,7 +80,6 @@ public class StoreUIManager : MonoBehaviour
         }
         Parent = salePart.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Transform>();
         store = storePart.transform.GetChild(0).transform.GetChild(0).gameObject;
-        userInfo.setGold(50000000);
         upgrade = upgradePart.transform.GetChild(0).transform.GetChild(0).gameObject;
         for(int i = 0; i < store.transform.childCount; i++) // 구매 버튼 리스너등록
         {
@@ -260,7 +259,7 @@ public class StoreUIManager : MonoBehaviour
                 price.text = "150,000G";
                 armor_price = 150000;
                 userInfo.getItem_Armor().SetArmorName("silvertop");
-                userInfo.getItem_Armor().SetArmorPower(7);
+                userInfo.getItem_Armor().SetArmorPower(5);
                 Armor.text = "방어력 : " + userInfo.getItem_Armor().GetArmorPower().ToString();
                 upgrade_obj.SetActive(true);
             }
@@ -272,7 +271,7 @@ public class StoreUIManager : MonoBehaviour
                 price.text = "300,000G";
                 armor_price = 300000;
                 userInfo.getItem_Armor().SetArmorName("iridiumtop");
-                userInfo.getItem_Armor().SetArmorPower(12);
+                userInfo.getItem_Armor().SetArmorPower(10);
                 Armor.text = "방어력 : " + userInfo.getItem_Armor().GetArmorPower().ToString();
                 upgrade_obj.SetActive(true);
             }
@@ -284,7 +283,7 @@ public class StoreUIManager : MonoBehaviour
                 price.text = "0G";
                 armor_price = 0;
                 userInfo.getItem_Armor().SetArmorName("diatop");
-                userInfo.getItem_Armor().SetArmorPower(20);
+                userInfo.getItem_Armor().SetArmorPower(15);
                 Armor.text = "방어력 : " + userInfo.getItem_Armor().GetArmorPower().ToString();
                 btt.interactable = false;
                 upgrade_obj.SetActive(true);
@@ -837,200 +836,15 @@ public class StoreUIManager : MonoBehaviour
 
         if (select_delete_item.Equals("평범한 물고기")) { 
             Delete_Item_Fish("평범한물고기", 50);
-
-            userInfo.grandmaFish++;
-            if (userInfo.grandmaFish == 1)
-            {
-                talkManager.talking.Add("seller", new string[] {
-            "...너는 참 너희 할머니를 많이 닮은 것 같아.:0",
-            "이 물고기를 내게 줬다는 건, 나한테도 변화가 필요하다는 거겠지.:0",
-            "이제는 나도, 너를 용서할 때가 된 것 같아... 자, 이걸 받아.:0",
-            "[보라색 리본이 달린 할머니의 밀짚모자를 받았습니다.]:0",
-            "그리고, 하나 더 유용한 걸 알려줄게.\n슬라임 던전 아주 깊은 곳에 있는 몬스터를 잡으면 누군가의 혼이 깃든 '무언가'가 나온대.:0",
-            "네게 아주 필요할지도 몰라.\n아무튼, 앞으로도 우리 가게 많이 와줘. 잘 지내자.:0"});
-
-   
-                //인벤토리에 밀짚모자 넣기
-                userInfo.StoryItemkey.Add("할머니의 밀짚모자");
-                userInfo.StoryItem.Add("할머니의 밀짚모자", 1);
-
-                for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
-                {
-                    GameObject bottonobj = menuControl.InventoryStory.transform.GetChild(i).gameObject;
-                    bottonobj.SetActive(true);
-                    Image bottonimg = bottonobj.GetComponent<Image>();
-                    GameObject Image = bottonobj.transform.GetChild(0).gameObject;
-
-                    Image keyimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
-                    if (userInfo.StoryItemkey[i].Equals("Orgol")) { keyimg.sprite = spec_orgol[10]; }
-                    else if (userInfo.StoryItemkey[i].Equals("하늘색 열쇠")) { keyimg.sprite = special[0]; }
-                    else if (userInfo.StoryItemkey[i].Equals("최종 열쇠")) { keyimg.sprite = special[1]; }
-                    else if (userInfo.StoryItemkey[i].Equals("초록색 열쇠")) { keyimg.sprite = special[2]; }
-                    else if (userInfo.StoryItemkey[i].Equals("할머니의 밀짚모자")) { keyimg.sprite = special[3]; }
-                    else if (userInfo.StoryItemkey[i].Equals("분홍색 열쇠")) { keyimg.sprite = special[4]; }
-                    else if (userInfo.StoryItemkey[i].Equals("보라색 열쇠")) { keyimg.sprite = special[5]; }
-                    else if (userInfo.StoryItemkey[i].Equals("곰인형")) { keyimg.sprite = special[6]; }
-
-
-                    Image.SetActive(true);
-                    GameObject text = bottonobj.transform.GetChild(1).gameObject;
-                    Text Hattext = text.GetComponent<Text>();
-                    Hattext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
-                    text.SetActive(true);
-                }
-
-             
-            }
-
         }
         else if (select_delete_item.Equals("빨강 물고기")) {
             Delete_Item_Fish("빨강물고기", 130);
-
-            userInfo.grandmaFish++;
-            if (userInfo.grandmaFish == 1)
-            {
-                talkManager.talking.Add("seller", new string[] {
-            "...너는 참 너희 할머니를 많이 닮은 것 같아.:0",
-            "이 물고기를 내게 줬다는 건, 나한테도 변화가 필요하다는 거겠지.:0",
-            "이제는 나도, 너를 용서할 때가 된 것 같아... 자, 이걸 받아.:0",
-            "[보라색 리본이 달린 할머니의 밀짚모자를 받았습니다.]:0",
-            "그리고, 하나 더 유용한 걸 알려줄게.:0",
-            "슬라임 던전 아주 깊은 곳에 있는 몬스터를 잡으면 누군가의 혼이 깃든 '무언가'가 나온대.:0",
-            "네게 아주 필요할지도 몰라.\n아무튼, 앞으로도 우리 가게 많이 와줘. 잘 지내자.:0"});
-
-
-                //인벤토리에 밀짚모자 넣기
-                userInfo.StoryItemkey.Add("할머니의 밀짚모자");
-                userInfo.StoryItem.Add("할머니의 밀짚모자", 1);
-
-                for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
-                {
-                    GameObject bottonobj = menuControl.InventoryStory.transform.GetChild(i).gameObject;
-                    bottonobj.SetActive(true);
-                    Image bottonimg = bottonobj.GetComponent<Image>();
-                    GameObject Image = bottonobj.transform.GetChild(0).gameObject;
-
-                    Image keyimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
-                    if (userInfo.StoryItemkey[i].Equals("Orgol")) { keyimg.sprite = spec_orgol[10]; }
-                    else if (userInfo.StoryItemkey[i].Equals("하늘색 열쇠")) { keyimg.sprite = special[0]; }
-                    else if (userInfo.StoryItemkey[i].Equals("최종 열쇠")) { keyimg.sprite = special[1]; }
-                    else if (userInfo.StoryItemkey[i].Equals("초록색 열쇠")) { keyimg.sprite = special[2]; }
-                    else if (userInfo.StoryItemkey[i].Equals("할머니의 밀짚모자")) { keyimg.sprite = special[3]; }
-                    else if (userInfo.StoryItemkey[i].Equals("분홍색 열쇠")) { keyimg.sprite = special[4]; }
-                    else if (userInfo.StoryItemkey[i].Equals("보라색 열쇠")) { keyimg.sprite = special[5]; }
-                    else if (userInfo.StoryItemkey[i].Equals("곰인형")) { keyimg.sprite = special[6]; }
-
-
-                    Image.SetActive(true);
-                    GameObject text = bottonobj.transform.GetChild(1).gameObject;
-                    Text Hattext = text.GetComponent<Text>();
-                    Hattext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
-                    text.SetActive(true);
-                }
-
-          
-            }
-
-
         }
         else if (select_delete_item.Equals("주황 물고기")) {
             Delete_Item_Fish("주황물고기", 150);
-
-            userInfo.grandmaFish++;
-            if (userInfo.grandmaFish == 1)
-            {
-                talkManager.talking.Add("seller", new string[] {
-            "...너는 참 너희 할머니를 많이 닮은 것 같아.:0",
-            "이 물고기를 내게 줬다는 건, 나한테도 변화가 필요하다는 거겠지.:0",
-            "이제는 나도, 너를 용서할 때가 된 것 같아... 자, 이걸 받아.:0",
-            "[보라색 리본이 달린 할머니의 밀짚모자를 받았습니다.]:0",
-            "그리고, 하나 더 유용한 걸 알려줄게.:0",
-            "슬라임 던전 아주 깊은 곳에 있는 몬스터를 잡으면 누군가의 혼이 깃든 '무언가'가 나온대.:0",
-            "네게 아주 필요할지도 몰라.\n아무튼, 앞으로도 우리 가게 많이 와줘. 잘 지내자.:0"});
-
-
-
-                //인벤토리에 밀짚모자 넣기
-                userInfo.StoryItemkey.Add("할머니의 밀짚모자");
-                userInfo.StoryItem.Add("할머니의 밀짚모자", 1);
-
-                for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
-                {
-                    GameObject bottonobj = menuControl.InventoryStory.transform.GetChild(i).gameObject;
-                    bottonobj.SetActive(true);
-                    Image bottonimg = bottonobj.GetComponent<Image>();
-                    GameObject Image = bottonobj.transform.GetChild(0).gameObject;
-
-                    Image keyimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
-                    if (userInfo.StoryItemkey[i].Equals("Orgol")) { keyimg.sprite = spec_orgol[10]; }
-                    else if (userInfo.StoryItemkey[i].Equals("하늘색 열쇠")) { keyimg.sprite = special[0]; }
-                    else if (userInfo.StoryItemkey[i].Equals("최종 열쇠")) { keyimg.sprite = special[1]; }
-                    else if (userInfo.StoryItemkey[i].Equals("초록색 열쇠")) { keyimg.sprite = special[2]; }
-                    else if (userInfo.StoryItemkey[i].Equals("할머니의 밀짚모자")) { keyimg.sprite = special[3]; }
-                    else if (userInfo.StoryItemkey[i].Equals("분홍색 열쇠")) { keyimg.sprite = special[4]; }
-                    else if (userInfo.StoryItemkey[i].Equals("보라색 열쇠")) { keyimg.sprite = special[5]; }
-                    else if (userInfo.StoryItemkey[i].Equals("곰인형")) { keyimg.sprite = special[6]; }
-
-
-                    Image.SetActive(true);
-                    GameObject text = bottonobj.transform.GetChild(1).gameObject;
-                    Text Hattext = text.GetComponent<Text>();
-                    Hattext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
-                    text.SetActive(true);
-                }
-
-            }
-
         }
         else if (select_delete_item.Equals("노랑 물고기")) {
             Delete_Item_Fish("노랑물고기", 200);
-
-            userInfo.grandmaFish++;
-            if (userInfo.grandmaFish == 1)
-            {
-                talkManager.talking.Add("seller", new string[] {
-            "...너는 참 너희 할머니를 많이 닮은 것 같아.:0",
-            "이 물고기를 내게 줬다는 건, 나한테도 변화가 필요하다는 거겠지.:0",
-            "이제는 나도, 너를 용서할 때가 된 것 같아... 자, 이걸 받아.:0",
-            "[보라색 리본이 달린 할머니의 밀짚모자를 받았습니다.]:0",
-            "그리고, 하나 더 유용한 걸 알려줄게.:0",
-            "슬라임 던전 아주 깊은 곳에 있는 몬스터를 잡으면 누군가의 혼이 깃든 '무언가'가 나온대.:0",
-            "네게 아주 필요할지도 몰라.\n아무튼, 앞으로도 우리 가게 많이 와줘. 잘 지내자.:0"});
-
-
-                //인벤토리에 밀짚모자 넣기
-                userInfo.StoryItemkey.Add("할머니의 밀짚모자");
-                userInfo.StoryItem.Add("할머니의 밀짚모자", 1);
-
-                for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
-                {
-                    GameObject bottonobj = menuControl.InventoryStory.transform.GetChild(i).gameObject;
-                    bottonobj.SetActive(true);
-                    Image bottonimg = bottonobj.GetComponent<Image>();
-                    GameObject Image = bottonobj.transform.GetChild(0).gameObject;
-
-                    Image keyimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
-                    if (userInfo.StoryItemkey[i].Equals("Orgol")) { keyimg.sprite = spec_orgol[10]; }
-                    else if (userInfo.StoryItemkey[i].Equals("하늘색 열쇠")) { keyimg.sprite = special[0]; }
-                    else if (userInfo.StoryItemkey[i].Equals("최종 열쇠")) { keyimg.sprite = special[1]; }
-                    else if (userInfo.StoryItemkey[i].Equals("초록색 열쇠")) { keyimg.sprite = special[2]; }
-                    else if (userInfo.StoryItemkey[i].Equals("할머니의 밀짚모자")) { keyimg.sprite = special[3]; }
-                    else if (userInfo.StoryItemkey[i].Equals("분홍색 열쇠")) { keyimg.sprite = special[4]; }
-                    else if (userInfo.StoryItemkey[i].Equals("보라색 열쇠")) { keyimg.sprite = special[5]; }
-                    else if (userInfo.StoryItemkey[i].Equals("곰인형")) { keyimg.sprite = special[6]; }
-
-
-                    Image.SetActive(true);
-                    GameObject text = bottonobj.transform.GetChild(1).gameObject;
-                    Text Hattext = text.GetComponent<Text>();
-                    Hattext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
-                    text.SetActive(true);
-                }
-
-             
-            }
-
-
         }
         else if (select_delete_item.Equals("초록 물고기")) { Delete_Item_Fish("초록물고기", 230); 
         }

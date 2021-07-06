@@ -521,7 +521,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && spriteR.sprite.name.Equals("hole") && isSeeSecret == true)
         {
-            Hole_UI = GameObject.Find("Hole_UI").transform.GetChild(0).gameObject;
+            Hole_UI = GameObject.Find("Hole_UI").transform.GetChild(1).gameObject;
             furnace = Hole_UI.transform.GetChild(0).gameObject;
             fin_box = Hole_UI.transform.GetChild(1).gameObject;
             exit = Hole_UI.transform.GetChild(2).gameObject;
@@ -729,15 +729,13 @@ public class PlayerController : MonoBehaviour
                     return;
                 if (aniDir == 0 && 0 > disY && disY > -1)
                 {
-                    Debug.Log("아래로 공격 성공");
                     mHP = enemy.GetComponent<monsterHP>();
-                    mHP.Hit(10);
+                    mHP.Hit(userInfo.getItem_Weapon().GetWeaponPower());
                 }
                 else if (aniDir == 3 && 0 < disY && disY < 1)
                 {
-                    Debug.Log("위로 공격 성공");
                     mHP = enemy.GetComponent<monsterHP>();
-                    mHP.Hit(10); // 10은 임시로 넣은 값. 이후 무기에 따라서 값 넣어줘야 함.
+                    mHP.Hit(userInfo.getItem_Weapon().GetWeaponPower()); // 10은 임시로 넣은 값. 이후 무기에 따라서 값 넣어줘야 함.
                 }
             }
             else if (aniDir == 1 || aniDir == 2) // 1 : 왼쪽/ 2 : 오른쪽
@@ -758,15 +756,13 @@ public class PlayerController : MonoBehaviour
                     return;
                 if (aniDir == 1 && 0 > disX && disX > -1.5)
                 {
-                    Debug.Log("왼쪽으로 공격 성공");
                     mHP = enemy.GetComponent<monsterHP>();
-                    mHP.Hit(10);
+                    mHP.Hit(userInfo.getItem_Weapon().GetWeaponPower());
                 }
                 else if (aniDir == 2 && 0 < disX && disX < 1.5)
                 {
-                    Debug.Log("오른쪽으로 공격 성공");
                     mHP = enemy.GetComponent<monsterHP>();
-                    mHP.Hit(10);
+                    mHP.Hit(userInfo.getItem_Weapon().GetWeaponPower());
                 }
 
             }
@@ -1447,7 +1443,8 @@ public class PlayerController : MonoBehaviour
             int maxHp = userInfo.getMaxHp();
             int damage = 0;
             monsterInformation = collision.gameObject.GetComponent<MonsterInformation>();
-            damage = monsterInformation.power; //나중에 갑옷 방어력만큼 빼줘야 함. 
+            damage = monsterInformation.power - userInfo.getItem_Armor().GetArmorPower(); //나중에 갑옷 방어력만큼 빼줘야 함. 
+            if(damage < 0) { damage = 0; }
             userInfo.setHp(userInfo.getHp() - damage);
             userInfo.setUIHp();
             if (userInfo.getHp() > 1)
