@@ -55,11 +55,14 @@ public class PlayerController : MonoBehaviour
     public bool isGoHole;
 
 
-    // Start is called before the first frame update
-    void Start()
+    public PlayerController()
     {
         SeedField_name = new List<GameObject>();
         SeedField = new Dictionary<string, List<string>>();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         chatEffect = GameObject.Find("Talk").transform.GetChild(0).gameObject;
         chat = chatEffect.GetComponent<ChatEffect>();
         user_man = GameObject.Find("Player").transform.GetChild(1).gameObject;
