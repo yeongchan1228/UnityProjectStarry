@@ -100,7 +100,13 @@ public class ButtonHandler : MonoBehaviour
         {
             userInfo = user_woman.GetComponent<UserInfo>();
         }
-        
+        /*userInfo.setGold(150000);
+        userInfo.FruitItemkey.Add("DARK");
+        userInfo.FruitItemkey.Add("LIGHT");
+        userInfo.FruitItemkey.Add("starry");
+        userInfo.FruitItemkey.Add("Strawberry");
+        userInfo.StoryItemkey.Add("곰인형");
+        userInfo.StoryItemkey.Add("할머니의 밀짚모자");*/
     }
 
     void Update()
