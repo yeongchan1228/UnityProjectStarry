@@ -16,10 +16,16 @@ public class monsterHP : MonoBehaviour
     //public int kindsRangeR;
     public float respawnTime;
     int EarnGold;
+    MenuControl menuControl;
     //int kindsvalue;
-
+    GameObject Msgbox;
+    Sprite[] special;
+    Sprite[] spec_orgol;
     void Start()
     {
+        menuControl = GameObject.Find("MenuManager").GetComponent<MenuControl>();
+        special = Resources.LoadAll<Sprite>("Sprites/Final");
+        spec_orgol = Resources.LoadAll<Sprite>("Sprites/Fruit/Seed");
         PlayerUI = GameObject.Find("PlayerUI").gameObject;
         userInfo = GameObject.FindGameObjectWithTag("Player").GetComponent<UserInfo>();
         mi = gameObject.GetComponent<MonsterInformation>();
@@ -71,7 +77,6 @@ public class monsterHP : MonoBehaviour
             kingLight.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (mi.hp <= 0)
         {
-
             Text UIGold = PlayerUI.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>();
             EarnGold = (int)mi.hpMax * 10;
             userInfo.setGold(userInfo.getGold() + EarnGold);
@@ -80,10 +85,54 @@ public class monsterHP : MonoBehaviour
             UIGold.text = userInfo.getGold().ToString();
             hpBar.gameObject.SetActive(false);
             if (isKing)
+            {
+                Msgbox = GameObject.Find("MessageCanvas").transform.GetChild(0).gameObject;
                 kingLight.SetActive(false);
+
+                userInfo.StoryItemkey.Add("°õÀÎÇü");
+                userInfo.StoryItem.Add("°õÀÎÇü", 1);
+
+                for (int i = 0; i < userInfo.StoryItemkey.Count; i++)
+                {
+                    GameObject bottonobj = menuControl.InventoryStory.transform.GetChild(i).gameObject;
+                    bottonobj.SetActive(true);
+                    Image bottonimg = bottonobj.GetComponent<Image>();
+                    GameObject Image = bottonobj.transform.GetChild(0).gameObject;
+
+                    Image keyimg = bottonobj.transform.GetChild(0).GetComponent<Image>();
+                    if (userInfo.StoryItemkey[i].Equals("Orgol")) { keyimg.sprite = spec_orgol[10]; }
+                    else if (userInfo.StoryItemkey[i].Equals("ÇÏ´Ã»ö ¿­¼è")) { keyimg.sprite = special[0]; }
+                    else if (userInfo.StoryItemkey[i].Equals("ÃÖÁ¾ ¿­¼è")) { keyimg.sprite = special[1]; }
+                    else if (userInfo.StoryItemkey[i].Equals("ÃÊ·Ï»ö ¿­¼è")) { keyimg.sprite = special[2]; }
+                    else if (userInfo.StoryItemkey[i].Equals("ÇÒ¸Ó´ÏÀÇ ¹ÐÂ¤¸ðÀÚ")) { keyimg.sprite = special[3]; }
+                    else if (userInfo.StoryItemkey[i].Equals("ºÐÈ«»ö ¿­¼è")) { keyimg.sprite = special[4]; }
+                    else if (userInfo.StoryItemkey[i].Equals("º¸¶ó»ö ¿­¼è")) { keyimg.sprite = special[5]; }
+                    else if (userInfo.StoryItemkey[i].Equals("°õÀÎÇü")) { keyimg.sprite = special[6]; }
+
+
+                    Image.SetActive(true);
+                    GameObject text = bottonobj.transform.GetChild(1).gameObject;
+                    Text Hattext = text.GetComponent<Text>();
+                    Hattext.text = userInfo.StoryItem[userInfo.StoryItemkey[i]].ToString();
+                    text.SetActive(true);
+                }
+                Message();
+            }
+
             gameObject.SetActive(false);
             Invoke("Respawn", respawnTime);
         }
+    }
+
+    void Message()
+    {
+        Msgbox.SetActive(true);
+        Invoke("CloseMessage", 0.5f);
+    }
+
+    void CloseMessage()
+    {
+        Msgbox.SetActive(false);
     }
 
     /*

@@ -53919,6 +53919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   End_Button: {fileID: 1310295887}
   EffectSpeed: 15
+  firstimgs: []
+  finimgs: []
   game: {fileID: 681972386}
   doing: 0
   buttonOn: 0

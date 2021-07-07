@@ -725,14 +725,14 @@ public class PlayerController : MonoBehaviour
                         disY = dy;
                     }
                 }
-                if (Mathf.Abs(enemy.transform.position.x - transform.position.x) >= 1)
+                if (Mathf.Abs(enemy.transform.position.x - transform.position.x) >= 2)
                     return;
-                if (aniDir == 0 && 0 > disY && disY > -1)
+                if (aniDir == 0 && 0.5 >= disY && disY > -2.5)
                 {
                     mHP = enemy.GetComponent<monsterHP>();
                     mHP.Hit(userInfo.getItem_Weapon().GetWeaponPower());
                 }
-                else if (aniDir == 3 && 0 < disY && disY < 1)
+                else if (aniDir == 3 && 0.5 <= disY && disY < 2.5)
                 {
                     mHP = enemy.GetComponent<monsterHP>();
                     mHP.Hit(userInfo.getItem_Weapon().GetWeaponPower()); // 10은 임시로 넣은 값. 이후 무기에 따라서 값 넣어줘야 함.
@@ -752,7 +752,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
 
-                if (Mathf.Abs(enemy.transform.position.y - transform.position.y) >= 1)
+                if (Mathf.Abs(enemy.transform.position.y - transform.position.y) >= 1.5)
                     return;
                 if (aniDir == 1 && 0 > disX && disX > -1.5)
                 {
@@ -1480,11 +1480,11 @@ public class PlayerController : MonoBehaviour
         {
             DieImage = GameObject.Find("DieCanvas").transform.GetChild(0).gameObject;
             SceneManager.LoadScene("HouseScene (5)");
-            userInfo.setHp(userInfo.getMaxHp());
-            userInfo.setUIHp();
             DieImage.SetActive(false);
             BGM.isDie = false;
             isDie = false;
+            userInfo.setHp(userInfo.getMaxHp());
+            userInfo.setUIHp();
         }
     }
 
